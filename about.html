@@ -179,11 +179,37 @@
     .r { opacity:0; transform:translateY(24px); transition:opacity .85s ease,transform .85s ease; }
     .r.on { opacity:1; transform:none; }
 
+    /* HAMBURGER */
+    #ham-btn { display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; background:none; border:none; cursor:pointer; padding:4px; z-index:210; }
+    #ham-btn span { display:block; width:22px; height:1.5px; background:var(--fg); border-radius:2px; transition:transform .35s ease,opacity .35s ease,width .35s ease; transform-origin:center; }
+    #ham-btn.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    #ham-btn.open span:nth-child(2) { opacity:0; width:0; }
+    #ham-btn.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    /* MOBILE MENU */
+    #mobile-menu { position:fixed; inset:0; z-index:205; background:var(--bg); display:flex; flex-direction:column; justify-content:space-between; padding:100px 32px 48px; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .4s ease,visibility .4s ease; }
+    #mobile-menu.open { opacity:1; visibility:visible; pointer-events:all; }
+    .mob-links { display:flex; flex-direction:column; gap:4px; }
+    .mob-links a { font-size:clamp(36px,10vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1.1; color:var(--fg); text-decoration:none; border-bottom:.5px solid var(--border); padding:16px 0; display:flex; justify-content:space-between; align-items:center; opacity:0; transform:translateY(20px); transition:color .2s,opacity .4s ease,transform .4s ease; }
+    #mobile-menu.open .mob-links a { opacity:1; transform:none; }
+    #mobile-menu.open .mob-links a:nth-child(1) { transition-delay:.05s; }
+    #mobile-menu.open .mob-links a:nth-child(2) { transition-delay:.1s; }
+    #mobile-menu.open .mob-links a:nth-child(3) { transition-delay:.15s; }
+    #mobile-menu.open .mob-links a:nth-child(4) { transition-delay:.2s; }
+    .mob-links a:hover { color:var(--indigo); }
+    .mob-links a span { font-size:18px; font-weight:300; color:var(--muted); }
+    .mob-footer { display:flex; justify-content:space-between; align-items:flex-end; }
+    .mob-socials { display:flex; gap:16px; }
+    .mob-socials a { color:var(--muted); transition:color .2s; }
+    .mob-socials svg { width:18px; height:18px; }
+    .mob-wa { display:inline-flex; align-items:center; gap:8px; background:#22C55E; color:#fff; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:12px 22px; }
+    @media (hover:none),(pointer:coarse) { #cursor { display:none !important; } html { cursor:auto !important; } }
+
     @media(max-width:960px) {
-      nav { padding:14px 24px; } .nav-mid { display:none; }
+      nav { padding:14px 24px; } .nav-mid { display:none; } .nav-social { display:none; } .nav-wa { display:none; }
+      #ham-btn { display:flex; }
       .nav-logo-clip { display:none; }
       .nav-logo img.iso-nav { display:block; height:38px; }
-      .about-hero { padding:0 24px 56px; }
+      .about-hero { padding:0 24px 56px; min-height:70vh; }
       .about-iso-bg { display:none; }
       #story { padding:72px 24px; }
       .story-inner { grid-template-columns:1fr; gap:48px; }
@@ -197,11 +223,17 @@
       #kevin { padding:72px 24px; }
       .kevin-inner { grid-template-columns:1fr; gap:48px; }
       #cta { padding:72px 24px; }
-      footer { flex-direction:column; gap:12px; text-align:center; padding:20px 24px; }
+      .ft-top { grid-template-columns:1fr 1fr; gap:28px; padding:40px 20px 32px; }
+      .ft-bottom { flex-direction:column; gap:12px; text-align:center; padding:16px 20px; }
+      #cookie-banner { flex-direction:column; gap:12px; bottom:12px; padding:16px; left:20px; right:20px; transform:none; width:auto; }
+      #cookie-banner.hide { transform:translateY(20px); }
+      .cookie-btns { width:100%; }
+      .cookie-accept,.cookie-decline { flex:1; text-align:center; }
     }
     @media(max-width:600px) {
       .values-grid { grid-template-columns:1fr; }
       .metrics-inner { grid-template-columns:1fr 1fr; }
+      .ft-top { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -229,12 +261,35 @@
         <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
       </div>
       <button id="theme-btn" aria-label="Tema"></button>
+      <button id="ham-btn" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="nav-wa">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
         WhatsApp
       </a>
     </div>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <div class="mob-links">
+      <a href="index.html">Inicio <span>→</span></a>
+      <a href="portfolio.html">Proyectos <span>→</span></a>
+      <a href="about.html" class="active">Nosotros <span>→</span></a>
+      <a href="index.html#contact">Contacto <span>→</span></a>
+    </div>
+    <div class="mob-footer">
+      <div class="mob-socials">
+        <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
+      </div>
+      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="mob-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
 
   <!-- HERO -->
   <div class="about-hero">
@@ -497,13 +552,26 @@
       html.dataset.theme = n; localStorage.setItem('apo-theme', n);
     });
     const cur = document.getElementById('cursor');
-    let cx=-100,cy=-100,tx=-100,ty=-100;
-    document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
-    (function loop(){ cx+=(tx-cx)*.13; cy+=(ty-cy)*.13; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(loop); })();
-    document.querySelectorAll('a,button,.value-cell,.kevin-fact').forEach(el => {
-      el.addEventListener('mouseenter', () => cur.classList.add('expand'));
-      el.addEventListener('mouseleave', () => cur.classList.remove('expand'));
-    });
+    const isTouch = window.matchMedia('(hover:none),(pointer:coarse)').matches;
+    if (!isTouch) {
+      let cx=-100,cy=-100,tx=-100,ty=-100;
+      document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
+      (function loop(){ cx+=(tx-cx)*.13; cy+=(ty-cy)*.13; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(loop); })();
+      document.querySelectorAll('a,button,.value-cell,.kevin-fact').forEach(el => {
+        el.addEventListener('mouseenter', () => cur.classList.add('expand'));
+        el.addEventListener('mouseleave', () => cur.classList.remove('expand'));
+      });
+    }
+    const hamBtn = document.getElementById('ham-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    function toggleMenu(open) {
+      hamBtn.classList.toggle('open', open);
+      mobileMenu.classList.toggle('open', open);
+      hamBtn.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hamBtn.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
     const ro = new IntersectionObserver(entries => {
       entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); ro.unobserve(e.target); } });
     }, {threshold:0.07});
