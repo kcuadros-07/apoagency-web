@@ -359,38 +359,66 @@
       .nav-logo-clip { display:none; }
       .nav-logo img.iso-nav { display:block; height:44px; }
       nav.scrolled .nav-logo img.iso-nav { height:34px; }
-      #hero { padding:0 24px 48px; }
-      .hero-hl { letter-spacing:-2px; } .hl-2 { padding-left:32px; }
+
+      /* Hero */
+      #hero { padding:0 20px 52px; overflow:hidden; }
+      .hero-hl { font-size: clamp(38px, 10vw, 62px) !important; letter-spacing:-2px; line-height:.92; }
+      .hl-2 { padding-left: clamp(18px, 5vw, 32px); }
       .hero-bot { flex-direction:column; align-items:flex-start; gap:14px; }
       .hero-sub { text-align:left; max-width:100%; }
-      #services,#projects,#contact { padding-left:24px; padding-right:24px; }
-      #why-apo { padding:72px 24px; }
-      #why-apo > div { grid-template-columns:1fr; gap:48px; }
-      #services { padding:64px 24px 56px !important; }
+
+      /* Sections padding */
+      #services,#projects,#contact { padding-left:20px; padding-right:20px; }
+      #services { padding:64px 20px 56px !important; }
+      #projects { padding-bottom:60px; }
+
+      /* Why APO — inline style override */
+      #why-apo { padding:60px 20px !important; }
+      #why-apo > div { display:flex !important; flex-direction:column !important; gap:40px !important; }
+      #why-apo > div > div:last-child { display:grid !important; grid-template-columns:1fr 1fr !important; }
+
+      /* Services rows */
+      .svc-name { font-size: clamp(22px, 6vw, 38px); }
+      .svc-desc { display:none; }
+      .svc-row { grid-template-columns: 40px 1fr; gap:0 16px; }
+
+      /* Carousel */
       .svc-slide { flex:0 0 80vw; }
-      .carousel-hint { padding:12px 24px 0; }
+      .carousel-hint { padding:12px 20px 0; }
+
+      /* Projects */
       .proj-grid { grid-template-columns:1fr; }
       .sec-hd { flex-direction:column; gap:12px; } .sec-hd-sub { text-align:left; max-width:100%; }
+
+      /* Contact */
       .contact-inner { grid-template-columns:1fr; gap:44px; }
-      .mid-cta { flex-direction:column; align-items:flex-start; padding:36px 24px; gap:18px; }
-      .clients-label { padding:0 24px; }
-      .logo-item { padding:24px 38px; }
-      .ft-top { grid-template-columns:1fr 1fr; gap:32px; padding:40px 24px 32px; }
-      .ft-bottom { flex-direction:column; gap:12px; text-align:center; padding:16px 24px; }
+
+      /* Mid CTA */
+      .mid-cta { flex-direction:column; align-items:flex-start; padding:36px 20px; gap:18px; }
+
+      /* Clients */
+      .clients-label { padding:0 20px; }
+      .logo-item { padding:24px 32px; }
+
+      /* Footer */
+      .ft-top { grid-template-columns:1fr 1fr; gap:28px; padding:40px 20px 32px; }
+      .ft-bottom { flex-direction:column; gap:12px; text-align:center; padding:16px 20px; }
       .ft-legal { flex-wrap:wrap; justify-content:center; }
-      
-      #cookie-banner { flex-direction:column; gap:12px; bottom:12px; padding:16px; }
+
+      /* Cookie banner */
+      #cookie-banner { flex-direction:column; gap:12px; bottom:12px; padding:16px; left:20px; right:20px; transform:none; width:auto; }
+      #cookie-banner.hide { transform:translateY(20px); }
       .cookie-btns { width:100%; }
       .cookie-accept, .cookie-decline { flex:1; text-align:center; }
     }
     @media(max-width:600px) {
-      .nav-logo img { height:38px; }
+      .nav-logo img.iso-nav { height:36px; }
       .svc-slide { flex:0 0 90vw; }
       .form-row { grid-template-columns:1fr; }
-      .logo-item img { height:48px; } .logo-item { padding:18px 28px; }
-      .proj-cell { padding:30px 20px; } .pj-num { font-size:80px; }
-      
+      .logo-item img { height:44px; } .logo-item { padding:16px 24px; }
+      .proj-cell { padding:28px 18px; } .pj-num { font-size:72px; }
       .ft-top { grid-template-columns:1fr; }
+      .hero-hl { font-size: clamp(34px, 9vw, 52px) !important; }
     }
   </style>
 </head>
@@ -442,12 +470,12 @@
 
   <!-- MOBILE MENU -->
   <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
-    <nav class="mob-links">
+    <div class="mob-links">
       <a href="index.html">Inicio <span>→</span></a>
       <a href="portfolio.html">Proyectos <span>→</span></a>
       <a href="about.html">Nosotros <span>→</span></a>
       <a href="#contact" id="mob-contact">Contacto <span>→</span></a>
-    </nav>
+    </div>
     <div class="mob-footer">
       <div class="mob-socials">
         <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -726,13 +754,16 @@
       html.dataset.theme = n; localStorage.setItem('apo-theme', n);
     });
     const cur = document.getElementById('cursor');
-    let cx=-100,cy=-100,tx=-100,ty=-100;
-    document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
-    (function loop(){ cx+=(tx-cx)*.13; cy+=(ty-cy)*.13; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(loop); })();
-    document.querySelectorAll('a,button,.svc-cell,.proj-cell,.logo-item,.contact-ch').forEach(el => {
-      el.addEventListener('mouseenter', () => cur.classList.add('expand'));
-      el.addEventListener('mouseleave', () => cur.classList.remove('expand'));
-    });
+    const isTouch = window.matchMedia('(hover:none),(pointer:coarse)').matches;
+    if (!isTouch) {
+      let cx=-100,cy=-100,tx=-100,ty=-100;
+      document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
+      (function loop(){ cx+=(tx-cx)*.13; cy+=(ty-cy)*.13; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(loop); })();
+      document.querySelectorAll('a,button,.svc-cell,.proj-cell,.logo-item,.contact-ch').forEach(el => {
+        el.addEventListener('mouseenter', () => cur.classList.add('expand'));
+        el.addEventListener('mouseleave', () => cur.classList.remove('expand'));
+      });
+    }
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), {passive:true});
     const ro = new IntersectionObserver(entries => {
@@ -775,16 +806,18 @@
 
     // CAROUSEL drag to scroll
     const carousel = document.getElementById('svc-carousel');
-    const dots = document.querySelectorAll('.carousel-dot');
-    let isDown=false, startX, scrollLeft;
-    carousel.addEventListener('mousedown', e=>{ isDown=true; carousel.style.cursor='grabbing'; startX=e.pageX-carousel.offsetLeft; scrollLeft=carousel.scrollLeft; });
-    carousel.addEventListener('mouseleave', ()=>{ isDown=false; carousel.style.cursor='grab'; });
-    carousel.addEventListener('mouseup', ()=>{ isDown=false; carousel.style.cursor='grab'; });
-    carousel.addEventListener('mousemove', e=>{ if(!isDown)return; e.preventDefault(); const x=e.pageX-carousel.offsetLeft; carousel.scrollLeft=scrollLeft-(x-startX)*1.2; });
-    carousel.addEventListener('scroll', ()=>{
-      const idx = Math.round(carousel.scrollLeft / carousel.offsetWidth * (dots.length / 2));
-      dots.forEach((d,i)=>d.classList.toggle('active', i===Math.min(idx,dots.length-1)));
-    });
+    if (carousel) {
+      const dots = document.querySelectorAll('.carousel-dot');
+      let isDown=false, startX, scrollLeft;
+      carousel.addEventListener('mousedown', e=>{ isDown=true; carousel.style.cursor='grabbing'; startX=e.pageX-carousel.offsetLeft; scrollLeft=carousel.scrollLeft; });
+      carousel.addEventListener('mouseleave', ()=>{ isDown=false; carousel.style.cursor='grab'; });
+      carousel.addEventListener('mouseup', ()=>{ isDown=false; carousel.style.cursor='grab'; });
+      carousel.addEventListener('mousemove', e=>{ if(!isDown)return; e.preventDefault(); const x=e.pageX-carousel.offsetLeft; carousel.scrollLeft=scrollLeft-(x-startX)*1.2; });
+      carousel.addEventListener('scroll', ()=>{
+        const idx = Math.round(carousel.scrollLeft / carousel.offsetWidth * (dots.length / 2));
+        dots.forEach((d,i)=>d.classList.toggle('active', i===Math.min(idx,dots.length-1)));
+      });
+    }
 
     // MOBILE MENU
     const hamBtn = document.getElementById('ham-btn');
