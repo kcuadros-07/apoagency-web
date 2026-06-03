@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyectos — APO Agency</title>
+  <meta name="description" content="Portafolio de proyectos reales de APO Agency. Bots, campañas, ecommerce y branding en Ecuador." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#07070D; --surface:#0D0D18; --fg:#F1F5F9; --muted:#64748B; --border:rgba(241,245,249,.07); --indigo:#6366F1; --indigo-l:#818CF8; --nav-blur:rgba(7,7,13,.85); --cf:brightness(0) invert(1); }
+    [data-theme="light"] { --bg:#F4F4EF; --surface:#EAEAE4; --fg:#09090F; --muted:#7A7A8C; --border:rgba(9,9,15,.09); --indigo:#4F46E5; --indigo-l:#6366F1; --nav-blur:rgba(244,244,239,.88); --cf:brightness(0); }
+    html { scroll-behavior:smooth; cursor:none; }
+    body { background:var(--bg); color:var(--fg); font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; -webkit-font-smoothing:antialiased; transition:background .5s,color .5s; }
+    ::-webkit-scrollbar { display:none; } * { scrollbar-width:none; }
+    body::after { content:''; position:fixed; inset:0; z-index:9000; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity:.025; mix-blend-mode:overlay; }
+    #cursor { position:fixed; width:8px; height:8px; background:var(--indigo); border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); transition:width .2s,height .2s,opacity .2s; will-change:left,top; }
+    #cursor.expand { width:36px; height:36px; opacity:.22; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:20px 52px; background:var(--nav-blur); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:.5px solid var(--border); gap:16px; }
+    .nav-mid { justify-self:center; }
+    .nav-right { justify-self:end; }
+    .nav-logo { text-decoration:none; display:flex; align-items:center; }
+    .nav-logo-clip { display:flex; align-items:center; flex-shrink:0; } .nav-logo-clip img.wordmark { width:160px; height:52px; object-fit:cover; object-position:center 45%; display:block; } .nav-logo img.iso-nav { height:36px; width:auto; display:none; }
+    .logo-dark { display:block; } .logo-light { display:none; }
+    [data-theme="light"] .logo-dark { display:none; } [data-theme="light"] .logo-light { display:block; }
+    .nav-logo-fb { font-size:20px; font-weight:800; letter-spacing:-1px; color:var(--fg); display:none; }
+    .nav-mid { display:flex; gap:28px; list-style:none; }
+    .nav-mid a { font-size:11px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .nav-mid a:hover,.nav-mid a.active { color:var(--fg); }
+    .nav-right { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+    .nav-social { display:flex; gap:6px; }
+    .nav-social a { width:30px; height:30px; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:color .2s; }
+    .nav-social a:hover { color:var(--fg); }
+    .nav-social svg { width:15px; height:15px; }
+    #theme-btn { width:40px; height:21px; border-radius:999px; background:var(--border); border:.5px solid var(--border); position:relative; cursor:none; outline:none; padding:0; }
+    #theme-btn::after { content:''; position:absolute; top:2px; left:2px; width:15px; height:15px; border-radius:50%; background:var(--muted); transition:transform .35s cubic-bezier(.4,0,.2,1),background .4s; }
+    [data-theme="light"] #theme-btn::after { transform:translateX(19px); background:var(--indigo); }
+    .nav-wa { display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; text-decoration:none; background:#25D366; padding:9px 16px; transition:transform .2s,box-shadow .2s; }
+    .nav-wa:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(37,211,102,.35); }
+    .nav-wa svg { width:13px; height:13px; }
+
+    /* PAGE HEADER */
+    .page-header { padding:140px 52px 80px; border-bottom:.5px solid var(--border); }
+    .page-header-inner { display:flex; justify-content:space-between; align-items:flex-end; gap:40px; }
+    .page-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--indigo); margin-bottom:20px; display:block; }
+    .page-title { font-size:clamp(52px,9vw,120px); font-weight:800; letter-spacing:-4px; line-height:.9; }
+    .page-sub { font-size:15px; font-weight:300; color:var(--muted); max-width:260px; line-height:1.7; text-align:right; align-self:flex-end; }
+
+    /* FILTER TABS */
+    .filter-bar { padding:32px 52px; border-bottom:.5px solid var(--border); display:flex; gap:8px; flex-wrap:wrap; }
+    .filter-btn { font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); background:transparent; border:.5px solid var(--border); padding:8px 18px; cursor:none; transition:color .2s,border-color .2s,background .2s; font-family:inherit; outline:none; }
+    .filter-btn:hover,.filter-btn.active { color:var(--indigo); border-color:rgba(99,102,241,.4); background:rgba(99,102,241,.05); }
+
+    /* PROJECTS LIST */
+    .projects-list { padding:0 52px 100px; }
+    .proj-item { display:grid; grid-template-columns:80px 1fr auto; gap:0 48px; padding:56px 0; border-bottom:.5px solid var(--border); transition:background .3s; position:relative; }
+    .proj-item:first-child { border-top:.5px solid var(--border); }
+    .proj-item:hover { background:rgba(99,102,241,.03); }
+    .proj-item:hover .pi-num { opacity:.25; }
+    .proj-item:hover .pi-arrow { opacity:1; transform:translate(0,0); }
+    .pi-num { font-size:13px; font-weight:300; font-style:italic; color:var(--muted); padding-top:6px; }
+    .pi-body { flex:1; }
+    .pi-logo { height:36px; width:auto; max-width:130px; object-fit:contain; filter:var(--cf); opacity:.55; display:block; margin-bottom:20px; transition:opacity .3s, filter .5s; }
+    .proj-item:hover .pi-logo { opacity:.85; }
+    .pi-type { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--indigo); margin-bottom:12px; }
+    .pi-title { font-size:clamp(22px,3vw,36px); font-weight:800; letter-spacing:-.03em; line-height:1; margin-bottom:6px; }
+    .pi-client { font-size:12px; font-weight:400; letter-spacing:.12em; text-transform:uppercase; color:var(--indigo-l); margin-bottom:18px; }
+    .pi-desc { font-size:14px; font-weight:300; line-height:1.7; color:var(--muted); max-width:560px; }
+    .pi-stats { display:flex; gap:24px; flex-wrap:wrap; margin-top:20px; }
+    .pi-stat-val { font-size:20px; font-weight:800; letter-spacing:-1px; color:var(--fg); }
+    .pi-stat-val span { color:var(--indigo); }
+    .pi-stat-lbl { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+    .pi-stack { font-size:12px; color:var(--muted); margin-top:20px; padding-top:16px; border-top:.5px solid var(--border); display:flex; gap:8px; flex-wrap:wrap; }
+    .pi-tag { padding:4px 10px; border:.5px solid var(--border); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+    .pi-right { display:flex; flex-direction:column; align-items:flex-end; justify-content:space-between; gap:20px; padding-top:6px; min-width:140px; }
+    .pi-arrow { font-size:24px; color:var(--indigo); opacity:0; transform:translate(-8px,8px); transition:opacity .3s,transform .3s; }
+    .pi-ext { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--indigo); text-decoration:none; transition:gap .2s; margin-top:auto; }
+    .pi-ext:hover { gap:10px; }
+
+    /* FOOTER */
+    footer { border-top:.5px solid var(--border); }
+    .ft-top { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; padding:60px 52px 48px; border-bottom:.5px solid var(--border); }
+    .ft-brand-logo { display:flex; align-items:center; margin-bottom:16px; }
+    .ft-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.6; margin-bottom:24px; max-width:220px; }
+    .ft-socials { display:flex; gap:10px; }
+    .ft-socials a { width:32px; height:32px; border:.5px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--muted); transition:color .2s,border-color .2s; }
+    .ft-socials a:hover { color:var(--indigo); border-color:rgba(99,102,241,.4); }
+    .ft-socials svg { width:14px; height:14px; }
+    .ft-col-title { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--fg); margin-bottom:20px; display:block; }
+    .ft-links { display:flex; flex-direction:column; gap:10px; }
+    .ft-links a { font-size:13px; font-weight:300; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .ft-links a:hover { color:var(--indigo); }
+    .ft-bottom { display:flex; justify-content:space-between; align-items:center; padding:20px 52px; gap:16px; flex-wrap:wrap; }
+    .ft-copy { font-size:11px; font-weight:300; color:var(--muted); }
+    .ft-legal { display:flex; gap:20px; }
+    .ft-legal a { font-size:11px; font-weight:300; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .ft-legal a:hover { color:var(--indigo); }
+    #cookie-banner { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:9990; width:min(640px,calc(100vw - 40px)); background:var(--surface); border:.5px solid var(--border); padding:20px 24px; display:flex; align-items:center; gap:20px; backdrop-filter:blur(12px); transition:opacity .4s,transform .4s; box-shadow:0 8px 40px rgba(0,0,0,.4); }
+    #cookie-banner.hide { opacity:0; transform:translateX(-50%) translateY(20px); pointer-events:none; }
+    .cookie-text { font-size:12px; font-weight:300; color:var(--muted); line-height:1.6; flex:1; }
+    .cookie-text a { color:var(--indigo); text-decoration:none; }
+    .cookie-btns { display:flex; gap:8px; flex-shrink:0; }
+    .cookie-accept { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:var(--indigo); color:#fff; border:none; padding:9px 18px; cursor:pointer; font-family:inherit; }
+    .cookie-decline { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:transparent; color:var(--muted); border:.5px solid var(--border); padding:9px 18px; cursor:pointer; font-family:inherit; transition:color .2s; }
+    .cookie-decline:hover { color:var(--fg); }
+
+    /* REVEAL */
+    .r { opacity:0; transform:translateY(24px); transition:opacity .8s ease,transform .8s ease; }
+    .r.on { opacity:1; transform:none; }
+
+    @media(max-width:960px) {
+      nav { padding:14px 24px; grid-template-columns:1fr auto; }
+      .nav-mid { display:none; }
+      .nav-right { justify-self:end; }
+      .nav-logo-clip { display:none; }
+      .nav-logo img.iso-nav { display:block; height:38px; }
+      .page-header { padding:100px 24px 52px; }
+      .page-header-inner { flex-direction:column; gap:16px; }
+      .page-sub { text-align:left; max-width:100%; }
+      .filter-bar { padding:20px 24px; gap:6px; }
+      .filter-btn { padding:7px 14px; font-size:10px; }
+      .projects-list { padding:0 24px 64px; }
+      .proj-item { grid-template-columns:1fr; }
+      .pi-num { display:none; }
+      .pi-right { flex-direction:row; align-items:center; justify-content:flex-start; gap:16px; margin-top:20px; min-width:0; }
+      .pi-arrow { display:none; }
+      .pi-stats { gap:14px; }
+      .pi-stat-val { font-size:16px; }
+      footer { flex-direction:column; gap:10px; text-align:center; padding:20px 24px; }
+    }
+    @media(max-width:600px) {
+      nav { padding:12px 20px; }
+      .nav-logo img { height:36px; }
+      .page-header { padding:88px 20px 44px; }
+      .page-title { letter-spacing:-2px; }
+      .filter-bar { padding:16px 20px; }
+      .projects-list { padding:0 20px 52px; }
+      .proj-item { padding:40px 0; }
+      .pi-title { font-size:clamp(18px,5vw,26px); }
+      .pi-stack { flex-wrap:wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cursor"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-clip">
+        <img class="wordmark logo-dark"  src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.closest('.nav-logo-clip').style.display='none'" />
+        <img class="wordmark logo-light" src="assets/logos/apo-logo-black.png" alt="APO Agency" onerror="this.style.display='none'" />
+      </div>
+      <img class="iso-nav logo-dark"  src="assets/logos/isologo-white.png" alt="APO" />
+      <img class="iso-nav logo-light" src="assets/logos/isologo-black.png" alt="APO" />
+    </a>
+    <ul class="nav-mid">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="portfolio.html" class="active">Proyectos</a></li>
+      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="index.html#contact">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="nav-social">
+        <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
+      </div>
+      <button id="theme-btn" aria-label="Tema"></button>
+      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="nav-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-header-inner r">
+      <div>
+        <span class="page-label">/ portafolio</span>
+        <h1 class="page-title">Proyectos<br/>reales.</h1>
+      </div>
+      <p class="page-sub">Sistemas en producción. Resultados medibles. Sin demos ni promesas vacías.</p>
+    </div>
+  </header>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="bot">Bots & IA</button>
+    <button class="filter-btn" data-filter="ads">Publicidad</button>
+    <button class="filter-btn" data-filter="web">Web & Ecommerce</button>
+    <button class="filter-btn" data-filter="brand">Branding</button>
+    <button class="filter-btn" data-filter="events">Eventos</button>
+  </div>
+
+  <div class="projects-list">
+
+    <div class="proj-item r" data-cat="bot ads web">
+      <div class="pi-num">01</div>
+      <div class="pi-body">
+        <img class="pi-logo" src="assets/logos/tecglo.png" alt="TECglo" />
+        <div class="pi-type">ChatBot IA · Meta Ads · ISP</div>
+        <h2 class="pi-title">TecBot + Campañas TECglo</h2>
+        <p class="pi-client">TECglo S.A.</p>
+        <p class="pi-desc">Bot de ventas y soporte 24/7 para ISP de fibra óptica. Gestiona tickets, hace routing inteligente y atiende clientes sin intervención humana. Complementado con campañas de Meta Ads para venta de planes residenciales con $15/día de presupuesto y CPL que bate el mercado.</p>
+        <div class="pi-stats">
+          <div><div class="pi-stat-val">&lt;$1.50</div><div class="pi-stat-lbl">CPL WhatsApp</div></div>
+          <div><div class="pi-stat-val">&lt;$2.50</div><div class="pi-stat-lbl">CPL Formularios</div></div>
+          <div><div class="pi-stat-val">8–10<span>x</span></div><div class="pi-stat-lbl">ROI</div></div>
+          <div><div class="pi-stat-val">$15</div><div class="pi-stat-lbl">Presupuesto/día</div></div>
+        </div>
+        <div class="pi-stack">
+          <span class="pi-tag">Botpress</span><span class="pi-tag">OpenAI</span><span class="pi-tag">Meta Ads</span><span class="pi-tag">CRM</span><span class="pi-tag">Telco</span>
+        </div>
+      </div>
+      <div class="pi-right">
+        <span class="pi-arrow">↗</span>
+        <a href="https://tecglo.com" target="_blank" rel="noopener" class="pi-ext">Ver cliente ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-item r" data-cat="bot events">
+      <div class="pi-num">02</div>
+      <div class="pi-body">
+        <img class="pi-logo" src="assets/logos/feria-de-loja.png" alt="Feria de Loja" />
+        <div class="pi-type">ChatBot IA · Eventos presenciales</div>
+        <h2 class="pi-title">Bot Feria de Loja</h2>
+        <p class="pi-client">Feria de Loja</p>
+        <p class="pi-desc">Asistente conversacional para evento presencial con artesanos, marcas y emprendedores. El bot recibía a los asistentes por WhatsApp, enviaba formularios de registro, informaba ubicación de stands, horarios de actividades y respondía consultas en tiempo real — sin que el equipo organizador tuviera que intervenir en cada interacción.</p>
+        <div class="pi-stack">
+          <span class="pi-tag">Rampwin</span><span class="pi-tag">WhatsApp API</span><span class="pi-tag">Formularios</span><span class="pi-tag">Eventos</span>
+        </div>
+      </div>
+      <div class="pi-right">
+        <span class="pi-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="proj-item r" data-cat="web events">
+      <div class="pi-num">03</div>
+      <div class="pi-body">
+        <img class="pi-logo" src="assets/logos/data-privacy-sunset.png" alt="Data Privacy Sunset" />
+        <div class="pi-type">Desarrollo Web · Evento</div>
+        <h2 class="pi-title">Data Privacy Sunset</h2>
+        <p class="pi-client">Alejandro Varas</p>
+        <p class="pi-desc">Página web para el evento Data Privacy Sunset, congreso sobre privacidad de datos. Diseño y desarrollo orientado a informar el evento, sus ponentes y agenda.</p>
+        <div class="pi-stack">
+          <span class="pi-tag">Desarrollo Web</span><span class="pi-tag">Evento</span><span class="pi-tag">Privacidad de Datos</span>
+        </div>
+      </div>
+      <div class="pi-right">
+        <span class="pi-arrow">↗</span>
+        <a href="https://blog.queestapasandocontusdatos.com/dataprivacysunset/" target="_blank" rel="noopener" class="pi-ext">Ver sitio ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-item r" data-cat="bot">
+      <div class="pi-num">04</div>
+      <div class="pi-body">
+        <img class="pi-logo" src="assets/logos/cancion-films.png" alt="Canzión Films" />
+        <div class="pi-type">WhatsApp Masivo · Automatización</div>
+        <h2 class="pi-title">Campaña Canzión Films</h2>
+        <p class="pi-client">Canzión Films</p>
+        <p class="pi-desc">Automatización de marketing para estrenos cinematográficos. Envíos masivos por WhatsApp a base de contactos segmentada, flujo de confirmación de asistencia automatizado y distribución de códigos promocionales. El sistema operaba solo desde el anuncio del estreno hasta el momento en que el espectador entraba a la sala.</p>
+        <div class="pi-stack">
+          <span class="pi-tag">WhatsApp API</span><span class="pi-tag">Automatización</span><span class="pi-tag">Códigos Promo</span><span class="pi-tag">Cine</span>
+        </div>
+      </div>
+      <div class="pi-right">
+        <span class="pi-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="proj-item r" data-cat="web">
+      <div class="pi-num">05</div>
+      <div class="pi-body">
+        <img class="pi-logo" src="assets/logos/flexman.png" alt="Flexman" />
+        <div class="pi-type">Ecommerce · Desarrollo Web · B2B</div>
+        <h2 class="pi-title">Tienda Online Flexman</h2>
+        <p class="pi-client">Flexman</p>
+        <p class="pi-desc">Ecommerce completo para la venta y promoción de tubos PEAD. Catálogo técnico con especificaciones por producto, sistema de cotización online y proceso de compra adaptado para clientes B2B y B2C. La plataforma convierte visitas en solicitudes comerciales reales, reduciendo la fricción entre interés y cierre.</p>
+        <div class="pi-stack">
+          <span class="pi-tag">Ecommerce</span><span class="pi-tag">Desarrollo Web</span><span class="pi-tag">B2B</span><span class="pi-tag">PEAD</span>
+        </div>
+      </div>
+      <div class="pi-right">
+        <span class="pi-arrow">↗</span>
+        <a href="https://flexman.com" target="_blank" rel="noopener" class="pi-ext">Ver tienda ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-item r" data-cat="brand">
+      <div class="pi-num">06</div>
+      <div class="pi-body">
+        <img class="pi-logo" src="assets/logos/avasant.png" alt="Avasant" />
+        <div class="pi-type">Branding · Identidad Visual completa</div>
+        <h2 class="pi-title">Sistema de Marca Avasant</h2>
+        <p class="pi-client">Avasant Consulting S.A.S</p>
+        <p class="pi-desc">Construcción completa de identidad visual desde cero para consultora. Proceso de naming visual, desarrollo de logotipo e isologo, definición de paleta de color, tipografía corporativa, iconografía y sistema de aplicaciones. Entrega de manual de marca con todas las reglas de uso para consistencia en todos los puntos de contacto.</p>
+        <div class="pi-stack">
+          <span class="pi-tag">Branding</span><span class="pi-tag">Logotipo</span><span class="pi-tag">Manual de Marca</span><span class="pi-tag">Diseño</span>
+        </div>
+      </div>
+      <div class="pi-right">
+        <span class="pi-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="proj-item r" data-cat="bot events ads">
+      <div class="pi-num">07</div>
+      <div class="pi-body">
+        <img class="pi-logo" src="assets/logos/ec-connect.png" alt="EC Connect" />
+        <div class="pi-type">IA · Campañas Interactivas · Eventos</div>
+        <h2 class="pi-title">INNOVA LATAM</h2>
+        <p class="pi-client">EC Connect</p>
+        <p class="pi-desc">Diseño y gestión de campañas interactivas con IA para el evento INNOVA LATAM. Experiencias digitales que conectaban al asistente con el evento antes, durante y después. Comunicación automatizada e inteligente para un evento de escala regional con múltiples puntos de contacto.</p>
+        <div class="pi-stack">
+          <span class="pi-tag">IA</span><span class="pi-tag">Campañas Interactivas</span><span class="pi-tag">Eventos</span><span class="pi-tag">WhatsApp</span>
+        </div>
+      </div>
+      <div class="pi-right">
+        <span class="pi-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="proj-item r" data-cat="web ads">
+      <div class="pi-num">08</div>
+      <div class="pi-body">
+        <img class="pi-logo" src="assets/logos/interhome.png" alt="INTERhome" />
+        <div class="pi-type">Desarrollo Web · Publicidad</div>
+        <h2 class="pi-title">INTERhome Net</h2>
+        <p class="pi-client">INTERhome</p>
+        <p class="pi-desc">Desarrollo y gestión digital para ISP ecuatoriano. Sitio web orientado a captación de clientes residenciales y empresariales, con estructura clara de planes y zonas de cobertura.</p>
+        <div class="pi-stack">
+          <span class="pi-tag">Desarrollo Web</span><span class="pi-tag">ISP</span><span class="pi-tag">Publicidad</span>
+        </div>
+      </div>
+      <div class="pi-right">
+        <span class="pi-arrow">↗</span>
+        <a href="https://interhomenet.com.ec" target="_blank" rel="noopener" class="pi-ext">Ver sitio ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-item r" data-cat="ads events web">
+      <div class="pi-num">09</div>
+      <div class="pi-body">
+        <img class="pi-logo" src="assets/logos/el-instituto.png" alt="El Instituto" />
+        <div class="pi-type">Publicidad · Lanzamientos · Educación Jurídica</div>
+        <h2 class="pi-title">El Instituto — Cursos y Congresos</h2>
+        <p class="pi-client">El Instituto</p>
+        <p class="pi-desc">Gestión de campañas de lanzamiento para cursos y congresos en el ámbito jurídico. Estrategia de Meta Ads para venta de inscripciones, con presupuestos de $100–150/día en temporadas de lanzamiento. Landing pages y páginas de pago integradas para la compra directa de tickets y matrículas.</p>
+        <div class="pi-stats">
+          <div><div class="pi-stat-val">$150</div><div class="pi-stat-lbl">Presupuesto pico/día</div></div>
+          <div><div class="pi-stat-val">4–6<span>x</span></div><div class="pi-stat-lbl">ROI</div></div>
+        </div>
+        <div class="pi-stack">
+          <span class="pi-tag">Meta Ads</span><span class="pi-tag">Landing Page</span><span class="pi-tag">Ecommerce</span><span class="pi-tag">Derecho</span><span class="pi-tag">Educación</span>
+        </div>
+      </div>
+      <div class="pi-right">
+        <span class="pi-arrow">↗</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COOKIE BANNER -->
+  <div id="cookie-banner">
+    <p class="cookie-text">Usamos cookies para mejorar tu experiencia. Al continuar navegando aceptas nuestra <a href="terminos.html">política de cookies</a>.</p>
+    <div class="cookie-btns">
+      <button class="cookie-decline" id="cookie-decline">Rechazar</button>
+      <button class="cookie-accept" id="cookie-accept">Aceptar</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft-top">
+      <div>
+        <div class="ft-brand-logo">
+          <div style="height:44px;overflow:hidden;display:flex;align-items:center;justify-content:center;width:148px;">
+            <img class="logo-dark"  src="assets/logos/apo-logo-white.png" alt="APO Agency" style="height:160%;width:auto;" onerror="this.closest('div').style.display='none'" />
+            <img class="logo-light" src="assets/logos/apo-logo-black.png" alt="APO Agency" style="height:160%;width:auto;" onerror="this.style.display='none'" />
+          </div>
+        </div>
+        <p class="ft-tagline">Impulsamos empresas con IA. Automatización, bots y estrategia digital en Ecuador.</p>
+        <div class="ft-socials">
+          <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.linkedin.com/in/kevincuadros/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://wa.me/593987252978" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg></a>
+          <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <span class="ft-col-title">Servicios</span>
+        <div class="ft-links">
+          <a href="index.html#services">Desarrollo Web</a>
+          <a href="index.html#services">Ecommerce</a>
+          <a href="index.html#services">Meta & Google Ads</a>
+          <a href="index.html#services">Branding & Identidad</a>
+          <a href="index.html#services">Automatizaciones IA</a>
+          <a href="index.html#services">ChatBots WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <span class="ft-col-title">Páginas</span>
+        <div class="ft-links">
+          <a href="index.html">Inicio</a>
+          <a href="portfolio.html">Proyectos</a>
+          <a href="about.html">Nosotros</a>
+          <a href="index.html#contact">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <span class="ft-col-title">Contacto</span>
+        <div class="ft-links">
+          <a href="https://wa.me/593987252978" target="_blank" rel="noopener">+593 98 725 2978</a>
+          <a href="mailto:hola@apoagency.io">hola@apoagency.io</a>
+          <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">@theapoagency</a>
+          <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener">@kevin_cuadros</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span class="ft-copy">© 2026 APO Agency · Ecuador</span>
+      <div class="ft-legal">
+        <a href="terminos.html">Términos y condiciones</a>
+        <a href="terminos.html#cookies">Política de cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const html = document.documentElement;
+    html.dataset.theme = localStorage.getItem('apo-theme') || 'dark';
+    const cb = document.getElementById('cookie-banner');
+    if (localStorage.getItem('apo-cookies')) cb.style.display = 'none';
+    document.getElementById('cookie-accept').onclick = () => { localStorage.setItem('apo-cookies','1'); cb.classList.add('hide'); setTimeout(()=>cb.style.display='none',400); };
+    document.getElementById('cookie-decline').onclick = () => { localStorage.setItem('apo-cookies','0'); cb.classList.add('hide'); setTimeout(()=>cb.style.display='none',400); };
+
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const n = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = n; localStorage.setItem('apo-theme', n);
+    });
+    const cur = document.getElementById('cursor');
+    let cx=-100,cy=-100,tx=-100,ty=-100;
+    document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
+    (function loop(){ cx+=(tx-cx)*.13; cy+=(ty-cy)*.13; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(loop); })();
+    document.querySelectorAll('a,button,.proj-item').forEach(el => {
+      el.addEventListener('mouseenter', () => cur.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cur.classList.remove('expand'));
+    });
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); ro.unobserve(e.target); } });
+    }, {threshold:0.06});
+    document.querySelectorAll('.r').forEach((el,i) => { el.style.transitionDelay=(i%4)*.07+'s'; ro.observe(el); });
+
+    // FILTER
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        document.querySelectorAll('.proj-item').forEach(item => {
+          const cats = item.dataset.cat || '';
+          item.style.display = (f === 'all' || cats.includes(f)) ? 'grid' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

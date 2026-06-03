@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosotros — APO Agency</title>
+  <meta name="description" content="La historia detrás de APO Agency. Kevin Cuadros, CEO y founder, y el origen de una agencia de IA en Ecuador." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#07070D; --surface:#0D0D18; --fg:#F1F5F9; --muted:#64748B; --border:rgba(241,245,249,.07); --indigo:#6366F1; --indigo-l:#818CF8; --nav-blur:rgba(7,7,13,.85); --cf:brightness(0) invert(1); }
+    [data-theme="light"] { --bg:#F4F4EF; --surface:#EAEAE4; --fg:#09090F; --muted:#7A7A8C; --border:rgba(9,9,15,.09); --indigo:#4F46E5; --indigo-l:#6366F1; --nav-blur:rgba(244,244,239,.88); --cf:brightness(0); }
+    html { scroll-behavior:smooth; cursor:none; }
+    body { background:var(--bg); color:var(--fg); font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; -webkit-font-smoothing:antialiased; transition:background .5s,color .5s; }
+    ::-webkit-scrollbar { display:none; } * { scrollbar-width:none; }
+    body::after { content:''; position:fixed; inset:0; z-index:9000; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity:.025; mix-blend-mode:overlay; }
+    #cursor { position:fixed; width:8px; height:8px; background:var(--indigo); border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); transition:width .2s,height .2s,opacity .2s; will-change:left,top; }
+    #cursor.expand { width:36px; height:36px; opacity:.22; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:20px 52px; background:var(--nav-blur); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:.5px solid var(--border); gap:16px; }
+    .nav-mid { justify-self:center; }
+    .nav-right { justify-self:end; }
+    .nav-logo { text-decoration:none; display:flex; align-items:center; }
+    .nav-logo-clip { display:flex; align-items:center; flex-shrink:0; } .nav-logo-clip img.wordmark { width:160px; height:52px; object-fit:cover; object-position:center 45%; display:block; } .nav-logo img.iso-nav { height:36px; width:auto; display:none; }
+    .logo-dark { display:block; } .logo-light { display:none; }
+    [data-theme="light"] .logo-dark { display:none; } [data-theme="light"] .logo-light { display:block; }
+    .nav-logo-fb { font-size:20px; font-weight:800; letter-spacing:-1px; color:var(--fg); display:none; }
+    .nav-mid { display:flex; gap:28px; list-style:none; }
+    .nav-mid a { font-size:11px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .nav-mid a:hover,.nav-mid a.active { color:var(--fg); }
+    .nav-right { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+    .nav-social { display:flex; gap:6px; }
+    .nav-social a { width:30px; height:30px; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:color .2s; }
+    .nav-social a:hover { color:var(--fg); }
+    .nav-social svg { width:15px; height:15px; }
+    #theme-btn { width:40px; height:21px; border-radius:999px; background:var(--border); border:.5px solid var(--border); position:relative; cursor:none; outline:none; padding:0; }
+    #theme-btn::after { content:''; position:absolute; top:2px; left:2px; width:15px; height:15px; border-radius:50%; background:var(--muted); transition:transform .35s cubic-bezier(.4,0,.2,1),background .4s; }
+    [data-theme="light"] #theme-btn::after { transform:translateX(19px); background:var(--indigo); }
+    .nav-wa { display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; text-decoration:none; background:#25D366; padding:9px 16px; transition:transform .2s,box-shadow .2s; }
+    .nav-wa:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(37,211,102,.35); }
+    .nav-wa svg { width:13px; height:13px; }
+
+    /* NAV centrada */
+    nav { justify-content:space-between; }
+    nav > * { flex: 1; }
+    nav > .nav-logo { justify-content:flex-start; }
+    nav > .nav-mid { justify-content:center; }
+    nav > .nav-right { justify-content:flex-end; }
+
+    /* HERO ABOUT */
+    .about-hero { min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; padding:0 52px 96px; position:relative; overflow:hidden; }
+    .about-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; filter:brightness(.3) saturate(.5); z-index:0; pointer-events:none; }
+    .about-hero-video-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(160deg, rgba(7,7,13,.7) 0%, rgba(7,7,13,.25) 55%, rgba(7,7,13,.7) 100%); }
+    .about-hero-video-bottom { position:absolute; bottom:0; left:0; right:0; height:40%; z-index:1; background:linear-gradient(to top, var(--bg), transparent); }
+    [data-theme="light"] .about-hero-video { filter:brightness(.12) saturate(.3); }
+    .about-hero-content { position:relative; z-index:2; }
+    .about-hero-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--indigo); margin-bottom:28px; display:flex; align-items:center; gap:10px; }
+    .about-hero-label::before { content:''; width:32px; height:.5px; background:var(--indigo); }
+    .about-hero-title { font-size:clamp(56px,10vw,130px); font-weight:800; letter-spacing:-4px; line-height:.9; margin-bottom:52px; color:#F1F5F9; }
+    .about-hero-title em { font-style:italic; font-weight:300; color:rgba(241,245,249,.45); }
+    .about-hero-sub { font-size:clamp(15px,1.8vw,19px); font-weight:300; line-height:1.75; color:rgba(241,245,249,.65); max-width:500px; }
+    .about-hero-sub strong { color:#F1F5F9; font-weight:700; }
+
+    /* VIDEO EN TRAYECTORIA */
+    .tl-video-block { grid-column: 1 / -1; padding: 0; border-bottom: .5px solid var(--border); overflow: hidden; position: relative; }
+    .tl-video-inner { position: relative; }
+    .tl-video-inner video { width: 100%; max-height: 70vh; object-fit: cover; object-position: center 20%; display: block; filter: brightness(.45) saturate(.5); }
+    .tl-video-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 48px; background: linear-gradient(to top, rgba(7,7,13,.9), transparent); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+    [data-theme="light"] .tl-video-inner video { filter: brightness(.25) saturate(.3); }
+    .tl-video-year { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--indigo); }
+    .tl-video-text { font-size: clamp(18px, 3vw, 28px); font-weight: 800; letter-spacing: -.02em; color: #F1F5F9; max-width: 480px; line-height: 1.1; text-align: right; }
+
+    /* TIMELINE / STORY */
+    #story { padding:100px 52px; }
+    .story-inner { display:grid; grid-template-columns:1fr 2fr; gap:80px; }
+    .story-sticky { position:sticky; top:100px; align-self:start; }
+    .story-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; display:block; }
+    .story-title { font-size:clamp(28px,4vw,48px); font-weight:800; letter-spacing:-2px; line-height:1.05; }
+    .story-title span { color:var(--indigo); }
+
+    .timeline { display:flex; flex-direction:column; gap:0; }
+    .tl-item { display:grid; grid-template-columns:80px 1fr; gap:0 32px; padding:48px 0; border-bottom:.5px solid var(--border); position:relative; }
+    .tl-item:first-child { border-top:.5px solid var(--border); }
+    .tl-year { font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--indigo); padding-top:6px; font-variant-numeric:tabular-nums; }
+    .tl-body {}
+    .tl-heading { font-size:clamp(18px,2.5vw,26px); font-weight:800; letter-spacing:-.02em; margin-bottom:12px; line-height:1.1; }
+    .tl-text { font-size:14px; font-weight:300; line-height:1.8; color:var(--muted); }
+    .tl-text strong { font-weight:700; color:var(--fg); }
+    .tl-text p + p { margin-top:12px; }
+
+    /* VALUES */
+    #values { padding:0 52px 100px; }
+    .values-header { margin-bottom:56px; }
+    .values-header h2 { font-size:clamp(32px,5vw,60px); font-weight:800; letter-spacing:-2px; line-height:1; }
+    .values-grid { display:grid; grid-template-columns:repeat(3,1fr); border-left:.5px solid var(--border); border-top:.5px solid var(--border); }
+    .value-cell { border-right:.5px solid var(--border); border-bottom:.5px solid var(--border); padding:40px 32px; display:flex; flex-direction:column; gap:16px; transition:background .3s; }
+    .value-cell:hover { background:rgba(99,102,241,.04); }
+    .value-icon { font-size:28px; line-height:1; }
+    .value-title { font-size:20px; font-weight:800; letter-spacing:-.02em; }
+    .value-text { font-size:13px; font-weight:300; color:var(--muted); line-height:1.65; }
+
+    /* METRICS */
+    #metrics { padding:0 52px 100px; background:var(--surface); transition:background .5s; }
+    .metrics-inner { padding:80px 0; display:grid; grid-template-columns:repeat(4,1fr); border-left:.5px solid var(--border); }
+    .metric-cell { border-right:.5px solid var(--border); padding:0 40px; }
+    .metric-cell:first-child { padding-left:0; }
+    .m-num { font-size:clamp(52px,7vw,88px); font-weight:800; letter-spacing:-4px; line-height:1; margin-bottom:8px; }
+    .m-num span { color:var(--indigo); }
+    .m-label { font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+
+    /* KEVIN FULL */
+    #kevin { padding:100px 52px; }
+    .kevin-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .kevin-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; display:block; }
+    .kevin-name { font-size:clamp(44px,7vw,90px); font-weight:800; letter-spacing:-4px; line-height:.9; margin-bottom:8px; }
+    .kevin-role { font-size:12px; font-weight:400; letter-spacing:.15em; text-transform:uppercase; color:var(--indigo); margin-bottom:32px; }
+    .kevin-quote { font-size:clamp(18px,2.5vw,26px); font-style:italic; font-weight:300; line-height:1.5; color:var(--fg); margin-bottom:32px; padding-left:24px; border-left:2px solid var(--indigo); }
+    .kevin-bio { font-size:15px; font-weight:300; line-height:1.8; color:var(--muted); }
+    .kevin-bio strong { font-weight:700; color:var(--fg); }
+    .kevin-bio p + p { margin-top:16px; }
+    .kevin-links { display:flex; gap:12px; margin-top:32px; flex-wrap:wrap; }
+    .kevin-link { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; padding:10px 20px; border:.5px solid var(--border); color:var(--muted); transition:color .2s,border-color .2s; }
+    .kevin-link:hover { color:var(--indigo); border-color:rgba(99,102,241,.4); }
+    .kevin-link svg { width:14px; height:14px; }
+
+    .kevin-r { display:flex; flex-direction:column; gap:0; }
+    .kevin-fact { padding:28px 0; border-bottom:.5px solid var(--border); display:flex; gap:20px; }
+    .kevin-fact:first-child { border-top:.5px solid var(--border); }
+    .kf-icon { font-size:22px; flex-shrink:0; width:32px; }
+    .kf-title { font-size:15px; font-weight:700; letter-spacing:-.01em; margin-bottom:6px; }
+    .kf-desc { font-size:13px; font-weight:300; color:var(--muted); line-height:1.6; }
+
+    /* CTA */
+    #cta { padding:100px 52px; background:var(--surface); display:flex; flex-direction:column; align-items:flex-start; gap:32px; transition:background .5s; }
+    .cta-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); }
+    .cta-text { font-size:clamp(32px,6vw,80px); font-weight:800; letter-spacing:-3px; line-height:.95; }
+    .cta-text em { color:var(--indigo); font-style:italic; font-weight:300; }
+    .cta-btns { display:flex; gap:12px; flex-wrap:wrap; }
+    .cta-btn-wa { display:inline-flex; align-items:center; gap:9px; background:#25D366; color:#fff; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:14px 28px; transition:transform .2s,box-shadow .2s; }
+    .cta-btn-wa:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(37,211,102,.3); }
+    .cta-btn-sec { display:inline-flex; align-items:center; gap:9px; border:.5px solid var(--border); color:var(--fg); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:14px 28px; transition:border-color .2s,color .2s; }
+    .cta-btn-sec:hover { border-color:var(--indigo); color:var(--indigo); }
+
+    /* FOOTER */
+    footer { border-top:.5px solid var(--border); }
+    .ft-top { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; padding:60px 52px 48px; border-bottom:.5px solid var(--border); }
+    .ft-brand-logo { display:flex; align-items:center; margin-bottom:16px; }
+    .ft-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.6; margin-bottom:24px; max-width:220px; }
+    .ft-socials { display:flex; gap:10px; }
+    .ft-socials a { width:32px; height:32px; border:.5px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--muted); transition:color .2s,border-color .2s; }
+    .ft-socials a:hover { color:var(--indigo); border-color:rgba(99,102,241,.4); }
+    .ft-socials svg { width:14px; height:14px; }
+    .ft-col-title { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--fg); margin-bottom:20px; display:block; }
+    .ft-links { display:flex; flex-direction:column; gap:10px; }
+    .ft-links a { font-size:13px; font-weight:300; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .ft-links a:hover { color:var(--indigo); }
+    .ft-bottom { display:flex; justify-content:space-between; align-items:center; padding:20px 52px; gap:16px; flex-wrap:wrap; }
+    .ft-copy { font-size:11px; font-weight:300; color:var(--muted); }
+    .ft-legal { display:flex; gap:20px; }
+    .ft-legal a { font-size:11px; font-weight:300; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .ft-legal a:hover { color:var(--indigo); }
+    #cookie-banner { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:9990; width:min(640px,calc(100vw - 40px)); background:var(--surface); border:.5px solid var(--border); padding:20px 24px; display:flex; align-items:center; gap:20px; backdrop-filter:blur(12px); transition:opacity .4s,transform .4s; box-shadow:0 8px 40px rgba(0,0,0,.4); }
+    #cookie-banner.hide { opacity:0; transform:translateX(-50%) translateY(20px); pointer-events:none; }
+    .cookie-text { font-size:12px; font-weight:300; color:var(--muted); line-height:1.6; flex:1; }
+    .cookie-text a { color:var(--indigo); text-decoration:none; }
+    .cookie-btns { display:flex; gap:8px; flex-shrink:0; }
+    .cookie-accept { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:var(--indigo); color:#fff; border:none; padding:9px 18px; cursor:pointer; font-family:inherit; }
+    .cookie-decline { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:transparent; color:var(--muted); border:.5px solid var(--border); padding:9px 18px; cursor:pointer; font-family:inherit; transition:color .2s; }
+    .cookie-decline:hover { color:var(--fg); }
+    .ft-back { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .ft-back:hover { color:var(--indigo); }
+
+    /* REVEAL */
+    .r { opacity:0; transform:translateY(24px); transition:opacity .85s ease,transform .85s ease; }
+    .r.on { opacity:1; transform:none; }
+
+    @media(max-width:960px) {
+      nav { padding:14px 24px; } .nav-mid { display:none; }
+      .nav-logo-clip { display:none; }
+      .nav-logo img.iso-nav { display:block; height:38px; }
+      .about-hero { padding:0 24px 56px; }
+      .about-iso-bg { display:none; }
+      #story { padding:72px 24px; }
+      .story-inner { grid-template-columns:1fr; gap:48px; }
+      .story-sticky { position:relative; top:0; }
+      .tl-item { grid-template-columns:60px 1fr; gap:0 20px; }
+      #values { padding:0 24px 72px; }
+      .values-grid { grid-template-columns:1fr 1fr; }
+      #metrics { padding:0 24px 72px; }
+      .metrics-inner { grid-template-columns:1fr 1fr; gap:40px; border:none; }
+      .metric-cell { border-right:none; border-bottom:.5px solid var(--border); padding:0 0 32px; }
+      #kevin { padding:72px 24px; }
+      .kevin-inner { grid-template-columns:1fr; gap:48px; }
+      #cta { padding:72px 24px; }
+      footer { flex-direction:column; gap:12px; text-align:center; padding:20px 24px; }
+    }
+    @media(max-width:600px) {
+      .values-grid { grid-template-columns:1fr; }
+      .metrics-inner { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cursor"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-clip">
+        <img class="wordmark logo-dark"  src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.closest('.nav-logo-clip').style.display='none'" />
+        <img class="wordmark logo-light" src="assets/logos/apo-logo-black.png" alt="APO Agency" onerror="this.style.display='none'" />
+      </div>
+      <img class="iso-nav logo-dark"  src="assets/logos/isologo-white.png" alt="APO" />
+      <img class="iso-nav logo-light" src="assets/logos/isologo-black.png" alt="APO" />
+    </a>
+    <ul class="nav-mid">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="portfolio.html">Proyectos</a></li>
+      <li><a href="about.html" class="active">Nosotros</a></li>
+      <li><a href="index.html#contact">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="nav-social">
+        <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
+      </div>
+      <button id="theme-btn" aria-label="Tema"></button>
+      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="nav-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="about-hero">
+    <video class="about-hero-video" autoplay muted loop playsinline>
+      <source src="assets/video/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="about-hero-video-overlay"></div>
+    <div class="about-hero-video-bottom"></div>
+    <div class="about-hero-content">
+      <p class="about-hero-label r">/ la persona detrás de APO</p>
+      <h1 class="about-hero-title r">
+        Kevin<br/>Cuadros. <em>CEO.</em>
+      </h1>
+      <p class="about-hero-sub r">
+        Empecé sin plan, sin fondos y sin red de seguridad. <strong>Lo que construí fue porque no había otra opción — y eso lo convirtió en algo real.</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- STORY TIMELINE -->
+  <section id="story">
+    <div class="story-inner">
+      <div class="story-sticky r">
+        <span class="story-label">/ el origen</span>
+        <h2 class="story-title">Cada paso<br/>fue <span>necesario.</span></h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item r">
+          <div class="tl-year">2018</div>
+          <div class="tl-body">
+            <h3 class="tl-heading">Medicina.</h3>
+            <div class="tl-text"><p>Empecé estudiando medicina. Perdí a un ser querido y con eso los medios para continuar. Esa ruptura me obligó a moverme.</p></div>
+          </div>
+        </div>
+        <div class="tl-item r">
+          <div class="tl-year">2019</div>
+          <div class="tl-body">
+            <h3 class="tl-heading">APOPET — el primer negocio.</h3>
+            <div class="tl-text"><p>Taxista, ebanista, carpintero. De las manos nació <strong>APOPET</strong> — comedores elevados de madera para mascotas. Mi primer emprendimiento real: fabricar, vender y operar con cero recursos.</p></div>
+          </div>
+        </div>
+        <div class="tl-item r">
+          <div class="tl-year">2020</div>
+          <div class="tl-body">
+            <h3 class="tl-heading">Marketing digital.</h3>
+            <div class="tl-text"><p>La pandemia cerró puertas físicas. Me metí en publicidad digital solo, a prueba y error. Los primeros clientes llegaron porque los resultados hablaron antes que yo.</p></div>
+          </div>
+        </div>
+        <div class="tl-item r">
+          <div class="tl-year">2021</div>
+          <div class="tl-body">
+            <h3 class="tl-heading">Desarrollo web y primeros proyectos.</h3>
+            <div class="tl-text"><p>El tráfico necesitaba sitios que convirtieran. Aprendí a construirlos. <strong>Flexman, El Instituto y los primeros proyectos de branding.</strong> Los clientes empezaron a traer clientes.</p></div>
+          </div>
+        </div>
+        <div class="tl-item r">
+          <div class="tl-year">2022–23</div>
+          <div class="tl-body">
+            <h3 class="tl-heading">IA y automatización.</h3>
+            <div class="tl-text"><p>Construí el primer bot para TECglo. Luego Feria de Loja, Canzión Films, EC Connect. <strong>APO Agency dejó de ser "yo solo" y se convirtió en una agencia.</strong></p></div>
+          </div>
+        </div>
+        <div class="tl-item r">
+          <div class="tl-year">Hoy</div>
+          <div class="tl-body">
+            <h3 class="tl-heading">Ingeniería en Software + APO.</h3>
+            <div class="tl-text"><p>Estudio Ing. en Desarrollo y Seguridad en Software en la UEES. <strong>11+ empresas, 6 servicios, una obsesión: hacer que los negocios funcionen mejor con IA.</strong></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section id="values">
+    <div class="values-header r">
+      <h2>Lo que nos<br/>define.</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-cell r">
+        <div class="value-icon">⚡</div>
+        <div class="value-title">Ejecución real</div>
+        <div class="value-text">No prometemos en decks. Ejecutamos en producción. Si no funciona, lo arreglamos. Si funciona, lo escalamos.</div>
+      </div>
+      <div class="value-cell r">
+        <div class="value-icon">🎯</div>
+        <div class="value-title">Resultados medibles</div>
+        <div class="value-text">Cada proyecto tiene un número que lo valida. CPL, ROI, tiempo ahorrado — si no se puede medir, no cuenta.</div>
+      </div>
+      <div class="value-cell r">
+        <div class="value-icon">🤝</div>
+        <div class="value-title">Aliados, no proveedores</div>
+        <div class="value-text">Nos sentamos del mismo lado que el cliente. Su problema es nuestro problema. Su éxito es nuestra métrica.</div>
+      </div>
+      <div class="value-cell r">
+        <div class="value-icon">🧠</div>
+        <div class="value-title">IA aplicada, no decorativa</div>
+        <div class="value-text">No usamos IA para parecer modernos. La usamos cuando resuelve un problema real mejor que cualquier alternativa.</div>
+      </div>
+      <div class="value-cell r">
+        <div class="value-icon">🇪🇨</div>
+        <div class="value-title">Contexto local</div>
+        <div class="value-text">Tecnología de primer mundo con entendimiento del mercado ecuatoriano. Sabemos cómo funciona el negocio aquí.</div>
+      </div>
+      <div class="value-cell r">
+        <div class="value-icon">🔄</div>
+        <div class="value-title">Mejora continua</div>
+        <div class="value-text">El sistema que entregamos hoy es el punto de partida, no el destino. Cada proyecto evoluciona con el cliente.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section id="metrics">
+    <div class="metrics-inner">
+      <div class="metric-cell r">
+        <div class="m-num">11<span>+</span></div>
+        <div class="m-label">Empresas impulsadas</div>
+      </div>
+      <div class="metric-cell r">
+        <div class="m-num">6<span>+</span></div>
+        <div class="m-label">Servicios digitales</div>
+      </div>
+      <div class="metric-cell r">
+        <div class="m-num">3<span>+</span></div>
+        <div class="m-label">Años de experiencia</div>
+      </div>
+      <div class="metric-cell r">
+        <div class="m-num">100<span>%</span></div>
+        <div class="m-label">Con IA integrada</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEVIN FULL -->
+  <section id="kevin">
+    <div class="kevin-inner">
+      <div class="r">
+        <span class="kevin-label">/ founder</span>
+        <h2 class="kevin-name">Kevin<br/>Cuadros</h2>
+        <p class="kevin-role">CEO & Founder — APO Agency · 24 años</p>
+        <blockquote class="kevin-quote">"No vine de una familia empresarial ni de un MBA. Vine de necesitar que las cosas funcionaran."</blockquote>
+        <div class="kevin-bio">
+          <p>Fui taxista, ebanista, carpintero y el creador de <strong>APOPET</strong> antes de encontrar mi camino en tecnología. Cada oficio me enseñó algo que hoy aplico en APO.</p>
+          <p>Hoy dirijo APO Agency y estudio Ing. en Software en la UEES. <strong>No somos un proveedor — somos el aliado que entiende tu negocio y construye contigo.</strong></p>
+        </div>
+        <div class="kevin-links">
+          <a href="https://www.linkedin.com/in/kevincuadros/" target="_blank" rel="noopener" class="kevin-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener" class="kevin-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+          <a href="mailto:hola@apoagency.io" class="kevin-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            Email directo
+          </a>
+        </div>
+      </div>
+      <div class="kevin-r r">
+        <div class="kevin-fact"><div class="kf-icon">⚡</div><div><div class="kf-title">Autodidacta en producción</div><div class="kf-desc">Todo aprendido solo, con clientes reales desde el día uno.</div></div></div>
+        <div class="kevin-fact"><div class="kf-icon">🎓</div><div><div class="kf-title">Ing. en Software — UEES</div><div class="kf-desc">Desarrollo, Operación y Seguridad en Software.</div></div></div>
+        <div class="kevin-fact"><div class="kf-icon">🇪🇨</div><div><div class="kf-title">Ecuador, primero</div><div class="kf-desc">Entiende el mercado local porque es parte de él.</div></div></div>
+        <div class="kevin-fact"><div class="kf-icon">🤝</div><div><div class="kf-title">Aliado, no proveedor</div><div class="kf-desc">Relaciones de largo plazo, resultados medibles.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <span class="cta-label r">/ ¿tienes un proyecto?</span>
+    <h2 class="cta-text r">Si tienes un problema<br/>que <em>se repite cada semana,</em><br/>ya lo resolvimos antes.</h2>
+    <div class="cta-btns r">
+      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="cta-btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
+        Iniciar conversación
+      </a>
+      <a href="portfolio.html" class="cta-btn-sec">Ver proyectos →</a>
+    </div>
+  </section>
+
+  <!-- COOKIE BANNER -->
+  <div id="cookie-banner">
+    <p class="cookie-text">Usamos cookies para mejorar tu experiencia. Al continuar navegando aceptas nuestra <a href="terminos.html">política de cookies</a>.</p>
+    <div class="cookie-btns">
+      <button class="cookie-decline" id="cookie-decline">Rechazar</button>
+      <button class="cookie-accept" id="cookie-accept">Aceptar</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft-top">
+      <div>
+        <div class="ft-brand-logo">
+          <div style="height:44px;overflow:hidden;display:flex;align-items:center;justify-content:center;width:148px;">
+            <img class="logo-dark"  src="assets/logos/apo-logo-white.png" alt="APO Agency" style="height:160%;width:auto;" onerror="this.closest('div').style.display='none'" />
+            <img class="logo-light" src="assets/logos/apo-logo-black.png" alt="APO Agency" style="height:160%;width:auto;" onerror="this.style.display='none'" />
+          </div>
+        </div>
+        <p class="ft-tagline">Impulsamos empresas con IA. Automatización, bots y estrategia digital en Ecuador.</p>
+        <div class="ft-socials">
+          <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.linkedin.com/in/kevincuadros/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://wa.me/593987252978" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg></a>
+          <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <span class="ft-col-title">Servicios</span>
+        <div class="ft-links">
+          <a href="index.html#services">Desarrollo Web</a>
+          <a href="index.html#services">Ecommerce</a>
+          <a href="index.html#services">Meta & Google Ads</a>
+          <a href="index.html#services">Branding & Identidad</a>
+          <a href="index.html#services">Automatizaciones IA</a>
+          <a href="index.html#services">ChatBots WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <span class="ft-col-title">Páginas</span>
+        <div class="ft-links">
+          <a href="index.html">Inicio</a>
+          <a href="portfolio.html">Proyectos</a>
+          <a href="about.html">Nosotros</a>
+          <a href="index.html#contact">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <span class="ft-col-title">Contacto</span>
+        <div class="ft-links">
+          <a href="https://wa.me/593987252978" target="_blank" rel="noopener">+593 98 725 2978</a>
+          <a href="mailto:hola@apoagency.io">hola@apoagency.io</a>
+          <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">@theapoagency</a>
+          <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener">@kevin_cuadros</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span class="ft-copy">© 2026 APO Agency · Ecuador</span>
+      <div class="ft-legal">
+        <a href="terminos.html">Términos y condiciones</a>
+        <a href="terminos.html#cookies">Política de cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const html = document.documentElement;
+    const cb = document.getElementById('cookie-banner');
+    if (localStorage.getItem('apo-cookies')) cb.style.display = 'none';
+    document.getElementById('cookie-accept').onclick = () => { localStorage.setItem('apo-cookies','1'); cb.classList.add('hide'); setTimeout(()=>cb.style.display='none',400); };
+    document.getElementById('cookie-decline').onclick = () => { localStorage.setItem('apo-cookies','0'); cb.classList.add('hide'); setTimeout(()=>cb.style.display='none',400); };
+
+    html.dataset.theme = localStorage.getItem('apo-theme') || 'dark';
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const n = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = n; localStorage.setItem('apo-theme', n);
+    });
+    const cur = document.getElementById('cursor');
+    let cx=-100,cy=-100,tx=-100,ty=-100;
+    document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
+    (function loop(){ cx+=(tx-cx)*.13; cy+=(ty-cy)*.13; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(loop); })();
+    document.querySelectorAll('a,button,.value-cell,.kevin-fact').forEach(el => {
+      el.addEventListener('mouseenter', () => cur.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cur.classList.remove('expand'));
+    });
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); ro.unobserve(e.target); } });
+    }, {threshold:0.07});
+    document.querySelectorAll('.r').forEach((el,i) => { el.style.transitionDelay=(i%4)*.08+'s'; ro.observe(el); });
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.about-hero .r').forEach((el,i) => setTimeout(() => el.classList.add('on'), 100+i*200));
+    });
+  </script>
+</body>
+</html>
