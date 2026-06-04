@@ -101,10 +101,10 @@
     .hero-top { position: relative; z-index: 2; display: flex; align-items: flex-end; }
     .hero-hl { font-size: clamp(62px, 10vw, 132px); font-weight: 800; letter-spacing: -4px; line-height: .9; padding-top: 130px; }
     .hl-1, .hl-3 { display: block; }
-    .hl-2 { display: block; padding-left: clamp(60px, 13vw, 185px); color: #A99FF9; font-style: italic; text-shadow: 0 0 40px rgba(124,111,247,.45); }
-    .hl-2-word { display: inline-block; transition: opacity .38s ease, transform .38s ease; }
-    .hl-2-word.fade-out { opacity: 0; transform: translateY(-16px); }
-    .hl-2-word.fade-in  { opacity: 0; transform: translateY(16px); }
+    .hl-2 { display: block; padding-left: clamp(60px, 13vw, 185px); color: #A99FF9; font-style: italic; text-shadow: 0 0 40px rgba(124,111,247,.45); overflow: hidden; }
+    .hl-2-word { display: inline-block; transition: opacity 400ms cubic-bezier(0.4,0,0.2,1), transform 400ms cubic-bezier(0.4,0,0.2,1); }
+    .hl-2-word.fade-out { opacity: 0; transform: translateY(-20px); }
+    .hl-2-word.fade-in  { opacity: 0; transform: translateY(20px); }
     .hero-bot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 52px; gap: 24px; position: relative; z-index: 2; }
     .hero-tag { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--indigo); display: flex; align-items: center; gap: 8px; }
     .hero-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--indigo); flex-shrink:0; animation: blink 2s ease-in-out infinite; }
@@ -118,10 +118,10 @@
     .mq { display: flex; width: max-content; white-space: nowrap; animation: mq 40s linear infinite; }
     .mq span { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); padding: 0 26px; }
     .mq .dot { color: var(--indigo); padding: 0; }
-    @keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    @keyframes mq { from{transform:translateX(0)} to{transform:translateX(-33.333%)} }
 
     /* SERVICES */
-    #services { padding: 100px 52px; }
+    #services { padding: 120px 52px 100px; }
     .sec-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 56px; gap: 32px; }
     .sec-hd-title { font-size: clamp(30px, 4.5vw, 58px); font-weight: 800; letter-spacing: -2px; line-height: 1; }
     .sec-hd-sub { font-size: 14px; font-weight: 300; color: var(--muted); max-width: 280px; line-height: 1.65; text-align: right; }
@@ -145,12 +145,12 @@
     .mid-cta-btn:hover { background:var(--indigo); color:#fff; }
 
     /* CLIENTS */
-    #clients { padding:80px 0; }
+    #clients { padding:100px 0; }
     .clients-label { padding:0 52px; font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:36px; }
     .logos-wrap { border-top:.5px solid var(--border); border-bottom:.5px solid var(--border); background:var(--surface); overflow:hidden; transition:background .5s; }
     .logos-row { overflow:hidden; }
     .logos-row+.logos-row { border-top:.5px solid var(--border); }
-    .mq-logo { display:flex; width:max-content; animation:mq 30s linear infinite; }
+    .mq-logo { display:flex; width:max-content; white-space:nowrap; animation:mq 30s linear infinite; }
     .mq-logo.rev { animation-direction:reverse; }
     .logo-item { display:flex; align-items:center; justify-content:center; padding:32px 56px; border-right:.5px solid var(--border); opacity:.26; transition:opacity .3s; }
     .logo-item:hover { opacity:1; }
@@ -158,7 +158,7 @@
     .logo-item .logo-txt { font-size:13px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--fg); white-space:nowrap; }
 
     /* FEATURED PROJECTS */
-    #projects { padding:0 52px 100px; }
+    #projects { padding:0 52px 120px; }
     .proj-grid { display:grid; grid-template-columns:1fr 1fr; border-left:.5px solid var(--border); border-top:.5px solid var(--border); }
     .proj-cell { border-right:.5px solid var(--border); border-bottom:.5px solid var(--border); padding:44px 38px; display:flex; flex-direction:column; transition:background .3s, transform .3s, box-shadow .3s, border-color .3s; position:relative; overflow:hidden; }
     .proj-cell:hover { background:rgba(124,111,247,.05); transform:translateY(-4px); box-shadow:0 12px 40px rgba(124,111,247,.12); border-color:rgba(124,111,247,.6); }
@@ -197,7 +197,7 @@
     .ft-fact-desc { font-size:13px; font-weight:300; color:var(--muted); line-height:1.5; }
 
     /* CONTACT */
-    #contact { padding:100px 52px; }
+    #contact { padding:120px 52px; }
     .contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
     .contact-title { font-size:clamp(30px,4.5vw,56px); font-weight:800; letter-spacing:-2px; line-height:1; margin-bottom:18px; }
     .contact-sub { font-size:14px; font-weight:300; color:var(--muted); line-height:1.7; margin-bottom:36px; }
@@ -425,6 +425,70 @@
       .ft-top { grid-template-columns:1fr !important; gap:32px !important; }
       .ft-links a { font-size:12px; }
     }
+
+    /* SECTION DIVIDERS */
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--indigo), transparent); opacity: 0.3; margin: 0; }
+
+    /* BACKGROUND BLOBS */
+    .blob-bg { position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 0; }
+    #services { position: relative; }
+    #services .blob-bg { width: 600px; height: 600px; background: radial-gradient(circle, rgba(124,111,247,0.06) 0%, transparent 70%); top: -100px; right: -200px; }
+    #projects { position: relative; }
+    #projects .blob-bg { width: 500px; height: 500px; background: radial-gradient(circle, rgba(124,111,247,0.05) 0%, transparent 70%); bottom: 0; left: -150px; }
+    #why-apo { position: relative; overflow: hidden; }
+
+    /* ALT BACKGROUND */
+    .alt-bg { background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%); }
+
+    /* SERVICES ACCORDION */
+    .svc-acc-item { border-bottom: .5px solid var(--border); overflow: hidden; }
+    .svc-acc-item:first-child { border-top: .5px solid var(--border); }
+    .svc-acc-header { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 0 24px; padding: 28px 0; cursor: pointer; transition: background .2s; }
+    .svc-acc-header:hover .svc-acc-name { color: var(--indigo); }
+    .svc-acc-num { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--indigo); }
+    .svc-acc-name { font-size: clamp(22px, 3.5vw, 42px); font-weight: 800; letter-spacing: -.03em; line-height: 1; transition: color .25s; }
+    .svc-acc-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: .5px solid var(--border); border-radius: 50%; color: var(--indigo); transition: transform .35s cubic-bezier(.4,0,.2,1), background .2s; flex-shrink: 0; }
+    .svc-acc-icon svg { width: 14px; height: 14px; transition: transform .35s; }
+    .svc-acc-item.open .svc-acc-icon { background: var(--indigo); border-color: var(--indigo); transform: rotate(45deg); }
+    .svc-acc-item.open .svc-acc-icon svg { color: #fff; }
+    .svc-acc-body { max-height: 0; overflow: hidden; transition: max-height .45s cubic-bezier(.4,0,.2,1); }
+    .svc-acc-item.open .svc-acc-body { max-height: 400px; }
+    .svc-acc-inner { display: grid; grid-template-columns: 48px 1fr; gap: 0 24px; padding: 0 0 36px; }
+    .svc-acc-desc { font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.75; margin-bottom: 24px; max-width: 560px; }
+    .svc-acc-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--indigo); text-decoration: none; border: .5px solid rgba(124,111,247,.35); padding: 12px 24px; transition: background .2s, color .2s; }
+    .svc-acc-cta:hover { background: var(--indigo); color: #fff; }
+    @media(max-width:960px) {
+      .svc-acc-header { grid-template-columns: 36px 1fr auto; gap: 0 16px; padding: 22px 0; }
+      .svc-acc-inner { grid-template-columns: 36px 1fr; gap: 0 16px; }
+    }
+
+    /* PROJECTS IMPACT */
+    .proj-impact { display: flex; flex-direction: column; gap: 0; }
+    .proj-impact-item { display: grid; grid-template-columns: 1fr 1fr; border-top: .5px solid var(--border); padding: 60px 0; gap: 60px; align-items: start; position: relative; transition: background .3s; }
+    .proj-impact-item:last-child { border-bottom: .5px solid var(--border); }
+    .proj-impact-item:hover { background: rgba(124,111,247,.02); }
+    .pi2-left {}
+    .pi2-num { font-size: 72px; font-weight: 800; letter-spacing: -4px; color: var(--indigo); opacity: .15; line-height: 1; margin-bottom: -12px; }
+    .pi2-type { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--indigo); margin-bottom: 10px; }
+    .pi2-title { font-size: clamp(22px, 2.8vw, 34px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 6px; }
+    .pi2-client { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--indigo-l); margin-bottom: 20px; }
+    .pi2-desc { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--muted); margin-bottom: 20px; }
+    .pi2-stack { font-size: 11px; color: var(--muted); }
+    .pi2-link { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--indigo); text-decoration: none; margin-top: 16px; transition: gap .2s; }
+    .pi2-link:hover { gap: 10px; }
+    .pi2-right { display: flex; flex-direction: column; justify-content: center; gap: 0; }
+    .pi2-results { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: .5px solid var(--border); }
+    .pi2-result { background: var(--bg); padding: 28px 24px; }
+    .pi2-result-val { font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -2px; line-height: 1; color: var(--fg); margin-bottom: 6px; }
+    .pi2-result-val span { color: var(--indigo); }
+    .pi2-result-lbl { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .pi2-result-desc { font-size: 12px; font-weight: 300; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+    .pi2-no-stats { background: var(--surface); border: .5px solid var(--border); padding: 32px; display: flex; align-items: center; justify-content: center; }
+    .pi2-no-stats p { font-size: 14px; font-weight: 300; color: var(--muted); text-align: center; line-height: 1.6; font-style: italic; }
+    @media(max-width:960px) {
+      .proj-impact-item { grid-template-columns: 1fr; gap: 32px; padding: 44px 0; }
+      .pi2-results { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -506,14 +570,14 @@
       </h1>
     </div>
     <div class="hero-bot r">
-      <span class="hero-tag">Agencia de IA · Ecuador</span>
-      <p class="hero-sub">Bots, campañas y sistemas que trabajan mientras tú no puedes.</p>
+      <span class="hero-tag">Soluciones digitales · Ecuador</span>
+      <p class="hero-sub">Automatización, marketing y tecnología para empresas que quieren crecer.</p>
       <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="hero-cta">Iniciar proyecto →</a>
     </div>
   </section>
 
   <div id="marquee"><div class="mq" id="mq1"></div></div>
-
+  <div class="section-divider"></div>
 
   <div class="mid-cta r">
     <p class="mid-cta-text">¿Listo para dejar de hacer<br/><em>lo mismo de siempre?</em></p>
@@ -521,19 +585,117 @@
   </div>
 
   <!-- SERVICES -->
-  <section id="services" style="padding:80px 52px 72px;">
-    <p style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:32px;">/ servicios</p>
-    <div>
-      <div class="svc-row"><span class="svc-num">01</span><span class="svc-name">Desarrollo Web</span><span class="svc-desc">Sitios y apps que convierten. Rápidos, con intención comercial desde el primer pixel.</span></div>
-      <div class="svc-row"><span class="svc-num">02</span><span class="svc-name">Ecommerce</span><span class="svc-desc">Tiendas que venden solas. Pasarelas, catálogos y experiencia sin fricción.</span></div>
-      <div class="svc-row"><span class="svc-num">03</span><span class="svc-name">Meta & Google Ads</span><span class="svc-desc">Campañas de performance con CPL medible desde el día uno.</span></div>
-      <div class="svc-row"><span class="svc-num">04</span><span class="svc-name">Branding & Identidad</span><span class="svc-desc">Identidad que comunica autoridad antes de que lean una palabra.</span></div>
-      <div class="svc-row"><span class="svc-num">05</span><span class="svc-name">Automatizaciones IA</span><span class="svc-desc">Flujos que eliminan tareas repetitivas sin escalar tu equipo.</span></div>
-      <div class="svc-row"><span class="svc-num">06</span><span class="svc-name">ChatBots WhatsApp</span><span class="svc-desc">Asistentes que atienden, califican y cierran ventas 24/7.</span></div>
+  <section id="services" style="padding:120px 52px 100px;">
+    <div class="blob-bg"></div>
+    <p style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:40px;">/ lo que hacemos</p>
+    <div class="svc-accordion">
+
+      <div class="svc-acc-item">
+        <div class="svc-acc-header" onclick="toggleAcc(this)">
+          <span class="svc-acc-num">01</span>
+          <span class="svc-acc-name">Desarrollo Web</span>
+          <div class="svc-acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="svc-acc-body">
+          <div class="svc-acc-inner">
+            <span></span>
+            <div>
+              <p class="svc-acc-desc">Sitios web y aplicaciones que convierten visitas en clientes. Diseño orientado a resultados, velocidad de carga optimizada y estructura pensada para vender desde el primer pixel.</p>
+              <a href="#contact" class="svc-acc-cta" onclick="document.getElementById('servicio').value='Desarrollo Web'">Cotiza tu web &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-acc-item">
+        <div class="svc-acc-header" onclick="toggleAcc(this)">
+          <span class="svc-acc-num">02</span>
+          <span class="svc-acc-name">Ecommerce</span>
+          <div class="svc-acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="svc-acc-body">
+          <div class="svc-acc-inner">
+            <span></span>
+            <div>
+              <p class="svc-acc-desc">Tiendas online que venden solas. Integramos pasarelas de pago, catálogos inteligentes y experiencias de compra sin fricción para que tu tienda trabaje 24/7.</p>
+              <a href="#contact" class="svc-acc-cta" onclick="document.getElementById('servicio').value='Ecommerce'">Cotiza tu tienda &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-acc-item">
+        <div class="svc-acc-header" onclick="toggleAcc(this)">
+          <span class="svc-acc-num">03</span>
+          <span class="svc-acc-name">Meta &amp; Google Ads</span>
+          <div class="svc-acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="svc-acc-body">
+          <div class="svc-acc-inner">
+            <span></span>
+            <div>
+              <p class="svc-acc-desc">Campañas de publicidad pagada con CPL medible desde el día uno. Gestionamos tu inversión en Meta e Google Ads para que cada dólar genere resultados concretos.</p>
+              <a href="#contact" class="svc-acc-cta" onclick="document.getElementById('servicio').value='Meta &amp; Google Ads'">Cotiza tu campaña &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-acc-item">
+        <div class="svc-acc-header" onclick="toggleAcc(this)">
+          <span class="svc-acc-num">04</span>
+          <span class="svc-acc-name">Branding &amp; Identidad</span>
+          <div class="svc-acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="svc-acc-body">
+          <div class="svc-acc-inner">
+            <span></span>
+            <div>
+              <p class="svc-acc-desc">Identidad visual que comunica autoridad antes de que lean una palabra. Logo, isologo, paleta, tipografía y manual de marca completo para que tu empresa se vea profesional en todos los frentes.</p>
+              <a href="#contact" class="svc-acc-cta" onclick="document.getElementById('servicio').value='Branding &amp; Identidad'">Cotiza tu marca &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-acc-item">
+        <div class="svc-acc-header" onclick="toggleAcc(this)">
+          <span class="svc-acc-num">05</span>
+          <span class="svc-acc-name">Automatizaciones IA</span>
+          <div class="svc-acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="svc-acc-body">
+          <div class="svc-acc-inner">
+            <span></span>
+            <div>
+              <p class="svc-acc-desc">Flujos automatizados con inteligencia artificial que eliminan tareas repetitivas sin escalar tu equipo. Conectamos tus sistemas para que la información fluya sola y tu equipo se enfoque en lo que importa.</p>
+              <a href="#contact" class="svc-acc-cta" onclick="document.getElementById('servicio').value='Automatizaciones IA'">Cotiza tu automatización &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-acc-item">
+        <div class="svc-acc-header" onclick="toggleAcc(this)">
+          <span class="svc-acc-num">06</span>
+          <span class="svc-acc-name">ChatBots WhatsApp</span>
+          <div class="svc-acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="svc-acc-body">
+          <div class="svc-acc-inner">
+            <span></span>
+            <div>
+              <p class="svc-acc-desc">Asistentes inteligentes en WhatsApp que atienden, califican y cierran ventas las 24 horas, los 7 días de la semana. Tu empresa siempre disponible, sin costo de operador adicional.</p>
+              <a href="#contact" class="svc-acc-cta" onclick="document.getElementById('servicio').value='ChatBot WhatsApp'">Cotiza tu bot &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <section id="clients">
+  <section id="clients" class="alt-bg">
     <p class="clients-label r">/ empresas que confían en APO</p>
     <div class="logos-wrap">
       <div class="logos-row"><div class="mq-logo" id="mq-a"></div></div>
@@ -542,52 +704,107 @@
   </section>
 
   <section id="projects">
+    <div class="blob-bg"></div>
     <div class="sec-hd r">
       <h2 class="sec-hd-title">Proyectos<br/>destacados</h2>
       <p class="sec-hd-sub">Resultados reales, no promesas. Sistemas en producción.</p>
     </div>
-    <div class="proj-grid">
-      <div class="proj-cell r">
-        <div class="pj-num">01</div>
-        <div class="pj-type">ChatBot IA · Meta Ads · ISP</div>
-        <h3 class="pj-title">TecBot + Campañas TECglo</h3>
-        <p class="pj-client">TECglo S.A.</p>
-        <p class="pj-desc">Bot de ventas y soporte 24/7 para ISP de fibra óptica, complementado con campañas de Meta Ads con $15/día de presupuesto.</p>
-        <div class="pj-stats">
-          <div class="pj-stat"><div class="pj-stat-val">&lt;$1.50<span></span></div><div class="pj-stat-lbl">CPL WA</div></div>
-          <div class="pj-stat"><div class="pj-stat-val">8-10<span>x</span></div><div class="pj-stat-lbl">ROI</div></div>
+
+    <div class="proj-impact">
+
+      <div class="proj-impact-item r">
+        <div class="pi2-left">
+          <div class="pi2-num">01</div>
+          <div class="pi2-type">ChatBot IA · Meta Ads · ISP</div>
+          <h3 class="pi2-title">TecBot + Campañas TECglo</h3>
+          <p class="pi2-client">TECglo S.A. — Fibra Óptica</p>
+          <p class="pi2-desc">Bot de ventas y soporte 24/7 para ISP de fibra óptica. Combinamos automatización de WhatsApp con campañas de Meta Ads a $15/día, logrando un ciclo completo de captación y atención sin intervención humana.</p>
+          <div class="pi2-stack">Botpress · OpenAI · Meta Ads · WhatsApp API</div>
+          <a href="portfolio.html" class="pi2-link">Ver caso completo ↗</a>
         </div>
-        <div class="pj-stack">Botpress · OpenAI · Meta Ads</div>
-        <a href="portfolio.html" class="pj-link">Ver detalle ↗</a>
+        <div class="pi2-right">
+          <div class="pi2-results">
+            <div class="pi2-result">
+              <div class="pi2-result-val">&lt;$1.50<span></span></div>
+              <div class="pi2-result-lbl">CPL WhatsApp</div>
+              <div class="pi2-result-desc">Costo por lead calificado</div>
+            </div>
+            <div class="pi2-result">
+              <div class="pi2-result-val">8–10<span>x</span></div>
+              <div class="pi2-result-lbl">ROI obtenido</div>
+              <div class="pi2-result-desc">Retorno sobre inversión</div>
+            </div>
+            <div class="pi2-result">
+              <div class="pi2-result-val">24<span>/7</span></div>
+              <div class="pi2-result-lbl">Atención activa</div>
+              <div class="pi2-result-desc">Sin operador adicional</div>
+            </div>
+            <div class="pi2-result">
+              <div class="pi2-result-val">$15<span>/día</span></div>
+              <div class="pi2-result-lbl">Presupuesto Ads</div>
+              <div class="pi2-result-desc">Budget de campañas</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="proj-cell r">
-        <div class="pj-num">02</div>
-        <div class="pj-type">ChatBot IA · Eventos</div>
-        <h3 class="pj-title">Bot Feria de Loja</h3>
-        <p class="pj-client">Feria de Loja</p>
-        <p class="pj-desc">Asistente para evento presencial con artesanos y marcas. Enviaba formularios, info de stands y horarios a miles de asistentes sin intervención del equipo.</p>
-        <div class="pj-stack">Rampwin · WhatsApp · Eventos</div>
-        <a href="portfolio.html" class="pj-link">Ver detalle ↗</a>
+
+      <div class="proj-impact-item r">
+        <div class="pi2-left">
+          <div class="pi2-num">02</div>
+          <div class="pi2-type">ChatBot IA · Eventos masivos</div>
+          <h3 class="pi2-title">Bot Feria de Loja</h3>
+          <p class="pi2-client">Feria de Loja — Evento presencial</p>
+          <p class="pi2-desc">Asistente inteligente para evento con artesanos y marcas. Gestionó automáticamente información de stands, horarios y formularios a miles de asistentes sin intervención del equipo organizador.</p>
+          <div class="pi2-stack">Rampwin · WhatsApp Business · Automatización</div>
+          <a href="portfolio.html" class="pi2-link">Ver caso completo ↗</a>
+        </div>
+        <div class="pi2-right">
+          <div class="pi2-no-stats">
+            <p>"El bot manejó toda la comunicación del evento. El equipo pudo enfocarse en la experiencia, no en responder mensajes."</p>
+          </div>
+        </div>
       </div>
-      <div class="proj-cell r">
-        <div class="pj-num">03</div>
-        <div class="pj-type">Branding · Identidad Visual</div>
-        <h3 class="pj-title">Manual de Marca</h3>
-        <p class="pj-client">Avasant Consulting S.A.S</p>
-        <p class="pj-desc">Sistema de identidad visual desde cero: logo, isologo, paleta, tipografía y manual completo de uso de marca.</p>
-        <div class="pj-stack">Branding · Logo · Manual de Marca</div>
-        <a href="portfolio.html" class="pj-link">Ver detalle ↗</a>
+
+      <div class="proj-impact-item r">
+        <div class="pi2-left">
+          <div class="pi2-num">03</div>
+          <div class="pi2-type">Branding · Identidad Visual</div>
+          <h3 class="pi2-title">Sistema de Identidad Visual</h3>
+          <p class="pi2-client">Avasant Consulting S.A.S</p>
+          <p class="pi2-desc">Construcción de identidad visual desde cero para consultora internacional. Logo, isologo, paleta corporativa, tipografía y manual completo de uso de marca para todos los canales.</p>
+          <div class="pi2-stack">Branding · Logo · Manual de Marca · Diseño Editorial</div>
+          <a href="portfolio.html" class="pi2-link">Ver caso completo ↗</a>
+        </div>
+        <div class="pi2-right">
+          <div class="pi2-results">
+            <div class="pi2-result" style="grid-column: 1/-1;">
+              <div class="pi2-result-val">100<span>%</span></div>
+              <div class="pi2-result-lbl">Identidad desde cero</div>
+              <div class="pi2-result-desc">Logo, paleta, tipografía y manual de uso completo entregados en 3 semanas</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="proj-cell r">
-        <div class="pj-num">04</div>
-        <div class="pj-type">WhatsApp Masivo · Automatización</div>
-        <h3 class="pj-title">Campaña Canzión Films</h3>
-        <p class="pj-client">Canzión Films</p>
-        <p class="pj-desc">Envíos masivos para estrenos cinematográficos con confirmación automática de asistencia y códigos promocionales.</p>
-        <div class="pj-stack">WhatsApp API · Automatización · Cine</div>
-        <a href="portfolio.html" class="pj-link">Ver detalle ↗</a>
+
+      <div class="proj-impact-item r">
+        <div class="pi2-left">
+          <div class="pi2-num">04</div>
+          <div class="pi2-type">WhatsApp Masivo · Entretenimiento</div>
+          <h3 class="pi2-title">Campaña Canzión Films</h3>
+          <p class="pi2-client">Canzión Films — Cine</p>
+          <p class="pi2-desc">Envíos masivos para estrenos cinematográficos con confirmación automática de asistencia y códigos promocionales únicos por usuario. Cero intervención manual en el proceso.</p>
+          <div class="pi2-stack">WhatsApp API · Automatización · Campañas Masivas</div>
+          <a href="portfolio.html" class="pi2-link">Ver caso completo ↗</a>
+        </div>
+        <div class="pi2-right">
+          <div class="pi2-no-stats">
+            <p>Automatización completa del flujo de estrenos: desde la invitación hasta la confirmación de asistencia.</p>
+          </div>
+        </div>
       </div>
+
     </div>
+
     <div class="see-all r">
       <a href="portfolio.html">Ver todos los proyectos →</a>
     </div>
@@ -622,7 +839,7 @@
     </div>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="alt-bg">
     <div class="contact-inner">
       <div class="r">
         <h2 class="contact-title">Hablemos<br/>sin rodeos.</h2>
@@ -650,7 +867,7 @@
           </div>
           <div class="form-group">
             <label>¿Qué necesitas?</label>
-            <select name="servicio">
+            <select name="servicio" id="servicio">
               <option value="">Selecciona un servicio</option>
               <option>ChatBot WhatsApp</option><option>Automatización IA</option>
               <option>Meta & Google Ads</option><option>Desarrollo Web</option>
@@ -748,7 +965,7 @@
         word.classList.remove('fade-out');
         word.classList.add('fade-in');
         requestAnimationFrame(() => requestAnimationFrame(() => word.classList.remove('fade-in')));
-      }, 380);
+      }, 400);
     }, 2800);
 
     window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('out'), 700));
@@ -779,7 +996,7 @@
       document.querySelectorAll('#hero .r').forEach((el,i) => setTimeout(() => el.classList.add('on'), 100+i*200));
     });
     const mq1 = document.getElementById('mq1');
-    const mServices = ['Desarrollo Web','Ecommerce','Meta & Google Ads','Branding & Identidad','Automatizaciones IA','ChatBots WhatsApp'];
+    const mServices = ['Desarrollo Web','Automatización','Meta Ads','Ecommerce','WhatsApp Bots','Branding','Google Ads','IA Aplicada','Estrategia Digital'];
     [...mServices,...mServices,...mServices].forEach(n => {
       const s=document.createElement('span'); s.textContent=n; mq1.appendChild(s);
       const d=document.createElement('span'); d.className='dot'; d.textContent=' · '; mq1.appendChild(d);
@@ -835,6 +1052,19 @@
     }
     hamBtn.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+    function toggleAcc(header) {
+      const item = header.closest('.svc-acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.svc-acc-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+    document.querySelectorAll('.svc-acc-cta').forEach(cta => {
+      cta.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
 
     document.getElementById('contact-form').addEventListener('submit', e => {
       e.preventDefault();
