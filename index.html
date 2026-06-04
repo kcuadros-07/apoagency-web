@@ -30,8 +30,8 @@
       --nav-blur: rgba(244,244,239,.88); --cf: brightness(0);
     }
 
-    html { scroll-behavior: smooth; cursor: none; }
-    body { background: var(--bg); color: var(--fg); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; transition: background .5s, color .5s; }
+    html { scroll-behavior: smooth; cursor: none; overflow-x: hidden; max-width: 100%; }
+    body { background: var(--bg); color: var(--fg); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; max-width: 100%; -webkit-font-smoothing: antialiased; transition: background .5s, color .5s; }
     ::-webkit-scrollbar { display: none; }
     * { scrollbar-width: none; }
 
@@ -362,8 +362,11 @@
       .nav-wa { display:none; }
       #ham-btn { display:flex; }
       /* Mobile: ocultar wordmark, mostrar isologo */
-      .nav-logo-clip { display:none; }
-      .nav-logo img.iso-nav { display:block; height:44px; }
+      .nav-logo-clip { display:none !important; }
+      .nav-logo img.iso-nav.logo-dark { display:block !important; height:44px; }
+      .nav-logo img.iso-nav.logo-light { display:none !important; }
+      [data-theme="light"] .nav-logo img.iso-nav.logo-dark { display:none !important; }
+      [data-theme="light"] .nav-logo img.iso-nav.logo-light { display:block !important; height:44px; }
       nav.scrolled .nav-logo img.iso-nav { height:34px; }
 
       /* Hero */
@@ -419,7 +422,7 @@
       .cookie-accept, .cookie-decline { flex:1; text-align:center; }
     }
     @media(max-width:600px) {
-      .nav-logo img.iso-nav { height:36px; }
+      .nav-logo img.iso-nav.logo-dark { display:block !important; height:36px; }
       .svc-slide { flex:0 0 90vw; }
       .form-row { grid-template-columns:1fr; }
       .logo-item img { height:44px; } .logo-item { padding:16px 24px; }
@@ -497,16 +500,16 @@
     .proj-slide-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      gap: 48px;
       align-items: start;
-      padding: 64px 0;
+      padding: 44px 0;
       border-top: .5px solid var(--border);
     }
     .proj-slide:last-child .proj-slide-inner { border-bottom: .5px solid var(--border); }
     .proj-slide-num {
-      font-size: 88px; font-weight: 800; letter-spacing: -5px;
+      font-size: 56px; font-weight: 800; letter-spacing: -3px;
       color: var(--indigo); opacity: .12; line-height: 1;
-      margin-bottom: -16px;
+      margin-bottom: -8px;
     }
     .proj-slide-type {
       font-size: 10px; font-weight: 700; letter-spacing: .2em;
@@ -545,24 +548,24 @@
     .proj-slide-impact {
       background: linear-gradient(135deg, rgba(124,111,247,.1), rgba(124,111,247,.03));
       border: .5px solid rgba(124,111,247,.25);
-      padding: 40px 36px;
+      padding: 24px 28px;
       margin-bottom: 2px;
     }
     .proj-impact-big { display: flex; flex-direction: column; }
     .proj-impact-val {
-      font-size: clamp(52px, 8vw, 96px); font-weight: 800;
-      letter-spacing: -4px; line-height: 1; color: var(--fg);
+      font-size: clamp(40px, 6vw, 72px); font-weight: 800;
+      letter-spacing: -3px; line-height: 1; color: var(--fg);
     }
     .proj-impact-lbl {
-      font-size: 12px; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--indigo); margin-top: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--indigo); margin-top: 6px;
     }
     .proj-metrics-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 1px; background: var(--border);
       border: .5px solid var(--border); border-top: none;
     }
-    .proj-metric { background: var(--bg); padding: 20px 18px; }
+    .proj-metric { background: var(--bg); padding: 14px 16px; }
     .proj-metric-val {
       font-size: 24px; font-weight: 800; letter-spacing: -1px;
       line-height: 1; color: var(--fg); margin-bottom: 4px;
@@ -1098,65 +1101,6 @@
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" style="padding:100px 52px;">
-    <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;">
-      <div class="r">
-        <p style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">/ preguntas frecuentes</p>
-        <h2 style="font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:20px;">Todo lo que<br/>quieres saber.</h2>
-        <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.75;">¿Algo no está aquí? Escríbenos directamente por WhatsApp y te respondemos en minutos.</p>
-        <a href="https://wa.me/593987252978" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;margin-top:28px;background:#22C55E;color:#fff;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:12px 24px;">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
-          Preguntar ahora
-        </a>
-      </div>
-      <div class="faq-list r">
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            ¿Cuánto tiempo tarda implementar un chatbot de WhatsApp?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-a"><p>Dependiendo de la complejidad, un chatbot funcional puede estar listo en 7 a 21 días. Bots simples de respuestas automatizadas en una semana; integraciones con IA y sistemas externos pueden tomar hasta 3 semanas. Siempre entregamos una versión funcional temprana para que puedas verlo operar antes de la entrega final.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            ¿Necesito tener conocimientos técnicos para usar las automatizaciones?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-a"><p>No. Todo lo que construimos está diseñado para que tu equipo lo opere sin saber programar. Entregamos acceso a paneles intuitivos, documentación clara y una sesión de capacitación incluida en cada proyecto. Si algo falla, nos contactas y lo resolvemos.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            ¿Trabajan con empresas de cualquier tamaño?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-a"><p>Sí. Hemos trabajado desde emprendimientos en etapa temprana hasta empresas con operaciones a escala nacional. Lo que importa no es el tamaño, sino que tengas un problema concreto que resolver. Si tienes una tarea que se repite cada semana, ya lo hemos automatizado antes.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            ¿Cómo es el proceso de trabajo con APO?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-a"><p>Comenzamos con una llamada de diagnóstico gratuita para entender tu negocio y el problema a resolver. Luego presentamos una propuesta con alcance, plazo y precio fijo. Al aprobarte iniciamos el desarrollo con revisiones semanales. Entregamos, capacitamos y hacemos seguimiento los primeros 30 días.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            ¿Cuánto cuesta un proyecto?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-a"><p>Depende del alcance. Un chatbot básico puede partir desde $300; un sistema de automatización complejo puede estar entre $800 y $2,500. Sitios web desde $400. Campañas de publicidad tienen una tarifa de gestión mensual. Siempre cotizamos con precio fijo, sin sorpresas al final.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            ¿Hacen soporte después de la entrega?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-a"><p>Sí. Todos los proyectos incluyen 30 días de soporte gratuito post-entrega. Después ofrecemos planes de mantenimiento mensual para quienes necesitan actualizaciones continuas. Nunca desaparecemos después de entregar.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="contact" class="alt-bg">
     <div class="contact-inner">
       <div class="r">
@@ -1200,6 +1144,46 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq" style="padding:100px 52px;">
+    <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;">
+      <div class="r">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">/ preguntas frecuentes</p>
+        <h2 style="font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:20px;">Todo lo que<br/>quieres saber.</h2>
+        <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.75;">¿Algo no está aquí? Escríbenos directamente por WhatsApp y te respondemos en minutos.</p>
+        <a href="https://wa.me/593987252978" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;margin-top:28px;background:#22C55E;color:#fff;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:12px 24px;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
+          Preguntar ahora
+        </a>
+      </div>
+      <div class="faq-list r">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo tarda implementar un chatbot de WhatsApp?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><p>Dependiendo de la complejidad, un chatbot funcional puede estar listo en 7 a 21 días. Bots simples de respuestas automatizadas en una semana; integraciones con IA y sistemas externos pueden tomar hasta 3 semanas. Siempre entregamos una versión funcional temprana para que puedas verlo operar antes de la entrega final.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">¿Necesito conocimientos técnicos para usar las automatizaciones?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><p>No. Todo lo que construimos está diseñado para que tu equipo lo opere sin saber programar. Entregamos acceso a paneles intuitivos, documentación clara y una sesión de capacitación incluida en cada proyecto. Si algo falla, nos contactas y lo resolvemos.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">¿Trabajan con empresas de cualquier tamaño?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><p>Sí. Hemos trabajado desde emprendimientos en etapa temprana hasta empresas con operaciones a escala nacional. Lo que importa no es el tamaño, sino que tengas un problema concreto que resolver. Si tienes una tarea que se repite cada semana, ya lo hemos automatizado antes.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">¿Cómo es el proceso de trabajo con APO?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><p>Comenzamos con una llamada de diagnóstico gratuita para entender tu negocio y el problema a resolver. Luego presentamos una propuesta con alcance, plazo y precio fijo. Al aprobarte iniciamos el desarrollo con revisiones semanales. Entregamos, capacitamos y hacemos seguimiento los primeros 30 días.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto cuesta un proyecto?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><p>Depende del alcance. Un chatbot básico puede partir desde $300; un sistema de automatización complejo puede estar entre $800 y $2,500. Sitios web desde $400. Campañas de publicidad tienen una tarifa de gestión mensual. Siempre cotizamos con precio fijo, sin sorpresas al final.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">¿Hacen soporte después de la entrega?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><p>Sí. Todos los proyectos incluyen 30 días de soporte gratuito post-entrega. Después ofrecemos planes de mantenimiento mensual para quienes necesitan actualizaciones continuas. Nunca desaparecemos después de entregar.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- COOKIE BANNER -->
   <div id="cookie-banner">
