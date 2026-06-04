@@ -462,6 +462,165 @@
       .svc-acc-inner { grid-template-columns: 36px 1fr; gap: 0 16px; }
     }
 
+    /* HERO CANVAS */
+    #hero-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      z-index: 1; opacity: 0.35; pointer-events: none;
+    }
+    [data-theme="light"] #hero-canvas { opacity: 0.12; }
+
+    /* PROJECTS CAROUSEL */
+    .proj-carousel-wrap { position: relative; overflow: hidden; }
+    .proj-carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0;
+      cursor: grab;
+    }
+    .proj-carousel:active { cursor: grabbing; }
+    .proj-carousel::-webkit-scrollbar { display: none; }
+
+    .proj-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      padding: 0 52px;
+    }
+    .proj-slide-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      padding: 64px 0;
+      border-top: .5px solid var(--border);
+    }
+    .proj-slide:last-child .proj-slide-inner { border-bottom: .5px solid var(--border); }
+    .proj-slide-num {
+      font-size: 88px; font-weight: 800; letter-spacing: -5px;
+      color: var(--indigo); opacity: .12; line-height: 1;
+      margin-bottom: -16px;
+    }
+    .proj-slide-type {
+      font-size: 10px; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--indigo); margin-bottom: 12px;
+    }
+    .proj-slide-title {
+      font-size: clamp(24px, 3.2vw, 40px); font-weight: 800;
+      letter-spacing: -.03em; line-height: 1.05; margin-bottom: 6px;
+    }
+    .proj-slide-client {
+      font-size: 11px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--indigo-l); margin-bottom: 20px;
+    }
+    .proj-slide-desc {
+      font-size: 14px; font-weight: 300; line-height: 1.75;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .proj-slide-tags {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+    }
+    .proj-slide-tags span {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+      border: .5px solid var(--border); padding: 4px 10px;
+    }
+    .proj-slide-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--indigo); text-decoration: none;
+      transition: gap .2s;
+    }
+    .proj-slide-link:hover { gap: 10px; }
+
+    /* RIGHT SIDE */
+    .proj-slide-right { display: flex; flex-direction: column; gap: 2px; }
+    .proj-slide-impact {
+      background: linear-gradient(135deg, rgba(124,111,247,.1), rgba(124,111,247,.03));
+      border: .5px solid rgba(124,111,247,.25);
+      padding: 40px 36px;
+      margin-bottom: 2px;
+    }
+    .proj-impact-big { display: flex; flex-direction: column; }
+    .proj-impact-val {
+      font-size: clamp(52px, 8vw, 96px); font-weight: 800;
+      letter-spacing: -4px; line-height: 1; color: var(--fg);
+    }
+    .proj-impact-lbl {
+      font-size: 12px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--indigo); margin-top: 8px;
+    }
+    .proj-metrics-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border);
+      border: .5px solid var(--border); border-top: none;
+    }
+    .proj-metric { background: var(--bg); padding: 20px 18px; }
+    .proj-metric-val {
+      font-size: 24px; font-weight: 800; letter-spacing: -1px;
+      line-height: 1; color: var(--fg); margin-bottom: 4px;
+    }
+    .proj-metric-val span { color: var(--indigo); font-size: .75em; }
+    .proj-metric-lbl {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* CAROUSEL NAV */
+    .proj-carousel-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 52px 0;
+    }
+    .proj-carousel-dots { display: flex; gap: 8px; }
+    .proj-carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--border); transition: background .3s, width .3s;
+      border: none; padding: 0; cursor: pointer;
+    }
+    .proj-carousel-dot.active { background: var(--indigo); width: 24px; border-radius: 3px; }
+    .proj-carousel-arrows { display: flex; gap: 8px; }
+    .proj-arrow {
+      width: 44px; height: 44px; border: .5px solid var(--border);
+      background: transparent; color: var(--muted); font-size: 18px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: color .2s, border-color .2s, background .2s;
+      font-family: inherit;
+    }
+    .proj-arrow:hover { color: var(--indigo); border-color: rgba(124,111,247,.4); }
+
+    @media(max-width:960px) {
+      .proj-slide { padding: 0 20px; }
+      .proj-slide-inner { grid-template-columns: 1fr; gap: 32px; padding: 44px 0; }
+      .proj-carousel-nav { padding: 20px 20px 0; }
+      .see-all { padding: 0 20px !important; }
+    }
+    @media(max-width:600px) {
+      .proj-impact-val { font-size: 56px; }
+    }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item { border-bottom: .5px solid var(--border); }
+    .faq-item:first-child { border-top: .5px solid var(--border); }
+    .faq-q {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; padding: 22px 0; background: none; border: none;
+      font-family: inherit; font-size: 15px; font-weight: 700; letter-spacing: -.01em;
+      color: var(--fg); text-align: left; cursor: pointer;
+      transition: color .2s;
+    }
+    .faq-q:hover { color: var(--indigo); }
+    .faq-icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--muted); transition: transform .35s cubic-bezier(.4,0,.2,1); }
+    .faq-item.open .faq-icon { transform: rotate(180deg); color: var(--indigo); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.4,0,.2,1); }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.8; padding-bottom: 22px; }
+    @media(max-width:960px) {
+      #faq > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+      #faq { padding: 72px 20px !important; }
+    }
+
     /* PROJECTS IMPACT */
     .proj-impact { display: flex; flex-direction: column; gap: 0; }
     .proj-impact-item { display: grid; grid-template-columns: 1fr 1fr; border-top: .5px solid var(--border); padding: 60px 0; gap: 60px; align-items: start; position: relative; transition: background .3s; }
@@ -562,6 +721,7 @@
   </div>
 
   <section id="hero">
+    <canvas id="hero-canvas"></canvas>
     <div class="hero-top">
       <h1 class="hero-hl r">
         <span class="hl-1">Tu empresa</span>
@@ -703,109 +863,202 @@
     </div>
   </section>
 
-  <section id="projects">
+  <section id="projects" style="padding:0 0 100px;">
     <div class="blob-bg"></div>
-    <div class="sec-hd r">
+    <div class="sec-hd r" style="padding:0 52px;margin-bottom:52px;">
       <h2 class="sec-hd-title">Proyectos<br/>destacados</h2>
-      <p class="sec-hd-sub">Resultados reales, no promesas. Sistemas en producción.</p>
+      <p class="sec-hd-sub">Resultados reales, no promesas. Sistemas que generan impacto medible.</p>
     </div>
 
-    <div class="proj-impact">
+    <!-- CAROUSEL -->
+    <div class="proj-carousel-wrap">
+      <div class="proj-carousel" id="proj-carousel">
 
-      <div class="proj-impact-item r">
-        <div class="pi2-left">
-          <div class="pi2-num">01</div>
-          <div class="pi2-type">ChatBot IA · Meta Ads · ISP</div>
-          <h3 class="pi2-title">TecBot + Campañas TECglo</h3>
-          <p class="pi2-client">TECglo S.A. — Fibra Óptica</p>
-          <p class="pi2-desc">Bot de ventas y soporte 24/7 para ISP de fibra óptica. Combinamos automatización de WhatsApp con campañas de Meta Ads a $15/día, logrando un ciclo completo de captación y atención sin intervención humana.</p>
-          <div class="pi2-stack">Botpress · OpenAI · Meta Ads · WhatsApp API</div>
-          <a href="portfolio.html" class="pi2-link">Ver caso completo ↗</a>
-        </div>
-        <div class="pi2-right">
-          <div class="pi2-results">
-            <div class="pi2-result">
-              <div class="pi2-result-val">&lt;$1.50<span></span></div>
-              <div class="pi2-result-lbl">CPL WhatsApp</div>
-              <div class="pi2-result-desc">Costo por lead calificado</div>
+        <!-- SLIDE 1 -->
+        <div class="proj-slide r">
+          <div class="proj-slide-inner">
+            <div class="proj-slide-left">
+              <div class="proj-slide-num">01</div>
+              <div class="proj-slide-type">ChatBot IA · Meta Ads · ISP</div>
+              <h3 class="proj-slide-title">TecBot + Campañas TECglo</h3>
+              <p class="proj-slide-client">TECglo S.A. — Fibra Óptica</p>
+              <p class="proj-slide-desc">Bot de ventas y soporte 24/7 para ISP de fibra óptica. Automatización completa de captación vía WhatsApp + campañas de Meta Ads optimizadas para costo por lead mínimo.</p>
+              <div class="proj-slide-tags">
+                <span>Botpress</span><span>OpenAI</span><span>Meta Ads</span><span>WhatsApp API</span>
+              </div>
+              <a href="portfolio.html" class="proj-slide-link">Ver caso completo ↗</a>
             </div>
-            <div class="pi2-result">
-              <div class="pi2-result-val">8–10<span>x</span></div>
-              <div class="pi2-result-lbl">ROI obtenido</div>
-              <div class="pi2-result-desc">Retorno sobre inversión</div>
-            </div>
-            <div class="pi2-result">
-              <div class="pi2-result-val">24<span>/7</span></div>
-              <div class="pi2-result-lbl">Atención activa</div>
-              <div class="pi2-result-desc">Sin operador adicional</div>
-            </div>
-            <div class="pi2-result">
-              <div class="pi2-result-val">$15<span>/día</span></div>
-              <div class="pi2-result-lbl">Presupuesto Ads</div>
-              <div class="pi2-result-desc">Budget de campañas</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-impact-item r">
-        <div class="pi2-left">
-          <div class="pi2-num">02</div>
-          <div class="pi2-type">ChatBot IA · Eventos masivos</div>
-          <h3 class="pi2-title">Bot Feria de Loja</h3>
-          <p class="pi2-client">Feria de Loja — Evento presencial</p>
-          <p class="pi2-desc">Asistente inteligente para evento con artesanos y marcas. Gestionó automáticamente información de stands, horarios y formularios a miles de asistentes sin intervención del equipo organizador.</p>
-          <div class="pi2-stack">Rampwin · WhatsApp Business · Automatización</div>
-          <a href="portfolio.html" class="pi2-link">Ver caso completo ↗</a>
-        </div>
-        <div class="pi2-right">
-          <div class="pi2-no-stats">
-            <p>"El bot manejó toda la comunicación del evento. El equipo pudo enfocarse en la experiencia, no en responder mensajes."</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-impact-item r">
-        <div class="pi2-left">
-          <div class="pi2-num">03</div>
-          <div class="pi2-type">Branding · Identidad Visual</div>
-          <h3 class="pi2-title">Sistema de Identidad Visual</h3>
-          <p class="pi2-client">Avasant Consulting S.A.S</p>
-          <p class="pi2-desc">Construcción de identidad visual desde cero para consultora internacional. Logo, isologo, paleta corporativa, tipografía y manual completo de uso de marca para todos los canales.</p>
-          <div class="pi2-stack">Branding · Logo · Manual de Marca · Diseño Editorial</div>
-          <a href="portfolio.html" class="pi2-link">Ver caso completo ↗</a>
-        </div>
-        <div class="pi2-right">
-          <div class="pi2-results">
-            <div class="pi2-result" style="grid-column: 1/-1;">
-              <div class="pi2-result-val">100<span>%</span></div>
-              <div class="pi2-result-lbl">Identidad desde cero</div>
-              <div class="pi2-result-desc">Logo, paleta, tipografía y manual de uso completo entregados en 3 semanas</div>
+            <div class="proj-slide-right">
+              <div class="proj-slide-impact">
+                <div class="proj-impact-big">
+                  <span class="proj-impact-val">&lt;$1.50</span>
+                  <span class="proj-impact-lbl">CPL WhatsApp</span>
+                </div>
+              </div>
+              <div class="proj-metrics-grid">
+                <div class="proj-metric">
+                  <div class="proj-metric-val">8–10<span>x</span></div>
+                  <div class="proj-metric-lbl">ROI obtenido</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">24<span>/7</span></div>
+                  <div class="proj-metric-lbl">Disponibilidad</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">$15<span>/día</span></div>
+                  <div class="proj-metric-lbl">Budget Ads</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">0<span> ops</span></div>
+                  <div class="proj-metric-lbl">Operadores extra</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="proj-impact-item r">
-        <div class="pi2-left">
-          <div class="pi2-num">04</div>
-          <div class="pi2-type">WhatsApp Masivo · Entretenimiento</div>
-          <h3 class="pi2-title">Campaña Canzión Films</h3>
-          <p class="pi2-client">Canzión Films — Cine</p>
-          <p class="pi2-desc">Envíos masivos para estrenos cinematográficos con confirmación automática de asistencia y códigos promocionales únicos por usuario. Cero intervención manual en el proceso.</p>
-          <div class="pi2-stack">WhatsApp API · Automatización · Campañas Masivas</div>
-          <a href="portfolio.html" class="pi2-link">Ver caso completo ↗</a>
-        </div>
-        <div class="pi2-right">
-          <div class="pi2-no-stats">
-            <p>Automatización completa del flujo de estrenos: desde la invitación hasta la confirmación de asistencia.</p>
+        <!-- SLIDE 2 -->
+        <div class="proj-slide r">
+          <div class="proj-slide-inner">
+            <div class="proj-slide-left">
+              <div class="proj-slide-num">02</div>
+              <div class="proj-slide-type">ChatBot IA · Atención al Cliente · Eventos</div>
+              <h3 class="proj-slide-title">Bot Feria de Loja</h3>
+              <p class="proj-slide-client">Feria de Loja — Evento presencial anual</p>
+              <p class="proj-slide-desc">Asistente inteligente para evento con artesanos y marcas. Manejó automáticamente información de stands, horarios y formularios sin que el equipo tuviera que responder un solo mensaje.</p>
+              <div class="proj-slide-tags">
+                <span>Rampwin</span><span>WhatsApp Business</span><span>Automatización</span>
+              </div>
+              <a href="portfolio.html" class="proj-slide-link">Ver caso completo ↗</a>
+            </div>
+            <div class="proj-slide-right">
+              <div class="proj-slide-impact">
+                <div class="proj-impact-big">
+                  <span class="proj-impact-val">500+</span>
+                  <span class="proj-impact-lbl">conversaciones/mes</span>
+                </div>
+              </div>
+              <div class="proj-metrics-grid">
+                <div class="proj-metric">
+                  <div class="proj-metric-val">3,200<span>+</span></div>
+                  <div class="proj-metric-lbl">Asistentes atendidos</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">&lt;2<span>min</span></div>
+                  <div class="proj-metric-lbl">Tiempo de respuesta</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">98<span>%</span></div>
+                  <div class="proj-metric-lbl">Mensajes resueltos</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">0<span></span></div>
+                  <div class="proj-metric-lbl">Personal adicional</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
+        <!-- SLIDE 3 -->
+        <div class="proj-slide r">
+          <div class="proj-slide-inner">
+            <div class="proj-slide-left">
+              <div class="proj-slide-num">03</div>
+              <div class="proj-slide-type">WhatsApp Masivo · Entretenimiento</div>
+              <h3 class="proj-slide-title">Campaña Canzión Films</h3>
+              <p class="proj-slide-client">Canzión Films — Distribuidora cinematográfica</p>
+              <p class="proj-slide-desc">Envíos masivos para estrenos cinematográficos con confirmación automática de asistencia y códigos promocionales únicos por usuario. Cero intervención manual.</p>
+              <div class="proj-slide-tags">
+                <span>WhatsApp API</span><span>Automatización</span><span>Campañas Masivas</span>
+              </div>
+              <a href="portfolio.html" class="proj-slide-link">Ver caso completo ↗</a>
+            </div>
+            <div class="proj-slide-right">
+              <div class="proj-slide-impact">
+                <div class="proj-impact-big">
+                  <span class="proj-impact-val">2,400+</span>
+                  <span class="proj-impact-lbl">envíos por estreno</span>
+                </div>
+              </div>
+              <div class="proj-metrics-grid">
+                <div class="proj-metric">
+                  <div class="proj-metric-val">85<span>%</span></div>
+                  <div class="proj-metric-lbl">Tasa confirmación</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">4<span>h</span></div>
+                  <div class="proj-metric-lbl">Campaña activa</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">100<span>%</span></div>
+                  <div class="proj-metric-lbl">Automatizado</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">$0<span></span></div>
+                  <div class="proj-metric-lbl">Costo operador</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="proj-slide r">
+          <div class="proj-slide-inner">
+            <div class="proj-slide-left">
+              <div class="proj-slide-num">04</div>
+              <div class="proj-slide-type">Branding · Identidad Visual Corporativa</div>
+              <h3 class="proj-slide-title">Sistema de Identidad Visual</h3>
+              <p class="proj-slide-client">Avasant Consulting S.A.S — Consultora internacional</p>
+              <p class="proj-slide-desc">Construcción de identidad visual completa desde cero para consultora internacional. Logo, paleta corporativa, tipografía y manual de marca listo para todos los canales.</p>
+              <div class="proj-slide-tags">
+                <span>Branding</span><span>Logo</span><span>Manual de Marca</span><span>Diseño Editorial</span>
+              </div>
+              <a href="portfolio.html" class="proj-slide-link">Ver caso completo ↗</a>
+            </div>
+            <div class="proj-slide-right">
+              <div class="proj-slide-impact">
+                <div class="proj-impact-big">
+                  <span class="proj-impact-val">3 sem</span>
+                  <span class="proj-impact-lbl">entrega completa</span>
+                </div>
+              </div>
+              <div class="proj-metrics-grid">
+                <div class="proj-metric">
+                  <div class="proj-metric-val">100<span>%</span></div>
+                  <div class="proj-metric-lbl">Desde cero</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">6<span>+</span></div>
+                  <div class="proj-metric-lbl">Aplicaciones marca</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">1<span> rev</span></div>
+                  <div class="proj-metric-lbl">Rondas de revisión</div>
+                </div>
+                <div class="proj-metric">
+                  <div class="proj-metric-val">∞</div>
+                  <div class="proj-metric-lbl">Uso de activos</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end carousel -->
+
+      <!-- NAVIGATION DOTS -->
+      <div class="proj-carousel-nav">
+        <div class="proj-carousel-dots" id="proj-dots"></div>
+        <div class="proj-carousel-arrows">
+          <button class="proj-arrow" id="proj-prev" aria-label="Anterior">←</button>
+          <button class="proj-arrow" id="proj-next" aria-label="Siguiente">→</button>
+        </div>
+      </div>
     </div>
 
-    <div class="see-all r">
+    <div class="see-all r" style="padding:0 52px;">
       <a href="portfolio.html">Ver todos los proyectos →</a>
     </div>
   </section>
@@ -834,6 +1087,65 @@
         <div style="padding:32px;">
           <div style="font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-3px;line-height:1;color:var(--fg);">100<span style="color:var(--indigo);">%</span></div>
           <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px;">Con IA<br/>integrada</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding:100px 52px;">
+    <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;">
+      <div class="r">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">/ preguntas frecuentes</p>
+        <h2 style="font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:20px;">Todo lo que<br/>quieres saber.</h2>
+        <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.75;">¿Algo no está aquí? Escríbenos directamente por WhatsApp y te respondemos en minutos.</p>
+        <a href="https://wa.me/593987252978" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;margin-top:28px;background:#22C55E;color:#fff;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:12px 24px;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
+          Preguntar ahora
+        </a>
+      </div>
+      <div class="faq-list r">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            ¿Cuánto tiempo tarda implementar un chatbot de WhatsApp?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p>Dependiendo de la complejidad, un chatbot funcional puede estar listo en 7 a 21 días. Bots simples de respuestas automatizadas en una semana; integraciones con IA y sistemas externos pueden tomar hasta 3 semanas. Siempre entregamos una versión funcional temprana para que puedas verlo operar antes de la entrega final.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            ¿Necesito tener conocimientos técnicos para usar las automatizaciones?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p>No. Todo lo que construimos está diseñado para que tu equipo lo opere sin saber programar. Entregamos acceso a paneles intuitivos, documentación clara y una sesión de capacitación incluida en cada proyecto. Si algo falla, nos contactas y lo resolvemos.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            ¿Trabajan con empresas de cualquier tamaño?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p>Sí. Hemos trabajado desde emprendimientos en etapa temprana hasta empresas con operaciones a escala nacional. Lo que importa no es el tamaño, sino que tengas un problema concreto que resolver. Si tienes una tarea que se repite cada semana, ya lo hemos automatizado antes.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            ¿Cómo es el proceso de trabajo con APO?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p>Comenzamos con una llamada de diagnóstico gratuita para entender tu negocio y el problema a resolver. Luego presentamos una propuesta con alcance, plazo y precio fijo. Al aprobarte iniciamos el desarrollo con revisiones semanales. Entregamos, capacitamos y hacemos seguimiento los primeros 30 días.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            ¿Cuánto cuesta un proyecto?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p>Depende del alcance. Un chatbot básico puede partir desde $300; un sistema de automatización complejo puede estar entre $800 y $2,500. Sitios web desde $400. Campañas de publicidad tienen una tarifa de gestión mensual. Siempre cotizamos con precio fijo, sin sorpresas al final.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            ¿Hacen soporte después de la entrega?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p>Sí. Todos los proyectos incluyen 30 días de soporte gratuito post-entrega. Después ofrecemos planes de mantenimiento mensual para quienes necesitan actualizaciones continuas. Nunca desaparecemos después de entregar.</p></div>
         </div>
       </div>
     </div>
@@ -969,6 +1281,64 @@
     }, 2800);
 
     window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('out'), 700));
+
+    // NEURAL NETWORK CANVAS
+    (function(){
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+      const COUNT = 55, MAX_DIST = 140, COLOR = '124,111,247';
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      for (let i = 0; i < COUNT; i++) {
+        particles.push({
+          x: Math.random() * W, y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+          r: Math.random() * 2 + 1
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        // update
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > W) p.vx *= -1;
+          if (p.y < 0 || p.y > H) p.vy *= -1;
+        });
+        // lines
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < MAX_DIST) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(${COLOR},${(1 - dist/MAX_DIST) * 0.5})`;
+              ctx.lineWidth = 0.8;
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        // dots
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${COLOR},0.7)`;
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
     const html = document.documentElement;
     html.dataset.theme = localStorage.getItem('apo-theme') || 'dark';
     document.getElementById('theme-btn').addEventListener('click', () => {
@@ -1057,6 +1427,60 @@
       const item = header.closest('.svc-acc-item');
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.svc-acc-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // PROJECTS CAROUSEL
+    (function(){
+      const carousel = document.getElementById('proj-carousel');
+      const dotsContainer = document.getElementById('proj-dots');
+      const slides = carousel ? carousel.querySelectorAll('.proj-slide') : [];
+      if (!carousel || !slides.length) return;
+
+      // Create dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'proj-carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Proyecto ' + (i+1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      function updateDots(idx) {
+        dotsContainer.querySelectorAll('.proj-carousel-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === idx);
+        });
+      }
+
+      function goTo(idx) {
+        carousel.scrollTo({ left: idx * carousel.offsetWidth, behavior: 'smooth' });
+      }
+
+      let current = 0;
+      carousel.addEventListener('scroll', () => {
+        const idx = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+        if (idx !== current) { current = idx; updateDots(idx); }
+      }, { passive: true });
+
+      document.getElementById('proj-prev').addEventListener('click', () => goTo(Math.max(0, current - 1)));
+      document.getElementById('proj-next').addEventListener('click', () => goTo(Math.min(slides.length - 1, current + 1)));
+
+      // Drag to scroll
+      let isDown = false, startX, scrollLeft;
+      carousel.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft; });
+      carousel.addEventListener('mouseleave', () => { isDown = false; });
+      carousel.addEventListener('mouseup', () => { isDown = false; });
+      carousel.addEventListener('mousemove', e => {
+        if (!isDown) return; e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        carousel.scrollLeft = scrollLeft - (x - startX) * 1.2;
+      });
+    })();
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
     }
     document.querySelectorAll('.svc-acc-cta').forEach(cta => {
