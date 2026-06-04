@@ -72,10 +72,16 @@
     nav.scrolled .nav-logo-clip img.wordmark { width: 140px; height: 44px; }
 
     /* Isologo — solo en mobile */
-    .nav-logo img.iso-nav { height: 40px; width: auto; display: none; transition: height .4s; }
+    .nav-logo img.iso-nav { height: 40px; width: auto; display: none !important; transition: height .4s; }
 
-    .logo-dark { display: block !important; } .logo-light { display: none !important; }
-    [data-theme="light"] .logo-dark { display: none !important; } [data-theme="light"] .logo-light { display: block !important; }
+    /* Logo dark/light: scoped al wordmark + loader + footer — iso-nav se gestiona arriba */
+    .logo-dark { display: block; } .logo-light { display: none; }
+    [data-theme="light"] .logo-dark { display: none; } [data-theme="light"] .logo-light { display: block; }
+    /* Forzar visibilidad correcta solo en los wordmarks del nav-logo-clip */
+    .nav-logo-clip .logo-dark { display: block !important; }
+    .nav-logo-clip .logo-light { display: none !important; }
+    [data-theme="light"] .nav-logo-clip .logo-dark { display: none !important; }
+    [data-theme="light"] .nav-logo-clip .logo-light { display: block !important; }
     .nav-logo-fb { font-size: 22px; font-weight: 800; letter-spacing: -1px; color: var(--fg); display: none; }
     .nav-mid { display: flex; gap: 28px; list-style: none; }
     .nav-mid a { font-size: 11px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
@@ -103,8 +109,8 @@
     .hl-1, .hl-3 { display: block; }
     .hl-2 { display: block; padding-left: clamp(60px, 13vw, 185px); color: #A99FF9; font-style: italic; text-shadow: 0 0 40px rgba(124,111,247,.45); overflow: hidden; }
     .hl-2-word { display: inline-block; transition: opacity 400ms cubic-bezier(0.4,0,0.2,1), transform 400ms cubic-bezier(0.4,0,0.2,1); }
-    .hl-2-word.fade-out { opacity: 0; transform: translateY(-20px); }
-    .hl-2-word.fade-in  { opacity: 0; transform: translateY(20px); }
+    .hl-2-word { display: inline-block; font-variant-numeric: tabular-nums; }
+    .hl-2-word.scrambling { color: var(--indigo-l); opacity: 0.7; filter: blur(0.5px); }
     .hero-bot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 52px; gap: 24px; position: relative; z-index: 2; }
     .hero-tag { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--indigo); display: flex; align-items: center; gap: 8px; }
     .hero-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--indigo); flex-shrink:0; animation: blink 2s ease-in-out infinite; }
@@ -1266,19 +1272,52 @@
   </footer>
 
   <script>
+    // HERO WORD SCRAMBLE — efecto IA descifrando
     const words = ['automatizando','vendiendo','creciendo','atendiendo','escalando','innovando'];
     let wi = 0;
     const word = document.getElementById('hl2-word');
-    setInterval(() => {
-      wi = (wi+1) % words.length;
-      word.classList.add('fade-out');
-      setTimeout(() => {
-        word.textContent = words[wi];
-        word.classList.remove('fade-out');
-        word.classList.add('fade-in');
-        requestAnimationFrame(() => requestAnimationFrame(() => word.classList.remove('fade-in')));
-      }, 400);
-    }, 2800);
+    const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01';
+
+    function scrambleTo(el, newText, duration) {
+      return new Promise(resolve => {
+        const start = performance.now();
+        el.classList.add('scrambling');
+        function step(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const settled = Math.floor(progress * newText.length);
+          let result = '';
+          for (let i = 0; i < newText.length; i++) {
+            if (i < settled) {
+              result += newText[i];
+            } else {
+              result += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+            }
+          }
+          el.textContent = result;
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = newText;
+            el.classList.remove('scrambling');
+            resolve();
+          }
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    setInterval(async () => {
+      wi = (wi + 1) % words.length;
+      // Flash de salida: blur + dim rápido
+      word.style.transition = 'opacity .15s, filter .15s';
+      word.style.opacity = '0.2';
+      word.style.filter = 'blur(6px)';
+      await new Promise(r => setTimeout(r, 160));
+      word.style.transition = 'opacity .2s, filter .2s';
+      word.style.opacity = '1';
+      word.style.filter = 'none';
+      await scrambleTo(word, words[wi], 520);
+    }, 3000);
 
     window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('out'), 700));
 

@@ -26,9 +26,13 @@
     .nav-mid { justify-self:center; }
     .nav-right { justify-self:end; }
     .nav-logo { text-decoration:none; display:flex; align-items:center; }
-    .nav-logo-clip { display:flex; align-items:center; flex-shrink:0; } .nav-logo-clip img.wordmark { width:160px; height:52px; object-fit:cover; object-position:center 45%; display:block; } .nav-logo img.iso-nav { height:36px; width:auto; display:none; }
-    .logo-dark { display:block !important; } .logo-light { display:none !important; }
-    [data-theme="light"] .logo-dark { display:none !important; } [data-theme="light"] .logo-light { display:block !important; }
+    .nav-logo-clip { display:flex; align-items:center; flex-shrink:0; } .nav-logo-clip img.wordmark { width:160px; height:52px; object-fit:cover; object-position:center 45%; display:block; } .nav-logo img.iso-nav { height:36px; width:auto; display:none !important; }
+    .logo-dark { display:block; } .logo-light { display:none; }
+    [data-theme="light"] .logo-dark { display:none; } [data-theme="light"] .logo-light { display:block; }
+    .nav-logo-clip .logo-dark { display:block !important; }
+    .nav-logo-clip .logo-light { display:none !important; }
+    [data-theme="light"] .nav-logo-clip .logo-dark { display:none !important; }
+    [data-theme="light"] .nav-logo-clip .logo-light { display:block !important; }
     .nav-logo-fb { font-size:20px; font-weight:800; letter-spacing:-1px; color:var(--fg); display:none; }
     .nav-mid { display:flex; gap:28px; list-style:none; }
     .nav-mid a { font-size:11px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
@@ -46,7 +50,11 @@
     .nav-wa svg { width:13px; height:13px; }
 
     /* PAGE HEADER */
-    .page-header { padding:140px 52px 80px; border-bottom:.5px solid var(--border); }
+    .page-header { padding:140px 52px 80px; border-bottom:.5px solid var(--border); position:relative; overflow:hidden; }
+    #proj-canvas { position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:0.3; pointer-events:none; }
+    [data-theme="light"] #proj-canvas { opacity:0.1; }
+    .page-header-inner { position:relative; z-index:1; }
+    .page-label { position:relative; z-index:1; }
     .page-header-inner { display:flex; justify-content:space-between; align-items:flex-end; gap:40px; }
     .page-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--indigo); margin-bottom:20px; display:block; }
     .page-title { font-size:clamp(52px,9vw,120px); font-weight:800; letter-spacing:-4px; line-height:.9; }
@@ -239,6 +247,7 @@
   </div>
 
   <header class="page-header">
+    <canvas id="proj-canvas"></canvas>
     <div class="page-header-inner r">
       <div>
         <span class="page-label">/ portafolio</span>
@@ -544,6 +553,31 @@
         });
       });
     });
+    // NEURAL NETWORK CANVAS — portfolio header
+    (function(){
+      const canvas = document.getElementById('proj-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+      const COUNT = 45, MAX_DIST = 130, COLOR = '124,111,247';
+      function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+      window.addEventListener('resize', resize); resize();
+      for (let i = 0; i < COUNT; i++) particles.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35, r: Math.random()*1.8+.8 });
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => { p.x += p.vx; p.y += p.vy; if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1; });
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i+1; j < particles.length; j++) {
+            const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+            const d=Math.sqrt(dx*dx+dy*dy);
+            if(d<MAX_DIST){ ctx.beginPath(); ctx.strokeStyle=`rgba(${COLOR},${(1-d/MAX_DIST)*.45})`; ctx.lineWidth=.7; ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.stroke(); }
+          }
+        }
+        particles.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(${COLOR},.65)`; ctx.fill(); });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
   </script>
 </body>
 </html>
