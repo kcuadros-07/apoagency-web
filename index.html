@@ -98,6 +98,11 @@
     .nav-mid { display: flex; gap: 28px; list-style: none; }
     .nav-mid a { font-size: 11px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
     .nav-mid a:hover, .nav-mid a.active { color: var(--fg); }
+    .has-dropdown { position: relative; }
+    .nav-dropdown-btn:hover, .has-dropdown.open .nav-dropdown-btn { color: var(--fg) !important; }
+    .has-dropdown.open .nav-dropdown { opacity: 1 !important; visibility: visible !important; pointer-events: all !important; transform: translateX(-50%) translateY(0) !important; }
+    .has-dropdown.open .dd-arrow { transform: rotate(180deg); }
+    .nav-dropdown a:hover { color: var(--fg) !important; background: rgba(124,111,247,.06) !important; }
     .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
     .nav-social { display: flex; gap: 6px; }
     .nav-social a { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: var(--muted); transition: color .2s; }
@@ -705,6 +710,14 @@
     </a>
     <ul class="nav-mid">
       <li><a href="index.html" class="active">Inicio</a></li>
+      <li class="has-dropdown" id="nav-servicios">
+        <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true" style="font-size:11px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);background:none;border:none;font-family:inherit;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:5px;transition:color .2s">Servicios <span class="dd-arrow" style="font-size:9px;transition:transform .2s">▾</span></button>
+        <div class="nav-dropdown" style="position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--surface);border:.5px solid var(--border);min-width:200px;padding:8px 0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)">
+          <a href="servicios/diseno-web.html" style="display:flex;align-items:center;gap:10px;padding:10px 18px;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted);text-decoration:none;transition:color .2s,background .2s;white-space:nowrap">
+            <span>🌐</span> Diseño Web <span style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--indigo);color:#fff;padding:2px 6px;margin-left:auto">Nuevo</span>
+          </a>
+        </div>
+      </li>
       <li><a href="portfolio.html">Proyectos</a></li>
       <li><a href="about.html">Nosotros</a></li>
       <li><a href="#contact">Contacto</a></li>
@@ -733,6 +746,7 @@
   <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
     <div class="mob-links">
       <a href="index.html">Inicio <span>→</span></a>
+      <a href="servicios/diseno-web.html" style="color:var(--indigo)">Diseño Web <span>→</span></a>
       <a href="portfolio.html">Proyectos <span>→</span></a>
       <a href="about.html">Nosotros <span>→</span></a>
       <a href="#contact" id="mob-contact">Contacto <span>→</span></a>
@@ -1469,6 +1483,18 @@
     }
     hamBtn.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+    // Servicios dropdown
+    document.querySelectorAll('.has-dropdown').forEach(li => {
+      li.querySelector('.nav-dropdown-btn').addEventListener('click', e => {
+        e.stopPropagation();
+        const open = li.classList.toggle('open');
+        li.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', open);
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.has-dropdown.open').forEach(li => li.classList.remove('open'));
+    });
 
     function toggleAcc(header) {
       const item = header.closest('.svc-acc-item');
