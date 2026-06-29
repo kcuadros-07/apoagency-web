@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APO Agency · Partner Brief 2026</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:        #07070D;
+    --ink-mid:    #3A3A4A;
+    --ink-soft:   #6B6B80;
+    --ink-muted:  #9B9BAA;
+    --indigo:     #6366F1;
+    --indigo-dim: #4345B0;
+    --border:     #E4E4EE;
+    --surface:    #F8F8FC;
+    --white:      #FFFFFF;
+    --max:        840px;
+    --pad:        48px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+
+  /* ── COVER ──────────────────────────────── */
+  .cover {
+    padding: 56px 0 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 52px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .brand-name {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .brand-name span {
+    font-weight: 300;
+    color: var(--ink-soft);
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 28px;
+    text-align: right;
+  }
+
+  .meta-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 3px;
+  }
+
+  .meta-item span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .cover-hero { max-width: 640px; }
+
+  .cover-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cover-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--indigo);
+    border-radius: 2px;
+  }
+
+  .cover-title {
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .cover-title .light {
+    font-weight: 300;
+    color: var(--ink-soft);
+  }
+
+  .cover-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    max-width: 500px;
+    margin-top: 18px;
+  }
+
+  /* ── INTRO STRIP ─────────────────────────── */
+  .intro-strip {
+    background: var(--ink);
+    padding: 28px var(--pad);
+  }
+
+  .intro-strip-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .intro-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 520px;
+  }
+
+  .intro-text strong { color: #fff; font-weight: 600; }
+
+  .intro-stats {
+    display: flex;
+    gap: 32px;
+  }
+
+  .stat { text-align: right; }
+
+  .stat-num {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-lbl {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS ────────────────────────────── */
+  .section {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-of-type { border-bottom: none; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+
+  .section-intro {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 580px;
+    margin-bottom: 28px;
+  }
+
+  /* ── SERVICES GRID ───────────────────────── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 26px 24px;
+    transition: background 0.15s;
+  }
+
+  .service-card:hover { background: var(--surface); }
+
+  .service-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    font-size: 16px;
+  }
+
+  .service-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .service-desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 14px;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .stag {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  /* ── HOW WE WORK ─────────────────────────── */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .how-step {
+    background: var(--white);
+    padding: 22px 18px;
+  }
+
+  .how-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--indigo);
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .how-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .how-desc {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  /* ── STACK ───────────────────────────────── */
+  .stack-categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .stack-cat {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .stack-cat-header {
+    background: var(--surface);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stack-cat-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-mid);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .stack-items {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stack-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stack-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--indigo);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .stack-item-name {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .stack-item-note {
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-left: auto;
+  }
+
+  /* ── PARTNERSHIP MODEL ────────────────────── */
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+
+  .model-card {
+    background: var(--white);
+    padding: 24px 20px;
+  }
+
+  .model-card.featured { background: var(--ink); }
+
+  .model-icon {
+    font-size: 20px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .model-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .model-card.featured .model-name { color: var(--white); }
+
+  .model-desc {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .model-card.featured .model-desc { color: rgba(255,255,255,0.6); }
+
+  .model-ideal {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--indigo);
+    margin-top: 10px;
+    display: block;
+  }
+
+  .model-card.featured .model-ideal { color: #818CF8; }
+
+  .commit-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .commit-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .commit-check {
+    width: 18px;
+    height: 18px;
+    background: var(--indigo);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 10px;
+    color: white;
+    font-weight: 700;
+  }
+
+  .commit-text {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .commit-text strong { color: var(--ink); font-weight: 600; }
+
+  /* ── CTA ─────────────────────────────────── */
+  .cta-block {
+    background: var(--ink);
+    border-radius: 10px;
+    padding: 40px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 32px;
+    margin: 52px 0;
+  }
+
+  .cta-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #818CF8;
+    margin-bottom: 8px;
+  }
+
+  .cta-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+
+  .cta-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  .cta-actions { display: flex; flex-direction: column; gap: 10px; min-width: 180px; }
+
+  .btn-primary {
+    background: var(--indigo);
+    color: var(--white);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    letter-spacing: -0.01em;
+    transition: background 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--indigo-dim); }
+
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 11px 24px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+
+  /* ── FOOTER ──────────────────────────────── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-weight: 300;
+  }
+
+  .footer-right {
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-weight: 300;
+    text-align: right;
+  }
+
+  @media (max-width: 680px) {
+    :root { --pad: 20px; }
+    .cover-header { flex-direction: column; gap: 20px; }
+    .cover-meta { justify-content: flex-start; }
+    .meta-item { text-align: left; }
+    .intro-strip-inner { grid-template-columns: 1fr; }
+    .intro-stats { justify-content: flex-start; }
+    .services-grid { grid-template-columns: 1fr; }
+    .how-grid { grid-template-columns: repeat(2, 1fr); }
+    .stack-categories { grid-template-columns: 1fr; }
+    .model-grid { grid-template-columns: 1fr; }
+    .commit-list { grid-template-columns: 1fr; }
+    .cta-block { grid-template-columns: 1fr; padding: 28px 24px; }
+    .footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="wrap">
+    <div class="cover-header">
+      <div class="brand">
+        <div class="brand-name">APO <span>Agency</span></div>
+      </div>
+      <div class="cover-meta">
+        <div class="meta-item">
+          <label>Tipo</label>
+          <span>Partner Brief</span>
+        </div>
+        <div class="meta-item">
+          <label>Versión</label>
+          <span>2026</span>
+        </div>
+        <div class="meta-item">
+          <label>Web</label>
+          <span>apoagency.io</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-hero">
+      <div class="cover-eyebrow">Portafolio de Servicios para Socios</div>
+      <h1 class="cover-title">
+        Todo lo que APO<br>
+        <span class="light">puede hacer por ti.</span>
+      </h1>
+      <p class="cover-sub">
+        Este documento está pensado para freelancers y consultores independientes que buscan un socio técnico confiable para tercerizar proyectos digitales. Aquí encuentras qué hacemos, cómo trabajamos y en qué condiciones colaboramos.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="intro-strip-inner">
+    <p class="intro-text">
+      Somos especialistas en <strong>desarrollo web, SaaS, automatizaciones con IA, chatbots WhatsApp y marketing de performance</strong>. Trabajamos con empresas medianas, municipios y startups — y colaboramos activamente con socios externos que necesitan capacidad técnica confiable para sus proyectos.
+    </p>
+    <div class="intro-stats">
+      <div class="stat">
+        <span class="stat-num">6+</span>
+        <span class="stat-lbl">Servicios</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">10+</span>
+        <span class="stat-lbl">Clientes activos</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3</span>
+        <span class="stat-lbl">SaaS propios</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<div class="wrap">
+  <section class="section">
+    <div class="section-label">Qué hacemos</div>
+    <h2 class="section-title">Servicios disponibles para tercerización</h2>
+    <p class="section-intro">Cada servicio puede contratarse de forma independiente o como parte de un proyecto integral. Si tienes un cliente con una necesidad, probablemente podemos resolverla.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <div class="service-name">Desarrollo Web</div>
+        <p class="service-desc">Sitios corporativos, landing pages, portales y e-commerce construidos con código limpio, sin dependencias de page builders. Entregamos sitios rápidos, SEO-ready y fáciles de mantener.</p>
+        <div class="service-tags">
+          <span class="stag">HTML/CSS/JS</span>
+          <span class="stag">Netlify</span>
+          <span class="stag">WordPress</span>
+          <span class="stag">Lovable</span>
+          <span class="stag">SEO técnico</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <div class="service-name">Desarrollo SaaS a Medida</div>
+        <p class="service-desc">Plataformas web con lógica de negocio propia: portales multi-rol, sistemas de gestión, automatizaciones de procesos y productos SaaS desde cero. Arquitectura cloud escalable desde el primer sprint.</p>
+        <div class="service-tags">
+          <span class="stag">Supabase</span>
+          <span class="stag">Railway</span>
+          <span class="stag">Lovable</span>
+          <span class="stag">Multi-rol</span>
+          <span class="stag">REST APIs</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <div class="service-name">Automatizaciones con IA</div>
+        <p class="service-desc">Flujos de trabajo automatizados con modelos de lenguaje (GPT-4o, Gemini), OCR inteligente, procesamiento de documentos y agentes de IA conectados a los sistemas del cliente.</p>
+        <div class="service-tags">
+          <span class="stag">GPT-4o</span>
+          <span class="stag">Gemini Vision</span>
+          <span class="stag">Make</span>
+          <span class="stag">n8n</span>
+          <span class="stag">OCR</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">💬</div>
+        <div class="service-name">Chatbots WhatsApp</div>
+        <p class="service-desc">Bots de atención al cliente, ventas y soporte sobre WhatsApp Business API. Integración con CRM, calificación de leads, flujos de onboarding y respuestas automáticas entrenadas con el negocio del cliente.</p>
+        <div class="service-tags">
+          <span class="stag">WhatsApp API</span>
+          <span class="stag">GPT-4o mini</span>
+          <span class="stag">ManyChat</span>
+          <span class="stag">Rampwin</span>
+          <span class="stag">Make</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📣</div>
+        <div class="service-name">Meta &amp; Google Ads</div>
+        <p class="service-desc">Gestión completa de campañas de performance: estrategia, creativos, segmentación, optimización y reportes. Presupuestos desde $500/mes hasta $10.000 en lanzamientos. Certificación Meta Media Buying 410-101.</p>
+        <div class="service-tags">
+          <span class="stag">Meta Ads</span>
+          <span class="stag">Google Ads</span>
+          <span class="stag">Retargeting</span>
+          <span class="stag">Conversiones</span>
+          <span class="stag">Reportes</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <div class="service-name">Branding &amp; Identidad Visual</div>
+        <p class="service-desc">Desarrollo de marca desde cero: naming, logo, sistema de identidad, guía de uso y aplicaciones. Diseño orientado a negocios digitales que necesitan una presencia visual coherente en todos sus canales.</p>
+        <div class="service-tags">
+          <span class="stag">Logo</span>
+          <span class="stag">Brand guidelines</span>
+          <span class="stag">Diseño UI</span>
+          <span class="stag">Assets digitales</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJAMOS -->
+  <section class="section">
+    <div class="section-label">Proceso</div>
+    <h2 class="section-title">Cómo gestionamos cada proyecto</h2>
+    <p class="section-intro">Proceso estandarizado para garantizar entregas predecibles — tanto si trabajas con nosotros directamente como si nos pasas un cliente tuyo.</p>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <span class="how-num">01</span>
+        <div class="how-name">Diagnóstico</div>
+        <p class="how-desc">Llamada de 30–45 min para entender el problema real, los usuarios afectados y las métricas de éxito. No escribimos una línea de código antes de esto.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-num">02</span>
+        <div class="how-name">Propuesta</div>
+        <p class="how-desc">Documento con alcance, entregables, cronograma y precio fijo en 72h. Sin sorpresas de scope ni costos adicionales no acordados.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-num">03</span>
+        <div class="how-name">Desarrollo</div>
+        <p class="how-desc">Sprints de 2 semanas con demos en vivo. El cliente (o tú como socio) valida en producción real, no en documentos ni prototipos estáticos.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-num">04</span>
+        <div class="how-name">Entrega</div>
+        <p class="how-desc">Deploy en dominio del cliente, documentación técnica, onboarding del equipo y 30 días de soporte incluidos en todos los proyectos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="section">
+    <div class="section-label">Tecnología</div>
+    <h2 class="section-title">Stack tecnológico</h2>
+    <p class="section-intro">Herramientas probadas en proyectos reales. Elegimos por robustez y costo-beneficio, no por tendencia.</p>
+
+    <div class="stack-categories">
+      <div class="stack-cat">
+        <div class="stack-cat-header">
+          <div class="stack-cat-name">Frontend &amp; Web</div>
+        </div>
+        <div class="stack-items">
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">HTML / CSS / JS</span><span class="stack-item-note">Base</span></div>
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">Lovable</span><span class="stack-item-note">RAD</span></div>
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">WordPress + Elementor</span><span class="stack-item-note">CMS</span></div>
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">Netlify / GitHub</span><span class="stack-item-note">CI/CD</span></div>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="stack-cat-header">
+          <div class="stack-cat-name">Backend &amp; Cloud</div>
+        </div>
+        <div class="stack-items">
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">Supabase</span><span class="stack-item-note">BaaS</span></div>
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">Railway</span><span class="stack-item-note">Deploy</span></div>
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">REST APIs</span><span class="stack-item-note">Integración</span></div>
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">PostgreSQL</span><span class="stack-item-note">DB</span></div>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="stack-cat-header">
+          <div class="stack-cat-name">IA &amp; Automatización</div>
+        </div>
+        <div class="stack-items">
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">GPT-4o / GPT-4o mini</span><span class="stack-item-note">LLM</span></div>
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">Gemini Vision</span><span class="stack-item-note">OCR</span></div>
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">Make / n8n</span><span class="stack-item-note">Flows</span></div>
+          <div class="stack-item"><span class="stack-dot"></span><span class="stack-item-name">WhatsApp Business API</span><span class="stack-item-note">Canal</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELO DE COLABORACIÓN -->
+  <section class="section">
+    <div class="section-label">Colaboración</div>
+    <h2 class="section-title">Cómo trabajamos con socios</h2>
+    <p class="section-intro">Tres esquemas de colaboración según el tipo de relación que mejor funciona para ti.</p>
+
+    <div class="model-grid">
+      <div class="model-card">
+        <span class="model-icon">🔁</span>
+        <div class="model-name">Subcontratación directa</div>
+        <p class="model-desc">Tú gestionas al cliente, nosotros ejecutamos el trabajo bajo tu marca. Entregamos sin contacto visible con el cliente final si así lo prefieres.</p>
+        <span class="model-ideal">Ideal para: consultores con varios clientes activos</span>
+      </div>
+      <div class="model-card featured">
+        <span class="model-icon">🤝</span>
+        <div class="model-name">Referido con comisión</div>
+        <p class="model-desc">Nos presentas a un prospecto, nosotros cerramos y ejecutamos. Tú recibes una comisión acordada sin gestionar el proyecto. Simple, sin fricción.</p>
+        <span class="model-ideal">Ideal para: freelancers con red de contactos</span>
+      </div>
+      <div class="model-card">
+        <span class="model-icon">⚡</span>
+        <div class="model-name">Extensión de capacidad</div>
+        <p class="model-desc">Tu agencia o estudio tiene más demanda de la que puede absorber. APO actúa como equipo externo para proyectos específicos bajo tu coordinación.</p>
+        <span class="model-ideal">Ideal para: agencias o estudios en crecimiento</span>
+      </div>
+    </div>
+
+    <div class="commit-list">
+      <div class="commit-item">
+        <div class="commit-check">✓</div>
+        <p class="commit-text"><strong>Confidencialidad garantizada.</strong> No contactamos al cliente final sin tu autorización explícita.</p>
+      </div>
+      <div class="commit-item">
+        <div class="commit-check">✓</div>
+        <p class="commit-text"><strong>Precios de socio.</strong> Los proyectos referidos tienen descuento base del 10–15% sobre tarifa pública.</p>
+      </div>
+      <div class="commit-item">
+        <div class="commit-check">✓</div>
+        <p class="commit-text"><strong>Propuesta en 72h.</strong> Diagnóstico y presupuesto entregados en menos de 3 días hábiles.</p>
+      </div>
+      <div class="commit-item">
+        <div class="commit-check">✓</div>
+        <p class="commit-text"><strong>Reportes regulares.</strong> Actualizaciones de avance semanales para que siempre sepas el estado del proyecto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div>
+      <div class="cta-eyebrow">¿Listo para colaborar?</div>
+      <div class="cta-title">Cuéntanos qué proyecto<br>tienes en mente.</div>
+      <div class="cta-sub">Respuesta en menos de 24 horas · Sin compromiso</div>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:hola@apoagency.io" class="btn-primary">hola@apoagency.io →</a>
+      <a href="https://wa.me/593987252978" class="btn-ghost">WhatsApp directo</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-left">APO Agency · Guayaquil, Ecuador · 2026</div>
+    <div class="footer-right">apoagency.io · hola@apoagency.io · +593 987 252 978</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
