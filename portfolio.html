@@ -1,623 +1,446 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="google-site-verification" content="a2YSOazoYe2IDFsHd9rMREJ3XRKydkXiPgGgE6brOSE" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proyectos — APO Agency | Casos de Éxito Ecuador</title>
-  <meta name="description" content="Proyectos reales de desarrollo web, chatbots WhatsApp, Meta Ads y automatizaciones IA para empresas en Ecuador." />
+  <title>Proyectos — APO Agency Ecuador</title>
+  <meta name="description" content="Proyectos destacados de APO Agency. Sitios web, chatbots IA, campañas de publicidad y automatizaciones para empresas ecuatorianas." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://apoagency.io/portfolio.html" />
-  <meta property="og:title" content="Proyectos — APO Agency | Casos de Éxito Ecuador" />
-  <meta property="og:description" content="Proyectos reales de desarrollo web, chatbots WhatsApp, Meta Ads y automatizaciones IA para empresas en Ecuador." />
+  <meta property="og:title" content="Proyectos — APO Agency Ecuador" />
+  <meta property="og:description" content="Resultados reales para empresas ecuatorianas." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://apoagency.io/portfolio.html" />
   <meta property="og:image" content="https://apoagency.io/assets/og-imageV2.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="es_EC" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Proyectos — APO Agency | Casos de Éxito Ecuador" />
-  <meta name="twitter:description" content="Proyectos reales de desarrollo web, chatbots WhatsApp, Meta Ads y automatizaciones IA para empresas en Ecuador." />
-  <meta name="twitter:image" content="https://apoagency.io/assets/og-imageV2.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png" />
   <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg:#07070D; --surface:#0D0D18; --fg:#F1F5F9; --muted:#64748B; --border:rgba(241,245,249,.07); --indigo:#6366F1; --indigo-l:#818CF8; --nav-blur:rgba(7,7,13,.85); --cf:brightness(0) invert(1); }
-    [data-theme="light"] { --bg:#F4F4EF; --surface:#EAEAE4; --fg:#09090F; --muted:#7A7A8C; --border:rgba(9,9,15,.09); --indigo:#4F46E5; --indigo-l:#6366F1; --nav-blur:rgba(244,244,239,.88); --cf:brightness(0); }
-    html { scroll-behavior:smooth; cursor:none; }
-    body { background:var(--bg); color:var(--fg); font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; -webkit-font-smoothing:antialiased; transition:background .5s,color .5s; }
-    ::-webkit-scrollbar { display:none; } * { scrollbar-width:none; }
-    body::after { content:''; position:fixed; inset:0; z-index:9000; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity:.025; mix-blend-mode:overlay; }
-    #cursor { position:fixed; width:8px; height:8px; background:var(--indigo); border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); transition:width .2s,height .2s,opacity .2s; will-change:left,top; }
-    #cursor.expand { width:36px; height:36px; opacity:.22; }
 
-    /* NAV */
-    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:20px 52px; background:var(--nav-blur); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:.5px solid var(--border); gap:16px; }
-    .nav-mid { justify-self:center; }
-    .nav-right { justify-self:end; }
-    .nav-logo { text-decoration:none; display:flex; align-items:center; }
-    .nav-logo-clip { display:flex; align-items:center; flex-shrink:0; } .nav-logo-clip img.wordmark { width:160px; height:52px; object-fit:cover; object-position:center 45%; display:block; } .nav-logo img.iso-nav { height:36px; width:auto; display:none !important; }
-    .logo-dark { display:block; } .logo-light { display:none; }
-    [data-theme="light"] .logo-dark { display:none; } [data-theme="light"] .logo-light { display:block; }
-    .nav-logo-clip .logo-dark { display:block !important; }
-    .nav-logo-clip .logo-light { display:none !important; }
-    [data-theme="light"] .nav-logo-clip .logo-dark { display:none !important; }
-    [data-theme="light"] .nav-logo-clip .logo-light { display:block !important; }
-    .nav-logo-fb { font-size:20px; font-weight:800; letter-spacing:-1px; color:var(--fg); display:none; }
-    .nav-mid { display:flex; gap:28px; list-style:none; }
-    .nav-mid a { font-size:11px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
-    .nav-mid a:hover,.nav-mid a.active { color:var(--fg); }
-    .has-dropdown { position:relative; }
-    .nav-dropdown-btn { font-size:11px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--muted); background:none; border:none; font-family:inherit; cursor:pointer; padding:6px 10px; display:flex; align-items:center; gap:5px; transition:color .2s; }
-    .nav-dropdown-btn:hover, .has-dropdown.open .nav-dropdown-btn { color:var(--fg); }
-    .dd-arrow { font-size:9px; transition:transform .2s; }
-    .has-dropdown.open .dd-arrow { transform:rotate(180deg); }
-    .nav-dropdown { position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%) translateY(-6px); background:var(--surface); border:.5px solid var(--border); min-width:200px; padding:8px 0; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s, transform .2s; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); z-index:300; }
-    .has-dropdown.open .nav-dropdown { opacity:1; visibility:visible; pointer-events:all; transform:translateX(-50%) translateY(0); }
-    .nav-dropdown a { display:flex; align-items:center; gap:10px; padding:10px 18px; font-size:12px; font-weight:600; letter-spacing:.04em; color:var(--muted); text-decoration:none; transition:color .2s, background .2s; white-space:nowrap; text-transform:none; }
-    .nav-dropdown a:hover { color:var(--fg); background:rgba(124,111,247,.06); }
-    .dd-badge { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:var(--indigo); color:#fff; padding:2px 6px; margin-left:auto; }
-    .nav-right { display:flex; align-items:center; gap:10px; flex-shrink:0; }
-    .nav-social { display:flex; gap:6px; }
-    .nav-social a { width:30px; height:30px; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:color .2s; }
-    .nav-social a:hover { color:var(--fg); }
-    .nav-social svg { width:15px; height:15px; }
-    #theme-btn { width:40px; height:21px; border-radius:999px; background:var(--border); border:.5px solid var(--border); position:relative; cursor:none; outline:none; padding:0; }
-    #theme-btn::after { content:''; position:absolute; top:2px; left:2px; width:15px; height:15px; border-radius:50%; background:var(--muted); transition:transform .35s cubic-bezier(.4,0,.2,1),background .4s; }
-    [data-theme="light"] #theme-btn::after { transform:translateX(19px); background:var(--indigo); }
-    .nav-wa { display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; text-decoration:none; background:#25D366; padding:9px 16px; transition:transform .2s,box-shadow .2s; }
-    .nav-wa:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(37,211,102,.35); }
-    .nav-wa svg { width:13px; height:13px; }
-
-    /* PAGE HEADER */
-    .page-header { padding:140px 52px 80px; border-bottom:.5px solid var(--border); position:relative; overflow:hidden; }
-    #proj-canvas { position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:0.3; pointer-events:none; }
-    [data-theme="light"] #proj-canvas { opacity:0.1; }
-    .page-header-inner { position:relative; z-index:1; }
-    .page-label { position:relative; z-index:1; }
-    .page-header-inner { display:flex; justify-content:space-between; align-items:flex-end; gap:40px; }
-    .page-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--indigo); margin-bottom:20px; display:block; }
-    .page-title { font-size:clamp(52px,9vw,120px); font-weight:800; letter-spacing:-4px; line-height:.9; }
-    .page-sub { font-size:15px; font-weight:300; color:var(--muted); max-width:260px; line-height:1.7; text-align:right; align-self:flex-end; }
-
-    /* FILTER TABS */
-    .filter-bar { padding:32px 52px; border-bottom:.5px solid var(--border); display:flex; gap:8px; flex-wrap:wrap; }
-    .filter-btn { font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); background:transparent; border:.5px solid var(--border); padding:8px 18px; cursor:none; transition:color .2s,border-color .2s,background .2s; font-family:inherit; outline:none; }
-    .filter-btn:hover,.filter-btn.active { color:var(--indigo); border-color:rgba(99,102,241,.4); background:rgba(99,102,241,.05); }
-
-    /* PROJECTS LIST */
-    .projects-list { padding:0 52px 100px; }
-    .proj-item { display:grid; grid-template-columns:80px 1fr auto; gap:0 48px; padding:56px 0; border-bottom:.5px solid var(--border); transition:background .3s; position:relative; }
-    .proj-item:first-child { border-top:.5px solid var(--border); }
-    .proj-item:hover { background:rgba(99,102,241,.03); }
-    .proj-item:hover .pi-num { opacity:.25; }
-    .proj-item:hover .pi-arrow { opacity:1; transform:translate(0,0); }
-    .pi-num { font-size:13px; font-weight:300; font-style:italic; color:var(--muted); padding-top:6px; }
-    .pi-body { flex:1; }
-    .pi-logo { height:36px; width:auto; max-width:130px; object-fit:contain; filter:var(--cf); opacity:.55; display:block; margin-bottom:20px; transition:opacity .3s, filter .5s; }
-    .proj-item:hover .pi-logo { opacity:.85; }
-    .pi-type { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--indigo); margin-bottom:12px; }
-    .pi-title { font-size:clamp(22px,3vw,36px); font-weight:800; letter-spacing:-.03em; line-height:1; margin-bottom:6px; }
-    .pi-client { font-size:12px; font-weight:400; letter-spacing:.12em; text-transform:uppercase; color:var(--indigo-l); margin-bottom:18px; }
-    .pi-desc { font-size:14px; font-weight:300; line-height:1.7; color:var(--muted); max-width:560px; }
-    .pi-stats { display:flex; gap:24px; flex-wrap:wrap; margin-top:20px; }
-    .pi-stat-val { font-size:20px; font-weight:800; letter-spacing:-1px; color:var(--fg); }
-    .pi-stat-val span { color:var(--indigo); }
-    .pi-stat-lbl { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
-    .pi-stack { font-size:12px; color:var(--muted); margin-top:20px; padding-top:16px; border-top:.5px solid var(--border); display:flex; gap:8px; flex-wrap:wrap; }
-    .pi-tag { padding:4px 10px; border:.5px solid var(--border); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
-    .pi-right { display:flex; flex-direction:column; align-items:flex-end; justify-content:space-between; gap:20px; padding-top:6px; min-width:140px; }
-    .pi-arrow { font-size:24px; color:var(--indigo); opacity:0; transform:translate(-8px,8px); transition:opacity .3s,transform .3s; }
-    .pi-ext { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--indigo); text-decoration:none; transition:gap .2s; margin-top:auto; }
-    .pi-ext:hover { gap:10px; }
-
-    /* FOOTER */
-    footer { border-top:.5px solid var(--border); }
-    .ft-top { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; padding:60px 52px 48px; border-bottom:.5px solid var(--border); }
-    .ft-brand-logo { display:flex; align-items:center; margin-bottom:16px; }
-    .ft-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.6; margin-bottom:24px; max-width:220px; }
-    .ft-socials { display:flex; gap:10px; }
-    .ft-socials a { width:32px; height:32px; border:.5px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--muted); transition:color .2s,border-color .2s; }
-    .ft-socials a:hover { color:var(--indigo); border-color:rgba(99,102,241,.4); }
-    .ft-socials svg { width:14px; height:14px; }
-    .ft-col-title { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--fg); margin-bottom:20px; display:block; }
-    .ft-links { display:flex; flex-direction:column; gap:10px; }
-    .ft-links a { font-size:13px; font-weight:300; color:var(--muted); text-decoration:none; transition:color .2s; }
-    .ft-links a:hover { color:var(--indigo); }
-    .ft-bottom { display:flex; justify-content:space-between; align-items:center; padding:20px 52px; gap:16px; flex-wrap:wrap; }
-    .ft-copy { font-size:11px; font-weight:300; color:var(--muted); }
-    .ft-legal { display:flex; gap:20px; }
-    .ft-legal a { font-size:11px; font-weight:300; color:var(--muted); text-decoration:none; transition:color .2s; }
-    .ft-legal a:hover { color:var(--indigo); }
-    #cookie-banner { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:9990; width:min(640px,calc(100vw - 40px)); background:var(--surface); border:.5px solid var(--border); padding:20px 24px; display:flex; align-items:center; gap:20px; backdrop-filter:blur(12px); transition:opacity .4s,transform .4s; box-shadow:0 8px 40px rgba(0,0,0,.4); }
-    #cookie-banner.hide { opacity:0; transform:translateX(-50%) translateY(20px); pointer-events:none; }
-    .cookie-text { font-size:12px; font-weight:300; color:var(--muted); line-height:1.6; flex:1; }
-    .cookie-text a { color:var(--indigo); text-decoration:none; }
-    .cookie-btns { display:flex; gap:8px; flex-shrink:0; }
-    .cookie-accept { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:var(--indigo); color:#fff; border:none; padding:9px 18px; cursor:pointer; font-family:inherit; }
-    .cookie-decline { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:transparent; color:var(--muted); border:.5px solid var(--border); padding:9px 18px; cursor:pointer; font-family:inherit; transition:color .2s; }
-    .cookie-decline:hover { color:var(--fg); }
-
-    /* REVEAL */
-    .r { opacity:0; transform:translateY(24px); transition:opacity .8s ease,transform .8s ease; }
-    .r.on { opacity:1; transform:none; }
-
-    /* HAMBURGER */
-    #ham-btn { display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; background:none; border:none; cursor:pointer; padding:4px; z-index:210; }
-    #ham-btn span { display:block; width:22px; height:1.5px; background:var(--fg); border-radius:2px; transition:transform .35s ease,opacity .35s ease,width .35s ease; transform-origin:center; }
-    #ham-btn.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
-    #ham-btn.open span:nth-child(2) { opacity:0; width:0; }
-    #ham-btn.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
-    /* MOBILE MENU */
-    #mobile-menu { position:fixed; inset:0; z-index:205; background:var(--bg); display:flex; flex-direction:column; justify-content:space-between; padding:100px 32px 48px; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .4s ease,visibility .4s ease; }
-    #mobile-menu.open { opacity:1; visibility:visible; pointer-events:all; }
-    .mob-links { display:flex; flex-direction:column; gap:4px; }
-    .mob-links a { font-size:clamp(36px,10vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1.1; color:var(--fg); text-decoration:none; border-bottom:.5px solid var(--border); padding:16px 0; display:flex; justify-content:space-between; align-items:center; opacity:0; transform:translateY(20px); transition:color .2s,opacity .4s ease,transform .4s ease; }
-    #mobile-menu.open .mob-links a { opacity:1; transform:none; }
-    #mobile-menu.open .mob-links a:nth-child(1) { transition-delay:.05s; }
-    #mobile-menu.open .mob-links a:nth-child(2) { transition-delay:.1s; }
-    #mobile-menu.open .mob-links a:nth-child(3) { transition-delay:.15s; }
-    #mobile-menu.open .mob-links a:nth-child(4) { transition-delay:.2s; }
-    .mob-links a:hover { color:var(--indigo); }
-    .mob-links a span { font-size:18px; font-weight:300; color:var(--muted); }
-    .mob-footer { display:flex; justify-content:space-between; align-items:flex-end; }
-    .mob-socials { display:flex; gap:16px; }
-    .mob-socials a { color:var(--muted); transition:color .2s; }
-    .mob-socials svg { width:18px; height:18px; }
-    .mob-wa { display:inline-flex; align-items:center; gap:8px; background:#22C55E; color:#fff; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:12px 22px; }
-    @media (hover:none),(pointer:coarse) { #cursor { display:none !important; } html { cursor:auto !important; } }
-
-    @media(max-width:960px) {
-      nav { padding:14px 24px !important; display:flex !important; justify-content:space-between !important; align-items:center !important; grid-template-columns:none !important; }
-      .nav-mid { display:none !important; }
-      .nav-social { display:none !important; }
-      .nav-wa { display:none !important; }
-      #ham-btn { display:flex !important; }
-      .nav-right { justify-self:end; }
-      .nav-logo-clip { display:none; }
-      .nav-logo img.iso-nav { display:block !important; height:38px; }
-      .page-header { padding:100px 24px 52px; }
-      .page-header-inner { flex-direction:column; gap:16px; }
-      .page-sub { text-align:left; max-width:100%; }
-      .filter-bar { padding:20px 24px; gap:6px; }
-      .filter-btn { padding:7px 14px; font-size:10px; }
-      .projects-list { padding:0 24px 64px; }
-      .proj-item { grid-template-columns:1fr; }
-      .pi-num { display:none; }
-      .pi-right { flex-direction:row; align-items:center; justify-content:flex-start; gap:16px; margin-top:20px; min-width:0; }
-      .pi-arrow { display:none; }
-      .pi-stats { gap:14px; }
-      .pi-stat-val { font-size:16px; }
-      .ft-top { grid-template-columns:1fr 1fr; gap:20px; padding:40px 20px 32px; }
-      .ft-bottom { flex-direction:column; gap:12px; text-align:center; padding:16px 20px; }
-      #cookie-banner { flex-direction:column; gap:12px; bottom:12px; padding:16px; left:20px; right:20px; transform:none; width:auto; }
-      #cookie-banner.hide { transform:translateY(20px); }
-      .cookie-btns { width:100%; }
-      .cookie-accept,.cookie-decline { flex:1; text-align:center; }
+    :root {
+      --navy:   #0B1D35;
+      --navy-d: #07111F;
+      --white:  #FFFFFF;
+      --off:    #F4F5F7;
+      --gray:   #8B93A1;
+      --light:  #CBD2DC;
+      --border: rgba(255,255,255,.08);
     }
-    @media(max-width:600px) {
-      nav { padding:12px 20px; }
-      .nav-logo img { height:36px; }
-      .page-header { padding:88px 20px 44px; }
-      .page-title { letter-spacing:-2px; }
-      .filter-bar { padding:16px 20px; }
-      .projects-list { padding:0 20px 52px; }
-      .proj-item { padding:40px 0; }
-      .pi-title { font-size:clamp(18px,5vw,26px); }
-      .pi-stack { flex-wrap:wrap; }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { background: var(--navy-d); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::-webkit-scrollbar { display: none; }
+    * { scrollbar-width: none; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(7,17,31,.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
-    @media(max-width:480px) {
-      .ft-top { grid-template-columns:1fr !important; }
-      .ft-links a { font-size:12px; }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 36px; width: auto; display: block; }
+    .nav-logo-text { font-size: 20px; font-weight: 800; color: var(--white); display: none; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--light); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { background: var(--white); color: var(--navy-d) !important; padding: 10px 20px; font-size: 12px !important; font-weight: 700 !important; letter-spacing: .06em !important; }
+    .nav-cta:hover { background: var(--off) !important; }
+    #ham-btn { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px; }
+    #ham-btn span { display: block; width: 100%; height: 1.5px; background: var(--white); transition: transform .3s, opacity .3s; }
+    #ham-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    #ham-btn.open span:nth-child(2) { opacity: 0; }
+    #ham-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    #mobile-menu {
+      position: fixed; inset: 0; z-index: 99; background: var(--navy-d);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 36px 48px;
+      opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .3s, visibility .3s;
+    }
+    #mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .mob-links { display: flex; flex-direction: column; width: 100%; }
+    .mob-links a { font-size: 28px; font-weight: 800; color: var(--white); text-decoration: none; padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .mob-links a:first-child { border-top: 1px solid var(--border); }
+    .mob-links a span { font-size: 18px; color: var(--gray); }
+    .mob-footer-nav { margin-top: 40px; display: flex; gap: 24px; }
+    .mob-footer-nav a { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); text-decoration: none; }
+
+    .section { padding: 120px 48px; }
+    .section-label { font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gray); }
+    .section-h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 800; letter-spacing: -2px; line-height: 1; }
+    .section-h2 em { font-style: italic; font-weight: 300; color: var(--light); }
+
+    #page-hero { padding: 160px 48px 100px; border-bottom: 1px solid var(--border); }
+    .ph-label { font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    .ph-label::before { content: ''; width: 24px; height: 1px; background: var(--gray); }
+    .ph-h1 { font-size: clamp(52px, 8vw, 96px); font-weight: 800; letter-spacing: -3px; line-height: .95; margin-bottom: 40px; max-width: 800px; }
+    .ph-h1 em { font-style: italic; font-weight: 300; color: var(--light); }
+    .ph-desc { font-size: 16px; font-weight: 400; color: var(--light); line-height: 1.7; max-width: 500px; }
+
+    .filter-tabs { display: flex; gap: 8px; margin-bottom: 64px; flex-wrap: wrap; }
+    .filter-tab { font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; background: transparent; border: 1px solid var(--border); color: var(--gray); padding: 10px 20px; cursor: pointer; transition: all .2s; }
+    .filter-tab:hover { color: var(--white); border-color: rgba(255,255,255,.2); }
+    .filter-tab.active { background: var(--white); color: var(--navy-d); border-color: var(--white); }
+
+    .projects-table { }
+    .proj-row { display: grid; grid-template-columns: 60px 1fr 160px 140px; align-items: center; gap: 32px; padding: 36px 0; border-top: 1px solid var(--border); transition: background .2s; }
+    .proj-row:last-child { border-bottom: 1px solid var(--border); }
+    .proj-row:hover { background: rgba(255,255,255,.025); margin: 0 -32px; padding-left: 32px; padding-right: 32px; }
+    .proj-idx { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--gray); }
+    .proj-tags-row { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+    .proj-tag { font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gray); border: 1px solid var(--border); padding: 3px 8px; }
+    .proj-name { font-size: 20px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 4px; }
+    .proj-client { font-size: 12px; font-weight: 400; color: var(--gray); }
+    .proj-metric-col { text-align: right; }
+    .proj-val { font-size: 32px; font-weight: 800; letter-spacing: -1.5px; line-height: 1; }
+    .proj-val-lbl { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); margin-top: 4px; }
+    .proj-link-col { text-align: right; }
+    .proj-link { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--light); text-decoration: none; transition: color .2s; white-space: nowrap; }
+    .proj-link:hover { color: var(--white); }
+
+    #categories { border-top: 1px solid var(--border); background: var(--navy); }
+    .cat-grid { margin-top: 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.05); }
+    .cat-item { background: var(--navy); padding: 48px 40px; }
+    .cat-num { font-size: 56px; font-weight: 800; letter-spacing: -3px; line-height: 1; margin-bottom: 16px; }
+    .cat-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .cat-desc { font-size: 13px; color: var(--light); line-height: 1.7; }
+
+    #cta-band { border-top: 1px solid var(--border); padding: 100px 48px; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+    .cta-band-h2 { font-size: clamp(32px, 4vw, 56px); font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 12px; }
+    .cta-band-sub { font-size: 15px; color: var(--light); }
+    .btn-primary { background: var(--white); color: var(--navy-d); padding: 16px 32px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: background .2s, transform .2s; display: inline-block; }
+    .btn-primary:hover { background: var(--off); transform: translateY(-1px); }
+    .btn-ghost { color: var(--light); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+    .btn-ghost:hover { color: var(--white); }
+
+    footer { border-top: 1px solid var(--border); padding: 60px 48px 40px; }
+    .footer-top { display: grid; grid-template-columns: 1fr auto auto; gap: 80px; padding-bottom: 60px; border-bottom: 1px solid var(--border); }
+    .footer-brand img { height: 32px; margin-bottom: 20px; display: block; }
+    .footer-brand p { font-size: 13px; color: var(--gray); line-height: 1.7; max-width: 260px; }
+    .footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 13px; font-weight: 500; color: var(--light); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 32px; flex-wrap: wrap; }
+    .footer-copy { font-size: 11px; color: var(--gray); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 11px; color: var(--gray); text-decoration: none; transition: color .2s; }
+    .footer-legal a:hover { color: var(--white); }
+
+    #cookie-banner { position: fixed; bottom: 24px; left: 24px; right: 24px; z-index: 500; background: var(--navy); border: 1px solid var(--border); padding: 20px 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; transform: translateY(120%); transition: transform .4s; max-width: 700px; }
+    #cookie-banner.show { transform: translateY(0); }
+    .cookie-text { font-size: 13px; color: var(--light); flex: 1; }
+    .cookie-text a { color: var(--white); }
+    .cookie-btns { display: flex; gap: 12px; }
+    .cookie-btn { font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; padding: 10px 18px; }
+    .cookie-accept { background: var(--white); color: var(--navy-d); border: none; }
+    .cookie-decline { background: transparent; color: var(--gray); border: 1px solid var(--border); }
+
+    @media(max-width: 960px) {
+      .nav-links { display: none; }
+      #ham-btn { display: flex; }
+      nav { padding: 16px 24px; }
+      .section { padding: 80px 24px; }
+      #page-hero { padding: 140px 24px 72px; }
+      .proj-row { grid-template-columns: 40px 1fr; gap: 20px; }
+      .proj-metric-col, .proj-link-col { display: none; }
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      #cta-band { flex-direction: column; padding: 72px 24px; }
+    }
+    @media(max-width: 600px) {
+      .section { padding: 64px 20px; }
+      #page-hero { padding: 120px 20px 64px; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div id="cursor"></div>
 
   <nav>
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-clip">
-        <img class="wordmark logo-dark"  src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.closest('.nav-logo-clip').style.display='none'" />
-        <img class="wordmark logo-light" src="assets/logos/apo-logo-black.png" alt="APO Agency" onerror="this.style.display='none'" />
-      </div>
-      <img class="iso-nav logo-dark"  src="assets/logos/isologo-white.png" alt="APO" />
-      <img class="iso-nav logo-light" src="assets/logos/isologo-black.png" alt="APO" />
+      <img src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.style.display='none';document.querySelector('.nav-logo-text').style.display='block'" />
+      <span class="nav-logo-text">APO</span>
     </a>
-    <ul class="nav-mid">
-      <li><a href="index.html">Inicio</a></li>
-      <li class="has-dropdown">
-        <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">Servicios <span class="dd-arrow">▾</span></button>
-        <div class="nav-dropdown">
-          <a href="servicios/diseno-web.html"><span>🌐</span> Diseño Web</a>
-          <a href="servicios/meta-google-ads.html"><span>📣</span> Meta &amp; Google Ads</a>
-          <a href="servicios/software-personalizado.html"><span>💻</span> Software a Medida <span class="dd-badge">Nuevo</span></a>
-        </div>
-      </li>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Servicios</a></li>
       <li><a href="portfolio.html" class="active">Proyectos</a></li>
       <li><a href="about.html">Nosotros</a></li>
-      <li><a href="index.html#contact">Contacto</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contáctanos</a></li>
     </ul>
-    <div class="nav-right">
-      <div class="nav-social">
-        <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
-      </div>
-      <button id="theme-btn" aria-label="Tema"></button>
-      <button id="ham-btn" aria-label="Menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="nav-wa">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
-        WhatsApp
-      </a>
-    </div>
+    <button id="ham-btn" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <!-- MOBILE MENU -->
-  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+  <div id="mobile-menu">
     <div class="mob-links">
-      <a href="index.html">Inicio <span>→</span></a>
-      <a href="servicios/diseno-web.html">Diseño Web <span>→</span></a>
-      <a href="servicios/meta-google-ads.html">Meta &amp; Google Ads <span>→</span></a>
-      <a href="servicios/software-personalizado.html">Software a Medida <span>→</span></a>
-      <a href="portfolio.html" class="active">Proyectos <span>→</span></a>
+      <a href="index.html#services">Servicios <span>→</span></a>
+      <a href="portfolio.html">Proyectos <span>→</span></a>
       <a href="about.html">Nosotros <span>→</span></a>
       <a href="index.html#contact">Contacto <span>→</span></a>
     </div>
-    <div class="mob-footer">
-      <div class="mob-socials">
-        <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
-      </div>
-      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="mob-wa">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
-        WhatsApp
-      </a>
+    <div class="mob-footer-nav">
+      <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hola@apoagency.io">Email</a>
     </div>
   </div>
 
-  <header class="page-header">
-    <canvas id="proj-canvas"></canvas>
-    <div class="page-header-inner r">
-      <div>
-        <span class="page-label">/ portafolio</span>
-        <h1 class="page-title">Proyectos<br/>reales.</h1>
-      </div>
-      <p class="page-sub">Sistemas en producción. Resultados medibles. Sin demos ni promesas vacías.</p>
-    </div>
-  </header>
+  <section id="page-hero">
+    <div class="ph-label">Proyectos</div>
+    <h1 class="ph-h1">Trabajo real,<br/><em>resultados reales.</em></h1>
+    <p class="ph-desc">Cada proyecto tiene una historia y un número detrás. Aquí están algunos de los que más nos enorgullecen.</p>
+  </section>
 
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">Todos</button>
-    <button class="filter-btn" data-filter="bot">Bots & IA</button>
-    <button class="filter-btn" data-filter="ads">Publicidad</button>
-    <button class="filter-btn" data-filter="web">Web & Ecommerce</button>
-    <button class="filter-btn" data-filter="brand">Branding</button>
-    <button class="filter-btn" data-filter="events">Eventos</button>
-  </div>
-
-  <div class="projects-list">
-
-    <div class="proj-item r" data-cat="bot ads web">
-      <div class="pi-num">01</div>
-      <div class="pi-body">
-        <img class="pi-logo" src="assets/logos/tecglo.png" alt="TECglo" />
-        <div class="pi-type">ChatBot IA · Meta Ads · ISP</div>
-        <h2 class="pi-title">TecBot + Campañas TECglo</h2>
-        <p class="pi-client">TECglo S.A.</p>
-        <p class="pi-desc">Bot de ventas y soporte 24/7 para ISP de fibra óptica. Gestiona tickets, hace routing inteligente y atiende clientes sin intervención humana. Complementado con campañas de Meta Ads para venta de planes residenciales con $15/día de presupuesto y CPL que bate el mercado.</p>
-        <div class="pi-stats">
-          <div><div class="pi-stat-val">&lt;$1.50</div><div class="pi-stat-lbl">CPL WhatsApp</div></div>
-          <div><div class="pi-stat-val">&lt;$2.50</div><div class="pi-stat-lbl">CPL Formularios</div></div>
-          <div><div class="pi-stat-val">8–10<span>x</span></div><div class="pi-stat-lbl">ROI</div></div>
-          <div><div class="pi-stat-val">$15</div><div class="pi-stat-lbl">Presupuesto/día</div></div>
-        </div>
-        <div class="pi-stack">
-          <span class="pi-tag">Botpress</span><span class="pi-tag">OpenAI</span><span class="pi-tag">Meta Ads</span><span class="pi-tag">CRM</span><span class="pi-tag">Telco</span>
-        </div>
-      </div>
-      <div class="pi-right">
-        <span class="pi-arrow">↗</span>
-        <a href="https://tecglo.com" target="_blank" rel="noopener" class="pi-ext">Ver cliente ↗</a>
-      </div>
+  <section class="section">
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">Todos</button>
+      <button class="filter-tab" data-filter="web">Web</button>
+      <button class="filter-tab" data-filter="chatbot">Chatbot IA</button>
+      <button class="filter-tab" data-filter="ads">Ads</button>
+      <button class="filter-tab" data-filter="software">Software</button>
     </div>
 
-    <div class="proj-item r" data-cat="bot events">
-      <div class="pi-num">02</div>
-      <div class="pi-body">
-        <img class="pi-logo" src="assets/logos/feria-de-loja.png" alt="Feria de Loja" />
-        <div class="pi-type">ChatBot IA · Eventos presenciales</div>
-        <h2 class="pi-title">Bot Feria de Loja</h2>
-        <p class="pi-client">Feria de Loja</p>
-        <p class="pi-desc">Asistente conversacional para evento presencial con artesanos, marcas y emprendedores. El bot recibía a los asistentes por WhatsApp, enviaba formularios de registro, informaba ubicación de stands, horarios de actividades y respondía consultas en tiempo real — sin que el equipo organizador tuviera que intervenir en cada interacción.</p>
-        <div class="pi-stack">
-          <span class="pi-tag">Rampwin</span><span class="pi-tag">WhatsApp API</span><span class="pi-tag">Formularios</span><span class="pi-tag">Eventos</span>
+    <div class="projects-table" id="projects-table">
+      <div class="proj-row" data-category="chatbot">
+        <span class="proj-idx">01</span>
+        <div class="proj-main">
+          <div class="proj-tags-row"><span class="proj-tag">Chatbot IA</span><span class="proj-tag">WhatsApp</span></div>
+          <div class="proj-name">Bot de Atención al Cliente</div>
+          <div class="proj-client">Feria de Loja</div>
         </div>
+        <div class="proj-metric-col">
+          <div class="proj-val">500+</div>
+          <div class="proj-val-lbl">conv./mes</div>
+        </div>
+        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
       </div>
-      <div class="pi-right">
-        <span class="pi-arrow">↗</span>
+      <div class="proj-row" data-category="web">
+        <span class="proj-idx">02</span>
+        <div class="proj-main">
+          <div class="proj-tags-row"><span class="proj-tag">Diseño Web</span><span class="proj-tag">Plataforma</span></div>
+          <div class="proj-name">Plataforma de Bienes Raíces</div>
+          <div class="proj-client">BuscaCasa Ecuador</div>
+        </div>
+        <div class="proj-metric-col">
+          <div class="proj-val">3×</div>
+          <div class="proj-val-lbl">más leads</div>
+        </div>
+        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
+      </div>
+      <div class="proj-row" data-category="ads">
+        <span class="proj-idx">03</span>
+        <div class="proj-main">
+          <div class="proj-tags-row"><span class="proj-tag">Meta Ads</span><span class="proj-tag">Google Ads</span></div>
+          <div class="proj-name">Campaña de Adquisición</div>
+          <div class="proj-client">Intelhome</div>
+        </div>
+        <div class="proj-metric-col">
+          <div class="proj-val">$1.50</div>
+          <div class="proj-val-lbl">costo/lead</div>
+        </div>
+        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
+      </div>
+      <div class="proj-row" data-category="software">
+        <span class="proj-idx">04</span>
+        <div class="proj-main">
+          <div class="proj-tags-row"><span class="proj-tag">Software</span><span class="proj-tag">Automatización</span></div>
+          <div class="proj-name">Sistema de Gestión Interna</div>
+          <div class="proj-client">Flexman</div>
+        </div>
+        <div class="proj-metric-col">
+          <div class="proj-val">60%</div>
+          <div class="proj-val-lbl">menos tiempo</div>
+        </div>
+        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
+      </div>
+      <div class="proj-row" data-category="web">
+        <span class="proj-idx">05</span>
+        <div class="proj-main">
+          <div class="proj-tags-row"><span class="proj-tag">Diseño Web</span><span class="proj-tag">Branding</span></div>
+          <div class="proj-name">Identidad Digital Corporativa</div>
+          <div class="proj-client">Canción Films</div>
+        </div>
+        <div class="proj-metric-col">
+          <div class="proj-val">+40%</div>
+          <div class="proj-val-lbl">engagement</div>
+        </div>
+        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
+      </div>
+      <div class="proj-row" data-category="chatbot">
+        <span class="proj-idx">06</span>
+        <div class="proj-main">
+          <div class="proj-tags-row"><span class="proj-tag">Chatbot IA</span><span class="proj-tag">Automatización</span></div>
+          <div class="proj-name">Bot de Agendamiento Automático</div>
+          <div class="proj-client">EC Connect</div>
+        </div>
+        <div class="proj-metric-col">
+          <div class="proj-val">80%</div>
+          <div class="proj-val-lbl">menos carga</div>
+        </div>
+        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
+      </div>
+      <div class="proj-row" data-category="ads">
+        <span class="proj-idx">07</span>
+        <div class="proj-main">
+          <div class="proj-tags-row"><span class="proj-tag">Meta Ads</span></div>
+          <div class="proj-name">Estrategia de Generación de Leads</div>
+          <div class="proj-client">El Instituto</div>
+        </div>
+        <div class="proj-metric-col">
+          <div class="proj-val">4.2×</div>
+          <div class="proj-val-lbl">retorno ads</div>
+        </div>
+        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
+      </div>
+      <div class="proj-row" data-category="software">
+        <span class="proj-idx">08</span>
+        <div class="proj-main">
+          <div class="proj-tags-row"><span class="proj-tag">Software</span><span class="proj-tag">Dashboard</span></div>
+          <div class="proj-name">Panel de Control de Inventarios</div>
+          <div class="proj-client">Tecglo</div>
+        </div>
+        <div class="proj-metric-col">
+          <div class="proj-val">2 sem</div>
+          <div class="proj-val-lbl">entrega</div>
+        </div>
+        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
       </div>
     </div>
+  </section>
 
-    <div class="proj-item r" data-cat="web events">
-      <div class="pi-num">03</div>
-      <div class="pi-body">
-        <img class="pi-logo" src="assets/logos/data-privacy-sunset.png" alt="Data Privacy Sunset" />
-        <div class="pi-type">Desarrollo Web · Evento</div>
-        <h2 class="pi-title">Data Privacy Sunset</h2>
-        <p class="pi-client">Alejandro Varas</p>
-        <p class="pi-desc">Página web para el evento Data Privacy Sunset, congreso sobre privacidad de datos. Diseño y desarrollo orientado a informar el evento, sus ponentes y agenda.</p>
-        <div class="pi-stack">
-          <span class="pi-tag">Desarrollo Web</span><span class="pi-tag">Evento</span><span class="pi-tag">Privacidad de Datos</span>
-        </div>
+  <section id="categories" class="section">
+    <div class="section-label">Por categoría</div>
+    <h2 class="section-h2" style="margin-bottom:80px">Lo que<br/><em>sabemos hacer.</em></h2>
+    <div class="cat-grid">
+      <div class="cat-item">
+        <div class="cat-num">20+</div>
+        <div class="cat-title">Sitios Web</div>
+        <div class="cat-desc">Desde landings hasta plataformas complejas. Rápidos, bien diseñados, optimizados para convertir.</div>
       </div>
-      <div class="pi-right">
-        <span class="pi-arrow">↗</span>
-        <a href="https://blog.queestapasandocontusdatos.com/dataprivacysunset/" target="_blank" rel="noopener" class="pi-ext">Ver sitio ↗</a>
+      <div class="cat-item">
+        <div class="cat-num">12+</div>
+        <div class="cat-title">Chatbots IA</div>
+        <div class="cat-desc">Bots para WhatsApp que atienden, califican y agendan. Funcionando 24/7 sin intervención humana.</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">15+</div>
+        <div class="cat-title">Campañas de Ads</div>
+        <div class="cat-desc">Meta y Google Ads con tracking real. Medimos resultados, no solo impresiones.</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">8+</div>
+        <div class="cat-title">Automatizaciones</div>
+        <div class="cat-desc">Flujos que conectan herramientas y eliminan tareas repetitivas en empresas.</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">5+</div>
+        <div class="cat-title">Software a Medida</div>
+        <div class="cat-desc">Sistemas internos, dashboards y apps web para los procesos de cada empresa.</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">10+</div>
+        <div class="cat-title">Branding</div>
+        <div class="cat-desc">Identidades visuales que comunican claramente quién eres y por qué elegirte.</div>
       </div>
     </div>
+  </section>
 
-    <div class="proj-item r" data-cat="bot">
-      <div class="pi-num">04</div>
-      <div class="pi-body">
-        <img class="pi-logo" src="assets/logos/cancion-films.png" alt="Canzión Films" />
-        <div class="pi-type">WhatsApp Masivo · Automatización</div>
-        <h2 class="pi-title">Campaña Canzión Films</h2>
-        <p class="pi-client">Canzión Films</p>
-        <p class="pi-desc">Automatización de marketing para estrenos cinematográficos. Envíos masivos por WhatsApp a base de contactos segmentada, flujo de confirmación de asistencia automatizado y distribución de códigos promocionales. El sistema operaba solo desde el anuncio del estreno hasta el momento en que el espectador entraba a la sala.</p>
-        <div class="pi-stack">
-          <span class="pi-tag">WhatsApp API</span><span class="pi-tag">Automatización</span><span class="pi-tag">Códigos Promo</span><span class="pi-tag">Cine</span>
-        </div>
-      </div>
-      <div class="pi-right">
-        <span class="pi-arrow">↗</span>
-      </div>
+  <div id="cta-band">
+    <div>
+      <div class="cta-band-h2">¿Tu empresa<br/>podría ser la siguiente?</div>
+      <div class="cta-band-sub">Cuéntanos qué necesitas y lo trabajamos juntos.</div>
     </div>
-
-    <div class="proj-item r" data-cat="web">
-      <div class="pi-num">05</div>
-      <div class="pi-body">
-        <img class="pi-logo" src="assets/logos/flexman.png" alt="Flexman" />
-        <div class="pi-type">Ecommerce · Desarrollo Web · B2B</div>
-        <h2 class="pi-title">Tienda Online Flexman</h2>
-        <p class="pi-client">Flexman</p>
-        <p class="pi-desc">Ecommerce completo para la venta y promoción de tubos PEAD. Catálogo técnico con especificaciones por producto, sistema de cotización online y proceso de compra adaptado para clientes B2B y B2C. La plataforma convierte visitas en solicitudes comerciales reales, reduciendo la fricción entre interés y cierre.</p>
-        <div class="pi-stack">
-          <span class="pi-tag">Ecommerce</span><span class="pi-tag">Desarrollo Web</span><span class="pi-tag">B2B</span><span class="pi-tag">PEAD</span>
-        </div>
-      </div>
-      <div class="pi-right">
-        <span class="pi-arrow">↗</span>
-        <a href="https://flexman.com" target="_blank" rel="noopener" class="pi-ext">Ver tienda ↗</a>
-      </div>
-    </div>
-
-    <div class="proj-item r" data-cat="brand">
-      <div class="pi-num">06</div>
-      <div class="pi-body">
-        <img class="pi-logo" src="assets/logos/avasant.png" alt="Avasant" />
-        <div class="pi-type">Branding · Identidad Visual completa</div>
-        <h2 class="pi-title">Sistema de Marca Avasant</h2>
-        <p class="pi-client">Avasant Consulting S.A.S</p>
-        <p class="pi-desc">Construcción completa de identidad visual desde cero para consultora. Proceso de naming visual, desarrollo de logotipo e isologo, definición de paleta de color, tipografía corporativa, iconografía y sistema de aplicaciones. Entrega de manual de marca con todas las reglas de uso para consistencia en todos los puntos de contacto.</p>
-        <div class="pi-stack">
-          <span class="pi-tag">Branding</span><span class="pi-tag">Logotipo</span><span class="pi-tag">Manual de Marca</span><span class="pi-tag">Diseño</span>
-        </div>
-      </div>
-      <div class="pi-right">
-        <span class="pi-arrow">↗</span>
-      </div>
-    </div>
-
-    <div class="proj-item r" data-cat="bot events ads">
-      <div class="pi-num">07</div>
-      <div class="pi-body">
-        <img class="pi-logo" src="assets/logos/ec-connect.png" alt="EC Connect" />
-        <div class="pi-type">IA · Campañas Interactivas · Eventos</div>
-        <h2 class="pi-title">INNOVA LATAM</h2>
-        <p class="pi-client">EC Connect</p>
-        <p class="pi-desc">Diseño y gestión de campañas interactivas con IA para el evento INNOVA LATAM. Experiencias digitales que conectaban al asistente con el evento antes, durante y después. Comunicación automatizada e inteligente para un evento de escala regional con múltiples puntos de contacto.</p>
-        <div class="pi-stack">
-          <span class="pi-tag">IA</span><span class="pi-tag">Campañas Interactivas</span><span class="pi-tag">Eventos</span><span class="pi-tag">WhatsApp</span>
-        </div>
-      </div>
-      <div class="pi-right">
-        <span class="pi-arrow">↗</span>
-      </div>
-    </div>
-
-    <div class="proj-item r" data-cat="web ads">
-      <div class="pi-num">08</div>
-      <div class="pi-body">
-        <img class="pi-logo" src="assets/logos/interhome.png" alt="INTERhome" />
-        <div class="pi-type">Desarrollo Web · Publicidad</div>
-        <h2 class="pi-title">INTERhome Net</h2>
-        <p class="pi-client">INTERhome</p>
-        <p class="pi-desc">Desarrollo y gestión digital para ISP ecuatoriano. Sitio web orientado a captación de clientes residenciales y empresariales, con estructura clara de planes y zonas de cobertura.</p>
-        <div class="pi-stack">
-          <span class="pi-tag">Desarrollo Web</span><span class="pi-tag">ISP</span><span class="pi-tag">Publicidad</span>
-        </div>
-      </div>
-      <div class="pi-right">
-        <span class="pi-arrow">↗</span>
-        <a href="https://interhomenet.com.ec" target="_blank" rel="noopener" class="pi-ext">Ver sitio ↗</a>
-      </div>
-    </div>
-
-    <div class="proj-item r" data-cat="ads events web">
-      <div class="pi-num">09</div>
-      <div class="pi-body">
-        <img class="pi-logo" src="assets/logos/el-instituto.png" alt="El Instituto" />
-        <div class="pi-type">Publicidad · Lanzamientos · Educación Jurídica</div>
-        <h2 class="pi-title">El Instituto — Cursos y Congresos</h2>
-        <p class="pi-client">El Instituto</p>
-        <p class="pi-desc">Gestión de campañas de lanzamiento para cursos y congresos en el ámbito jurídico. Estrategia de Meta Ads para venta de inscripciones, con presupuestos de $100–150/día en temporadas de lanzamiento. Landing pages y páginas de pago integradas para la compra directa de tickets y matrículas.</p>
-        <div class="pi-stats">
-          <div><div class="pi-stat-val">$150</div><div class="pi-stat-lbl">Presupuesto pico/día</div></div>
-          <div><div class="pi-stat-val">4–6<span>x</span></div><div class="pi-stat-lbl">ROI</div></div>
-        </div>
-        <div class="pi-stack">
-          <span class="pi-tag">Meta Ads</span><span class="pi-tag">Landing Page</span><span class="pi-tag">Ecommerce</span><span class="pi-tag">Derecho</span><span class="pi-tag">Educación</span>
-        </div>
-      </div>
-      <div class="pi-right">
-        <span class="pi-arrow">↗</span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- COOKIE BANNER -->
-  <div id="cookie-banner">
-    <p class="cookie-text">Usamos cookies para mejorar tu experiencia. Al continuar navegando aceptas nuestra <a href="terminos.html">política de cookies</a>.</p>
-    <div class="cookie-btns">
-      <button class="cookie-decline" id="cookie-decline">Rechazar</button>
-      <button class="cookie-accept" id="cookie-accept">Aceptar</button>
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="btn-primary">Iniciar proyecto</a>
+      <a href="index.html#contact" class="btn-ghost">Enviar formulario →</a>
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="ft-top">
-      <div>
-        <div class="ft-brand-logo">
-          <div style="height:44px;overflow:hidden;display:flex;align-items:center;justify-content:center;width:148px;">
-            <img class="logo-dark"  src="assets/logos/apo-logo-white.png" alt="APO Agency" style="height:160%;width:auto;" onerror="this.closest('div').style.display='none'" />
-            <img class="logo-light" src="assets/logos/apo-logo-black.png" alt="APO Agency" style="height:160%;width:auto;" onerror="this.style.display='none'" />
-          </div>
-        </div>
-        <p class="ft-tagline">Impulsamos empresas con IA. Automatización, bots y estrategia digital en Ecuador.</p>
-        <div class="ft-socials">
-          <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-          <a href="https://www.linkedin.com/in/kevincuadros/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="https://wa.me/593987252978" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg></a>
-          <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
-        </div>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.style.display='none'" />
+        <p>Soluciones digitales para empresas que quieren crecer. Ecuador.</p>
       </div>
       <div>
-        <span class="ft-col-title">Servicios</span>
-        <div class="ft-links">
-          <a href="index.html#services">Desarrollo Web</a>
-          <a href="index.html#services">Ecommerce</a>
-          <a href="index.html#services">Meta & Google Ads</a>
-          <a href="index.html#services">Branding & Identidad</a>
-          <a href="index.html#services">Automatizaciones IA</a>
-          <a href="index.html#services">ChatBots WhatsApp</a>
-        </div>
+        <div class="footer-col-title">Servicios</div>
+        <ul class="footer-links">
+          <li><a href="servicios/diseno-web.html">Diseño Web</a></li>
+          <li><a href="servicios/meta-google-ads.html">Meta &amp; Google Ads</a></li>
+          <li><a href="servicios/software-personalizado.html">Software a Medida</a></li>
+          <li><a href="index.html#contact">Chatbots IA</a></li>
+        </ul>
       </div>
       <div>
-        <span class="ft-col-title">Páginas</span>
-        <div class="ft-links">
-          <a href="index.html">Inicio</a>
-          <a href="portfolio.html">Proyectos</a>
-          <a href="about.html">Nosotros</a>
-          <a href="index.html#contact">Contacto</a>
-        </div>
-      </div>
-      <div>
-        <span class="ft-col-title">Contacto</span>
-        <div class="ft-links">
-          <a href="https://wa.me/593987252978" target="_blank" rel="noopener">+593 98 725 2978</a>
-          <a href="mailto:hola@apoagency.io">hola@apoagency.io</a>
-          <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">@theapoagency</a>
-          <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener">@kevin_cuadros</a>
-        </div>
+        <div class="footer-col-title">Empresa</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Nosotros</a></li>
+          <li><a href="portfolio.html">Proyectos</a></li>
+          <li><a href="index.html#contact">Contacto</a></li>
+          <li><a href="terminos.html">Términos</a></li>
+        </ul>
       </div>
     </div>
-    <div class="ft-bottom">
-      <span class="ft-copy">© 2026 APO Agency · Ecuador</span>
-      <div class="ft-legal">
-        <a href="terminos.html">Términos y condiciones</a>
-        <a href="terminos.html#cookies">Política de cookies</a>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 APO Agency · RUC 0943518282001 · Ecuador</span>
+      <div class="footer-legal">
+        <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/593987252978" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="terminos.html">Términos y Condiciones</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    const html = document.documentElement;
-    html.dataset.theme = localStorage.getItem('apo-theme') || 'dark';
-    const cb = document.getElementById('cookie-banner');
-    if (localStorage.getItem('apo-cookies')) cb.style.display = 'none';
-    document.getElementById('cookie-accept').onclick = () => { localStorage.setItem('apo-cookies','1'); cb.classList.add('hide'); setTimeout(()=>cb.style.display='none',400); };
-    document.getElementById('cookie-decline').onclick = () => { localStorage.setItem('apo-cookies','0'); cb.classList.add('hide'); setTimeout(()=>cb.style.display='none',400); };
+  <div id="cookie-banner">
+    <p class="cookie-text">Usamos cookies para mejorar tu experiencia. <a href="terminos.html#cookies">Ver política</a>.</p>
+    <div class="cookie-btns">
+      <button class="cookie-btn cookie-decline" id="cookie-decline">Rechazar</button>
+      <button class="cookie-btn cookie-accept" id="cookie-accept">Aceptar</button>
+    </div>
+  </div>
 
-    document.getElementById('theme-btn').addEventListener('click', () => {
-      const n = html.dataset.theme === 'dark' ? 'light' : 'dark';
-      html.dataset.theme = n; localStorage.setItem('apo-theme', n);
-    });
-    const cur = document.getElementById('cursor');
-    const isTouch = window.matchMedia('(hover:none),(pointer:coarse)').matches;
-    if (!isTouch) {
-      let cx=-100,cy=-100,tx=-100,ty=-100;
-      document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
-      (function loop(){ cx+=(tx-cx)*.13; cy+=(ty-cy)*.13; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(loop); })();
-      document.querySelectorAll('a,button,.proj-item').forEach(el => {
-        el.addEventListener('mouseenter', () => cur.classList.add('expand'));
-        el.addEventListener('mouseleave', () => cur.classList.remove('expand'));
-      });
-    }
+  <script>
     const hamBtn = document.getElementById('ham-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    function toggleMenu(open) {
+    hamBtn.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
       hamBtn.classList.toggle('open', open);
-      mobileMenu.classList.toggle('open', open);
       hamBtn.setAttribute('aria-expanded', open);
       document.body.style.overflow = open ? 'hidden' : '';
-    }
-    hamBtn.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
-    document.querySelectorAll('.has-dropdown').forEach(li => {
-      li.querySelector('.nav-dropdown-btn').addEventListener('click', e => { e.stopPropagation(); const o = li.classList.toggle('open'); li.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', o); });
     });
-    document.addEventListener('click', () => document.querySelectorAll('.has-dropdown.open').forEach(li => li.classList.remove('open')));
-    const ro = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); ro.unobserve(e.target); } });
-    }, {threshold:0.06});
-    document.querySelectorAll('.r').forEach((el,i) => { el.style.transitionDelay=(i%4)*.07+'s'; ro.observe(el); });
-
-    // FILTER
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const f = btn.dataset.filter;
-        document.querySelectorAll('.proj-item').forEach(item => {
-          const cats = item.dataset.cat || '';
-          item.style.display = (f === 'all' || cats.includes(f)) ? 'grid' : 'none';
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamBtn.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.proj-row').forEach(row => {
+          row.style.display = (filter === 'all' || row.dataset.category === filter) ? 'grid' : 'none';
         });
       });
     });
-    // NEURAL NETWORK CANVAS — portfolio header
-    (function(){
-      const canvas = document.getElementById('proj-canvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let W, H, particles = [];
-      const COUNT = 45, MAX_DIST = 130, COLOR = '124,111,247';
-      function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
-      window.addEventListener('resize', resize); resize();
-      for (let i = 0; i < COUNT; i++) particles.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35, r: Math.random()*1.8+.8 });
-      function draw() {
-        ctx.clearRect(0, 0, W, H);
-        particles.forEach(p => { p.x += p.vx; p.y += p.vy; if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1; });
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i+1; j < particles.length; j++) {
-            const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
-            const d=Math.sqrt(dx*dx+dy*dy);
-            if(d<MAX_DIST){ ctx.beginPath(); ctx.strokeStyle=`rgba(${COLOR},${(1-d/MAX_DIST)*.45})`; ctx.lineWidth=.7; ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.stroke(); }
-          }
-        }
-        particles.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(${COLOR},.65)`; ctx.fill(); });
-        requestAnimationFrame(draw);
-      }
-      draw();
-    })();
+    const banner = document.getElementById('cookie-banner');
+    if (!localStorage.getItem('cookie-choice')) setTimeout(() => banner.classList.add('show'), 1800);
+    document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem('cookie-choice', 'accepted'); banner.classList.remove('show'); });
+    document.getElementById('cookie-decline').addEventListener('click', () => { localStorage.setItem('cookie-choice', 'declined'); banner.classList.remove('show'); });
   </script>
 </body>
 </html>

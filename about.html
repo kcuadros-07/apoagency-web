@@ -1,634 +1,492 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="google-site-verification" content="a2YSOazoYe2IDFsHd9rMREJ3XRKydkXiPgGgE6brOSE" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nosotros — APO Agency | Agencia de IA en Ecuador</title>
-  <meta name="description" content="Conoce al equipo de APO Agency, agencia digital en Ecuador especializada en automatización con inteligencia artificial." />
+  <title>Nosotros — APO Agency Ecuador</title>
+  <meta name="description" content="Conoce al equipo detrás de APO Agency. Agencia digital en Ecuador especializada en automatización, IA y marketing digital." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://apoagency.io/about.html" />
-  <meta property="og:title" content="Nosotros — APO Agency | Agencia de IA en Ecuador" />
-  <meta property="og:description" content="Conoce al equipo de APO Agency, agencia digital en Ecuador especializada en automatización con inteligencia artificial." />
+  <meta property="og:title" content="Nosotros — APO Agency Ecuador" />
+  <meta property="og:description" content="La historia detrás de APO Agency. Automatización, IA y marketing digital en Ecuador." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://apoagency.io/about.html" />
   <meta property="og:image" content="https://apoagency.io/assets/og-imageV2.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="es_EC" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Nosotros — APO Agency | Agencia de IA en Ecuador" />
-  <meta name="twitter:description" content="Conoce al equipo de APO Agency, agencia digital en Ecuador especializada en automatización con inteligencia artificial." />
-  <meta name="twitter:image" content="https://apoagency.io/assets/og-imageV2.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png" />
   <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg:#07070D; --surface:#0D0D18; --fg:#F1F5F9; --muted:#64748B; --border:rgba(241,245,249,.07); --indigo:#6366F1; --indigo-l:#818CF8; --nav-blur:rgba(7,7,13,.85); --cf:brightness(0) invert(1); }
-    [data-theme="light"] { --bg:#F4F4EF; --surface:#EAEAE4; --fg:#09090F; --muted:#7A7A8C; --border:rgba(9,9,15,.09); --indigo:#4F46E5; --indigo-l:#6366F1; --nav-blur:rgba(244,244,239,.88); --cf:brightness(0); }
-    html { scroll-behavior:smooth; cursor:none; }
-    body { background:var(--bg); color:var(--fg); font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; -webkit-font-smoothing:antialiased; transition:background .5s,color .5s; }
-    ::-webkit-scrollbar { display:none; } * { scrollbar-width:none; }
-    body::after { content:''; position:fixed; inset:0; z-index:9000; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity:.025; mix-blend-mode:overlay; }
-    #cursor { position:fixed; width:8px; height:8px; background:var(--indigo); border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); transition:width .2s,height .2s,opacity .2s; will-change:left,top; }
-    #cursor.expand { width:36px; height:36px; opacity:.22; }
 
-    /* NAV */
-    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:20px 52px; background:var(--nav-blur); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:.5px solid var(--border); gap:16px; }
-    .nav-mid { justify-self:center; }
-    .nav-right { justify-self:end; }
-    .nav-logo { text-decoration:none; display:flex; align-items:center; }
-    .nav-logo-clip { display:flex; align-items:center; flex-shrink:0; } .nav-logo-clip img.wordmark { width:160px; height:52px; object-fit:cover; object-position:center 45%; display:block; } .nav-logo img.iso-nav { height:36px; width:auto; display:none !important; }
-    .logo-dark { display:block; } .logo-light { display:none; }
-    [data-theme="light"] .logo-dark { display:none; } [data-theme="light"] .logo-light { display:block; }
-    .nav-logo-clip .logo-dark { display:block !important; }
-    .nav-logo-clip .logo-light { display:none !important; }
-    [data-theme="light"] .nav-logo-clip .logo-dark { display:none !important; }
-    [data-theme="light"] .nav-logo-clip .logo-light { display:block !important; }
-    .nav-logo-fb { font-size:20px; font-weight:800; letter-spacing:-1px; color:var(--fg); display:none; }
-    .nav-mid { display:flex; gap:28px; list-style:none; }
-    .nav-mid a { font-size:11px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
-    .nav-mid a:hover,.nav-mid a.active { color:var(--fg); }
-    .has-dropdown { position:relative; }
-    .nav-dropdown-btn { font-size:11px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--muted); background:none; border:none; font-family:inherit; cursor:pointer; padding:6px 10px; display:flex; align-items:center; gap:5px; transition:color .2s; }
-    .nav-dropdown-btn:hover, .has-dropdown.open .nav-dropdown-btn { color:var(--fg); }
-    .dd-arrow { font-size:9px; transition:transform .2s; }
-    .has-dropdown.open .dd-arrow { transform:rotate(180deg); }
-    .nav-dropdown { position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%) translateY(-6px); background:var(--surface); border:.5px solid var(--border); min-width:200px; padding:8px 0; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s, transform .2s; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); z-index:300; }
-    .has-dropdown.open .nav-dropdown { opacity:1; visibility:visible; pointer-events:all; transform:translateX(-50%) translateY(0); }
-    .nav-dropdown a { display:flex; align-items:center; gap:10px; padding:10px 18px; font-size:12px; font-weight:600; letter-spacing:.04em; color:var(--muted); text-decoration:none; transition:color .2s, background .2s; white-space:nowrap; text-transform:none; }
-    .nav-dropdown a:hover { color:var(--fg); background:rgba(124,111,247,.06); }
-    .dd-badge { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:var(--indigo); color:#fff; padding:2px 6px; margin-left:auto; }
-    .nav-right { display:flex; align-items:center; gap:10px; flex-shrink:0; }
-    .nav-social { display:flex; gap:6px; }
-    .nav-social a { width:30px; height:30px; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:color .2s; }
-    .nav-social a:hover { color:var(--fg); }
-    .nav-social svg { width:15px; height:15px; }
-    #theme-btn { width:40px; height:21px; border-radius:999px; background:var(--border); border:.5px solid var(--border); position:relative; cursor:none; outline:none; padding:0; }
-    #theme-btn::after { content:''; position:absolute; top:2px; left:2px; width:15px; height:15px; border-radius:50%; background:var(--muted); transition:transform .35s cubic-bezier(.4,0,.2,1),background .4s; }
-    [data-theme="light"] #theme-btn::after { transform:translateX(19px); background:var(--indigo); }
-    .nav-wa { display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; text-decoration:none; background:#25D366; padding:9px 16px; transition:transform .2s,box-shadow .2s; }
-    .nav-wa:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(37,211,102,.35); }
-    .nav-wa svg { width:13px; height:13px; }
-
-    /* NAV centrada */
-    nav { justify-content:space-between; }
-    nav > * { flex: 1; }
-    nav > .nav-logo { justify-content:flex-start; }
-    nav > .nav-mid { justify-content:center; }
-    nav > .nav-right { justify-content:flex-end; }
-
-    /* HERO ABOUT */
-    .about-hero { min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; padding:0 52px 96px; position:relative; overflow:hidden; }
-    .about-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; filter:brightness(.3) saturate(.5); z-index:0; pointer-events:none; }
-    .about-hero-video-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(160deg, rgba(7,7,13,.7) 0%, rgba(7,7,13,.25) 55%, rgba(7,7,13,.7) 100%); }
-    .about-hero-video-bottom { position:absolute; bottom:0; left:0; right:0; height:40%; z-index:1; background:linear-gradient(to top, var(--bg), transparent); }
-    [data-theme="light"] .about-hero-video { filter:brightness(.12) saturate(.3); }
-    .about-hero-content { position:relative; z-index:2; }
-    .about-hero-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--indigo); margin-bottom:28px; display:flex; align-items:center; gap:10px; }
-    .about-hero-label::before { content:''; width:32px; height:.5px; background:var(--indigo); }
-    .about-hero-title { font-size:clamp(56px,10vw,130px); font-weight:800; letter-spacing:-4px; line-height:.9; margin-bottom:52px; color:#F1F5F9; }
-    .about-hero-title em { font-style:italic; font-weight:300; color:rgba(241,245,249,.45); }
-    .about-hero-sub { font-size:clamp(15px,1.8vw,19px); font-weight:300; line-height:1.75; color:rgba(241,245,249,.65); max-width:500px; }
-    .about-hero-sub strong { color:#F1F5F9; font-weight:700; }
-
-    /* VIDEO EN TRAYECTORIA */
-    .tl-video-block { grid-column: 1 / -1; padding: 0; border-bottom: .5px solid var(--border); overflow: hidden; position: relative; }
-    .tl-video-inner { position: relative; }
-    .tl-video-inner video { width: 100%; max-height: 70vh; object-fit: cover; object-position: center 20%; display: block; filter: brightness(.45) saturate(.5); }
-    .tl-video-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 48px; background: linear-gradient(to top, rgba(7,7,13,.9), transparent); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
-    [data-theme="light"] .tl-video-inner video { filter: brightness(.25) saturate(.3); }
-    .tl-video-year { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--indigo); }
-    .tl-video-text { font-size: clamp(18px, 3vw, 28px); font-weight: 800; letter-spacing: -.02em; color: #F1F5F9; max-width: 480px; line-height: 1.1; text-align: right; }
-
-    /* TIMELINE / STORY */
-    #story { padding:100px 52px; }
-    .story-inner { display:grid; grid-template-columns:1fr 2fr; gap:80px; }
-    .story-sticky { position:sticky; top:100px; align-self:start; }
-    .story-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; display:block; }
-    .story-title { font-size:clamp(28px,4vw,48px); font-weight:800; letter-spacing:-2px; line-height:1.05; }
-    .story-title span { color:var(--indigo); }
-
-    .timeline { display:flex; flex-direction:column; gap:0; }
-    .tl-item { display:grid; grid-template-columns:80px 1fr; gap:0 32px; padding:48px 0; border-bottom:.5px solid var(--border); position:relative; }
-    .tl-item:first-child { border-top:.5px solid var(--border); }
-    .tl-year { font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--indigo); padding-top:6px; font-variant-numeric:tabular-nums; }
-    .tl-body {}
-    .tl-heading { font-size:clamp(18px,2.5vw,26px); font-weight:800; letter-spacing:-.02em; margin-bottom:12px; line-height:1.1; }
-    .tl-text { font-size:14px; font-weight:300; line-height:1.8; color:var(--muted); }
-    .tl-text strong { font-weight:700; color:var(--fg); }
-    .tl-text p + p { margin-top:12px; }
-
-    /* VALUES */
-    #values { padding:0 52px 100px; }
-    .values-header { margin-bottom:56px; }
-    .values-header h2 { font-size:clamp(32px,5vw,60px); font-weight:800; letter-spacing:-2px; line-height:1; }
-    .values-grid { display:grid; grid-template-columns:repeat(3,1fr); border-left:.5px solid var(--border); border-top:.5px solid var(--border); }
-    .value-cell { border-right:.5px solid var(--border); border-bottom:.5px solid var(--border); padding:40px 32px; display:flex; flex-direction:column; gap:16px; transition:background .3s; }
-    .value-cell:hover { background:rgba(99,102,241,.04); }
-    .value-icon { font-size:28px; line-height:1; }
-    .value-title { font-size:20px; font-weight:800; letter-spacing:-.02em; }
-    .value-text { font-size:13px; font-weight:300; color:var(--muted); line-height:1.65; }
-
-    /* METRICS */
-    #metrics { padding:0 52px 100px; background:var(--surface); transition:background .5s; }
-    .metrics-inner { padding:80px 0; display:grid; grid-template-columns:repeat(4,1fr); border-left:.5px solid var(--border); }
-    .metric-cell { border-right:.5px solid var(--border); padding:0 40px; }
-    .metric-cell:first-child { padding-left:0; }
-    .m-num { font-size:clamp(52px,7vw,88px); font-weight:800; letter-spacing:-4px; line-height:1; margin-bottom:8px; }
-    .m-num span { color:var(--indigo); }
-    .m-label { font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
-
-    /* KEVIN FULL */
-    #kevin { padding:100px 52px; }
-    .kevin-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
-    .kevin-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; display:block; }
-    .kevin-name { font-size:clamp(44px,7vw,90px); font-weight:800; letter-spacing:-4px; line-height:.9; margin-bottom:8px; }
-    .kevin-role { font-size:12px; font-weight:400; letter-spacing:.15em; text-transform:uppercase; color:var(--indigo); margin-bottom:32px; }
-    .kevin-quote { font-size:clamp(18px,2.5vw,26px); font-style:italic; font-weight:300; line-height:1.5; color:var(--fg); margin-bottom:32px; padding-left:24px; border-left:2px solid var(--indigo); }
-    .kevin-bio { font-size:15px; font-weight:300; line-height:1.8; color:var(--muted); }
-    .kevin-bio strong { font-weight:700; color:var(--fg); }
-    .kevin-bio p + p { margin-top:16px; }
-    .kevin-links { display:flex; gap:12px; margin-top:32px; flex-wrap:wrap; }
-    .kevin-link { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; padding:10px 20px; border:.5px solid var(--border); color:var(--muted); transition:color .2s,border-color .2s; }
-    .kevin-link:hover { color:var(--indigo); border-color:rgba(99,102,241,.4); }
-    .kevin-link svg { width:14px; height:14px; }
-
-    .kevin-r { display:flex; flex-direction:column; gap:0; }
-    .kevin-fact { padding:28px 0; border-bottom:.5px solid var(--border); display:flex; gap:20px; }
-    .kevin-fact:first-child { border-top:.5px solid var(--border); }
-    .kf-icon { font-size:22px; flex-shrink:0; width:32px; }
-    .kf-title { font-size:15px; font-weight:700; letter-spacing:-.01em; margin-bottom:6px; }
-    .kf-desc { font-size:13px; font-weight:300; color:var(--muted); line-height:1.6; }
-
-    /* CTA */
-    #cta { padding:100px 52px; background:var(--surface); display:flex; flex-direction:column; align-items:flex-start; gap:32px; transition:background .5s; }
-    .cta-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); }
-    .cta-text { font-size:clamp(32px,6vw,80px); font-weight:800; letter-spacing:-3px; line-height:.95; }
-    .cta-text em { color:var(--indigo); font-style:italic; font-weight:300; }
-    .cta-btns { display:flex; gap:12px; flex-wrap:wrap; }
-    .cta-btn-wa { display:inline-flex; align-items:center; gap:9px; background:#25D366; color:#fff; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:14px 28px; transition:transform .2s,box-shadow .2s; }
-    .cta-btn-wa:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(37,211,102,.3); }
-    .cta-btn-sec { display:inline-flex; align-items:center; gap:9px; border:.5px solid var(--border); color:var(--fg); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:14px 28px; transition:border-color .2s,color .2s; }
-    .cta-btn-sec:hover { border-color:var(--indigo); color:var(--indigo); }
-
-    /* FOOTER */
-    footer { border-top:.5px solid var(--border); }
-    .ft-top { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; padding:60px 52px 48px; border-bottom:.5px solid var(--border); }
-    .ft-brand-logo { display:flex; align-items:center; margin-bottom:16px; }
-    .ft-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.6; margin-bottom:24px; max-width:220px; }
-    .ft-socials { display:flex; gap:10px; }
-    .ft-socials a { width:32px; height:32px; border:.5px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--muted); transition:color .2s,border-color .2s; }
-    .ft-socials a:hover { color:var(--indigo); border-color:rgba(99,102,241,.4); }
-    .ft-socials svg { width:14px; height:14px; }
-    .ft-col-title { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--fg); margin-bottom:20px; display:block; }
-    .ft-links { display:flex; flex-direction:column; gap:10px; }
-    .ft-links a { font-size:13px; font-weight:300; color:var(--muted); text-decoration:none; transition:color .2s; }
-    .ft-links a:hover { color:var(--indigo); }
-    .ft-bottom { display:flex; justify-content:space-between; align-items:center; padding:20px 52px; gap:16px; flex-wrap:wrap; }
-    .ft-copy { font-size:11px; font-weight:300; color:var(--muted); }
-    .ft-legal { display:flex; gap:20px; }
-    .ft-legal a { font-size:11px; font-weight:300; color:var(--muted); text-decoration:none; transition:color .2s; }
-    .ft-legal a:hover { color:var(--indigo); }
-    #cookie-banner { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:9990; width:min(640px,calc(100vw - 40px)); background:var(--surface); border:.5px solid var(--border); padding:20px 24px; display:flex; align-items:center; gap:20px; backdrop-filter:blur(12px); transition:opacity .4s,transform .4s; box-shadow:0 8px 40px rgba(0,0,0,.4); }
-    #cookie-banner.hide { opacity:0; transform:translateX(-50%) translateY(20px); pointer-events:none; }
-    .cookie-text { font-size:12px; font-weight:300; color:var(--muted); line-height:1.6; flex:1; }
-    .cookie-text a { color:var(--indigo); text-decoration:none; }
-    .cookie-btns { display:flex; gap:8px; flex-shrink:0; }
-    .cookie-accept { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:var(--indigo); color:#fff; border:none; padding:9px 18px; cursor:pointer; font-family:inherit; }
-    .cookie-decline { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:transparent; color:var(--muted); border:.5px solid var(--border); padding:9px 18px; cursor:pointer; font-family:inherit; transition:color .2s; }
-    .cookie-decline:hover { color:var(--fg); }
-    .ft-back { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
-    .ft-back:hover { color:var(--indigo); }
-
-    /* REVEAL */
-    .r { opacity:0; transform:translateY(24px); transition:opacity .85s ease,transform .85s ease; }
-    .r.on { opacity:1; transform:none; }
-
-    /* HAMBURGER */
-    #ham-btn { display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; background:none; border:none; cursor:pointer; padding:4px; z-index:210; }
-    #ham-btn span { display:block; width:22px; height:1.5px; background:var(--fg); border-radius:2px; transition:transform .35s ease,opacity .35s ease,width .35s ease; transform-origin:center; }
-    #ham-btn.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
-    #ham-btn.open span:nth-child(2) { opacity:0; width:0; }
-    #ham-btn.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
-    /* MOBILE MENU */
-    #mobile-menu { position:fixed; inset:0; z-index:205; background:var(--bg); display:flex; flex-direction:column; justify-content:space-between; padding:100px 32px 48px; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .4s ease,visibility .4s ease; }
-    #mobile-menu.open { opacity:1; visibility:visible; pointer-events:all; }
-    .mob-links { display:flex; flex-direction:column; gap:4px; }
-    .mob-links a { font-size:clamp(36px,10vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1.1; color:var(--fg); text-decoration:none; border-bottom:.5px solid var(--border); padding:16px 0; display:flex; justify-content:space-between; align-items:center; opacity:0; transform:translateY(20px); transition:color .2s,opacity .4s ease,transform .4s ease; }
-    #mobile-menu.open .mob-links a { opacity:1; transform:none; }
-    #mobile-menu.open .mob-links a:nth-child(1) { transition-delay:.05s; }
-    #mobile-menu.open .mob-links a:nth-child(2) { transition-delay:.1s; }
-    #mobile-menu.open .mob-links a:nth-child(3) { transition-delay:.15s; }
-    #mobile-menu.open .mob-links a:nth-child(4) { transition-delay:.2s; }
-    .mob-links a:hover { color:var(--indigo); }
-    .mob-links a span { font-size:18px; font-weight:300; color:var(--muted); }
-    .mob-footer { display:flex; justify-content:space-between; align-items:flex-end; }
-    .mob-socials { display:flex; gap:16px; }
-    .mob-socials a { color:var(--muted); transition:color .2s; }
-    .mob-socials svg { width:18px; height:18px; }
-    .mob-wa { display:inline-flex; align-items:center; gap:8px; background:#22C55E; color:#fff; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:12px 22px; }
-    @media (hover:none),(pointer:coarse) { #cursor { display:none !important; } html { cursor:auto !important; } }
-
-    @media(max-width:960px) {
-      nav { padding:14px 24px !important; display:flex !important; justify-content:space-between !important; align-items:center !important; grid-template-columns:none !important; }
-      .nav-mid { display:none !important; }
-      .nav-social { display:none !important; }
-      .nav-wa { display:none !important; }
-      #ham-btn { display:flex !important; }
-      .nav-logo-clip { display:none; }
-      .nav-logo img.iso-nav { display:block !important; height:38px; }
-      .about-hero { padding:0 24px 56px; min-height:70vh; }
-      .about-iso-bg { display:none; }
-      #story { padding:72px 24px; }
-      .story-inner { grid-template-columns:1fr; gap:48px; }
-      .story-sticky { position:relative; top:0; }
-      .tl-item { grid-template-columns:60px 1fr; gap:0 20px; }
-      #values { padding:0 24px 72px; }
-      .values-grid { grid-template-columns:1fr 1fr; }
-      #metrics { padding:0 24px 72px; }
-      .metrics-inner { grid-template-columns:1fr 1fr; gap:40px; border:none; }
-      .metric-cell { border-right:none; border-bottom:.5px solid var(--border); padding:0 0 32px; }
-      #kevin { padding:72px 24px; }
-      .kevin-inner { grid-template-columns:1fr; gap:48px; }
-      #cta { padding:72px 24px; }
-      .ft-top { grid-template-columns:1fr 1fr; gap:20px; padding:40px 20px 32px; }
-      .ft-bottom { flex-direction:column; gap:12px; text-align:center; padding:16px 20px; }
-      #cookie-banner { flex-direction:column; gap:12px; bottom:12px; padding:16px; left:20px; right:20px; transform:none; width:auto; }
-      #cookie-banner.hide { transform:translateY(20px); }
-      .cookie-btns { width:100%; }
-      .cookie-accept,.cookie-decline { flex:1; text-align:center; }
+    :root {
+      --navy:   #0B1D35;
+      --navy-d: #07111F;
+      --white:  #FFFFFF;
+      --off:    #F4F5F7;
+      --gray:   #8B93A1;
+      --light:  #CBD2DC;
+      --border: rgba(255,255,255,.08);
+      --border-dark: rgba(11,29,53,.1);
     }
-    @media(max-width:600px) {
-      .values-grid { grid-template-columns:1fr; }
-      .metrics-inner { grid-template-columns:1fr 1fr; }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { background: var(--navy-d); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::-webkit-scrollbar { display: none; }
+    * { scrollbar-width: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(7,17,31,.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: padding .3s;
     }
-    @media(max-width:480px) {
-      .ft-top { grid-template-columns:1fr !important; }
-      .ft-links a { font-size:12px; }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 36px; width: auto; display: block; }
+    .nav-logo-text { font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; display: none; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--light); text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta {
+      background: var(--white); color: var(--navy-d) !important;
+      padding: 10px 20px; font-size: 12px !important; font-weight: 700 !important;
+      letter-spacing: .06em !important; text-transform: uppercase !important;
+      text-decoration: none; transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--off) !important; }
+    #ham-btn {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    #ham-btn span { display: block; width: 100%; height: 1.5px; background: var(--white); transition: transform .3s, opacity .3s; }
+    #ham-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    #ham-btn.open span:nth-child(2) { opacity: 0; }
+    #ham-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    #mobile-menu {
+      position: fixed; inset: 0; z-index: 99;
+      background: var(--navy-d);
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+      padding: 80px 36px 48px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .3s, visibility .3s;
+    }
+    #mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .mob-links { display: flex; flex-direction: column; gap: 0; width: 100%; }
+    .mob-links a {
+      font-size: 28px; font-weight: 800; letter-spacing: -.02em;
+      color: var(--white); text-decoration: none;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: color .2s;
+    }
+    .mob-links a:first-child { border-top: 1px solid var(--border); }
+    .mob-links a span { font-size: 18px; color: var(--gray); }
+    .mob-footer-nav { margin-top: 40px; display: flex; gap: 24px; }
+    .mob-footer-nav a {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gray); text-decoration: none; transition: color .2s;
+    }
+
+    /* ── LAYOUT ── */
+    .section { padding: 120px 48px; }
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gray); }
+    .section-h2 {
+      font-size: clamp(36px, 5vw, 64px); font-weight: 800; letter-spacing: -2px; line-height: 1;
+    }
+    .section-h2 em { font-style: italic; font-weight: 300; color: var(--light); }
+
+    /* ── PAGE HERO ── */
+    #page-hero {
+      padding: 160px 48px 100px; border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+    }
+    .ph-h1 {
+      font-size: clamp(52px, 7vw, 96px); font-weight: 800; letter-spacing: -3px; line-height: .95;
+    }
+    .ph-h1 em { font-style: italic; font-weight: 300; color: var(--light); }
+    .ph-right { padding-top: 20px; }
+    .ph-desc { font-size: 16px; font-weight: 400; color: var(--light); line-height: 1.7; margin-bottom: 40px; }
+    .ph-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .ph-stat { background: var(--navy-d); padding: 28px 20px; }
+    .ph-stat-num { font-size: 40px; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 6px; }
+    .ph-stat-lbl { font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gray); }
+
+    /* ── VALUES ── */
+    #values { border-top: 1px solid var(--border); }
+    .values-grid { margin-top: 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .val-item { background: var(--navy-d); padding: 48px 40px; }
+    .val-title { font-size: 18px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 12px; }
+    .val-desc { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.7; }
+
+    /* ── FOUNDER ── */
+    #founder { border-top: 1px solid var(--border); }
+    .founder-grid { margin-top: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .founder-name { font-size: clamp(52px, 6vw, 80px); font-weight: 800; letter-spacing: -3px; line-height: .95; margin-bottom: 12px; }
+    .founder-role { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gray); margin-bottom: 32px; }
+    .founder-quote {
+      font-size: 18px; font-weight: 300; font-style: italic; color: var(--light);
+      line-height: 1.5; padding: 24px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .founder-bio { font-size: 14px; font-weight: 400; color: var(--gray); line-height: 1.8; margin-bottom: 36px; }
+    .founder-bio strong { color: var(--white); font-weight: 600; }
+    .founder-bio p + p { margin-top: 14px; }
+    .founder-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .founder-link {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--light); text-decoration: none; transition: color .2s;
+    }
+    .founder-link:hover { color: var(--white); }
+    .founder-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .founder-facts { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+    .founder-fact { background: var(--navy-d); padding: 32px 36px; }
+    .ff-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .ff-desc { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.6; }
+
+    /* ── STORY ── */
+    #story { border-top: 1px solid var(--border); }
+    .story-grid { margin-top: 80px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+    .story-item { background: var(--navy-d); padding: 40px 32px; }
+    .story-year { font-size: 11px; font-weight: 700; letter-spacing: .2em; color: var(--gray); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+    .story-title { font-size: 17px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 10px; }
+    .story-desc { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.7; }
+
+    /* ── CTA ── */
+    #cta-band {
+      border-top: 1px solid var(--border);
+      background: var(--navy); padding: 100px 48px;
+      display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap;
+    }
+    .cta-band-h2 { font-size: clamp(32px, 4vw, 56px); font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 12px; }
+    .cta-band-sub { font-size: 15px; color: var(--light); }
+    .btn-primary {
+      background: var(--white); color: var(--navy-d);
+      padding: 16px 32px; font-size: 12px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none; transition: background .2s, transform .2s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--off); transform: translateY(-1px); }
+    .btn-ghost {
+      color: var(--light); font-size: 12px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; text-decoration: none; transition: color .2s;
+    }
+    .btn-ghost:hover { color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 60px 48px 40px; }
+    .footer-top {
+      display: grid; grid-template-columns: 1fr auto auto; gap: 80px;
+      padding-bottom: 60px; border-bottom: 1px solid var(--border);
+    }
+    .footer-brand img { height: 32px; margin-bottom: 20px; display: block; }
+    .footer-brand p { font-size: 13px; color: var(--gray); line-height: 1.7; max-width: 260px; }
+    .footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 13px; font-weight: 500; color: var(--light); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 32px; flex-wrap: wrap; }
+    .footer-copy { font-size: 11px; color: var(--gray); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 11px; color: var(--gray); text-decoration: none; transition: color .2s; }
+    .footer-legal a:hover { color: var(--white); }
+
+    /* ── COOKIE ── */
+    #cookie-banner {
+      position: fixed; bottom: 24px; left: 24px; right: 24px; z-index: 500;
+      background: var(--navy); border: 1px solid var(--border);
+      padding: 20px 28px; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap; transform: translateY(120%); transition: transform .4s;
+      max-width: 700px;
+    }
+    #cookie-banner.show { transform: translateY(0); }
+    .cookie-text { font-size: 13px; color: var(--light); flex: 1; }
+    .cookie-text a { color: var(--white); }
+    .cookie-btns { display: flex; gap: 12px; }
+    .cookie-btn { font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; padding: 10px 18px; }
+    .cookie-accept { background: var(--white); color: var(--navy-d); border: none; }
+    .cookie-decline { background: transparent; color: var(--gray); border: 1px solid var(--border); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 960px) {
+      .nav-links { display: none; }
+      #ham-btn { display: flex; }
+      nav { padding: 16px 24px; }
+      .section { padding: 80px 24px; }
+      #page-hero { grid-template-columns: 1fr; padding: 140px 24px 72px; gap: 48px; }
+      .ph-stats { grid-template-columns: repeat(3, 1fr); }
+      .values-grid { grid-template-columns: 1fr; }
+      .founder-grid { grid-template-columns: 1fr; gap: 48px; }
+      .story-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      #cta-band { flex-direction: column; padding: 72px 24px; }
+    }
+    @media(max-width: 600px) {
+      .section { padding: 64px 20px; }
+      #page-hero { padding: 120px 20px 64px; }
+      .ph-stats { grid-template-columns: 1fr 1fr; }
+      .story-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div id="cursor"></div>
 
-  <nav>
+  <nav id="nav">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-clip">
-        <img class="wordmark logo-dark"  src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.closest('.nav-logo-clip').style.display='none'" />
-        <img class="wordmark logo-light" src="assets/logos/apo-logo-black.png" alt="APO Agency" onerror="this.style.display='none'" />
-      </div>
-      <img class="iso-nav logo-dark"  src="assets/logos/isologo-white.png" alt="APO" />
-      <img class="iso-nav logo-light" src="assets/logos/isologo-black.png" alt="APO" />
+      <img src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.style.display='none';document.querySelector('.nav-logo-text').style.display='block'" />
+      <span class="nav-logo-text">APO</span>
     </a>
-    <ul class="nav-mid">
-      <li><a href="index.html">Inicio</a></li>
-      <li class="has-dropdown">
-        <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">Servicios <span class="dd-arrow">▾</span></button>
-        <div class="nav-dropdown">
-          <a href="servicios/diseno-web.html"><span>🌐</span> Diseño Web</a>
-          <a href="servicios/meta-google-ads.html"><span>📣</span> Meta &amp; Google Ads</a>
-          <a href="servicios/software-personalizado.html"><span>💻</span> Software a Medida <span class="dd-badge">Nuevo</span></a>
-        </div>
-      </li>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Servicios</a></li>
       <li><a href="portfolio.html">Proyectos</a></li>
       <li><a href="about.html" class="active">Nosotros</a></li>
-      <li><a href="index.html#contact">Contacto</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contáctanos</a></li>
     </ul>
-    <div class="nav-right">
-      <div class="nav-social">
-        <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
-      </div>
-      <button id="theme-btn" aria-label="Tema"></button>
-      <button id="ham-btn" aria-label="Menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="nav-wa">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
-        WhatsApp
-      </a>
-    </div>
+    <button id="ham-btn" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <!-- MOBILE MENU -->
-  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+  <div id="mobile-menu">
     <div class="mob-links">
-      <a href="index.html">Inicio <span>→</span></a>
-      <a href="servicios/diseno-web.html">Diseño Web <span>→</span></a>
-      <a href="servicios/meta-google-ads.html">Meta &amp; Google Ads <span>→</span></a>
-      <a href="servicios/software-personalizado.html">Software a Medida <span>→</span></a>
+      <a href="index.html#services">Servicios <span>→</span></a>
       <a href="portfolio.html">Proyectos <span>→</span></a>
-      <a href="about.html" class="active">Nosotros <span>→</span></a>
+      <a href="about.html">Nosotros <span>→</span></a>
       <a href="index.html#contact">Contacto <span>→</span></a>
     </div>
-    <div class="mob-footer">
-      <div class="mob-socials">
-        <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
-      </div>
-      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="mob-wa">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
-        WhatsApp
-      </a>
+    <div class="mob-footer-nav">
+      <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hola@apoagency.io">Email</a>
+      <a href="https://wa.me/593987252978" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
 
-  <!-- HERO -->
-  <div class="about-hero">
-    <video class="about-hero-video" autoplay muted loop playsinline>
-      <source src="assets/video/hero.mp4" type="video/mp4" />
-    </video>
-    <div class="about-hero-video-overlay"></div>
-    <div class="about-hero-video-bottom"></div>
-    <div class="about-hero-content">
-      <p class="about-hero-label r">/ la persona detrás de APO</p>
-      <h1 class="about-hero-title r">
-        Kevin<br/>Cuadros. <em>CEO.</em>
-      </h1>
-      <p class="about-hero-sub r">
-        Empecé sin plan, sin fondos y sin red de seguridad. <strong>Lo que construí fue porque no había otra opción — y eso lo convirtió en algo real.</strong>
-      </p>
+  <!-- PAGE HERO -->
+  <section id="page-hero">
+    <div>
+      <div class="section-label">Nosotros</div>
+      <h1 class="ph-h1">Tecnología<br/>con <em>propósito.</em></h1>
     </div>
-  </div>
-
-  <!-- STORY TIMELINE -->
-  <section id="story">
-    <div class="story-inner">
-      <div class="story-sticky r">
-        <span class="story-label">/ el origen</span>
-        <h2 class="story-title">Cada paso<br/>fue <span>necesario.</span></h2>
-      </div>
-      <div class="timeline">
-        <div class="tl-item r">
-          <div class="tl-year">2018</div>
-          <div class="tl-body">
-            <h3 class="tl-heading">Medicina.</h3>
-            <div class="tl-text"><p>Empecé estudiando medicina. Perdí a un ser querido y con eso los medios para continuar. Esa ruptura me obligó a moverme.</p></div>
-          </div>
+    <div class="ph-right">
+      <p class="ph-desc">Somos un equipo pequeño con hambre grande. Construimos soluciones digitales que resuelven problemas reales para empresas ecuatorianas.</p>
+      <div class="ph-stats">
+        <div class="ph-stat">
+          <div class="ph-stat-num">50+</div>
+          <div class="ph-stat-lbl">Proyectos</div>
         </div>
-        <div class="tl-item r">
-          <div class="tl-year">2019</div>
-          <div class="tl-body">
-            <h3 class="tl-heading">APOPET — el primer negocio.</h3>
-            <div class="tl-text"><p>Taxista, ebanista, carpintero. De las manos nació <strong>APOPET</strong> — comedores elevados de madera para mascotas. Mi primer emprendimiento real: fabricar, vender y operar con cero recursos.</p></div>
-          </div>
+        <div class="ph-stat">
+          <div class="ph-stat-num">3+</div>
+          <div class="ph-stat-lbl">Años</div>
         </div>
-        <div class="tl-item r">
-          <div class="tl-year">2020</div>
-          <div class="tl-body">
-            <h3 class="tl-heading">Marketing digital.</h3>
-            <div class="tl-text"><p>La pandemia cerró puertas físicas. Me metí en publicidad digital solo, a prueba y error. Los primeros clientes llegaron porque los resultados hablaron antes que yo.</p></div>
-          </div>
-        </div>
-        <div class="tl-item r">
-          <div class="tl-year">2021</div>
-          <div class="tl-body">
-            <h3 class="tl-heading">Desarrollo web y primeros proyectos.</h3>
-            <div class="tl-text"><p>El tráfico necesitaba sitios que convirtieran. Aprendí a construirlos. <strong>Flexman, El Instituto y los primeros proyectos de branding.</strong> Los clientes empezaron a traer clientes.</p></div>
-          </div>
-        </div>
-        <div class="tl-item r">
-          <div class="tl-year">2022–23</div>
-          <div class="tl-body">
-            <h3 class="tl-heading">IA y automatización.</h3>
-            <div class="tl-text"><p>Construí el primer bot para TECglo. Luego Feria de Loja, Canzión Films, EC Connect. <strong>APO Agency dejó de ser "yo solo" y se convirtió en una agencia.</strong></p></div>
-          </div>
-        </div>
-        <div class="tl-item r">
-          <div class="tl-year">Hoy</div>
-          <div class="tl-body">
-            <h3 class="tl-heading">Ingeniería en Software + APO.</h3>
-            <div class="tl-text"><p>Estudio Ing. en Desarrollo y Seguridad en Software en la UEES. <strong>11+ empresas, 6 servicios, una obsesión: hacer que los negocios funcionen mejor con IA.</strong></p></div>
-          </div>
+        <div class="ph-stat">
+          <div class="ph-stat-num">EC</div>
+          <div class="ph-stat-lbl">Ecuador</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- VALUES -->
-  <section id="values">
-    <div class="values-header r">
-      <h2>Lo que nos<br/>define.</h2>
-    </div>
+  <section id="values" class="section">
+    <div class="section-label">Lo que nos define</div>
+    <h2 class="section-h2">Cómo<br/><em>trabajamos.</em></h2>
     <div class="values-grid">
-      <div class="value-cell r">
-        <div class="value-icon">⚡</div>
-        <div class="value-title">Ejecución real</div>
-        <div class="value-text">No prometemos en decks. Ejecutamos en producción. Si no funciona, lo arreglamos. Si funciona, lo escalamos.</div>
+      <div class="val-item">
+        <div class="val-title">Ejecución real</div>
+        <div class="val-desc">No prometemos en presentaciones. Ejecutamos en producción. Si no funciona, lo arreglamos. Si funciona, lo escalamos.</div>
       </div>
-      <div class="value-cell r">
-        <div class="value-icon">🎯</div>
-        <div class="value-title">Resultados medibles</div>
-        <div class="value-text">Cada proyecto tiene un número que lo valida. CPL, ROI, tiempo ahorrado — si no se puede medir, no cuenta.</div>
+      <div class="val-item">
+        <div class="val-title">Resultados medibles</div>
+        <div class="val-desc">Cada proyecto tiene un número que lo valida. CPL, ROI, tiempo ahorrado. Si no se puede medir, no cuenta.</div>
       </div>
-      <div class="value-cell r">
-        <div class="value-icon">🤝</div>
-        <div class="value-title">Aliados, no proveedores</div>
-        <div class="value-text">Nos sentamos del mismo lado que el cliente. Su problema es nuestro problema. Su éxito es nuestra métrica.</div>
+      <div class="val-item">
+        <div class="val-title">Aliados, no proveedores</div>
+        <div class="val-desc">Nos sentamos del mismo lado que el cliente. Su problema es nuestro problema. Su éxito es nuestra métrica.</div>
       </div>
-      <div class="value-cell r">
-        <div class="value-icon">🧠</div>
-        <div class="value-title">IA aplicada, no decorativa</div>
-        <div class="value-text">No usamos IA para parecer modernos. La usamos cuando resuelve un problema real mejor que cualquier alternativa.</div>
+      <div class="val-item">
+        <div class="val-title">IA aplicada</div>
+        <div class="val-desc">No usamos IA para parecer modernos. La usamos cuando resuelve un problema real mejor que cualquier alternativa.</div>
       </div>
-      <div class="value-cell r">
-        <div class="value-icon">🇪🇨</div>
-        <div class="value-title">Contexto local</div>
-        <div class="value-text">Tecnología de primer mundo con entendimiento del mercado ecuatoriano. Sabemos cómo funciona el negocio aquí.</div>
+      <div class="val-item">
+        <div class="val-title">Contexto local</div>
+        <div class="val-desc">Tecnología de primer mundo con entendimiento del mercado ecuatoriano. Sabemos cómo funciona el negocio aquí.</div>
       </div>
-      <div class="value-cell r">
-        <div class="value-icon">🔄</div>
-        <div class="value-title">Mejora continua</div>
-        <div class="value-text">El sistema que entregamos hoy es el punto de partida, no el destino. Cada proyecto evoluciona con el cliente.</div>
+      <div class="val-item">
+        <div class="val-title">Mejora continua</div>
+        <div class="val-desc">El sistema que entregamos hoy es el punto de partida, no el destino. Cada proyecto evoluciona con el cliente.</div>
       </div>
     </div>
   </section>
 
-  <!-- METRICS -->
-  <section id="metrics">
-    <div class="metrics-inner">
-      <div class="metric-cell r">
-        <div class="m-num">11<span>+</span></div>
-        <div class="m-label">Empresas impulsadas</div>
-      </div>
-      <div class="metric-cell r">
-        <div class="m-num">6<span>+</span></div>
-        <div class="m-label">Servicios digitales</div>
-      </div>
-      <div class="metric-cell r">
-        <div class="m-num">3<span>+</span></div>
-        <div class="m-label">Años de experiencia</div>
-      </div>
-      <div class="metric-cell r">
-        <div class="m-num">100<span>%</span></div>
-        <div class="m-label">Con IA integrada</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- KEVIN FULL -->
-  <section id="kevin">
-    <div class="kevin-inner">
-      <div class="r">
-        <span class="kevin-label">/ founder</span>
-        <h2 class="kevin-name">Kevin<br/>Cuadros</h2>
-        <p class="kevin-role">CEO & Founder — APO Agency · 24 años</p>
-        <blockquote class="kevin-quote">"No vine de una familia empresarial ni de un MBA. Vine de necesitar que las cosas funcionaran."</blockquote>
-        <div class="kevin-bio">
-          <p>Fui taxista, ebanista, carpintero y el creador de <strong>APOPET</strong> antes de encontrar mi camino en tecnología. Cada oficio me enseñó algo que hoy aplico en APO.</p>
+  <!-- FOUNDER -->
+  <section id="founder" class="section">
+    <div class="section-label">Founder</div>
+    <div class="founder-grid">
+      <div>
+        <div class="founder-name">Kevin<br/>Cuadros</div>
+        <div class="founder-role">CEO &amp; Founder — APO Agency · 24 años</div>
+        <blockquote class="founder-quote">"No vine de una familia empresarial ni de un MBA. Vine de necesitar que las cosas funcionaran."</blockquote>
+        <div class="founder-bio">
+          <p>Fui taxista, ebanista, carpintero y emprendedor antes de encontrar mi camino en tecnología. Cada oficio me enseñó algo que hoy aplico en APO.</p>
           <p>Hoy dirijo APO Agency y estudio Ing. en Software en la UEES. <strong>No somos un proveedor — somos el aliado que entiende tu negocio y construye contigo.</strong></p>
         </div>
-        <div class="kevin-links">
-          <a href="https://www.linkedin.com/in/kevincuadros/" target="_blank" rel="noopener" class="kevin-link">
+        <div class="founder-links">
+          <a href="https://www.linkedin.com/in/kevincuadros/" target="_blank" rel="noopener" class="founder-link">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
             LinkedIn
           </a>
-          <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener" class="kevin-link">
+          <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener" class="founder-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
             Instagram
           </a>
-          <a href="mailto:hola@apoagency.io" class="kevin-link">
+          <a href="mailto:hola@apoagency.io" class="founder-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
             Email directo
           </a>
         </div>
       </div>
-      <div class="kevin-r r">
-        <div class="kevin-fact"><div class="kf-icon">⚡</div><div><div class="kf-title">Autodidacta en producción</div><div class="kf-desc">Todo aprendido solo, con clientes reales desde el día uno.</div></div></div>
-        <div class="kevin-fact"><div class="kf-icon">🎓</div><div><div class="kf-title">Ing. en Software — UEES</div><div class="kf-desc">Desarrollo, Operación y Seguridad en Software.</div></div></div>
-        <div class="kevin-fact"><div class="kf-icon">🇪🇨</div><div><div class="kf-title">Ecuador, primero</div><div class="kf-desc">Entiende el mercado local porque es parte de él.</div></div></div>
-        <div class="kevin-fact"><div class="kf-icon">🤝</div><div><div class="kf-title">Aliado, no proveedor</div><div class="kf-desc">Relaciones de largo plazo, resultados medibles.</div></div></div>
+      <div class="founder-facts">
+        <div class="founder-fact">
+          <div class="ff-title">Autodidacta en producción</div>
+          <div class="ff-desc">Todo aprendido con clientes reales desde el día uno. Sin cursos teóricos.</div>
+        </div>
+        <div class="founder-fact">
+          <div class="ff-title">Ing. en Software — UEES</div>
+          <div class="ff-desc">Desarrollo, Operación y Seguridad en Software.</div>
+        </div>
+        <div class="founder-fact">
+          <div class="ff-title">Ecuador, primero</div>
+          <div class="ff-desc">Entiende el mercado local porque es parte de él. No teorías importadas.</div>
+        </div>
+        <div class="founder-fact">
+          <div class="ff-title">Aliado de largo plazo</div>
+          <div class="ff-desc">Relaciones de confianza, no transacciones de una vez. Muchos clientes llevan más de 2 años.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story" class="section">
+    <div class="section-label">Historia</div>
+    <h2 class="section-h2" style="margin-bottom:80px">El camino<br/><em>hasta aquí.</em></h2>
+    <div class="story-grid">
+      <div class="story-item">
+        <div class="story-year">2020 — Inicio</div>
+        <div class="story-title">Primer cliente, primera web</div>
+        <div class="story-desc">Empezó como hobbie. Un primer cliente, un primer sitio. La semilla de lo que después sería APO.</div>
+      </div>
+      <div class="story-item">
+        <div class="story-year">2022 — Crecimiento</div>
+        <div class="story-title">Marketing + Automatización</div>
+        <div class="story-desc">Empezamos a integrar campañas pagas con automatizaciones. Los resultados empezaron a hablar solos.</div>
+      </div>
+      <div class="story-item">
+        <div class="story-year">2023 — Expansión</div>
+        <div class="story-title">Chatbots e IA</div>
+        <div class="story-desc">Incorporamos inteligencia artificial al portafolio. Primeros bots de WhatsApp con resultados reales para clientes reales.</div>
+      </div>
+      <div class="story-item">
+        <div class="story-year">Hoy</div>
+        <div class="story-title">APO Agency establecida</div>
+        <div class="story-desc">Más de 50 proyectos, 6 servicios, y una obsesión: hacer que los negocios ecuatorianos funcionen mejor con tecnología.</div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section id="cta">
-    <span class="cta-label r">/ ¿tienes un proyecto?</span>
-    <h2 class="cta-text r">Si tienes un problema<br/>que <em>se repite cada semana,</em><br/>ya lo resolvimos antes.</h2>
-    <div class="cta-btns r">
-      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="cta-btn-wa">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg>
-        Iniciar conversación
-      </a>
-      <a href="portfolio.html" class="cta-btn-sec">Ver proyectos →</a>
+  <div id="cta-band">
+    <div>
+      <div class="cta-band-h2">¿Empezamos<br/>a trabajar juntos?</div>
+      <div class="cta-band-sub">Sin compromiso. Solo una conversación honesta.</div>
     </div>
-  </section>
-
-  <!-- COOKIE BANNER -->
-  <div id="cookie-banner">
-    <p class="cookie-text">Usamos cookies para mejorar tu experiencia. Al continuar navegando aceptas nuestra <a href="terminos.html">política de cookies</a>.</p>
-    <div class="cookie-btns">
-      <button class="cookie-decline" id="cookie-decline">Rechazar</button>
-      <button class="cookie-accept" id="cookie-accept">Aceptar</button>
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="btn-primary">Hablar por WhatsApp</a>
+      <a href="portfolio.html" class="btn-ghost">Ver nuestros proyectos →</a>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <div class="ft-top">
-      <div>
-        <div class="ft-brand-logo">
-          <div style="height:44px;overflow:hidden;display:flex;align-items:center;justify-content:center;width:148px;">
-            <img class="logo-dark"  src="assets/logos/apo-logo-white.png" alt="APO Agency" style="height:160%;width:auto;" onerror="this.closest('div').style.display='none'" />
-            <img class="logo-light" src="assets/logos/apo-logo-black.png" alt="APO Agency" style="height:160%;width:auto;" onerror="this.style.display='none'" />
-          </div>
-        </div>
-        <p class="ft-tagline">Impulsamos empresas con IA. Automatización, bots y estrategia digital en Ecuador.</p>
-        <div class="ft-socials">
-          <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-          <a href="https://www.linkedin.com/in/kevincuadros/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="https://wa.me/593987252978" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.103 1.514 5.831L.057 23.882l6.204-1.428A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.022-1.369l-.36-.214-3.724.857.896-3.638-.235-.374A9.862 9.862 0 012.118 12C2.118 6.535 6.535 2.118 12 2.118c5.464 0 9.882 4.417 9.882 9.882 0 5.464-4.418 9.882-9.882 9.882z"/></svg></a>
-          <a href="mailto:hola@apoagency.io" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
-        </div>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.style.display='none'" />
+        <p>Soluciones digitales para empresas que quieren crecer. Ecuador.</p>
       </div>
       <div>
-        <span class="ft-col-title">Servicios</span>
-        <div class="ft-links">
-          <a href="index.html#services">Desarrollo Web</a>
-          <a href="index.html#services">Ecommerce</a>
-          <a href="index.html#services">Meta & Google Ads</a>
-          <a href="index.html#services">Branding & Identidad</a>
-          <a href="index.html#services">Automatizaciones IA</a>
-          <a href="index.html#services">ChatBots WhatsApp</a>
-        </div>
+        <div class="footer-col-title">Servicios</div>
+        <ul class="footer-links">
+          <li><a href="servicios/diseno-web.html">Diseño Web</a></li>
+          <li><a href="servicios/meta-google-ads.html">Meta &amp; Google Ads</a></li>
+          <li><a href="servicios/software-personalizado.html">Software a Medida</a></li>
+          <li><a href="index.html#contact">Chatbots IA</a></li>
+        </ul>
       </div>
       <div>
-        <span class="ft-col-title">Páginas</span>
-        <div class="ft-links">
-          <a href="index.html">Inicio</a>
-          <a href="portfolio.html">Proyectos</a>
-          <a href="about.html">Nosotros</a>
-          <a href="index.html#contact">Contacto</a>
-        </div>
-      </div>
-      <div>
-        <span class="ft-col-title">Contacto</span>
-        <div class="ft-links">
-          <a href="https://wa.me/593987252978" target="_blank" rel="noopener">+593 98 725 2978</a>
-          <a href="mailto:hola@apoagency.io">hola@apoagency.io</a>
-          <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">@theapoagency</a>
-          <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener">@kevin_cuadros</a>
-        </div>
+        <div class="footer-col-title">Empresa</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Nosotros</a></li>
+          <li><a href="portfolio.html">Proyectos</a></li>
+          <li><a href="index.html#contact">Contacto</a></li>
+          <li><a href="terminos.html">Términos</a></li>
+        </ul>
       </div>
     </div>
-    <div class="ft-bottom">
-      <span class="ft-copy">© 2026 APO Agency · Ecuador</span>
-      <div class="ft-legal">
-        <a href="terminos.html">Términos y condiciones</a>
-        <a href="terminos.html#cookies">Política de cookies</a>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 APO Agency · RUC 0943518282001 · Ecuador</span>
+      <div class="footer-legal">
+        <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/593987252978" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="terminos.html">Términos y Condiciones</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    const html = document.documentElement;
-    const cb = document.getElementById('cookie-banner');
-    if (localStorage.getItem('apo-cookies')) cb.style.display = 'none';
-    document.getElementById('cookie-accept').onclick = () => { localStorage.setItem('apo-cookies','1'); cb.classList.add('hide'); setTimeout(()=>cb.style.display='none',400); };
-    document.getElementById('cookie-decline').onclick = () => { localStorage.setItem('apo-cookies','0'); cb.classList.add('hide'); setTimeout(()=>cb.style.display='none',400); };
+  <div id="cookie-banner">
+    <p class="cookie-text">Usamos cookies para mejorar tu experiencia. <a href="terminos.html#cookies">Ver política</a>.</p>
+    <div class="cookie-btns">
+      <button class="cookie-btn cookie-decline" id="cookie-decline">Rechazar</button>
+      <button class="cookie-btn cookie-accept" id="cookie-accept">Aceptar</button>
+    </div>
+  </div>
 
-    html.dataset.theme = localStorage.getItem('apo-theme') || 'dark';
-    document.getElementById('theme-btn').addEventListener('click', () => {
-      const n = html.dataset.theme === 'dark' ? 'light' : 'dark';
-      html.dataset.theme = n; localStorage.setItem('apo-theme', n);
-    });
-    const cur = document.getElementById('cursor');
-    const isTouch = window.matchMedia('(hover:none),(pointer:coarse)').matches;
-    if (!isTouch) {
-      let cx=-100,cy=-100,tx=-100,ty=-100;
-      document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
-      (function loop(){ cx+=(tx-cx)*.13; cy+=(ty-cy)*.13; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(loop); })();
-      document.querySelectorAll('a,button,.value-cell,.kevin-fact').forEach(el => {
-        el.addEventListener('mouseenter', () => cur.classList.add('expand'));
-        el.addEventListener('mouseleave', () => cur.classList.remove('expand'));
-      });
-    }
+  <script>
     const hamBtn = document.getElementById('ham-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    function toggleMenu(open) {
+    hamBtn.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
       hamBtn.classList.toggle('open', open);
-      mobileMenu.classList.toggle('open', open);
       hamBtn.setAttribute('aria-expanded', open);
       document.body.style.overflow = open ? 'hidden' : '';
-    }
-    hamBtn.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
-    document.querySelectorAll('.has-dropdown').forEach(li => {
-      li.querySelector('.nav-dropdown-btn').addEventListener('click', e => { e.stopPropagation(); const o = li.classList.toggle('open'); li.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', o); });
     });
-    document.addEventListener('click', () => document.querySelectorAll('.has-dropdown.open').forEach(li => li.classList.remove('open')));
-    const ro = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); ro.unobserve(e.target); } });
-    }, {threshold:0.07});
-    document.querySelectorAll('.r').forEach((el,i) => { el.style.transitionDelay=(i%4)*.08+'s'; ro.observe(el); });
-    window.addEventListener('load', () => {
-      document.querySelectorAll('.about-hero .r').forEach((el,i) => setTimeout(() => el.classList.add('on'), 100+i*200));
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamBtn.classList.remove('open');
+        hamBtn.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      });
     });
+    const banner = document.getElementById('cookie-banner');
+    if (!localStorage.getItem('cookie-choice')) setTimeout(() => banner.classList.add('show'), 1800);
+    document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem('cookie-choice', 'accepted'); banner.classList.remove('show'); });
+    document.getElementById('cookie-decline').addEventListener('click', () => { localStorage.setItem('cookie-choice', 'declined'); banner.classList.remove('show'); });
   </script>
 </body>
 </html>
