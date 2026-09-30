@@ -4,443 +4,421 @@
   <meta charset="UTF-8" />
   <meta name="google-site-verification" content="a2YSOazoYe2IDFsHd9rMREJ3XRKydkXiPgGgE6brOSE" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proyectos — APO Agency Ecuador</title>
-  <meta name="description" content="Proyectos destacados de APO Agency. Sitios web, chatbots IA, campañas de publicidad y automatizaciones para empresas ecuatorianas." />
+  <title>Proyectos — APO Agency · Agencia Digital Ecuador</title>
+  <meta name="description" content="Portfolio de APO Agency. Proyectos de diseño web, chatbots con IA, Meta Ads, automatizaciones y software a medida para empresas en Ecuador." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://apoagency.io/portfolio.html" />
-  <meta property="og:title" content="Proyectos — APO Agency Ecuador" />
-  <meta property="og:description" content="Resultados reales para empresas ecuatorianas." />
+  <meta property="og:title" content="Proyectos — APO Agency" />
+  <meta property="og:description" content="Portfolio de APO Agency. Proyectos reales, resultados medibles." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://apoagency.io/portfolio.html" />
   <meta property="og:image" content="https://apoagency.io/assets/og-imageV2.png" />
-  <meta property="og:locale" content="es_EC" />
-  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png" />
   <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #0B1D35;
-      --navy-d: #07111F;
-      --white:  #FFFFFF;
-      --off:    #F4F5F7;
-      --gray:   #8B93A1;
-      --light:  #CBD2DC;
-      --border: rgba(255,255,255,.08);
+      --bg: #FFFFFF; --bg-surface: #F8FAFC; --text: #0A0F1E; --text-muted: #6B7280;
+      --border: rgba(10,15,30,.08); --accent: #0B1D35;
+      --btn-bg: #0B1D35; --btn-text: #FFFFFF; --card-bg: #FFFFFF;
+      --nav-bg: rgba(255,255,255,0); --nav-bg-scroll: rgba(255,255,255,0.92);
+    }
+    [data-theme="dark"] {
+      --bg: #07111F; --bg-surface: #0B1D35; --text: #F8FAFC; --text-muted: #94A3B8;
+      --border: rgba(248,250,252,.08); --accent: #3B82F6;
+      --btn-bg: #F8FAFC; --btn-text: #07111F; --card-bg: #0B1D35;
+      --nav-bg: rgba(7,17,31,0); --nav-bg-scroll: rgba(7,17,31,0.92);
     }
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
-    body { background: var(--navy-d); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    ::-webkit-scrollbar { display: none; }
-    * { scrollbar-width: none; }
+    body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background .3s, color .3s; }
+    ::-webkit-scrollbar { display: none; } * { scrollbar-width: none; }
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 48px;
-      background: rgba(7,17,31,.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(20px); }
+    .reveal.visible { animation: fadeUp .5s ease forwards; }
+
+    nav { position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:var(--nav-bg);transition:background .3s,border-color .3s,backdrop-filter .3s,padding .3s; }
+    nav.scrolled { background:var(--nav-bg-scroll);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 48px; }
+    .nav-logo img { height:28px;display:block; }
+    .nav-links { display:flex;gap:36px;list-style:none; }
+    .nav-links a { text-decoration:none;color:var(--text);font-size:14px;font-weight:500;opacity:.7;transition:opacity .2s; }
+    .nav-links a:hover { opacity:1; }
+    .nav-right { display:flex;align-items:center;gap:12px; }
+    .btn-ghost { background:transparent;border:1.5px solid var(--border);color:var(--text);padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s; }
+    .btn-ghost:hover { border-color:var(--accent);color:var(--accent); }
+    .btn-theme { background:transparent;border:none;cursor:pointer;color:var(--text);padding:6px;display:flex;align-items:center;transition:opacity .2s; }
+    .btn-theme:hover { opacity:.7; }
+    .btn-cta { background:var(--btn-bg);color:var(--btn-text);padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;transition:opacity .2s,transform .15s; }
+    .btn-cta:hover { opacity:.85;transform:translateY(-1px); }
+    .hamburger { display:none;background:none;border:none;cursor:pointer;color:var(--text);padding:4px; }
+    .mobile-overlay { display:none;position:fixed;inset:0;background:var(--bg);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:40px; }
+    .mobile-overlay.open { display:flex; }
+    .mobile-overlay a { font-size:32px;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-1px; }
+    .mobile-close { position:absolute;top:24px;right:24px;background:none;border:none;cursor:pointer;color:var(--text); }
+    .nav-logo .isologo { display:none; }
+
+    section { padding:100px 48px; }
+    .section-eyebrow { font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;display:flex;align-items:center;gap:10px; }
+    .section-eyebrow::before { content:'';display:block;width:24px;height:1px;background:var(--text-muted); }
+    .section-h2 { font-size:clamp(36px,5vw,68px);font-weight:800;letter-spacing:-2px;line-height:1.0; }
+    .section-h2 em { font-style:italic;font-weight:300; }
+    .btn-primary { background:var(--btn-bg);color:var(--btn-text);padding:14px 28px;border-radius:10px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;transition:opacity .2s,transform .15s; }
+    .btn-primary:hover { opacity:.85;transform:translateY(-2px); }
+
+    /* HERO */
+    .hero { min-height:65vh;display:flex;flex-direction:column;justify-content:center;padding:140px 48px 80px;background:radial-gradient(ellipse 60% 60% at 80% 20%, rgba(11,29,53,.04) 0%, transparent 70%); }
+    .hero-eyebrow { display:flex;align-items:center;gap:12px;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--text-muted);margin-bottom:28px;animation:fadeUp .6s ease forwards; }
+    .hero-eyebrow::before { content:'';display:block;width:32px;height:1px;background:var(--text-muted); }
+    .hero-h1 { font-size:clamp(56px,9vw,120px);font-weight:800;letter-spacing:-3px;line-height:.92;margin-bottom:32px;max-width:800px;animation:fadeUp .6s .1s ease both; }
+    .hero-h1 em { font-style:italic;font-weight:300; }
+    .hero-sub { font-size:16px;line-height:1.75;color:var(--text-muted);max-width:480px;animation:fadeUp .6s .2s ease both; }
+
+    /* FILTERS */
+    .filters-section { padding:0 48px 60px; }
+    .filters { display:flex;gap:8px;flex-wrap:wrap; }
+    .filter-btn { padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;border:1.5px solid var(--border);background:transparent;color:var(--text-muted);transition:all .2s; }
+    .filter-btn:hover, .filter-btn.active { background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg); }
+
+    /* PROJECTS GRID */
+    .projects-section { border-top:1px solid var(--border);padding-top:80px; }
+    .projects-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:0; }
+    .project-card { border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--card-bg);transition:transform .3s,box-shadow .3s;cursor:default; }
+    .project-card:hover { transform:translateY(-4px);box-shadow:0 24px 48px rgba(0,0,0,.1); }
+    .project-card[data-hidden="true"] { display:none; }
+    .browser-mockup { width:100%;aspect-ratio:16/9;position:relative;overflow:hidden; }
+    .browser-bar { position:absolute;top:0;left:0;right:0;height:36px;background:rgba(0,0,0,.25);display:flex;align-items:center;padding:0 14px;gap:6px;z-index:2; }
+    .browser-dot { width:10px;height:10px;border-radius:50%; }
+    .browser-dot:nth-child(1){background:#FF5F57;} .browser-dot:nth-child(2){background:#FEBC2E;} .browser-dot:nth-child(3){background:#28C840;}
+    .browser-url { background:rgba(255,255,255,.12);border-radius:4px;padding:3px 12px;font-size:10px;color:rgba(255,255,255,.6);margin-left:10px;font-family:monospace; }
+    .browser-screen { position:absolute;inset:0; }
+    .project-overlay { position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 100%);padding:24px 20px 20px;transform:translateY(4px);transition:transform .3s; }
+    .project-card:hover .project-overlay { transform:translateY(0); }
+    .project-tag { display:inline-block;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:rgba(255,255,255,.15);color:#fff;padding:3px 8px;border-radius:4px;margin-bottom:8px; }
+    .project-name { font-size:20px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:4px; }
+    .project-client { font-size:12px;color:rgba(255,255,255,.6); }
+    .project-metric { font-size:28px;font-weight:800;color:#fff;letter-spacing:-1px;margin-top:8px; }
+    .project-metric-label { font-size:11px;color:rgba(255,255,255,.6); }
+    .screen-inner { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:36px 24px;top:36px; }
+
+    /* CATEGORIES */
+    .categories-section { border-top:1px solid var(--border);background:var(--bg-surface); }
+    .cat-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px; }
+    .cat-card { background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:12px; }
+    .cat-count { font-size:40px;font-weight:800;letter-spacing:-2px;color:var(--accent);line-height:1; }
+    .cat-name { font-size:16px;font-weight:700;color:var(--text); }
+    .cat-desc { font-size:13px;line-height:1.65;color:var(--text-muted); }
+
+    /* CTA */
+    .cta-band { background:#0B1D35;padding:100px 48px;text-align:center; }
+    .cta-band h2 { font-size:clamp(32px,4vw,56px);font-weight:800;letter-spacing:-2px;color:#F8FAFC;margin-bottom:16px; }
+    .cta-band h2 em { font-style:italic;font-weight:300; }
+    .cta-band p { font-size:16px;color:rgba(248,250,252,.6);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.75; }
+    .btn-white { background:#fff;color:#0B1D35;padding:14px 28px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:opacity .2s,transform .15s; }
+    .btn-white:hover { opacity:.9;transform:translateY(-2px); }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border);padding:64px 48px 32px; }
+    .footer-top { display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:48px; }
+    .footer-brand img { height:24px;margin-bottom:16px; }
+    .footer-brand p { font-size:13px;line-height:1.75;color:var(--text-muted);max-width:280px; }
+    .footer-col h4 { font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px; }
+    .footer-col ul { list-style:none;display:flex;flex-direction:column;gap:10px; }
+    .footer-col a { text-decoration:none;font-size:14px;color:var(--text-muted);transition:color .2s; }
+    .footer-col a:hover { color:var(--text); }
+    .footer-bottom { border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px; }
+    .footer-bottom p { font-size:12px;color:var(--text-muted); }
+    .footer-socials { display:flex;gap:16px; }
+    .footer-socials a { font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s; }
+    .footer-socials a:hover { color:var(--text); }
+
+    @media (max-width:768px) {
+      nav { padding:16px 24px; } nav.scrolled { padding:12px 24px; }
+      .nav-links, .nav-right .btn-ghost, .nav-right .btn-cta, .nav-right #lang-btn { display:none; }
+      .hamburger { display:block; }
+      .nav-logo .wordmark { display:none; }
+      .nav-logo .isologo { display:block !important; }
+      section { padding:72px 24px; }
+      .hero { padding:120px 24px 64px; }
+      .filters-section { padding:0 24px 48px; }
+      .projects-grid { grid-template-columns:1fr; }
+      .cat-grid { grid-template-columns:1fr; }
+      .footer-top { grid-template-columns:1fr; }
     }
-    .nav-logo { text-decoration: none; display: flex; align-items: center; }
-    .nav-logo img { height: 36px; width: auto; display: block; }
-    .nav-logo-text { font-size: 20px; font-weight: 800; color: var(--white); display: none; }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--light); text-decoration: none; transition: color .2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-cta { background: var(--white); color: var(--navy-d) !important; padding: 10px 20px; font-size: 12px !important; font-weight: 700 !important; letter-spacing: .06em !important; }
-    .nav-cta:hover { background: var(--off) !important; }
-    #ham-btn { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px; }
-    #ham-btn span { display: block; width: 100%; height: 1.5px; background: var(--white); transition: transform .3s, opacity .3s; }
-    #ham-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    #ham-btn.open span:nth-child(2) { opacity: 0; }
-    #ham-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    #mobile-menu {
-      position: fixed; inset: 0; z-index: 99; background: var(--navy-d);
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 80px 36px 48px;
-      opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .3s, visibility .3s;
-    }
-    #mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
-    .mob-links { display: flex; flex-direction: column; width: 100%; }
-    .mob-links a { font-size: 28px; font-weight: 800; color: var(--white); text-decoration: none; padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .mob-links a:first-child { border-top: 1px solid var(--border); }
-    .mob-links a span { font-size: 18px; color: var(--gray); }
-    .mob-footer-nav { margin-top: 40px; display: flex; gap: 24px; }
-    .mob-footer-nav a { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); text-decoration: none; }
-
-    .section { padding: 120px 48px; }
-    .section-label { font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gray); }
-    .section-h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 800; letter-spacing: -2px; line-height: 1; }
-    .section-h2 em { font-style: italic; font-weight: 300; color: var(--light); }
-
-    #page-hero { padding: 160px 48px 100px; border-bottom: 1px solid var(--border); }
-    .ph-label { font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-    .ph-label::before { content: ''; width: 24px; height: 1px; background: var(--gray); }
-    .ph-h1 { font-size: clamp(52px, 8vw, 96px); font-weight: 800; letter-spacing: -3px; line-height: .95; margin-bottom: 40px; max-width: 800px; }
-    .ph-h1 em { font-style: italic; font-weight: 300; color: var(--light); }
-    .ph-desc { font-size: 16px; font-weight: 400; color: var(--light); line-height: 1.7; max-width: 500px; }
-
-    .filter-tabs { display: flex; gap: 8px; margin-bottom: 64px; flex-wrap: wrap; }
-    .filter-tab { font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; background: transparent; border: 1px solid var(--border); color: var(--gray); padding: 10px 20px; cursor: pointer; transition: all .2s; }
-    .filter-tab:hover { color: var(--white); border-color: rgba(255,255,255,.2); }
-    .filter-tab.active { background: var(--white); color: var(--navy-d); border-color: var(--white); }
-
-    .projects-table { }
-    .proj-row { display: grid; grid-template-columns: 60px 1fr 160px 140px; align-items: center; gap: 32px; padding: 36px 0; border-top: 1px solid var(--border); transition: background .2s; }
-    .proj-row:last-child { border-bottom: 1px solid var(--border); }
-    .proj-row:hover { background: rgba(255,255,255,.025); margin: 0 -32px; padding-left: 32px; padding-right: 32px; }
-    .proj-idx { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--gray); }
-    .proj-tags-row { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
-    .proj-tag { font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gray); border: 1px solid var(--border); padding: 3px 8px; }
-    .proj-name { font-size: 20px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 4px; }
-    .proj-client { font-size: 12px; font-weight: 400; color: var(--gray); }
-    .proj-metric-col { text-align: right; }
-    .proj-val { font-size: 32px; font-weight: 800; letter-spacing: -1.5px; line-height: 1; }
-    .proj-val-lbl { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); margin-top: 4px; }
-    .proj-link-col { text-align: right; }
-    .proj-link { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--light); text-decoration: none; transition: color .2s; white-space: nowrap; }
-    .proj-link:hover { color: var(--white); }
-
-    #categories { border-top: 1px solid var(--border); background: var(--navy); }
-    .cat-grid { margin-top: 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.05); }
-    .cat-item { background: var(--navy); padding: 48px 40px; }
-    .cat-num { font-size: 56px; font-weight: 800; letter-spacing: -3px; line-height: 1; margin-bottom: 16px; }
-    .cat-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-    .cat-desc { font-size: 13px; color: var(--light); line-height: 1.7; }
-
-    #cta-band { border-top: 1px solid var(--border); padding: 100px 48px; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
-    .cta-band-h2 { font-size: clamp(32px, 4vw, 56px); font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 12px; }
-    .cta-band-sub { font-size: 15px; color: var(--light); }
-    .btn-primary { background: var(--white); color: var(--navy-d); padding: 16px 32px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: background .2s, transform .2s; display: inline-block; }
-    .btn-primary:hover { background: var(--off); transform: translateY(-1px); }
-    .btn-ghost { color: var(--light); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
-    .btn-ghost:hover { color: var(--white); }
-
-    footer { border-top: 1px solid var(--border); padding: 60px 48px 40px; }
-    .footer-top { display: grid; grid-template-columns: 1fr auto auto; gap: 80px; padding-bottom: 60px; border-bottom: 1px solid var(--border); }
-    .footer-brand img { height: 32px; margin-bottom: 20px; display: block; }
-    .footer-brand p { font-size: 13px; color: var(--gray); line-height: 1.7; max-width: 260px; }
-    .footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); margin-bottom: 20px; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-links a { font-size: 13px; font-weight: 500; color: var(--light); text-decoration: none; transition: color .2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 32px; flex-wrap: wrap; }
-    .footer-copy { font-size: 11px; color: var(--gray); }
-    .footer-legal { display: flex; gap: 20px; }
-    .footer-legal a { font-size: 11px; color: var(--gray); text-decoration: none; transition: color .2s; }
-    .footer-legal a:hover { color: var(--white); }
-
-    #cookie-banner { position: fixed; bottom: 24px; left: 24px; right: 24px; z-index: 500; background: var(--navy); border: 1px solid var(--border); padding: 20px 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; transform: translateY(120%); transition: transform .4s; max-width: 700px; }
-    #cookie-banner.show { transform: translateY(0); }
-    .cookie-text { font-size: 13px; color: var(--light); flex: 1; }
-    .cookie-text a { color: var(--white); }
-    .cookie-btns { display: flex; gap: 12px; }
-    .cookie-btn { font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; padding: 10px 18px; }
-    .cookie-accept { background: var(--white); color: var(--navy-d); border: none; }
-    .cookie-decline { background: transparent; color: var(--gray); border: 1px solid var(--border); }
-
-    @media(max-width: 960px) {
-      .nav-links { display: none; }
-      #ham-btn { display: flex; }
-      nav { padding: 16px 24px; }
-      .section { padding: 80px 24px; }
-      #page-hero { padding: 140px 24px 72px; }
-      .proj-row { grid-template-columns: 40px 1fr; gap: 20px; }
-      .proj-metric-col, .proj-link-col { display: none; }
-      .cat-grid { grid-template-columns: 1fr 1fr; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-      #cta-band { flex-direction: column; padding: 72px 24px; }
-    }
-    @media(max-width: 600px) {
-      .section { padding: 64px 20px; }
-      #page-hero { padding: 120px 20px 64px; }
-      .cat-grid { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; }
+    @media (max-width:1024px) {
+      .cat-grid { grid-template-columns:repeat(2,1fr); }
+      .footer-top { grid-template-columns:1fr 1fr; }
+      .footer-brand { grid-column:span 2; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <img src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.style.display='none';document.querySelector('.nav-logo-text').style.display='block'" />
-      <span class="nav-logo-text">APO</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html#services">Servicios</a></li>
-      <li><a href="portfolio.html" class="active">Proyectos</a></li>
-      <li><a href="about.html">Nosotros</a></li>
-      <li><a href="index.html#contact" class="nav-cta">Contáctanos</a></li>
-    </ul>
-    <button id="ham-btn" aria-label="Menú" aria-expanded="false">
-      <span></span><span></span><span></span>
+<div class="mobile-overlay" id="mobile-overlay">
+  <button class="mobile-close" id="mobile-close">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="index.html#servicios" data-i18n data-es="Servicios" data-en="Services" onclick="closeMobile()">Servicios</a>
+  <a href="portfolio.html" data-i18n data-es="Proyectos" data-en="Projects" onclick="closeMobile()">Proyectos</a>
+  <a href="about.html" data-i18n data-es="Nosotros" data-en="About" onclick="closeMobile()">Nosotros</a>
+  <div style="display:flex;gap:12px;margin-top:16px">
+    <button class="btn-ghost" id="lang-btn-mobile" onclick="toggleLang()">ES</button>
+    <button class="btn-theme" onclick="toggleTheme()">
+      <svg id="theme-icon-mobile" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
     </button>
-  </nav>
+  </div>
+</div>
 
-  <div id="mobile-menu">
-    <div class="mob-links">
-      <a href="index.html#services">Servicios <span>→</span></a>
-      <a href="portfolio.html">Proyectos <span>→</span></a>
-      <a href="about.html">Nosotros <span>→</span></a>
-      <a href="index.html#contact">Contacto <span>→</span></a>
+<nav id="navbar">
+  <a href="/" class="nav-logo" style="text-decoration:none">
+    <img class="wordmark" src="assets/logos/apo-logo-black.png" id="nav-logo-img" alt="APO Agency" />
+    <img class="isologo" src="assets/logos/isologo-black.png" id="nav-isologo-img" alt="APO" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#servicios" data-i18n data-es="Servicios" data-en="Services">Servicios</a></li>
+    <li><a href="portfolio.html" data-i18n data-es="Proyectos" data-en="Projects" style="opacity:1">Proyectos</a></li>
+    <li><a href="about.html" data-i18n data-es="Nosotros" data-en="About">Nosotros</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-ghost" id="lang-btn" onclick="toggleLang()">ES</button>
+    <button class="btn-theme" onclick="toggleTheme()" aria-label="Cambiar tema">
+      <svg id="theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <a href="index.html#contacto" class="btn-cta" data-i18n data-es="Iniciar proyecto" data-en="Start project">Iniciar proyecto</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="openMobile()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow" data-i18n data-es="Portfolio" data-en="Portfolio">Portfolio</p>
+  <h1 class="hero-h1">Trabajo real,<br><em>resultados reales.</em></h1>
+  <p class="hero-sub" data-i18n data-es="Cada proyecto es una historia de crecimiento. Aquí están los números que lo demuestran." data-en="Every project is a growth story. Here are the numbers that prove it.">Cada proyecto es una historia de crecimiento. Aquí están los números que lo demuestran.</p>
+</section>
+
+<!-- FILTERS -->
+<div class="filters-section reveal">
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterProjects('all')" data-i18n data-es="Todos" data-en="All">Todos</button>
+    <button class="filter-btn" onclick="filterProjects('web')" data-i18n data-es="Web" data-en="Web">Web</button>
+    <button class="filter-btn" onclick="filterProjects('chatbot')" data-i18n data-es="Chatbot IA" data-en="AI Chatbot">Chatbot IA</button>
+    <button class="filter-btn" onclick="filterProjects('ads')" data-i18n data-es="Ads" data-en="Ads">Ads</button>
+    <button class="filter-btn" onclick="filterProjects('software')" data-i18n data-es="Software" data-en="Software">Software</button>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="projects-section" style="border-top:1px solid var(--border);padding:80px 48px">
+  <div class="projects-grid reveal" id="projects-grid">
+
+    <div class="project-card" data-category="web">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">buscacasa.ec</span></div>
+        <div class="browser-screen" style="background:linear-gradient(135deg,#0B1D35 0%,#1a3a6b 40%,#0d2d52 100%)">
+          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.1);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Busca tu hogar ideal</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">+2,000 propiedades</div></div></div>
+        </div>
+        <div class="project-overlay"><span class="project-tag">Web</span><div class="project-name">BuscaCasa</div><div class="project-client">Portal inmobiliario · Ecuador</div><div class="project-metric">+180%</div><div class="project-metric-label">tráfico orgánico</div></div>
+      </div>
     </div>
-    <div class="mob-footer-nav">
-      <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">Instagram</a>
-      <a href="mailto:hola@apoagency.io">Email</a>
+
+    <div class="project-card" data-category="chatbot">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">ferialoja.com</span></div>
+        <div class="browser-screen" style="background:linear-gradient(135deg,#7C2D12 0%,#C2410C 50%,#EA580C 100%)">
+          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.15);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Asistente de Feria</div><div style="color:rgba(255,255,255,.6);font-size:11px;margin-top:4px">WhatsApp · IA</div></div></div>
+        </div>
+        <div class="project-overlay"><span class="project-tag">Chatbot IA</span><div class="project-name">Feria de Loja</div><div class="project-client">Evento cultural · Ecuador</div><div class="project-metric">5,200+</div><div class="project-metric-label">consultas atendidas</div></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="software">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">flexman.app</span></div>
+        <div class="browser-screen" style="background:linear-gradient(135deg,#064E3B 0%,#065F46 50%,#047857 100%)">
+          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Panel de gestión</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">SaaS · Automatización</div></div></div>
+        </div>
+        <div class="project-overlay"><span class="project-tag">Software</span><div class="project-name">Flexman</div><div class="project-client">Software SaaS · Latam</div><div class="project-metric">-65%</div><div class="project-metric-label">tiempo operativo</div></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="ads">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">interhome.ec</span></div>
+        <div class="browser-screen" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 60%,#3B82F6 100%)">
+          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Campañas activas</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">Meta · Google Ads</div></div></div>
+        </div>
+        <div class="project-overlay"><span class="project-tag">Meta Ads</span><div class="project-name">Interhome</div><div class="project-client">Inmobiliaria · Ecuador</div><div class="project-metric">$1.20</div><div class="project-metric-label">CPL · 3× ROI</div></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="chatbot">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">ec-connect.io</span></div>
+        <div class="browser-screen" style="background:linear-gradient(135deg,#1e1b4b 0%,#3730a3 60%,#4f46e5 100%)">
+          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Asistente corporativo</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">IA · Integración CRM</div></div></div>
+        </div>
+        <div class="project-overlay"><span class="project-tag">Chatbot IA</span><div class="project-name">EC Connect</div><div class="project-client">Telecomunicaciones · Ecuador</div><div class="project-metric">-40%</div><div class="project-metric-label">carga en atención al cliente</div></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="web">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">cancionfilms.com</span></div>
+        <div class="browser-screen" style="background:linear-gradient(135deg,#1c1917 0%,#44403c 50%,#57534e 100%)">
+          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.1);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Portafolio cinematográfico</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">Producción · Ecuador</div></div></div>
+        </div>
+        <div class="project-overlay"><span class="project-tag">Web</span><div class="project-name">Canción Films</div><div class="project-client">Productora audiovisual · Ecuador</div><div class="project-metric">+240%</div><div class="project-metric-label">contactos entrantes</div></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="software">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">intelnexo.com</span></div>
+        <div class="browser-screen" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#1d4ed8 100%)">
+          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.1);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Sistema de gestión</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">Software · Enterprise</div></div></div>
+        </div>
+        <div class="project-overlay"><span class="project-tag">Software</span><div class="project-name">Intelnexo</div><div class="project-client">Tecnología · Ecuador</div><div class="project-metric">3×</div><div class="project-metric-label">eficiencia de procesos</div></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="ads">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">tecglo.ec</span></div>
+        <div class="browser-screen" style="background:linear-gradient(135deg,#134e4a 0%,#0f766e 50%,#14b8a6 100%)">
+          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Analytics dashboard</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">Meta · Google · TikTok</div></div></div>
+        </div>
+        <div class="project-overlay"><span class="project-tag">Ads</span><div class="project-name">Tecglo</div><div class="project-client">Tecnología · Ecuador</div><div class="project-metric">$0.95</div><div class="project-metric-label">CPL promedio</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories-section reveal">
+  <p class="section-eyebrow" data-i18n data-es="Por categoría" data-en="By category">Por categoría</p>
+  <h2 class="section-h2">Áreas de<br><em>especialización.</em></h2>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="cat-count">3</div>
+      <div class="cat-name" data-i18n data-es="Diseño Web" data-en="Web Design">Diseño Web</div>
+      <p class="cat-desc" data-i18n data-es="Sitios y portales que convierten visitantes en clientes con diseño moderno y alto rendimiento." data-en="Sites and portals that convert visitors into clients with modern design and high performance.">Sitios y portales que convierten visitantes en clientes con diseño moderno y alto rendimiento.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-count">2</div>
+      <div class="cat-name" data-i18n data-es="Chatbots IA" data-en="AI Chatbots">Chatbots IA</div>
+      <p class="cat-desc" data-i18n data-es="Asistentes inteligentes que atienden, califican y convierten prospectos automáticamente." data-en="Intelligent assistants that attend to, qualify and automatically convert prospects.">Asistentes inteligentes que atienden, califican y convierten prospectos automáticamente.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-count">2</div>
+      <div class="cat-name" data-i18n data-es="Meta & Google Ads" data-en="Meta & Google Ads">Meta & Google Ads</div>
+      <p class="cat-desc" data-i18n data-es="Campañas de pago optimizadas para generar el mayor retorno con el menor costo por lead." data-en="Optimized paid campaigns to generate the highest return with the lowest cost per lead.">Campañas de pago optimizadas para generar el mayor retorno con el menor costo por lead.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-count">2</div>
+      <div class="cat-name" data-i18n data-es="Software a Medida" data-en="Custom Software">Software a Medida</div>
+      <p class="cat-desc" data-i18n data-es="Aplicaciones y sistemas personalizados que automatizan y escalan las operaciones de tu empresa." data-en="Custom applications and systems that automate and scale your company's operations.">Aplicaciones y sistemas personalizados que automatizan y escalan las operaciones de tu empresa.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-count">50+</div>
+      <div class="cat-name" data-i18n data-es="Proyectos totales" data-en="Total projects">Proyectos totales</div>
+      <p class="cat-desc" data-i18n data-es="Más de 50 proyectos completados en Ecuador y Latinoamérica para empresas de todos los tamaños." data-en="Over 50 completed projects in Ecuador and Latin America for companies of all sizes.">Más de 50 proyectos completados en Ecuador y Latinoamérica para empresas de todos los tamaños.</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-count">3×</div>
+      <div class="cat-name" data-i18n data-es="Crecimiento promedio" data-en="Average growth">Crecimiento promedio</div>
+      <p class="cat-desc" data-i18n data-es="Nuestros clientes triplican sus métricas clave en promedio durante los primeros 90 días." data-en="Our clients triple their key metrics on average during the first 90 days.">Nuestros clientes triplican sus métricas clave en promedio durante los primeros 90 días.</p>
     </div>
   </div>
+</section>
 
-  <section id="page-hero">
-    <div class="ph-label">Proyectos</div>
-    <h1 class="ph-h1">Trabajo real,<br/><em>resultados reales.</em></h1>
-    <p class="ph-desc">Cada proyecto tiene una historia y un número detrás. Aquí están algunos de los que más nos enorgullecen.</p>
-  </section>
+<!-- CTA -->
+<div class="cta-band reveal">
+  <h2 data-i18n data-es="¿Tu empresa es la próxima?" data-en="Is your company next?">¿Tu empresa es <em>la próxima?</em></h2>
+  <p data-i18n data-es="Cuéntanos sobre tu proyecto. Te respondemos en menos de 24 horas con una propuesta sin costo." data-en="Tell us about your project. We respond in under 24 hours with a free proposal.">Cuéntanos sobre tu proyecto. Te respondemos en menos de 24 horas con una propuesta sin costo.</p>
+  <a href="index.html#contacto" class="btn-white" data-i18n data-es="Iniciar proyecto" data-en="Start project">Iniciar proyecto</a>
+</div>
 
-  <section class="section">
-    <div class="filter-tabs">
-      <button class="filter-tab active" data-filter="all">Todos</button>
-      <button class="filter-tab" data-filter="web">Web</button>
-      <button class="filter-tab" data-filter="chatbot">Chatbot IA</button>
-      <button class="filter-tab" data-filter="ads">Ads</button>
-      <button class="filter-tab" data-filter="software">Software</button>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="assets/logos/apo-logo-black.png" id="footer-logo-img" alt="APO Agency" />
+      <p data-i18n data-es="Agencia digital en Ecuador especializada en tecnología con propósito." data-en="Digital agency in Ecuador specializing in purposeful technology.">Agencia digital en Ecuador especializada en tecnología con propósito.</p>
     </div>
-
-    <div class="projects-table" id="projects-table">
-      <div class="proj-row" data-category="chatbot">
-        <span class="proj-idx">01</span>
-        <div class="proj-main">
-          <div class="proj-tags-row"><span class="proj-tag">Chatbot IA</span><span class="proj-tag">WhatsApp</span></div>
-          <div class="proj-name">Bot de Atención al Cliente</div>
-          <div class="proj-client">Feria de Loja</div>
-        </div>
-        <div class="proj-metric-col">
-          <div class="proj-val">500+</div>
-          <div class="proj-val-lbl">conv./mes</div>
-        </div>
-        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
-      </div>
-      <div class="proj-row" data-category="web">
-        <span class="proj-idx">02</span>
-        <div class="proj-main">
-          <div class="proj-tags-row"><span class="proj-tag">Diseño Web</span><span class="proj-tag">Plataforma</span></div>
-          <div class="proj-name">Plataforma de Bienes Raíces</div>
-          <div class="proj-client">BuscaCasa Ecuador</div>
-        </div>
-        <div class="proj-metric-col">
-          <div class="proj-val">3×</div>
-          <div class="proj-val-lbl">más leads</div>
-        </div>
-        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
-      </div>
-      <div class="proj-row" data-category="ads">
-        <span class="proj-idx">03</span>
-        <div class="proj-main">
-          <div class="proj-tags-row"><span class="proj-tag">Meta Ads</span><span class="proj-tag">Google Ads</span></div>
-          <div class="proj-name">Campaña de Adquisición</div>
-          <div class="proj-client">Intelhome</div>
-        </div>
-        <div class="proj-metric-col">
-          <div class="proj-val">$1.50</div>
-          <div class="proj-val-lbl">costo/lead</div>
-        </div>
-        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
-      </div>
-      <div class="proj-row" data-category="software">
-        <span class="proj-idx">04</span>
-        <div class="proj-main">
-          <div class="proj-tags-row"><span class="proj-tag">Software</span><span class="proj-tag">Automatización</span></div>
-          <div class="proj-name">Sistema de Gestión Interna</div>
-          <div class="proj-client">Flexman</div>
-        </div>
-        <div class="proj-metric-col">
-          <div class="proj-val">60%</div>
-          <div class="proj-val-lbl">menos tiempo</div>
-        </div>
-        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
-      </div>
-      <div class="proj-row" data-category="web">
-        <span class="proj-idx">05</span>
-        <div class="proj-main">
-          <div class="proj-tags-row"><span class="proj-tag">Diseño Web</span><span class="proj-tag">Branding</span></div>
-          <div class="proj-name">Identidad Digital Corporativa</div>
-          <div class="proj-client">Canción Films</div>
-        </div>
-        <div class="proj-metric-col">
-          <div class="proj-val">+40%</div>
-          <div class="proj-val-lbl">engagement</div>
-        </div>
-        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
-      </div>
-      <div class="proj-row" data-category="chatbot">
-        <span class="proj-idx">06</span>
-        <div class="proj-main">
-          <div class="proj-tags-row"><span class="proj-tag">Chatbot IA</span><span class="proj-tag">Automatización</span></div>
-          <div class="proj-name">Bot de Agendamiento Automático</div>
-          <div class="proj-client">EC Connect</div>
-        </div>
-        <div class="proj-metric-col">
-          <div class="proj-val">80%</div>
-          <div class="proj-val-lbl">menos carga</div>
-        </div>
-        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
-      </div>
-      <div class="proj-row" data-category="ads">
-        <span class="proj-idx">07</span>
-        <div class="proj-main">
-          <div class="proj-tags-row"><span class="proj-tag">Meta Ads</span></div>
-          <div class="proj-name">Estrategia de Generación de Leads</div>
-          <div class="proj-client">El Instituto</div>
-        </div>
-        <div class="proj-metric-col">
-          <div class="proj-val">4.2×</div>
-          <div class="proj-val-lbl">retorno ads</div>
-        </div>
-        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
-      </div>
-      <div class="proj-row" data-category="software">
-        <span class="proj-idx">08</span>
-        <div class="proj-main">
-          <div class="proj-tags-row"><span class="proj-tag">Software</span><span class="proj-tag">Dashboard</span></div>
-          <div class="proj-name">Panel de Control de Inventarios</div>
-          <div class="proj-client">Tecglo</div>
-        </div>
-        <div class="proj-metric-col">
-          <div class="proj-val">2 sem</div>
-          <div class="proj-val-lbl">entrega</div>
-        </div>
-        <div class="proj-link-col"><a href="index.html#contact" class="proj-link">Cotizar similar →</a></div>
-      </div>
+    <div class="footer-col">
+      <h4 data-i18n data-es="Servicios" data-en="Services">Servicios</h4>
+      <ul>
+        <li><a href="index.html#servicios" data-i18n data-es="Diseño Web" data-en="Web Design">Diseño Web</a></li>
+        <li><a href="index.html#servicios" data-i18n data-es="Chatbots IA" data-en="AI Chatbots">Chatbots IA</a></li>
+        <li><a href="index.html#servicios" data-i18n data-es="Meta & Google Ads" data-en="Meta & Google Ads">Meta & Google Ads</a></li>
+        <li><a href="index.html#servicios" data-i18n data-es="Software a Medida" data-en="Custom Software">Software a Medida</a></li>
+      </ul>
     </div>
-  </section>
-
-  <section id="categories" class="section">
-    <div class="section-label">Por categoría</div>
-    <h2 class="section-h2" style="margin-bottom:80px">Lo que<br/><em>sabemos hacer.</em></h2>
-    <div class="cat-grid">
-      <div class="cat-item">
-        <div class="cat-num">20+</div>
-        <div class="cat-title">Sitios Web</div>
-        <div class="cat-desc">Desde landings hasta plataformas complejas. Rápidos, bien diseñados, optimizados para convertir.</div>
-      </div>
-      <div class="cat-item">
-        <div class="cat-num">12+</div>
-        <div class="cat-title">Chatbots IA</div>
-        <div class="cat-desc">Bots para WhatsApp que atienden, califican y agendan. Funcionando 24/7 sin intervención humana.</div>
-      </div>
-      <div class="cat-item">
-        <div class="cat-num">15+</div>
-        <div class="cat-title">Campañas de Ads</div>
-        <div class="cat-desc">Meta y Google Ads con tracking real. Medimos resultados, no solo impresiones.</div>
-      </div>
-      <div class="cat-item">
-        <div class="cat-num">8+</div>
-        <div class="cat-title">Automatizaciones</div>
-        <div class="cat-desc">Flujos que conectan herramientas y eliminan tareas repetitivas en empresas.</div>
-      </div>
-      <div class="cat-item">
-        <div class="cat-num">5+</div>
-        <div class="cat-title">Software a Medida</div>
-        <div class="cat-desc">Sistemas internos, dashboards y apps web para los procesos de cada empresa.</div>
-      </div>
-      <div class="cat-item">
-        <div class="cat-num">10+</div>
-        <div class="cat-title">Branding</div>
-        <div class="cat-desc">Identidades visuales que comunican claramente quién eres y por qué elegirte.</div>
-      </div>
-    </div>
-  </section>
-
-  <div id="cta-band">
-    <div>
-      <div class="cta-band-h2">¿Tu empresa<br/>podría ser la siguiente?</div>
-      <div class="cta-band-sub">Cuéntanos qué necesitas y lo trabajamos juntos.</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="btn-primary">Iniciar proyecto</a>
-      <a href="index.html#contact" class="btn-ghost">Enviar formulario →</a>
+    <div class="footer-col">
+      <h4 data-i18n data-es="Empresa" data-en="Company">Empresa</h4>
+      <ul>
+        <li><a href="about.html" data-i18n data-es="Nosotros" data-en="About">Nosotros</a></li>
+        <li><a href="portfolio.html" data-i18n data-es="Proyectos" data-en="Projects">Proyectos</a></li>
+        <li><a href="index.html#contacto" data-i18n data-es="Contacto" data-en="Contact">Contacto</a></li>
+      </ul>
     </div>
   </div>
-
-  <footer>
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.style.display='none'" />
-        <p>Soluciones digitales para empresas que quieren crecer. Ecuador.</p>
-      </div>
-      <div>
-        <div class="footer-col-title">Servicios</div>
-        <ul class="footer-links">
-          <li><a href="servicios/diseno-web.html">Diseño Web</a></li>
-          <li><a href="servicios/meta-google-ads.html">Meta &amp; Google Ads</a></li>
-          <li><a href="servicios/software-personalizado.html">Software a Medida</a></li>
-          <li><a href="index.html#contact">Chatbots IA</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Empresa</div>
-        <ul class="footer-links">
-          <li><a href="about.html">Nosotros</a></li>
-          <li><a href="portfolio.html">Proyectos</a></li>
-          <li><a href="index.html#contact">Contacto</a></li>
-          <li><a href="terminos.html">Términos</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 APO Agency · RUC 0943518282001 · Ecuador</span>
-      <div class="footer-legal">
-        <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/593987252978" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="terminos.html">Términos y Condiciones</a>
-      </div>
-    </div>
-  </footer>
-
-  <div id="cookie-banner">
-    <p class="cookie-text">Usamos cookies para mejorar tu experiencia. <a href="terminos.html#cookies">Ver política</a>.</p>
-    <div class="cookie-btns">
-      <button class="cookie-btn cookie-decline" id="cookie-decline">Rechazar</button>
-      <button class="cookie-btn cookie-accept" id="cookie-accept">Aceptar</button>
+  <div class="footer-bottom">
+    <p>© 2025 APO Agency. <span data-i18n data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+    <div class="footer-socials">
+      <a href="https://instagram.com/apoagency" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linkedin.com/company/apoagency" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
+</footer>
 
-  <script>
-    const hamBtn = document.getElementById('ham-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    hamBtn.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('open');
-      hamBtn.classList.toggle('open', open);
-      hamBtn.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
+<script>
+  const root = document.documentElement;
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    const isDark = t === 'dark';
+    document.getElementById('nav-logo-img').src = isDark ? 'assets/logos/apo-logo-white.png' : 'assets/logos/apo-logo-black.png';
+    document.getElementById('nav-isologo-img').src = isDark ? 'assets/logos/isologo-white.png' : 'assets/logos/isologo-black.png';
+    document.getElementById('footer-logo-img').src = isDark ? 'assets/logos/apo-logo-white.png' : 'assets/logos/apo-logo-black.png';
+    const sun = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+    const moon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+    document.getElementById('theme-icon').innerHTML = isDark ? sun : moon;
+    document.getElementById('theme-icon-mobile').innerHTML = isDark ? sun : moon;
+  }
+  function toggleTheme() { const c = root.getAttribute('data-theme')||'light'; const n = c==='dark'?'light':'dark'; localStorage.setItem('theme',n); applyTheme(n); }
+  applyTheme(localStorage.getItem('theme')||'light');
+
+  let currentLang = localStorage.getItem('lang')||'es';
+  function setLang(l) { currentLang=l; localStorage.setItem('lang',l); document.querySelectorAll('[data-i18n]').forEach(el => { if(el.dataset[l]) el.textContent=el.dataset[l]; }); document.getElementById('lang-btn').textContent=l.toUpperCase(); const m=document.getElementById('lang-btn-mobile'); if(m) m.textContent=l.toUpperCase(); }
+  function toggleLang() { setLang(currentLang==='es'?'en':'es'); }
+  setLang(currentLang);
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+
+  function openMobile() { document.getElementById('mobile-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobile() { document.getElementById('mobile-overlay').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('mobile-close').onclick = closeMobile;
+
+  function filterProjects(cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(c => {
+      c.style.display = (cat === 'all' || c.dataset.category === cat) ? '' : 'none';
     });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        hamBtn.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-    document.querySelectorAll('.filter-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const filter = tab.dataset.filter;
-        document.querySelectorAll('.proj-row').forEach(row => {
-          row.style.display = (filter === 'all' || row.dataset.category === filter) ? 'grid' : 'none';
-        });
-      });
-    });
-    const banner = document.getElementById('cookie-banner');
-    if (!localStorage.getItem('cookie-choice')) setTimeout(() => banner.classList.add('show'), 1800);
-    document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem('cookie-choice', 'accepted'); banner.classList.remove('show'); });
-    document.getElementById('cookie-decline').addEventListener('click', () => { localStorage.setItem('cookie-choice', 'declined'); banner.classList.remove('show'); });
-  </script>
+  }
+
+  const observer = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);} }); }, {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>

@@ -4,489 +4,441 @@
   <meta charset="UTF-8" />
   <meta name="google-site-verification" content="a2YSOazoYe2IDFsHd9rMREJ3XRKydkXiPgGgE6brOSE" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nosotros — APO Agency Ecuador</title>
-  <meta name="description" content="Conoce al equipo detrás de APO Agency. Agencia digital en Ecuador especializada en automatización, IA y marketing digital." />
+  <title>Nosotros — APO Agency · Agencia Digital Ecuador</title>
+  <meta name="description" content="Conoce al equipo detrás de APO Agency. Tecnología con propósito, construida para el mercado ecuatoriano y latinoamericano." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://apoagency.io/about.html" />
-  <meta property="og:title" content="Nosotros — APO Agency Ecuador" />
-  <meta property="og:description" content="La historia detrás de APO Agency. Automatización, IA y marketing digital en Ecuador." />
+  <meta property="og:title" content="Nosotros — APO Agency" />
+  <meta property="og:description" content="Conoce al equipo detrás de APO Agency. Tecnología con propósito." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://apoagency.io/about.html" />
   <meta property="og:image" content="https://apoagency.io/assets/og-imageV2.png" />
-  <meta property="og:locale" content="es_EC" />
-  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png" />
   <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #0B1D35;
-      --navy-d: #07111F;
-      --white:  #FFFFFF;
-      --off:    #F4F5F7;
-      --gray:   #8B93A1;
-      --light:  #CBD2DC;
-      --border: rgba(255,255,255,.08);
-      --border-dark: rgba(11,29,53,.1);
+      --bg: #FFFFFF; --bg-surface: #F8FAFC; --text: #0A0F1E; --text-muted: #6B7280;
+      --border: rgba(10,15,30,.08); --accent: #0B1D35;
+      --btn-bg: #0B1D35; --btn-text: #FFFFFF; --card-bg: #FFFFFF;
+      --nav-bg: rgba(255,255,255,0); --nav-bg-scroll: rgba(255,255,255,0.92);
+    }
+    [data-theme="dark"] {
+      --bg: #07111F; --bg-surface: #0B1D35; --text: #F8FAFC; --text-muted: #94A3B8;
+      --border: rgba(248,250,252,.08); --accent: #3B82F6;
+      --btn-bg: #F8FAFC; --btn-text: #07111F; --card-bg: #0B1D35;
+      --nav-bg: rgba(7,17,31,0); --nav-bg-scroll: rgba(7,17,31,0.92);
     }
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
-    body { background: var(--navy-d); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    ::-webkit-scrollbar { display: none; }
-    * { scrollbar-width: none; }
+    body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background .3s, color .3s; }
+    ::-webkit-scrollbar { display: none; } * { scrollbar-width: none; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 48px;
-      background: rgba(7,17,31,.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      transition: padding .3s;
-    }
-    .nav-logo { text-decoration: none; display: flex; align-items: center; }
-    .nav-logo img { height: 36px; width: auto; display: block; }
-    .nav-logo-text { font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; display: none; }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a {
-      font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--light); text-decoration: none; transition: color .2s;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-cta {
-      background: var(--white); color: var(--navy-d) !important;
-      padding: 10px 20px; font-size: 12px !important; font-weight: 700 !important;
-      letter-spacing: .06em !important; text-transform: uppercase !important;
-      text-decoration: none; transition: background .2s !important;
-    }
-    .nav-cta:hover { background: var(--off) !important; }
-    #ham-btn {
-      display: none; flex-direction: column; justify-content: center; gap: 5px;
-      width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px;
-    }
-    #ham-btn span { display: block; width: 100%; height: 1.5px; background: var(--white); transition: transform .3s, opacity .3s; }
-    #ham-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    #ham-btn.open span:nth-child(2) { opacity: 0; }
-    #ham-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(20px); }
+    .reveal.visible { animation: fadeUp .5s ease forwards; }
 
-    #mobile-menu {
-      position: fixed; inset: 0; z-index: 99;
-      background: var(--navy-d);
-      display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
-      padding: 80px 36px 48px;
-      opacity: 0; visibility: hidden; pointer-events: none;
-      transition: opacity .3s, visibility .3s;
-    }
-    #mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
-    .mob-links { display: flex; flex-direction: column; gap: 0; width: 100%; }
-    .mob-links a {
-      font-size: 28px; font-weight: 800; letter-spacing: -.02em;
-      color: var(--white); text-decoration: none;
-      padding: 16px 0; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      transition: color .2s;
-    }
-    .mob-links a:first-child { border-top: 1px solid var(--border); }
-    .mob-links a span { font-size: 18px; color: var(--gray); }
-    .mob-footer-nav { margin-top: 40px; display: flex; gap: 24px; }
-    .mob-footer-nav a {
-      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--gray); text-decoration: none; transition: color .2s;
-    }
+    /* NAV */
+    nav { position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:var(--nav-bg);transition:background .3s,border-color .3s,backdrop-filter .3s,padding .3s; }
+    nav.scrolled { background:var(--nav-bg-scroll);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 48px; }
+    .nav-logo img { height:28px;display:block; }
+    .nav-links { display:flex;gap:36px;list-style:none; }
+    .nav-links a { text-decoration:none;color:var(--text);font-size:14px;font-weight:500;opacity:.7;transition:opacity .2s; }
+    .nav-links a:hover { opacity:1; }
+    .nav-right { display:flex;align-items:center;gap:12px; }
+    .btn-ghost { background:transparent;border:1.5px solid var(--border);color:var(--text);padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s; }
+    .btn-ghost:hover { border-color:var(--accent);color:var(--accent); }
+    .btn-theme { background:transparent;border:none;cursor:pointer;color:var(--text);padding:6px;display:flex;align-items:center;transition:opacity .2s; }
+    .btn-theme:hover { opacity:.7; }
+    .btn-cta { background:var(--btn-bg);color:var(--btn-text);padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;transition:opacity .2s,transform .15s; }
+    .btn-cta:hover { opacity:.85;transform:translateY(-1px); }
+    .hamburger { display:none;background:none;border:none;cursor:pointer;color:var(--text);padding:4px; }
+    .mobile-overlay { display:none;position:fixed;inset:0;background:var(--bg);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:40px; }
+    .mobile-overlay.open { display:flex; }
+    .mobile-overlay a { font-size:32px;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-1px; }
+    .mobile-close { position:absolute;top:24px;right:24px;background:none;border:none;cursor:pointer;color:var(--text); }
+    .nav-logo .isologo { display:none; }
 
-    /* ── LAYOUT ── */
-    .section { padding: 120px 48px; }
-    .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
-      color: var(--gray); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
-    }
-    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gray); }
-    .section-h2 {
-      font-size: clamp(36px, 5vw, 64px); font-weight: 800; letter-spacing: -2px; line-height: 1;
-    }
-    .section-h2 em { font-style: italic; font-weight: 300; color: var(--light); }
+    /* COMMONS */
+    section { padding:100px 48px; }
+    .section-eyebrow { font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;display:flex;align-items:center;gap:10px; }
+    .section-eyebrow::before { content:'';display:block;width:24px;height:1px;background:var(--text-muted); }
+    .section-h2 { font-size:clamp(36px,5vw,68px);font-weight:800;letter-spacing:-2px;line-height:1.0; }
+    .section-h2 em { font-style:italic;font-weight:300; }
+    .btn-primary { background:var(--btn-bg);color:var(--btn-text);padding:14px 28px;border-radius:10px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;transition:opacity .2s,transform .15s; }
+    .btn-primary:hover { opacity:.85;transform:translateY(-2px); }
+    .btn-secondary { background:transparent;color:var(--text);padding:14px 28px;border-radius:10px;font-size:14px;font-weight:600;border:1.5px solid var(--border);cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;transition:all .2s; }
+    .btn-secondary:hover { border-color:var(--accent);color:var(--accent); }
 
-    /* ── PAGE HERO ── */
-    #page-hero {
-      padding: 160px 48px 100px; border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
-    }
-    .ph-h1 {
-      font-size: clamp(52px, 7vw, 96px); font-weight: 800; letter-spacing: -3px; line-height: .95;
-    }
-    .ph-h1 em { font-style: italic; font-weight: 300; color: var(--light); }
-    .ph-right { padding-top: 20px; }
-    .ph-desc { font-size: 16px; font-weight: 400; color: var(--light); line-height: 1.7; margin-bottom: 40px; }
-    .ph-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
-    .ph-stat { background: var(--navy-d); padding: 28px 20px; }
-    .ph-stat-num { font-size: 40px; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 6px; }
-    .ph-stat-lbl { font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gray); }
+    /* HERO */
+    .hero { min-height:80vh;display:flex;flex-direction:column;justify-content:center;padding:140px 48px 80px;background:radial-gradient(ellipse 50% 50% at 80% 20%, rgba(11,29,53,.04) 0%, transparent 70%); }
+    .hero-eyebrow { display:flex;align-items:center;gap:12px;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--text-muted);margin-bottom:28px;animation:fadeUp .6s ease forwards; }
+    .hero-eyebrow::before { content:'';display:block;width:32px;height:1px;background:var(--text-muted); }
+    .hero-h1 { font-size:clamp(56px,9vw,120px);font-weight:800;letter-spacing:-3px;line-height:.92;margin-bottom:32px;max-width:800px;animation:fadeUp .6s .1s ease both; }
+    .hero-h1 em { font-style:italic;font-weight:300; }
+    .hero-sub { font-size:16px;line-height:1.75;color:var(--text-muted);max-width:520px;margin-bottom:48px;animation:fadeUp .6s .2s ease both; }
+    .stats-row { display:flex;gap:48px;flex-wrap:wrap;animation:fadeUp .6s .3s ease both; }
+    .stat-item { display:flex;flex-direction:column;gap:4px; }
+    .stat-num { font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--text); }
+    .stat-label { font-size:12px;color:var(--text-muted);font-weight:500; }
 
-    /* ── VALUES ── */
-    #values { border-top: 1px solid var(--border); }
-    .values-grid { margin-top: 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
-    .val-item { background: var(--navy-d); padding: 48px 40px; }
-    .val-title { font-size: 18px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 12px; }
-    .val-desc { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.7; }
+    /* MISSION/VISION */
+    .mv-section { border-top:1px solid var(--border); }
+    .mv-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px; }
+    .mv-card { background:var(--bg-surface);border:1px solid var(--border);border-radius:20px;padding:48px 40px;display:flex;flex-direction:column;gap:20px; }
+    .mv-label { font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted); }
+    .mv-title { font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--text); }
+    .mv-text { font-size:15px;line-height:1.75;color:var(--text-muted); }
 
-    /* ── FOUNDER ── */
-    #founder { border-top: 1px solid var(--border); }
-    .founder-grid { margin-top: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .founder-name { font-size: clamp(52px, 6vw, 80px); font-weight: 800; letter-spacing: -3px; line-height: .95; margin-bottom: 12px; }
-    .founder-role { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gray); margin-bottom: 32px; }
-    .founder-quote {
-      font-size: 18px; font-weight: 300; font-style: italic; color: var(--light);
-      line-height: 1.5; padding: 24px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      margin-bottom: 32px;
-    }
-    .founder-bio { font-size: 14px; font-weight: 400; color: var(--gray); line-height: 1.8; margin-bottom: 36px; }
-    .founder-bio strong { color: var(--white); font-weight: 600; }
-    .founder-bio p + p { margin-top: 14px; }
-    .founder-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .founder-link {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--light); text-decoration: none; transition: color .2s;
-    }
-    .founder-link:hover { color: var(--white); }
-    .founder-link svg { width: 14px; height: 14px; flex-shrink: 0; }
-    .founder-facts { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-    .founder-fact { background: var(--navy-d); padding: 32px 36px; }
-    .ff-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-    .ff-desc { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.6; }
+    /* VALUES */
+    .values-section { border-top:1px solid var(--border); }
+    .values-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px; }
+    .value-card { border:1px solid var(--border);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px;transition:border-color .2s,transform .2s; }
+    .value-card:hover { border-color:var(--accent);transform:translateY(-4px); }
+    .value-icon { color:var(--accent); }
+    .value-title { font-size:18px;font-weight:700;color:var(--text); }
+    .value-text { font-size:13px;line-height:1.65;color:var(--text-muted); }
 
-    /* ── STORY ── */
-    #story { border-top: 1px solid var(--border); }
-    .story-grid { margin-top: 80px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
-    .story-item { background: var(--navy-d); padding: 40px 32px; }
-    .story-year { font-size: 11px; font-weight: 700; letter-spacing: .2em; color: var(--gray); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
-    .story-title { font-size: 17px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 10px; }
-    .story-desc { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.7; }
+    /* TEAM */
+    .team-section { border-top:1px solid var(--border);background:var(--bg-surface); }
+    .team-grid { display:flex;gap:24px;margin-top:48px;justify-content:center; }
+    .team-card { background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:40px 32px;text-align:center;width:280px;display:flex;flex-direction:column;align-items:center;gap:16px; }
+    .team-avatar { width:96px;height:96px;border-radius:50%;background:var(--bg-surface);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted); }
+    .team-name { font-size:20px;font-weight:800;letter-spacing:-.5px;color:var(--text); }
+    .team-role { font-size:13px;color:var(--text-muted);font-weight:500; }
+    .team-bio { font-size:13px;line-height:1.65;color:var(--text-muted); }
+    .team-links { display:flex;gap:12px; }
+    .team-links a { font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;transition:opacity .2s; }
+    .team-links a:hover { opacity:.7; }
 
-    /* ── CTA ── */
-    #cta-band {
-      border-top: 1px solid var(--border);
-      background: var(--navy); padding: 100px 48px;
-      display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap;
-    }
-    .cta-band-h2 { font-size: clamp(32px, 4vw, 56px); font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 12px; }
-    .cta-band-sub { font-size: 15px; color: var(--light); }
-    .btn-primary {
-      background: var(--white); color: var(--navy-d);
-      padding: 16px 32px; font-size: 12px; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; text-decoration: none; transition: background .2s, transform .2s; display: inline-block;
-    }
-    .btn-primary:hover { background: var(--off); transform: translateY(-1px); }
-    .btn-ghost {
-      color: var(--light); font-size: 12px; font-weight: 600; letter-spacing: .08em;
-      text-transform: uppercase; text-decoration: none; transition: color .2s;
-    }
-    .btn-ghost:hover { color: var(--white); }
+    /* HISTORY */
+    .history-section { border-top:1px solid var(--border); }
+    .history-track { display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px;position:relative; }
+    .history-track::before { content:'';position:absolute;top:14px;left:0;right:0;height:1px;background:var(--border);z-index:0; }
+    .milestone { display:flex;flex-direction:column;gap:12px;padding-right:24px;position:relative; }
+    .milestone-dot { width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);position:relative;z-index:1;flex-shrink:0; }
+    .milestone-year { font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-top:16px; }
+    .milestone-title { font-size:16px;font-weight:700;color:var(--text); }
+    .milestone-desc { font-size:13px;line-height:1.65;color:var(--text-muted); }
 
-    /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 60px 48px 40px; }
-    .footer-top {
-      display: grid; grid-template-columns: 1fr auto auto; gap: 80px;
-      padding-bottom: 60px; border-bottom: 1px solid var(--border);
-    }
-    .footer-brand img { height: 32px; margin-bottom: 20px; display: block; }
-    .footer-brand p { font-size: 13px; color: var(--gray); line-height: 1.7; max-width: 260px; }
-    .footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); margin-bottom: 20px; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-links a { font-size: 13px; font-weight: 500; color: var(--light); text-decoration: none; transition: color .2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 32px; flex-wrap: wrap; }
-    .footer-copy { font-size: 11px; color: var(--gray); }
-    .footer-legal { display: flex; gap: 20px; }
-    .footer-legal a { font-size: 11px; color: var(--gray); text-decoration: none; transition: color .2s; }
-    .footer-legal a:hover { color: var(--white); }
+    /* CTA BAND */
+    .cta-band { background:#0B1D35;padding:100px 48px;text-align:center; }
+    .cta-band h2 { font-size:clamp(32px,4vw,56px);font-weight:800;letter-spacing:-2px;color:#F8FAFC;margin-bottom:16px; }
+    .cta-band h2 em { font-style:italic;font-weight:300; }
+    .cta-band p { font-size:16px;color:rgba(248,250,252,.6);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.75; }
+    .cta-btns { display:flex;gap:16px;justify-content:center;flex-wrap:wrap; }
+    .btn-white { background:#fff;color:#0B1D35;padding:14px 28px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:opacity .2s,transform .15s; }
+    .btn-white:hover { opacity:.9;transform:translateY(-2px); }
+    .btn-ghost-white { background:transparent;color:rgba(248,250,252,.8);border:1.5px solid rgba(248,250,252,.2);padding:14px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s; }
+    .btn-ghost-white:hover { border-color:rgba(248,250,252,.6);color:#fff; }
 
-    /* ── COOKIE ── */
-    #cookie-banner {
-      position: fixed; bottom: 24px; left: 24px; right: 24px; z-index: 500;
-      background: var(--navy); border: 1px solid var(--border);
-      padding: 20px 28px; display: flex; align-items: center; justify-content: space-between;
-      gap: 24px; flex-wrap: wrap; transform: translateY(120%); transition: transform .4s;
-      max-width: 700px;
-    }
-    #cookie-banner.show { transform: translateY(0); }
-    .cookie-text { font-size: 13px; color: var(--light); flex: 1; }
-    .cookie-text a { color: var(--white); }
-    .cookie-btns { display: flex; gap: 12px; }
-    .cookie-btn { font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; padding: 10px 18px; }
-    .cookie-accept { background: var(--white); color: var(--navy-d); border: none; }
-    .cookie-decline { background: transparent; color: var(--gray); border: 1px solid var(--border); }
+    /* FOOTER */
+    footer { border-top:1px solid var(--border);padding:64px 48px 32px; }
+    .footer-top { display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:48px; }
+    .footer-brand img { height:24px;margin-bottom:16px; }
+    .footer-brand p { font-size:13px;line-height:1.75;color:var(--text-muted);max-width:280px; }
+    .footer-col h4 { font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px; }
+    .footer-col ul { list-style:none;display:flex;flex-direction:column;gap:10px; }
+    .footer-col a { text-decoration:none;font-size:14px;color:var(--text-muted);transition:color .2s; }
+    .footer-col a:hover { color:var(--text); }
+    .footer-bottom { border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px; }
+    .footer-bottom p { font-size:12px;color:var(--text-muted); }
+    .footer-socials { display:flex;gap:16px; }
+    .footer-socials a { font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s; }
+    .footer-socials a:hover { color:var(--text); }
 
-    /* ── RESPONSIVE ── */
-    @media(max-width: 960px) {
-      .nav-links { display: none; }
-      #ham-btn { display: flex; }
-      nav { padding: 16px 24px; }
-      .section { padding: 80px 24px; }
-      #page-hero { grid-template-columns: 1fr; padding: 140px 24px 72px; gap: 48px; }
-      .ph-stats { grid-template-columns: repeat(3, 1fr); }
-      .values-grid { grid-template-columns: 1fr; }
-      .founder-grid { grid-template-columns: 1fr; gap: 48px; }
-      .story-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-      #cta-band { flex-direction: column; padding: 72px 24px; }
+    @media (max-width:768px) {
+      nav { padding:16px 24px; }
+      nav.scrolled { padding:12px 24px; }
+      .nav-links, .nav-right .btn-ghost, .nav-right .btn-cta, .nav-right #lang-btn { display:none; }
+      .hamburger { display:block; }
+      .nav-logo .wordmark { display:none; }
+      .nav-logo .isologo { display:block !important; }
+      section { padding:72px 24px; }
+      .hero { padding:120px 24px 64px; }
+      .mv-grid, .values-grid { grid-template-columns:1fr; }
+      .history-track { grid-template-columns:1fr;gap:40px; }
+      .history-track::before { display:none; }
+      .team-card { width:100%; }
+      .footer-top { grid-template-columns:1fr; }
+      .stats-row { gap:28px; }
     }
-    @media(max-width: 600px) {
-      .section { padding: 64px 20px; }
-      #page-hero { padding: 120px 20px 64px; }
-      .ph-stats { grid-template-columns: 1fr 1fr; }
-      .story-grid { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; }
+    @media (max-width:1024px) {
+      .values-grid { grid-template-columns:repeat(2,1fr); }
+      .history-track { grid-template-columns:repeat(2,1fr);gap:40px; }
+      .history-track::before { display:none; }
+      .footer-top { grid-template-columns:1fr 1fr; }
+      .footer-brand { grid-column:span 2; }
     }
   </style>
 </head>
 <body>
 
-  <nav id="nav">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.style.display='none';document.querySelector('.nav-logo-text').style.display='block'" />
-      <span class="nav-logo-text">APO</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html#services">Servicios</a></li>
-      <li><a href="portfolio.html">Proyectos</a></li>
-      <li><a href="about.html" class="active">Nosotros</a></li>
-      <li><a href="index.html#contact" class="nav-cta">Contáctanos</a></li>
-    </ul>
-    <button id="ham-btn" aria-label="Menú" aria-expanded="false">
-      <span></span><span></span><span></span>
+<div class="mobile-overlay" id="mobile-overlay">
+  <button class="mobile-close" id="mobile-close">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="index.html#servicios" data-i18n data-es="Servicios" data-en="Services" onclick="closeMobile()">Servicios</a>
+  <a href="portfolio.html" data-i18n data-es="Proyectos" data-en="Projects" onclick="closeMobile()">Proyectos</a>
+  <a href="about.html" data-i18n data-es="Nosotros" data-en="About" onclick="closeMobile()">Nosotros</a>
+  <div style="display:flex;gap:12px;margin-top:16px">
+    <button class="btn-ghost" id="lang-btn-mobile" onclick="toggleLang()">ES</button>
+    <button class="btn-theme" onclick="toggleTheme()">
+      <svg id="theme-icon-mobile" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
     </button>
-  </nav>
+  </div>
+</div>
 
-  <div id="mobile-menu">
-    <div class="mob-links">
-      <a href="index.html#services">Servicios <span>→</span></a>
-      <a href="portfolio.html">Proyectos <span>→</span></a>
-      <a href="about.html">Nosotros <span>→</span></a>
-      <a href="index.html#contact">Contacto <span>→</span></a>
+<nav id="navbar">
+  <a href="/" class="nav-logo" style="text-decoration:none">
+    <img class="wordmark" src="assets/logos/apo-logo-black.png" id="nav-logo-img" alt="APO Agency" />
+    <img class="isologo" src="assets/logos/isologo-black.png" id="nav-isologo-img" alt="APO" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#servicios" data-i18n data-es="Servicios" data-en="Services">Servicios</a></li>
+    <li><a href="portfolio.html" data-i18n data-es="Proyectos" data-en="Projects">Proyectos</a></li>
+    <li><a href="about.html" data-i18n data-es="Nosotros" data-en="About" style="opacity:1">Nosotros</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-ghost" id="lang-btn" onclick="toggleLang()">ES</button>
+    <button class="btn-theme" onclick="toggleTheme()" aria-label="Cambiar tema">
+      <svg id="theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <a href="index.html#contacto" class="btn-cta" data-i18n data-es="Iniciar proyecto" data-en="Start project">Iniciar proyecto</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="openMobile()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow" data-i18n data-es="Sobre APO Agency" data-en="About APO Agency">Sobre APO Agency</p>
+  <h1 class="hero-h1">Tecnología<br><em>con propósito.</em></h1>
+  <p class="hero-sub" data-i18n data-es="Somos un equipo de estrategas, diseñadores y desarrolladores apasionados por construir el crecimiento real de empresas en Ecuador y Latinoamérica." data-en="We're a team of strategists, designers and developers passionate about building real growth for companies in Ecuador and Latin America.">Somos un equipo de estrategas, diseñadores y desarrolladores apasionados por construir el crecimiento real de empresas en Ecuador y Latinoamérica.</p>
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-num" data-counter="50" data-suffix="+">50+</span>
+      <span class="stat-label" data-i18n data-es="proyectos" data-en="projects">proyectos</span>
     </div>
-    <div class="mob-footer-nav">
-      <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">Instagram</a>
-      <a href="mailto:hola@apoagency.io">Email</a>
-      <a href="https://wa.me/593987252978" target="_blank" rel="noopener">WhatsApp</a>
+    <div class="stat-item">
+      <span class="stat-num" data-counter="3" data-suffix="+">3+</span>
+      <span class="stat-label" data-i18n data-es="años de experiencia" data-en="years of experience">años de experiencia</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-counter="10" data-suffix="+">10+</span>
+      <span class="stat-label" data-i18n data-es="industrias atendidas" data-en="industries served">industrias atendidas</span>
     </div>
   </div>
+</section>
 
-  <!-- PAGE HERO -->
-  <section id="page-hero">
-    <div>
-      <div class="section-label">Nosotros</div>
-      <h1 class="ph-h1">Tecnología<br/>con <em>propósito.</em></h1>
+<!-- MISSION / VISION -->
+<section class="mv-section reveal">
+  <p class="section-eyebrow" data-i18n data-es="Quiénes somos" data-en="Who we are">Quiénes somos</p>
+  <h2 class="section-h2">Impulsados por<br><em>resultados.</em></h2>
+  <div class="mv-grid">
+    <div class="mv-card">
+      <span class="mv-label" data-i18n data-es="Misión" data-en="Mission">Misión</span>
+      <h3 class="mv-title" data-i18n data-es="Transformar negocios con tecnología accesible" data-en="Transform businesses with accessible technology">Transformar negocios con tecnología accesible</h3>
+      <p class="mv-text" data-i18n data-es="Democratizar el acceso a herramientas digitales de alto impacto para empresas ecuatorianas y latinoamericanas que quieren competir en igualdad de condiciones con los grandes del mercado." data-en="Democratize access to high-impact digital tools for Ecuadorian and Latin American companies that want to compete on equal footing with market leaders.">Democratizar el acceso a herramientas digitales de alto impacto para empresas ecuatorianas y latinoamericanas que quieren competir en igualdad de condiciones con los grandes del mercado.</p>
     </div>
-    <div class="ph-right">
-      <p class="ph-desc">Somos un equipo pequeño con hambre grande. Construimos soluciones digitales que resuelven problemas reales para empresas ecuatorianas.</p>
-      <div class="ph-stats">
-        <div class="ph-stat">
-          <div class="ph-stat-num">50+</div>
-          <div class="ph-stat-lbl">Proyectos</div>
-        </div>
-        <div class="ph-stat">
-          <div class="ph-stat-num">3+</div>
-          <div class="ph-stat-lbl">Años</div>
-        </div>
-        <div class="ph-stat">
-          <div class="ph-stat-num">EC</div>
-          <div class="ph-stat-lbl">Ecuador</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VALUES -->
-  <section id="values" class="section">
-    <div class="section-label">Lo que nos define</div>
-    <h2 class="section-h2">Cómo<br/><em>trabajamos.</em></h2>
-    <div class="values-grid">
-      <div class="val-item">
-        <div class="val-title">Ejecución real</div>
-        <div class="val-desc">No prometemos en presentaciones. Ejecutamos en producción. Si no funciona, lo arreglamos. Si funciona, lo escalamos.</div>
-      </div>
-      <div class="val-item">
-        <div class="val-title">Resultados medibles</div>
-        <div class="val-desc">Cada proyecto tiene un número que lo valida. CPL, ROI, tiempo ahorrado. Si no se puede medir, no cuenta.</div>
-      </div>
-      <div class="val-item">
-        <div class="val-title">Aliados, no proveedores</div>
-        <div class="val-desc">Nos sentamos del mismo lado que el cliente. Su problema es nuestro problema. Su éxito es nuestra métrica.</div>
-      </div>
-      <div class="val-item">
-        <div class="val-title">IA aplicada</div>
-        <div class="val-desc">No usamos IA para parecer modernos. La usamos cuando resuelve un problema real mejor que cualquier alternativa.</div>
-      </div>
-      <div class="val-item">
-        <div class="val-title">Contexto local</div>
-        <div class="val-desc">Tecnología de primer mundo con entendimiento del mercado ecuatoriano. Sabemos cómo funciona el negocio aquí.</div>
-      </div>
-      <div class="val-item">
-        <div class="val-title">Mejora continua</div>
-        <div class="val-desc">El sistema que entregamos hoy es el punto de partida, no el destino. Cada proyecto evoluciona con el cliente.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOUNDER -->
-  <section id="founder" class="section">
-    <div class="section-label">Founder</div>
-    <div class="founder-grid">
-      <div>
-        <div class="founder-name">Kevin<br/>Cuadros</div>
-        <div class="founder-role">CEO &amp; Founder — APO Agency · 24 años</div>
-        <blockquote class="founder-quote">"No vine de una familia empresarial ni de un MBA. Vine de necesitar que las cosas funcionaran."</blockquote>
-        <div class="founder-bio">
-          <p>Fui taxista, ebanista, carpintero y emprendedor antes de encontrar mi camino en tecnología. Cada oficio me enseñó algo que hoy aplico en APO.</p>
-          <p>Hoy dirijo APO Agency y estudio Ing. en Software en la UEES. <strong>No somos un proveedor — somos el aliado que entiende tu negocio y construye contigo.</strong></p>
-        </div>
-        <div class="founder-links">
-          <a href="https://www.linkedin.com/in/kevincuadros/" target="_blank" rel="noopener" class="founder-link">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://www.instagram.com/kevin_cuadros/" target="_blank" rel="noopener" class="founder-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-            Instagram
-          </a>
-          <a href="mailto:hola@apoagency.io" class="founder-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-            Email directo
-          </a>
-        </div>
-      </div>
-      <div class="founder-facts">
-        <div class="founder-fact">
-          <div class="ff-title">Autodidacta en producción</div>
-          <div class="ff-desc">Todo aprendido con clientes reales desde el día uno. Sin cursos teóricos.</div>
-        </div>
-        <div class="founder-fact">
-          <div class="ff-title">Ing. en Software — UEES</div>
-          <div class="ff-desc">Desarrollo, Operación y Seguridad en Software.</div>
-        </div>
-        <div class="founder-fact">
-          <div class="ff-title">Ecuador, primero</div>
-          <div class="ff-desc">Entiende el mercado local porque es parte de él. No teorías importadas.</div>
-        </div>
-        <div class="founder-fact">
-          <div class="ff-title">Aliado de largo plazo</div>
-          <div class="ff-desc">Relaciones de confianza, no transacciones de una vez. Muchos clientes llevan más de 2 años.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STORY -->
-  <section id="story" class="section">
-    <div class="section-label">Historia</div>
-    <h2 class="section-h2" style="margin-bottom:80px">El camino<br/><em>hasta aquí.</em></h2>
-    <div class="story-grid">
-      <div class="story-item">
-        <div class="story-year">2020 — Inicio</div>
-        <div class="story-title">Primer cliente, primera web</div>
-        <div class="story-desc">Empezó como hobbie. Un primer cliente, un primer sitio. La semilla de lo que después sería APO.</div>
-      </div>
-      <div class="story-item">
-        <div class="story-year">2022 — Crecimiento</div>
-        <div class="story-title">Marketing + Automatización</div>
-        <div class="story-desc">Empezamos a integrar campañas pagas con automatizaciones. Los resultados empezaron a hablar solos.</div>
-      </div>
-      <div class="story-item">
-        <div class="story-year">2023 — Expansión</div>
-        <div class="story-title">Chatbots e IA</div>
-        <div class="story-desc">Incorporamos inteligencia artificial al portafolio. Primeros bots de WhatsApp con resultados reales para clientes reales.</div>
-      </div>
-      <div class="story-item">
-        <div class="story-year">Hoy</div>
-        <div class="story-title">APO Agency establecida</div>
-        <div class="story-desc">Más de 50 proyectos, 6 servicios, y una obsesión: hacer que los negocios ecuatorianos funcionen mejor con tecnología.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <div id="cta-band">
-    <div>
-      <div class="cta-band-h2">¿Empezamos<br/>a trabajar juntos?</div>
-      <div class="cta-band-sub">Sin compromiso. Solo una conversación honesta.</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
-      <a href="https://wa.me/593987252978" target="_blank" rel="noopener" class="btn-primary">Hablar por WhatsApp</a>
-      <a href="portfolio.html" class="btn-ghost">Ver nuestros proyectos →</a>
+    <div class="mv-card">
+      <span class="mv-label" data-i18n data-es="Visión" data-en="Vision">Visión</span>
+      <h3 class="mv-title" data-i18n data-es="Ser la agencia de referencia en Latinoamérica" data-en="Become the reference agency in Latin America">Ser la agencia de referencia en Latinoamérica</h3>
+      <p class="mv-text" data-i18n data-es="Construir un ecosistema donde cada empresa que trabaje con nosotros crezca de forma predecible y sostenida, usando tecnología como ventaja competitiva real." data-en="Build an ecosystem where every company that works with us grows predictably and sustainably, using technology as a real competitive advantage.">Construir un ecosistema donde cada empresa que trabaje con nosotros crezca de forma predecible y sostenida, usando tecnología como ventaja competitiva real.</p>
     </div>
   </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="assets/logos/apo-logo-white.png" alt="APO Agency" onerror="this.style.display='none'" />
-        <p>Soluciones digitales para empresas que quieren crecer. Ecuador.</p>
+<!-- VALUES -->
+<section class="values-section reveal">
+  <p class="section-eyebrow" data-i18n data-es="Valores" data-en="Values">Valores</p>
+  <h2 class="section-h2">Lo que nos<br><em>define.</em></h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
-      <div>
-        <div class="footer-col-title">Servicios</div>
-        <ul class="footer-links">
-          <li><a href="servicios/diseno-web.html">Diseño Web</a></li>
-          <li><a href="servicios/meta-google-ads.html">Meta &amp; Google Ads</a></li>
-          <li><a href="servicios/software-personalizado.html">Software a Medida</a></li>
-          <li><a href="index.html#contact">Chatbots IA</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Empresa</div>
-        <ul class="footer-links">
-          <li><a href="about.html">Nosotros</a></li>
-          <li><a href="portfolio.html">Proyectos</a></li>
-          <li><a href="index.html#contact">Contacto</a></li>
-          <li><a href="terminos.html">Términos</a></li>
-        </ul>
-      </div>
+      <h3 class="value-title" data-i18n data-es="Resultados sobre todo" data-en="Results above all">Resultados sobre todo</h3>
+      <p class="value-text" data-i18n data-es="No cobramos por horas ni entregables bonitos. Medimos nuestro éxito por el tuyo: más clientes, más conversiones, más crecimiento." data-en="We don't charge for hours or pretty deliverables. We measure our success by yours: more clients, more conversions, more growth.">No cobramos por horas ni entregables bonitos. Medimos nuestro éxito por el tuyo: más clientes, más conversiones, más crecimiento.</p>
     </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 APO Agency · RUC 0943518282001 · Ecuador</span>
-      <div class="footer-legal">
-        <a href="https://www.instagram.com/theapoagency/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/593987252978" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="terminos.html">Términos y Condiciones</a>
+    <div class="value-card">
+      <div class="value-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
       </div>
+      <h3 class="value-title" data-i18n data-es="Transparencia radical" data-en="Radical transparency">Transparencia radical</h3>
+      <p class="value-text" data-i18n data-es="Sin sorpresas de precio, sin promesas vacías. Mostramos el proceso, explicamos las decisiones y compartimos los números reales." data-en="No price surprises, no empty promises. We show the process, explain decisions, and share real numbers.">Sin sorpresas de precio, sin promesas vacías. Mostramos el proceso, explicamos las decisiones y compartimos los números reales.</p>
     </div>
-  </footer>
-
-  <div id="cookie-banner">
-    <p class="cookie-text">Usamos cookies para mejorar tu experiencia. <a href="terminos.html#cookies">Ver política</a>.</p>
-    <div class="cookie-btns">
-      <button class="cookie-btn cookie-decline" id="cookie-decline">Rechazar</button>
-      <button class="cookie-btn cookie-accept" id="cookie-accept">Aceptar</button>
+    <div class="value-card">
+      <div class="value-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <h3 class="value-title" data-i18n data-es="Velocidad con calidad" data-en="Speed with quality">Velocidad con calidad</h3>
+      <p class="value-text" data-i18n data-es="Entregamos rápido sin sacrificar el estándar. Porque en los negocios, el tiempo es la ventaja competitiva más importante." data-en="We deliver fast without sacrificing standards. Because in business, time is the most important competitive advantage.">Entregamos rápido sin sacrificar el estándar. Porque en los negocios, el tiempo es la ventaja competitiva más importante.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3 class="value-title" data-i18n data-es="Enfoque en las personas" data-en="People-first approach">Enfoque en las personas</h3>
+      <p class="value-text" data-i18n data-es="Detrás de cada proyecto hay un equipo, una familia, un sueño. Construimos tecnología que conecta con personas reales." data-en="Behind every project there's a team, a family, a dream. We build technology that connects with real people.">Detrás de cada proyecto hay un equipo, una familia, un sueño. Construimos tecnología que conecta con personas reales.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <h3 class="value-title" data-i18n data-es="Raíces locales, visión global" data-en="Local roots, global vision">Raíces locales, visión global</h3>
+      <p class="value-text" data-i18n data-es="Entendemos el contexto ecuatoriano mejor que nadie. Aplicamos los mejores estándares globales adaptados a nuestra realidad." data-en="We understand the Ecuadorian context better than anyone. We apply the best global standards adapted to our reality.">Entendemos el contexto ecuatoriano mejor que nadie. Aplicamos los mejores estándares globales adaptados a nuestra realidad.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3 class="value-title" data-i18n data-es="Compromiso a largo plazo" data-en="Long-term commitment">Compromiso a largo plazo</h3>
+      <p class="value-text" data-i18n data-es="No buscamos clientes de un proyecto. Buscamos socios con quienes crecer juntos durante años." data-en="We don't look for one-project clients. We look for partners to grow with for years.">No buscamos clientes de un proyecto. Buscamos socios con quienes crecer juntos durante años.</p>
     </div>
   </div>
+</section>
 
-  <script>
-    const hamBtn = document.getElementById('ham-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    hamBtn.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('open');
-      hamBtn.classList.toggle('open', open);
-      hamBtn.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        hamBtn.classList.remove('open');
-        hamBtn.setAttribute('aria-expanded', false);
-        document.body.style.overflow = '';
-      });
-    });
-    const banner = document.getElementById('cookie-banner');
-    if (!localStorage.getItem('cookie-choice')) setTimeout(() => banner.classList.add('show'), 1800);
-    document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem('cookie-choice', 'accepted'); banner.classList.remove('show'); });
-    document.getElementById('cookie-decline').addEventListener('click', () => { localStorage.setItem('cookie-choice', 'declined'); banner.classList.remove('show'); });
-  </script>
+<!-- TEAM -->
+<section class="team-section reveal">
+  <div style="text-align:center;margin-bottom:0">
+    <p class="section-eyebrow" style="justify-content:center" data-i18n data-es="Equipo" data-en="Team">Equipo</p>
+    <h2 class="section-h2" data-i18n data-es="Las personas detrás del trabajo." data-en="The people behind the work.">Las personas detrás del trabajo.</h2>
+    <p style="font-size:15px;line-height:1.75;color:var(--text-muted);max-width:480px;margin:20px auto 0" data-i18n data-es="Un equipo pequeño y especializado, comprometido con hacer las cosas bien desde el principio." data-en="A small, specialized team committed to doing things right from the start.">Un equipo pequeño y especializado, comprometido con hacer las cosas bien desde el principio.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="team-name">Kevin Cuadros</div>
+      <div class="team-role">CEO & Founder</div>
+      <p class="team-bio" data-i18n data-es="Estratega digital y desarrollador. Apasionado por crear sistemas que generan resultados reales para negocios reales." data-en="Digital strategist and developer. Passionate about creating systems that generate real results for real businesses.">Estratega digital y desarrollador. Apasionado por crear sistemas que generan resultados reales para negocios reales.</p>
+      <div class="team-links">
+        <a href="https://linkedin.com/in/kevincuadros" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://instagram.com/kevincuadros" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section class="history-section reveal">
+  <p class="section-eyebrow" data-i18n data-es="Historia" data-en="History">Historia</p>
+  <h2 class="section-h2">Cómo llegamos<br><em>hasta aquí.</em></h2>
+  <div class="history-track">
+    <div class="milestone">
+      <div class="milestone-dot"></div>
+      <div class="milestone-year">2022</div>
+      <div class="milestone-title" data-i18n data-es="Fundación" data-en="Foundation">Fundación</div>
+      <p class="milestone-desc" data-i18n data-es="APO nace con el propósito de traer tecnología de calidad al mercado ecuatoriano a precios accesibles." data-en="APO is born with the purpose of bringing quality technology to the Ecuadorian market at accessible prices.">APO nace con el propósito de traer tecnología de calidad al mercado ecuatoriano a precios accesibles.</p>
+    </div>
+    <div class="milestone">
+      <div class="milestone-dot"></div>
+      <div class="milestone-year">2023</div>
+      <div class="milestone-title" data-i18n data-es="Primeros 20 clientes" data-en="First 20 clients">Primeros 20 clientes</div>
+      <p class="milestone-desc" data-i18n data-es="Alcanzamos los 20 clientes activos y comenzamos a especializarnos en chatbots con IA y automatizaciones." data-en="We reached 20 active clients and began specializing in AI chatbots and automations.">Alcanzamos los 20 clientes activos y comenzamos a especializarnos en chatbots con IA y automatizaciones.</p>
+    </div>
+    <div class="milestone">
+      <div class="milestone-dot"></div>
+      <div class="milestone-year">2024</div>
+      <div class="milestone-title" data-i18n data-es="Expansión Latam" data-en="Latam expansion">Expansión Latam</div>
+      <p class="milestone-desc" data-i18n data-es="Primer proyecto internacional. Extendemos operaciones a Colombia, Perú y Estados Unidos." data-en="First international project. We expand operations to Colombia, Peru, and the United States.">Primer proyecto internacional. Extendemos operaciones a Colombia, Perú y Estados Unidos.</p>
+    </div>
+    <div class="milestone">
+      <div class="milestone-dot"></div>
+      <div class="milestone-year">2025</div>
+      <div class="milestone-title" data-i18n data-es="50+ proyectos" data-en="50+ projects">50+ proyectos</div>
+      <p class="milestone-desc" data-i18n data-es="Superamos los 50 proyectos completados y lanzamos nuestra plataforma de software a medida enterprise." data-en="We surpass 50 completed projects and launch our enterprise custom software platform.">Superamos los 50 proyectos completados y lanzamos nuestra plataforma de software a medida enterprise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band reveal">
+  <h2 data-i18n data-es="¿Listo para crecer?" data-en="Ready to grow?">¿Listo para <em>crecer?</em></h2>
+  <p data-i18n data-es="Cuéntanos sobre tu proyecto. Te respondemos en menos de 24 horas con una propuesta sin costo." data-en="Tell us about your project. We respond in under 24 hours with a free proposal.">Cuéntanos sobre tu proyecto. Te respondemos en menos de 24 horas con una propuesta sin costo.</p>
+  <div class="cta-btns">
+    <a href="index.html#contacto" class="btn-white" data-i18n data-es="Iniciar proyecto" data-en="Start project">Iniciar proyecto</a>
+    <a href="portfolio.html" class="btn-ghost-white" data-i18n data-es="Ver proyectos" data-en="See projects">Ver proyectos</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="assets/logos/apo-logo-black.png" id="footer-logo-img" alt="APO Agency" />
+      <p data-i18n data-es="Agencia digital en Ecuador especializada en tecnología con propósito." data-en="Digital agency in Ecuador specializing in purposeful technology.">Agencia digital en Ecuador especializada en tecnología con propósito.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n data-es="Servicios" data-en="Services">Servicios</h4>
+      <ul>
+        <li><a href="index.html#servicios" data-i18n data-es="Diseño Web" data-en="Web Design">Diseño Web</a></li>
+        <li><a href="index.html#servicios" data-i18n data-es="Chatbots IA" data-en="AI Chatbots">Chatbots IA</a></li>
+        <li><a href="index.html#servicios" data-i18n data-es="Meta & Google Ads" data-en="Meta & Google Ads">Meta & Google Ads</a></li>
+        <li><a href="index.html#servicios" data-i18n data-es="Automatizaciones" data-en="Automations">Automatizaciones</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n data-es="Empresa" data-en="Company">Empresa</h4>
+      <ul>
+        <li><a href="about.html" data-i18n data-es="Nosotros" data-en="About">Nosotros</a></li>
+        <li><a href="portfolio.html" data-i18n data-es="Proyectos" data-en="Projects">Proyectos</a></li>
+        <li><a href="index.html#contacto" data-i18n data-es="Contacto" data-en="Contact">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 APO Agency. <span data-i18n data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+    <div class="footer-socials">
+      <a href="https://instagram.com/apoagency" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linkedin.com/company/apoagency" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const root = document.documentElement;
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    const isDark = t === 'dark';
+    document.getElementById('nav-logo-img').src = isDark ? 'assets/logos/apo-logo-white.png' : 'assets/logos/apo-logo-black.png';
+    document.getElementById('nav-isologo-img').src = isDark ? 'assets/logos/isologo-white.png' : 'assets/logos/isologo-black.png';
+    document.getElementById('footer-logo-img').src = isDark ? 'assets/logos/apo-logo-white.png' : 'assets/logos/apo-logo-black.png';
+    const sun = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+    const moon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+    document.getElementById('theme-icon').innerHTML = isDark ? sun : moon;
+    document.getElementById('theme-icon-mobile').innerHTML = isDark ? sun : moon;
+  }
+  function toggleTheme() { const c = root.getAttribute('data-theme')||'light'; const n = c==='dark'?'light':'dark'; localStorage.setItem('theme',n); applyTheme(n); }
+  applyTheme(localStorage.getItem('theme')||'light');
+
+  let currentLang = localStorage.getItem('lang')||'es';
+  function setLang(l) { currentLang=l; localStorage.setItem('lang',l); document.querySelectorAll('[data-i18n]').forEach(el => { if(el.dataset[l]) el.textContent=el.dataset[l]; }); document.getElementById('lang-btn').textContent=l.toUpperCase(); const m=document.getElementById('lang-btn-mobile'); if(m) m.textContent=l.toUpperCase(); }
+  function toggleLang() { setLang(currentLang==='es'?'en':'es'); }
+  setLang(currentLang);
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+
+  function openMobile() { document.getElementById('mobile-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobile() { document.getElementById('mobile-overlay').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('mobile-close').onclick = closeMobile;
+
+  const observer = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);} }); }, {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const counterObs = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting){animateCounter(e.target);counterObs.unobserve(e.target);} }); }, {threshold:.5});
+  function animateCounter(el) { const t=parseInt(el.dataset.counter); const s=el.dataset.suffix||''; const d=1200; const st=performance.now(); function step(n){const p=Math.min((n-st)/d,1); const ease=1-Math.pow(1-p,3); el.textContent=Math.round(ease*t)+s; if(p<1) requestAnimationFrame(step);} requestAnimationFrame(step); }
+  document.querySelectorAll('[data-counter]').forEach(el => counterObs.observe(el));
+</script>
 </body>
 </html>
