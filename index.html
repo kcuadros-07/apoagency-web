@@ -252,18 +252,19 @@
     .btn-primary:hover { opacity: .88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.22); }
     .btn-secondary { background: transparent; color: var(--text); padding: 15px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; border: 1.5px solid var(--border); cursor: pointer; font-family: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: rgba(var(--accent-rgb),.04); }
-    .stats-row { display: flex; gap: 48px; flex-wrap: wrap; animation: fadeUp .6s .4s ease both; }
+    .stats-row { display: flex; gap: 28px; flex-wrap: nowrap; animation: fadeUp .6s .4s ease both; }
     .stat-item { display: flex; flex-direction: column; gap: 4px; position: relative; padding-left: 16px; }
     .stat-item::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: var(--border); border-radius: 2px; }
     .stat-item:first-child::before { display: none; }
     .stat-item:first-child { padding-left: 0; }
-    .stat-num { font-size: 26px; font-weight: 800; letter-spacing: -1px; color: var(--text); }
+    .stat-num { font-size: 22px; font-weight: 800; letter-spacing: -1px; color: var(--text); }
     .stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; letter-spacing: .01em; }
 
     /* Hero visual dashboard (desktop) */
     .hero-visual {
       position: relative; z-index: 2; animation: fadeUp .7s .5s ease both;
       display: flex; flex-direction: column; gap: 12px;
+      will-change: transform; transform-style: preserve-3d;
     }
     .hv-browser {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
@@ -321,6 +322,84 @@
     .hv-notif-icon { width: 28px; height: 28px; border-radius: 8px; background: #22C55E; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 800; flex-shrink: 0; }
     .hv-notif-title { font-size: 12px; font-weight: 700; color: var(--text); }
     .hv-notif-sub { font-size: 10px; color: var(--text-muted); }
+
+    /* SERVICE TABS */
+    .service-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px; animation: fadeUp .6s .35s ease both; }
+    .st-tab {
+      font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: .02em;
+      padding: 7px 14px; border-radius: 20px; border: 1.5px solid var(--border);
+      background: transparent; color: var(--text-muted); cursor: pointer; transition: all .2s;
+      white-space: nowrap;
+    }
+    .st-tab:hover { border-color: var(--accent); color: var(--accent); background: rgba(var(--accent-rgb),.05); }
+    .st-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    /* Tab progress bar */
+    .st-tab.active { position: relative; overflow: hidden; }
+    .st-tab.active::after {
+      content: ''; position: absolute; bottom: 0; left: 0; height: 2px;
+      background: rgba(255,255,255,.5); border-radius: 0 0 20px 20px;
+      animation: tabProgress 4s linear forwards;
+    }
+    @keyframes tabProgress { from{width:0} to{width:100%} }
+
+    /* Hero visual panels */
+    .hv-panel { display: none; }
+    .hv-panel.active { display: block; animation: panelFadeIn .4s ease forwards; }
+    @keyframes panelFadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+    /* Web design panel */
+    .hv-page-mockup { background: var(--bg-surface); border-radius: 8px; padding: 0; overflow: hidden; }
+    .hv-page-nav { height: 32px; background: var(--card-bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 14px; gap: 12px; }
+    .hv-page-nav-logo { width: 50px; height: 6px; border-radius: 3px; background: var(--accent); opacity: .7; }
+    .hv-page-nav-links { display: flex; gap: 8px; margin-left: auto; }
+    .hv-page-nav-links span { width: 28px; height: 5px; border-radius: 3px; background: var(--border); }
+    .hv-page-hero { padding: 18px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--border); }
+    .hv-page-tag { width: 60px; height: 5px; border-radius: 3px; background: var(--accent); opacity: .5; }
+    .hv-page-h1 { width: 80%; height: 10px; border-radius: 4px; background: var(--text); opacity: .7; }
+    .hv-page-h1b { width: 60%; height: 10px; border-radius: 4px; background: var(--text); opacity: .5; margin-top: -2px; }
+    .hv-page-sub { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+    .hv-page-sub span { height: 4px; border-radius: 2px; background: var(--text-muted); opacity: .4; }
+    .hv-page-cta { width: 80px; height: 22px; border-radius: 6px; background: var(--accent); margin-top: 4px; }
+    .hv-page-features { padding: 14px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; border-bottom: 1px solid var(--border); }
+    .hv-page-feat { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 5px; }
+    .hv-page-feat-icon { width: 20px; height: 20px; border-radius: 6px; background: var(--accent); opacity: .2; }
+    .hv-page-feat-t { width: 70%; height: 5px; border-radius: 2px; background: var(--text); opacity: .6; }
+    .hv-page-feat-s { width: 90%; height: 3px; border-radius: 2px; background: var(--text-muted); opacity: .3; }
+    .hv-page-feat-s2 { width: 65%; height: 3px; border-radius: 2px; background: var(--text-muted); opacity: .3; }
+    .hv-page-gallery { padding: 10px 14px; display: flex; gap: 8px; }
+    .hv-page-img { flex: 1; height: 50px; border-radius: 8px; background: linear-gradient(135deg, rgba(var(--accent-rgb),.15), rgba(var(--accent-rgb),.05)); border: 1px solid var(--border); }
+    /* Automation panel */
+    .hv-wa { background: #ECE5DD; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px; min-height: 200px; }
+    [data-theme="dark"] .hv-wa { background: #1a2535; }
+    .hv-wa-header { background: #075E54; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
+    .hv-wa-av { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .hv-wa-name { font-size: 12px; font-weight: 700; color: #fff; }
+    .hv-wa-sub { font-size: 10px; color: rgba(255,255,255,.7); }
+    .hv-wa-msg { display: flex; gap: 6px; }
+    .hv-wa-msg.bot { justify-content: flex-start; }
+    .hv-wa-msg.user { justify-content: flex-end; }
+    .hv-wa-bubble { padding: 8px 12px; border-radius: 10px; font-size: 11px; line-height: 1.4; max-width: 75%; }
+    .hv-wa-msg.bot .hv-wa-bubble { background: #fff; color: #1a1a1a; border-radius: 0 10px 10px 10px; }
+    [data-theme="dark"] .hv-wa-msg.bot .hv-wa-bubble { background: #2d3748; color: #e2e8f0; }
+    .hv-wa-msg.user .hv-wa-bubble { background: #DCF8C6; color: #1a1a1a; border-radius: 10px 10px 0 10px; }
+    [data-theme="dark"] .hv-wa-msg.user .hv-wa-bubble { background: #1c4532; color: #c6f6d5; }
+    .hv-wa-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+    .hv-wa-tag { font-size: 10px; padding: 4px 10px; background: rgba(var(--accent-rgb),.1); color: var(--accent); border: 1px solid rgba(var(--accent-rgb),.2); border-radius: 12px; font-weight: 600; cursor: pointer; }
+    /* eCommerce panel */
+    .hv-store-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .hv-store-badge { font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 10px; background: #22C55E22; color: #22C55E; border: 1px solid #22C55E44; }
+    .hv-store-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; }
+    .hv-store-kpi { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; }
+    .hv-store-kval { font-size: 16px; font-weight: 800; letter-spacing: -1px; color: var(--text); }
+    .hv-store-klbl { font-size: 9px; color: var(--text-muted); }
+    .hv-store-kdelta { font-size: 10px; font-weight: 700; color: #22C55E; }
+    .hv-store-products { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .hv-store-product { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .hv-store-img { height: 52px; background: linear-gradient(135deg, rgba(var(--accent-rgb),.12), rgba(var(--accent-rgb),.04)); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .hv-store-info { padding: 8px; }
+    .hv-store-pname { font-size: 10px; font-weight: 700; color: var(--text); }
+    .hv-store-pprice { font-size: 12px; font-weight: 800; color: var(--accent); margin-top: 2px; }
+    .hv-store-psold { font-size: 9px; color: var(--text-muted); }
 
     /* METRICS STRIP */
     .metrics-strip { padding: 60px 48px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -803,13 +882,19 @@
 <section class="hero">
   <div class="hero-content">
     <p class="hero-eyebrow" data-i18n data-es="Agencia Digital · Ecuador" data-en="Digital Agency · Ecuador">Agencia Digital · Ecuador</p>
-    <div class="scarcity-badge"><span class="scarcity-dot"></span><span data-i18n data-es="Solo 3 cupos al mes — 1 disponible ahora" data-en="Only 3 spots/month — 1 available now">Solo 3 cupos al mes — 1 disponible ahora</span></div>
     <h1 class="hero-h1">Tu negocio,<br><em>más inteligente.</em></h1>
     <p class="hero-sub" data-i18n data-es="Construimos sitios, automatizamos procesos y generamos clientes para empresas que quieren crecer de verdad." data-en="We build websites, automate processes, and generate clients for companies that want to grow for real.">Construimos sitios, automatizamos procesos y generamos clientes para empresas que quieren crecer de verdad.</p>
     <div class="hero-ctas">
       <a href="#contacto" class="btn-primary" data-i18n data-es="Agendar diagnóstico gratis →" data-en="Schedule free diagnosis →">Agendar diagnóstico gratis →</a>
       <a href="#proyectos" class="btn-secondary" data-i18n data-es="Ver proyectos" data-en="See projects">Ver proyectos</a>
     </div>
+    <div class="service-tabs" id="service-tabs">
+      <button class="st-tab active" data-tab="ads" onclick="switchTab('ads',this)">📊 Meta Ads</button>
+      <button class="st-tab" data-tab="web" onclick="switchTab('web',this)">🌐 Diseño Web</button>
+      <button class="st-tab" data-tab="auto" onclick="switchTab('auto',this)">🤖 Automatización</button>
+      <button class="st-tab" data-tab="ecom" onclick="switchTab('ecom',this)">🛒 eCommerce</button>
+    </div>
+
     <div class="stats-row">
       <div class="stat-item">
         <span class="stat-num" data-counter="50" data-suffix="+">50+</span>
@@ -831,85 +916,156 @@
   </div>
 
   <!-- Dashboard visual (desktop only) -->
-  <div class="hero-visual" aria-hidden="true">
-    <div style="position:relative">
-      <div class="hv-browser">
-        <div class="hv-bar">
-          <div class="hv-dots"><span></span><span></span><span></span></div>
-          <div class="hv-url">analytics.apoagency.io</div>
-        </div>
-        <div class="hv-screen">
-          <div class="hv-dash-header">
-            <span class="hv-client-name">Interhome ISP — Campaña Hogar</span>
-            <span class="hv-period">Oct 2026</span>
-            <div class="hv-live-badge"><span class="hv-live-dot"></span>En vivo</div>
+  <div class="hero-visual" aria-hidden="true" id="hero-visual">
+
+    <!-- Panel 1: Meta Ads -->
+    <div class="hv-panel active" data-panel="ads">
+      <div style="position:relative">
+        <div class="hv-browser">
+          <div class="hv-bar">
+            <div class="hv-dots"><span></span><span></span><span></span></div>
+            <div class="hv-url">analytics.apoagency.io</div>
           </div>
-          <div class="hv-kpis">
-            <div class="hv-kpi">
-              <span class="hv-kpi-val">284</span>
-              <span class="hv-kpi-label">Leads</span>
-              <span class="hv-kpi-delta up">▲ +34%</span>
+          <div class="hv-screen">
+            <div class="hv-dash-header">
+              <span class="hv-client-name">Interhome ISP — Campaña Hogar</span>
+              <span class="hv-period">Oct 2026</span>
+              <div class="hv-live-badge"><span class="hv-live-dot"></span>En vivo</div>
             </div>
-            <div class="hv-kpi">
-              <span class="hv-kpi-val">$1.73</span>
-              <span class="hv-kpi-label">CPL</span>
-              <span class="hv-kpi-delta up">▼ -41%</span>
+            <div class="hv-kpis">
+              <div class="hv-kpi"><span class="hv-kpi-val">284</span><span class="hv-kpi-label">Leads</span><span class="hv-kpi-delta up">▲ +34%</span></div>
+              <div class="hv-kpi"><span class="hv-kpi-val">$1.73</span><span class="hv-kpi-label">CPL</span><span class="hv-kpi-delta up">▼ -41%</span></div>
+              <div class="hv-kpi"><span class="hv-kpi-val">8.4×</span><span class="hv-kpi-label">ROAS</span><span class="hv-kpi-delta up">▲ +2.1×</span></div>
+              <div class="hv-kpi"><span class="hv-kpi-val">$492</span><span class="hv-kpi-label">Invertido</span><span class="hv-kpi-delta" style="color:var(--text-muted)">este mes</span></div>
             </div>
-            <div class="hv-kpi">
-              <span class="hv-kpi-val">8.4×</span>
-              <span class="hv-kpi-label">ROAS</span>
-              <span class="hv-kpi-delta up">▲ +2.1×</span>
+            <div class="hv-chart">
+              <svg viewBox="0 0 280 80" preserveAspectRatio="none" class="hv-line-chart">
+                <defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3B82F6" stop-opacity="0.25"/><stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0,72 C20,68 40,62 60,48 C80,32 100,36 120,26 C140,16 160,20 180,12 C200,5 220,9 240,7 C260,5 270,3 280,2" fill="none" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M0,72 C20,68 40,62 60,48 C80,32 100,36 120,26 C140,16 160,20 180,12 C200,5 220,9 240,7 C260,5 270,3 280,2 L280,80 L0,80 Z" fill="url(#chartGrad)"/>
+                <circle cx="280" cy="2" r="4" fill="#3B82F6"/>
+                <circle cx="280" cy="2" r="9" fill="#3B82F6" opacity="0.2" class="chart-pulse"/>
+              </svg>
+              <div class="hv-chart-labels"><span>Sem 1</span><span>Sem 2</span><span>Sem 3</span><span>Sem 4</span></div>
             </div>
-            <div class="hv-kpi">
-              <span class="hv-kpi-val">$492</span>
-              <span class="hv-kpi-label">Invertido</span>
-              <span class="hv-kpi-delta" style="color:var(--text-muted)">este mes</span>
-            </div>
-          </div>
-          <div class="hv-chart">
-            <svg viewBox="0 0 280 80" preserveAspectRatio="none" class="hv-line-chart">
-              <defs>
-                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.25"/>
-                  <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0,72 C20,68 40,62 60,48 C80,32 100,36 120,26 C140,16 160,20 180,12 C200,5 220,9 240,7 C260,5 270,3 280,2" fill="none" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M0,72 C20,68 40,62 60,48 C80,32 100,36 120,26 C140,16 160,20 180,12 C200,5 220,9 240,7 C260,5 270,3 280,2 L280,80 L0,80 Z" fill="url(#chartGrad)"/>
-              <circle cx="280" cy="2" r="4" fill="#3B82F6"/>
-              <circle cx="280" cy="2" r="9" fill="#3B82F6" opacity="0.2" class="chart-pulse"/>
-            </svg>
-            <div class="hv-chart-labels">
-              <span>Sem 1</span><span>Sem 2</span><span>Sem 3</span><span>Sem 4</span>
-            </div>
-          </div>
-          <div class="hv-recent">
-            <div class="hv-recent-item hv-anim-1">
-              <div class="hv-dot-green"></div>
-              <span class="hv-ri-name">María G. — Plan Hogar Plus</span>
-              <span class="hv-ri-time">hace 2 min</span>
-            </div>
-            <div class="hv-recent-item hv-anim-2">
-              <div class="hv-dot-green"></div>
-              <span class="hv-ri-name">Carlos V. — Plan Empresarial</span>
-              <span class="hv-ri-time">hace 7 min</span>
-            </div>
-            <div class="hv-recent-item hv-anim-3">
-              <div class="hv-dot-blue"></div>
-              <span class="hv-ri-name">Lucía M. — Plan Básico</span>
-              <span class="hv-ri-time">hace 15 min</span>
+            <div class="hv-recent">
+              <div class="hv-recent-item"><div class="hv-dot-green"></div><span class="hv-ri-name">María G. — Plan Hogar Plus</span><span class="hv-ri-time">hace 2 min</span></div>
+              <div class="hv-recent-item"><div class="hv-dot-green"></div><span class="hv-ri-name">Carlos V. — Plan Empresarial</span><span class="hv-ri-time">hace 7 min</span></div>
+              <div class="hv-recent-item"><div class="hv-dot-blue"></div><span class="hv-ri-name">Lucía M. — Plan Básico</span><span class="hv-ri-time">hace 15 min</span></div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="hv-notif">
-        <div class="hv-notif-icon">✓</div>
-        <div>
-          <div class="hv-notif-title">Nuevo lead cerrado</div>
-          <div class="hv-notif-sub">BuscaCasa · hace 3 min</div>
-        </div>
+        <div class="hv-notif"><div class="hv-notif-icon">✓</div><div><div class="hv-notif-title">Nuevo lead cerrado</div><div class="hv-notif-sub">BuscaCasa · hace 3 min</div></div></div>
       </div>
     </div>
+
+    <!-- Panel 2: Diseño Web -->
+    <div class="hv-panel" data-panel="web">
+      <div style="position:relative">
+        <div class="hv-browser">
+          <div class="hv-bar">
+            <div class="hv-dots"><span></span><span></span><span></span></div>
+            <div class="hv-url">tusitio.com — APO Agency</div>
+          </div>
+          <div class="hv-screen" style="padding:0">
+            <div class="hv-page-mockup">
+              <div class="hv-page-nav">
+                <div class="hv-page-nav-logo"></div>
+                <div class="hv-page-nav-links"><span></span><span></span><span></span></div>
+              </div>
+              <div class="hv-page-hero">
+                <div class="hv-page-tag"></div>
+                <div class="hv-page-h1"></div>
+                <div class="hv-page-h1b"></div>
+                <div class="hv-page-sub"><span style="width:92%"></span><span style="width:78%"></span><span style="width:60%"></span></div>
+                <div class="hv-page-cta"></div>
+              </div>
+              <div class="hv-page-features">
+                <div class="hv-page-feat"><div class="hv-page-feat-icon"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
+                <div class="hv-page-feat"><div class="hv-page-feat-icon" style="opacity:.35"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
+                <div class="hv-page-feat"><div class="hv-page-feat-icon" style="opacity:.5"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
+              </div>
+              <div class="hv-page-gallery">
+                <div class="hv-page-img"></div>
+                <div class="hv-page-img" style="opacity:.7"></div>
+                <div class="hv-page-img" style="opacity:.5"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hv-notif" style="background:#6366F122;border-color:#6366F144"><div class="hv-notif-icon" style="background:#6366F1">⚡</div><div><div class="hv-notif-title">Web lista en 15 días</div><div class="hv-notif-sub">100 en PageSpeed · SEO incluido</div></div></div>
+      </div>
+    </div>
+
+    <!-- Panel 3: Automatización IA -->
+    <div class="hv-panel" data-panel="auto">
+      <div style="position:relative">
+        <div class="hv-browser">
+          <div class="hv-bar">
+            <div class="hv-dots"><span></span><span></span><span></span></div>
+            <div class="hv-url">wa.me/apobot — Automatización</div>
+          </div>
+          <div class="hv-screen">
+            <div class="hv-dash-header">
+              <span class="hv-client-name">Bot IA — Atención 24/7</span>
+              <div class="hv-live-badge"><span class="hv-live-dot"></span>Activo</div>
+            </div>
+            <div class="hv-wa">
+              <div class="hv-wa-header">
+                <div class="hv-wa-av">A</div>
+                <div><div class="hv-wa-name">APO Bot</div><div class="hv-wa-sub">● en línea</div></div>
+              </div>
+              <div class="hv-wa-msg bot"><div class="hv-wa-bubble">¡Hola! 👋 ¿En qué te puedo ayudar hoy?</div></div>
+              <div class="hv-wa-tags">
+                <span class="hv-wa-tag">📦 Precios</span>
+                <span class="hv-wa-tag">📅 Agendar</span>
+                <span class="hv-wa-tag">🛠 Soporte</span>
+              </div>
+              <div class="hv-wa-msg user"><div class="hv-wa-bubble">Quiero información de precios</div></div>
+              <div class="hv-wa-msg bot"><div class="hv-wa-bubble">Claro 😊 Nuestros planes van desde $297. ¿Te envío el detalle por aquí?</div></div>
+            </div>
+            <div class="hv-kpis" style="grid-template-columns:repeat(3,1fr);margin-top:10px">
+              <div class="hv-kpi"><span class="hv-kpi-val">247</span><span class="hv-kpi-label">Chats/mes</span><span class="hv-kpi-delta up">▲ +80%</span></div>
+              <div class="hv-kpi"><span class="hv-kpi-val">94%</span><span class="hv-kpi-label">Resueltos</span><span class="hv-kpi-delta up">▲ IA</span></div>
+              <div class="hv-kpi"><span class="hv-kpi-val">24/7</span><span class="hv-kpi-label">Disponible</span><span class="hv-kpi-delta up">sin personal</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="hv-notif"><div class="hv-notif-icon" style="background:#8B5CF6">🤖</div><div><div class="hv-notif-title">Lead calificado automático</div><div class="hv-notif-sub">Sin intervención humana</div></div></div>
+      </div>
+    </div>
+
+    <!-- Panel 4: eCommerce -->
+    <div class="hv-panel" data-panel="ecom">
+      <div style="position:relative">
+        <div class="hv-browser">
+          <div class="hv-bar">
+            <div class="hv-dots"><span></span><span></span><span></span></div>
+            <div class="hv-url">tutienda.com — APO Ecommerce</div>
+          </div>
+          <div class="hv-screen">
+            <div class="hv-store-header">
+              <span class="hv-client-name">TuTienda.ec — Dashboard</span>
+              <span class="hv-store-badge">● Hoy</span>
+              <div class="hv-live-badge" style="margin-left:auto"><span class="hv-live-dot"></span>En vivo</div>
+            </div>
+            <div class="hv-store-kpis">
+              <div class="hv-store-kpi"><div class="hv-store-kval">$4,820</div><div class="hv-store-klbl">Ventas hoy</div><div class="hv-store-kdelta">▲ +23%</div></div>
+              <div class="hv-store-kpi"><div class="hv-store-kval">38</div><div class="hv-store-klbl">Pedidos</div><div class="hv-store-kdelta">▲ +12</div></div>
+              <div class="hv-store-kpi"><div class="hv-store-kval">3.2%</div><div class="hv-store-klbl">Conversión</div><div class="hv-store-kdelta">▲ +0.8%</div></div>
+            </div>
+            <div class="hv-store-products">
+              <div class="hv-store-product"><div class="hv-store-img">👟</div><div class="hv-store-info"><div class="hv-store-pname">Zapatilla Runner X</div><div class="hv-store-pprice">$89.99</div><div class="hv-store-psold">142 vendidos</div></div></div>
+              <div class="hv-store-product"><div class="hv-store-img">👗</div><div class="hv-store-info"><div class="hv-store-pname">Vestido Verano</div><div class="hv-store-pprice">$54.99</div><div class="hv-store-psold">89 vendidos</div></div></div>
+              <div class="hv-store-product"><div class="hv-store-img">💼</div><div class="hv-store-info"><div class="hv-store-pname">Maletín Ejecutivo</div><div class="hv-store-pprice">$129.00</div><div class="hv-store-psold">63 vendidos</div></div></div>
+              <div class="hv-store-product"><div class="hv-store-img">⌚</div><div class="hv-store-info"><div class="hv-store-pname">Reloj Smart Pro</div><div class="hv-store-pprice">$199.00</div><div class="hv-store-psold">51 vendidos</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="hv-notif"><div class="hv-notif-icon" style="background:#F59E0B">🛒</div><div><div class="hv-notif-title">Nuevo pedido #1847</div><div class="hv-notif-sub">Zapatilla Runner × 2 · $179.98</div></div></div>
+      </div>
+    </div>
+
   </div>
 
   <!-- Chat animado (mobile only) -->
@@ -1920,26 +2076,66 @@
   (function() {
     const chat = document.getElementById('hero-chat');
     if (!chat || getComputedStyle(chat).display === 'none') return;
-    const seq = [
-      { el: 'hcm1', delay: 600 },
-      { el: 'hcm2', delay: 1600 },
-      { el: 'hc-typing', delay: 2400, hide: 3200 },
-      { el: 'hcm3', delay: 3300 },
-      { el: 'hcm4', delay: 4400 },
-      { el: 'hc-typing', delay: 5100, hide: 6000 },
-      { el: 'hcm5', delay: 6100 },
-      { el: 'hc-result', delay: 7000 },
-    ];
-    seq.forEach(({ el, delay, hide }) => {
-      setTimeout(() => {
-        const node = document.getElementById(el);
-        if (node) { node.style.animation = 'chatAppear .35s ease forwards'; }
-      }, delay);
-      if (hide) setTimeout(() => {
-        const node = document.getElementById(el);
-        if (node) node.style.opacity = '0';
-      }, hide);
-    });
+
+    function show(id) {
+      const node = document.getElementById(id);
+      if (node) node.style.animation = 'chatAppear .4s ease forwards';
+    }
+    function hide(id) {
+      const node = document.getElementById(id);
+      if (node) { node.style.opacity = '0'; node.style.animation = 'none'; }
+    }
+
+    // typing → bot msg 1
+    setTimeout(() => show('hc-typing'), 700);
+    setTimeout(() => { hide('hc-typing'); show('hcm1'); }, 1800);
+    // user msg 1
+    setTimeout(() => show('hcm2'), 2800);
+    // typing → bot msg 2
+    setTimeout(() => show('hc-typing'), 3600);
+    setTimeout(() => { hide('hc-typing'); show('hcm3'); }, 4800);
+    // user msg 2
+    setTimeout(() => show('hcm4'), 5800);
+    // typing → bot msg 3 + stats
+    setTimeout(() => show('hc-typing'), 6600);
+    setTimeout(() => { hide('hc-typing'); show('hcm5'); }, 7900);
+    setTimeout(() => show('hc-result'), 8600);
+  })();
+
+  // ── SERVICE TABS & AUTO-ROTATE ──
+  (function() {
+    const tabs = ['ads','web','auto','ecom'];
+    let current = 0;
+    let autoTimer = null;
+
+    function switchTab(tab, btn) {
+      // remove active from all tabs and panels
+      document.querySelectorAll('.st-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.hv-panel').forEach(p => p.classList.remove('active'));
+      // activate selected
+      if (btn) btn.classList.add('active');
+      else {
+        const b = document.querySelector(`.st-tab[data-tab="${tab}"]`);
+        if (b) b.classList.add('active');
+      }
+      const panel = document.querySelector(`.hv-panel[data-panel="${tab}"]`);
+      if (panel) panel.classList.add('active');
+      current = tabs.indexOf(tab);
+      // restart auto timer
+      clearInterval(autoTimer);
+      autoTimer = setInterval(autoNext, 4000);
+    }
+
+    function autoNext() {
+      current = (current + 1) % tabs.length;
+      switchTab(tabs[current], null);
+    }
+
+    // expose globally for onclick
+    window.switchTab = switchTab;
+
+    // start auto-rotate after 4s
+    autoTimer = setInterval(autoNext, 4000);
   })();
 
   // ── HERO VISUAL 3D TILT ──
@@ -1955,8 +2151,8 @@
       const rect = hero.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
-      targetX = (e.clientY - cy) / rect.height * -12;
-      targetY = (e.clientX - cx) / rect.width * 12;
+      targetX = (e.clientY - cy) / rect.height * -18;
+      targetY = (e.clientX - cx) / rect.width * 18;
       if (!raf) raf = requestAnimationFrame(animate);
     });
 
