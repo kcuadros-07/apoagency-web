@@ -203,6 +203,8 @@
     }
     .mobile-overlay.open { display: flex; }
     .mobile-overlay a { font-size: 32px; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -1px; }
+    .mobile-overlay .btn-primary { color: #fff !important; }
+    [data-theme="dark"] .mobile-overlay .btn-primary { color: var(--accent) !important; }
     .mobile-close { position: absolute; top: 24px; right: 24px; background: none; border: none; cursor: pointer; color: var(--text); }
     .mobile-bottom { display: flex; gap: 12px; flex-direction: column; align-items: center; }
 
@@ -252,7 +254,7 @@
     .btn-primary:hover { opacity: .88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.22); }
     .btn-secondary { background: transparent; color: var(--text); padding: 15px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; border: 1.5px solid var(--border); cursor: pointer; font-family: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: rgba(var(--accent-rgb),.04); }
-    .stats-row { display: flex; gap: 28px; flex-wrap: nowrap; animation: fadeUp .6s .4s ease both; }
+    .stats-row { display: flex; gap: 28px; flex-wrap: nowrap; animation: fadeUp .6s .4s ease both; margin-top: 28px; }
     .stat-item { display: flex; flex-direction: column; gap: 4px; position: relative; padding-left: 16px; }
     .stat-item::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: var(--border); border-radius: 2px; }
     .stat-item:first-child::before { display: none; }
@@ -346,8 +348,8 @@
 
     /* Hero visual panels */
     .hv-panel { display: none; }
-    .hv-panel.active { display: block; animation: panelFadeIn .4s ease forwards; }
-    @keyframes panelFadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .hv-panel.active { display: block; animation: panelFadeIn .55s cubic-bezier(.22,.68,0,1.2) forwards; }
+    @keyframes panelFadeIn { from{opacity:0;transform:translateY(14px) scale(.98)} to{opacity:1;transform:translateY(0) scale(1)} }
 
     /* Web design panel */
     .hv-page-mockup { background: var(--card-bg); border-radius: 8px; overflow: hidden; }
@@ -992,7 +994,7 @@
             </div>
           </div>
         </div>
-        <div class="hv-notif"><div class="hv-notif-icon">✓</div><div><div class="hv-notif-title">Nuevo lead cerrado</div><div class="hv-notif-sub">BuscaCasa · hace 3 min</div></div></div>
+        <div class="hv-notif"><div class="hv-notif-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="hv-notif-title">Nuevo lead cerrado</div><div class="hv-notif-sub">BuscaCasa · hace 3 min</div></div></div>
       </div>
     </div>
 
@@ -1126,12 +1128,12 @@
       </div>
     </div>
     <div class="hc-body">
-      <div class="hc-msg bot" id="hcm1">Hola! 👋 Soy el asistente de APO Agency. ¿En qué puedo ayudarte hoy?</div>
+      <div class="hc-msg bot" id="hcm1">Hola, soy el asistente de APO Agency. ¿En qué puedo ayudarte hoy?</div>
       <div class="hc-msg user" id="hcm2">Quiero más clientes para mi negocio</div>
       <div class="hc-typing" id="hc-typing"><span></span><span></span><span></span></div>
       <div class="hc-msg bot" id="hcm3">Perfecto. ¿Actualmente tienes sitio web o usas redes sociales para vender?</div>
       <div class="hc-msg user" id="hcm4">Solo Instagram, pero no convierte bien</div>
-      <div class="hc-msg bot" id="hcm5">Entendido 💡 Con una landing page + campaña de Meta Ads nuestros clientes promedian...</div>
+      <div class="hc-msg bot" id="hcm5">Con una landing page + campaña de Meta Ads nuestros clientes promedian...</div>
       <div class="hc-result" id="hc-result">
         <div class="hc-stat"><span class="hc-stat-num">3×</span><span class="hc-stat-label">más leads</span></div>
         <div class="hc-stat"><span class="hc-stat-num">$1.73</span><span class="hc-stat-label">CPL prom.</span></div>
@@ -1714,7 +1716,7 @@
         <span class="about-tag">Diseño Web</span>
         <span class="about-tag">IA & Automatización</span>
         <span class="about-tag">Meta & Google Ads</span>
-        <span class="about-tag">Ecuador 🇪🇨</span>
+        <span class="about-tag">Ecuador</span>
       </div>
       <a href="about.html" class="btn-secondary" style="width:fit-content">Conocer más →</a>
     </div>
@@ -1752,18 +1754,18 @@
       <div class="form-group">
         <label data-i18n data-es="¿Qué necesitas?" data-en="What do you need?">¿Qué necesitas?</label>
         <div class="svc-chips">
-          <button type="button" class="svc-chip" data-svc="web">🌐 Diseño Web</button>
-          <button type="button" class="svc-chip" data-svc="chatbot">🤖 Chatbot IA</button>
-          <button type="button" class="svc-chip" data-svc="ads">📢 Meta / Google Ads</button>
-          <button type="button" class="svc-chip" data-svc="automatizacion">⚡ Automatizaciones</button>
-          <button type="button" class="svc-chip" data-svc="software">💻 Software a Medida</button>
-          <button type="button" class="svc-chip" data-svc="branding">✦ Branding</button>
+          <button type="button" class="svc-chip" data-svc="web">Diseño Web</button>
+          <button type="button" class="svc-chip" data-svc="chatbot">Chatbot IA</button>
+          <button type="button" class="svc-chip" data-svc="ads">Meta / Google Ads</button>
+          <button type="button" class="svc-chip" data-svc="automatizacion">Automatizaciones</button>
+          <button type="button" class="svc-chip" data-svc="software">Software a Medida</button>
+          <button type="button" class="svc-chip" data-svc="branding">Branding</button>
         </div>
       </div>
 
       <!-- APO Recommendation -->
       <div class="apo-rec" id="apo-rec">
-        <div class="apo-rec-label">✦ APO recomienda</div>
+        <div class="apo-rec-label">APO recomienda</div>
         <p id="apo-rec-text"></p>
       </div>
 
