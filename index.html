@@ -350,6 +350,12 @@
     .hv-panel { display: none; }
     .hv-panel.active { display: block; animation: panelFadeIn .55s cubic-bezier(.22,.68,0,1.2) forwards; }
     @keyframes panelFadeIn { from{opacity:0;transform:translateY(14px) scale(.98)} to{opacity:1;transform:translateY(0) scale(1)} }
+    /* Web screenshots carousel */
+    .web-slide { display: none; }
+    .web-slide.active { display: block; animation: panelFadeIn .4s ease forwards; }
+    .web-dots { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); display:flex; gap:5px; }
+    .web-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.4); transition:background .2s; }
+    .web-dot.active { background:#fff; }
 
     /* Web design panel */
     .hv-page-mockup { background: var(--card-bg); border-radius: 8px; overflow: hidden; }
@@ -998,48 +1004,33 @@
       </div>
     </div>
 
-    <!-- Panel 2: Diseño Web -->
+    <!-- Panel 2: Diseño Web — client screenshots carousel -->
     <div class="hv-panel" data-panel="web">
       <div style="position:relative">
         <div class="hv-browser">
           <div class="hv-bar">
             <div class="hv-dots"><span></span><span></span><span></span></div>
-            <div class="hv-url">tusitio.com — APO Agency</div>
+            <div class="hv-url" id="web-url">flexman.com.ec</div>
           </div>
-          <div class="hv-screen" style="padding:0">
-            <div class="hv-page-mockup">
-              <div class="hv-page-nav">
-                <div class="hv-page-nav-logo"></div>
-                <div class="hv-page-nav-links"><span></span><span></span><span></span></div>
-                <div class="hv-page-nav-cta"></div>
-              </div>
-              <div class="hv-page-hero">
-                <div class="hv-page-hero-left">
-                  <div class="hv-page-tag"></div>
-                  <div class="hv-page-h1"></div>
-                  <div class="hv-page-h1b"></div>
-                  <div class="hv-page-sub"><span style="width:95%"></span><span style="width:80%"></span><span style="width:65%"></span></div>
-                  <div class="hv-page-ctas"><div class="hv-page-cta"></div><div class="hv-page-cta-sec"></div></div>
-                </div>
-                <div class="hv-page-hero-right">
-                  <div class="hv-page-inner-nav">
-                    <span style="background:#FF5F57"></span>
-                    <span style="background:#FEBC2E"></span>
-                    <span style="background:#28C840"></span>
-                  </div>
-                  <div class="hv-page-inner-img"></div>
-                </div>
-              </div>
-              <div class="hv-page-features">
-                <div class="hv-page-feat"><div class="hv-page-feat-icon"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
-                <div class="hv-page-feat"><div class="hv-page-feat-icon"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
-                <div class="hv-page-feat"><div class="hv-page-feat-icon"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
-              </div>
-              <div class="hv-page-testirow">
-                <div class="hv-page-testi"><div class="hv-page-stars"><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div></div><div class="hv-page-testi-t"></div><div class="hv-page-testi-t2"></div><div class="hv-page-testi-av"><div class="hv-page-testi-dot"></div><div class="hv-page-testi-name"></div></div></div>
-                <div class="hv-page-testi"><div class="hv-page-stars"><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div></div><div class="hv-page-testi-t"></div><div class="hv-page-testi-t2"></div><div class="hv-page-testi-av"><div class="hv-page-testi-dot"></div><div class="hv-page-testi-name"></div></div></div>
-                <div class="hv-page-testi"><div class="hv-page-stars"><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div></div><div class="hv-page-testi-t"></div><div class="hv-page-testi-t2"></div><div class="hv-page-testi-av"><div class="hv-page-testi-dot"></div><div class="hv-page-testi-name"></div></div></div>
-              </div>
+          <div style="position:relative;overflow:hidden;border-radius:0 0 16px 16px;">
+            <div class="web-slide active" data-site="flexman.com.ec">
+              <img src="assets/screenshots/flexman.webp" alt="Flexman" style="width:100%;height:260px;object-fit:cover;object-position:top;display:block" loading="lazy" />
+            </div>
+            <div class="web-slide" data-site="tecglo.com">
+              <img src="assets/screenshots/tecglo.webp" alt="Tecglo" style="width:100%;height:260px;object-fit:cover;object-position:top;display:block" loading="lazy" />
+            </div>
+            <div class="web-slide" data-site="interhomenet.com.ec">
+              <img src="assets/screenshots/interhome.webp" alt="Interhome" style="width:100%;height:260px;object-fit:cover;object-position:top;display:block" loading="lazy" />
+            </div>
+            <div class="web-slide" data-site="dataprivacysunset.com">
+              <img src="assets/screenshots/data-privacy-sunset.webp" alt="Data Privacy Sunset" style="width:100%;height:260px;object-fit:cover;object-position:top;display:block" loading="lazy" />
+            </div>
+            <!-- dot indicators -->
+            <div class="web-dots">
+              <span class="web-dot active"></span>
+              <span class="web-dot"></span>
+              <span class="web-dot"></span>
+              <span class="web-dot"></span>
             </div>
           </div>
         </div>
@@ -2186,6 +2177,35 @@
 
     // start auto-rotate after 4s
     autoTimer = setInterval(autoNext, 4000);
+  })();
+
+  // ── WEB SCREENSHOTS CAROUSEL ──
+  (function() {
+    const sites = ['flexman.com.ec','tecglo.com','interhomenet.com.ec','dataprivacysunset.com'];
+    let webIdx = 0;
+    let webTimer = null;
+    function nextWebSlide() {
+      const slides = document.querySelectorAll('.web-slide');
+      const dots = document.querySelectorAll('.web-dot');
+      const urlEl = document.getElementById('web-url');
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      webIdx = (webIdx + 1) % slides.length;
+      if (slides[webIdx]) slides[webIdx].classList.add('active');
+      if (dots[webIdx]) dots[webIdx].classList.add('active');
+      if (urlEl) urlEl.textContent = sites[webIdx];
+    }
+    // only run timer when the web panel is active
+    const observer = new MutationObserver(function() {
+      const panel = document.querySelector('.hv-panel[data-panel="web"]');
+      if (panel && panel.classList.contains('active')) {
+        if (!webTimer) webTimer = setInterval(nextWebSlide, 2500);
+      } else {
+        clearInterval(webTimer); webTimer = null;
+      }
+    });
+    const panelsContainer = document.querySelector('.hero-visual');
+    if (panelsContainer) observer.observe(panelsContainer, { subtree:true, attributes:true, attributeFilter:['class'] });
   })();
 
   // ── HERO VISUAL 3D TILT ──
