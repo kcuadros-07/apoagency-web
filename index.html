@@ -365,6 +365,52 @@
     .wa-fab:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,.6); }
     .wa-fab svg { width: 28px; height: 28px; fill: #fff; }
 
+    /* SCARCITY BADGE */
+    .scarcity-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(234,88,12,.1); border: 1px solid rgba(234,88,12,.25);
+      color: #FB923C; border-radius: 40px; padding: 6px 14px;
+      font-size: 11px; font-weight: 700; letter-spacing: .05em;
+      margin-bottom: 24px; animation: fadeUp .6s ease both;
+    }
+    .scarcity-dot { width: 6px; height: 6px; border-radius: 50%; background: #FB923C; animation: blink 1.5s ease-in-out infinite; }
+
+    /* HERO CHAT (mobile only) */
+    .hero-chat {
+      display: none; /* shown only on mobile */
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px;
+      overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,.12); margin-top: 40px;
+    }
+    [data-theme="dark"] .hero-chat { box-shadow: 0 16px 48px rgba(0,0,0,.45); }
+    .hc-header { background: #075E54; padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+    .hc-avatar { width: 36px; height: 36px; border-radius: 50%; background: #128C7E; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .hc-name { font-size: 13px; font-weight: 700; color: #fff; }
+    .hc-status { font-size: 11px; color: rgba(255,255,255,.7); display: flex; align-items: center; gap: 4px; }
+    .hc-status-dot { width: 5px; height: 5px; border-radius: 50%; background: #25D366; }
+    .hc-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; background: #ECE5DD; }
+    [data-theme="dark"] .hc-body { background: #1a1a2e; }
+    .hc-msg { max-width: 82%; padding: 8px 12px; border-radius: 12px; font-size: 13px; line-height: 1.5; opacity: 0; }
+    .hc-msg.bot { background: #fff; color: #111; border-radius: 0 12px 12px 12px; align-self: flex-start; box-shadow: 0 1px 2px rgba(0,0,0,.1); }
+    [data-theme="dark"] .hc-msg.bot { background: #2a2a3e; color: #f1f5f9; }
+    .hc-msg.user { background: #DCF8C6; color: #111; border-radius: 12px 0 12px 12px; align-self: flex-end; }
+    [data-theme="dark"] .hc-msg.user { background: #1a4731; color: #f1f5f9; }
+    .hc-typing { display: flex; gap: 4px; align-items: center; padding: 10px 12px; background: #fff; border-radius: 0 12px 12px 12px; width: fit-content; opacity: 0; }
+    [data-theme="dark"] .hc-typing { background: #2a2a3e; }
+    .hc-typing span { width: 6px; height: 6px; border-radius: 50%; background: #999; animation: typingBounce 1.2s ease-in-out infinite; }
+    .hc-typing span:nth-child(2) { animation-delay: .2s; }
+    .hc-typing span:nth-child(3) { animation-delay: .4s; }
+    @keyframes typingBounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+    .hc-result { display: flex; gap: 8px; margin-top: 4px; opacity: 0; }
+    .hc-stat { flex: 1; background: #fff; border-radius: 10px; padding: 10px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    [data-theme="dark"] .hc-stat { background: #2a2a3e; }
+    .hc-stat-num { font-size: 18px; font-weight: 800; color: #075E54; letter-spacing: -1px; display: block; }
+    [data-theme="dark"] .hc-stat-num { color: #25D366; }
+    .hc-stat-label { font-size: 9px; color: #666; font-weight: 500; }
+    [data-theme="dark"] .hc-stat-label { color: #94a3b8; }
+
+    /* Chat animation keyframes */
+    @keyframes chatAppear { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
     /* Scroll indicator */
     .hero-scroll-hint {
       position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
@@ -676,6 +722,7 @@
       .hero { padding: 120px 24px 80px; grid-template-columns: 1fr; }
       .hero-h1 { letter-spacing: -2px; }
       .hero-visual { display: none; }
+      .hero-chat { display: block; }
       .hero-scroll-hint { display: none; }
       .metrics-strip { padding: 40px 24px; }
       .metrics-inner { grid-template-columns: repeat(2,1fr); gap: 20px; }
@@ -756,10 +803,11 @@
 <section class="hero">
   <div class="hero-content">
     <p class="hero-eyebrow" data-i18n data-es="Agencia Digital · Ecuador" data-en="Digital Agency · Ecuador">Agencia Digital · Ecuador</p>
+    <div class="scarcity-badge"><span class="scarcity-dot"></span><span data-i18n data-es="Solo 3 cupos al mes — 1 disponible ahora" data-en="Only 3 spots/month — 1 available now">Solo 3 cupos al mes — 1 disponible ahora</span></div>
     <h1 class="hero-h1">Tu negocio,<br><em>más inteligente.</em></h1>
     <p class="hero-sub" data-i18n data-es="Construimos sitios, automatizamos procesos y generamos clientes para empresas que quieren crecer de verdad." data-en="We build websites, automate processes, and generate clients for companies that want to grow for real.">Construimos sitios, automatizamos procesos y generamos clientes para empresas que quieren crecer de verdad.</p>
     <div class="hero-ctas">
-      <a href="#contacto" class="btn-primary" data-i18n data-es="Iniciar proyecto →" data-en="Start project →">Iniciar proyecto →</a>
+      <a href="#contacto" class="btn-primary" data-i18n data-es="Agendar diagnóstico gratis →" data-en="Schedule free diagnosis →">Agendar diagnóstico gratis →</a>
       <a href="#proyectos" class="btn-secondary" data-i18n data-es="Ver proyectos" data-en="See projects">Ver proyectos</a>
     </div>
     <div class="stats-row">
@@ -860,6 +908,30 @@
           <div class="hv-notif-title">Nuevo lead cerrado</div>
           <div class="hv-notif-sub">BuscaCasa · hace 3 min</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat animado (mobile only) -->
+  <div class="hero-chat" id="hero-chat">
+    <div class="hc-header">
+      <div class="hc-avatar">A</div>
+      <div>
+        <div class="hc-name">APO Bot · WhatsApp</div>
+        <div class="hc-status"><span class="hc-status-dot"></span>En línea ahora</div>
+      </div>
+    </div>
+    <div class="hc-body">
+      <div class="hc-msg bot" id="hcm1">Hola! 👋 Soy el asistente de APO Agency. ¿En qué puedo ayudarte hoy?</div>
+      <div class="hc-msg user" id="hcm2">Quiero más clientes para mi negocio</div>
+      <div class="hc-typing" id="hc-typing"><span></span><span></span><span></span></div>
+      <div class="hc-msg bot" id="hcm3">Perfecto. ¿Actualmente tienes sitio web o usas redes sociales para vender?</div>
+      <div class="hc-msg user" id="hcm4">Solo Instagram, pero no convierte bien</div>
+      <div class="hc-msg bot" id="hcm5">Entendido 💡 Con una landing page + campaña de Meta Ads nuestros clientes promedian...</div>
+      <div class="hc-result" id="hc-result">
+        <div class="hc-stat"><span class="hc-stat-num">3×</span><span class="hc-stat-label">más leads</span></div>
+        <div class="hc-stat"><span class="hc-stat-num">$1.73</span><span class="hc-stat-label">CPL prom.</span></div>
+        <div class="hc-stat"><span class="hc-stat-num">60d</span><span class="hc-stat-label">resultados</span></div>
       </div>
     </div>
   </div>
@@ -1666,7 +1738,7 @@
     <p>© 2025 APO Agency. <span data-i18n data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
     <div class="footer-socials">
       <a href="https://instagram.com/apoagency" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://linkedin.com/company/apoagency" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://linkedin.com/in/kevincuadros" target="_blank" rel="noopener">LinkedIn</a>
       <a href="mailto:hola@apoagency.io">Email</a>
     </div>
   </div>
@@ -1841,6 +1913,32 @@
         }
         input.value = btn.dataset.val;
       });
+    });
+  })();
+
+  // ── HERO CHAT ANIMATION ──
+  (function() {
+    const chat = document.getElementById('hero-chat');
+    if (!chat || getComputedStyle(chat).display === 'none') return;
+    const seq = [
+      { el: 'hcm1', delay: 600 },
+      { el: 'hcm2', delay: 1600 },
+      { el: 'hc-typing', delay: 2400, hide: 3200 },
+      { el: 'hcm3', delay: 3300 },
+      { el: 'hcm4', delay: 4400 },
+      { el: 'hc-typing', delay: 5100, hide: 6000 },
+      { el: 'hcm5', delay: 6100 },
+      { el: 'hc-result', delay: 7000 },
+    ];
+    seq.forEach(({ el, delay, hide }) => {
+      setTimeout(() => {
+        const node = document.getElementById(el);
+        if (node) { node.style.animation = 'chatAppear .35s ease forwards'; }
+      }, delay);
+      if (hide) setTimeout(() => {
+        const node = document.getElementById(el);
+        if (node) node.style.opacity = '0';
+      }, hide);
     });
   })();
 

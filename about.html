@@ -109,7 +109,8 @@
     .team-section { border-top:1px solid var(--border);background:var(--bg-surface); }
     .team-grid { display:flex;gap:24px;margin-top:48px;justify-content:center; }
     .team-card { background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:40px 32px;text-align:center;width:280px;display:flex;flex-direction:column;align-items:center;gap:16px; }
-    .team-avatar { width:96px;height:96px;border-radius:50%;background:var(--bg-surface);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted); }
+    .team-avatar { width:96px;height:96px;border-radius:50%;background:var(--bg-surface);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);overflow:hidden; }
+    .team-avatar img { width:100%;height:100%;object-fit:cover;object-position:center top; }
     .team-name { font-size:20px;font-weight:800;letter-spacing:-.5px;color:var(--text); }
     .team-role { font-size:13px;color:var(--text-muted);font-weight:500; }
     .team-bio { font-size:13px;line-height:1.65;color:var(--text-muted); }
@@ -316,13 +317,13 @@
   <div class="team-grid">
     <div class="team-card">
       <div class="team-avatar">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <img src="assets/photos/kevin-cuadros.webp" alt="Kevin Cuadros" onerror="this.parentElement.innerHTML='<svg width=40 height=40 viewBox=&quot;0 0 24 24&quot; fill=none stroke=currentColor stroke-width=1.5><path d=&quot;M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2&quot;/><circle cx=12 cy=7 r=4/></svg>'" />
       </div>
       <div class="team-name">Kevin Cuadros</div>
       <div class="team-role">CEO & Founder</div>
       <p class="team-bio" data-i18n data-es="Estratega digital y desarrollador. Apasionado por crear sistemas que generan resultados reales para negocios reales." data-en="Digital strategist and developer. Passionate about creating systems that generate real results for real businesses.">Estratega digital y desarrollador. Apasionado por crear sistemas que generan resultados reales para negocios reales.</p>
       <div class="team-links">
-        <a href="https://linkedin.com/in/kevincuadros" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/kevincuadros/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://instagram.com/kevincuadros" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
