@@ -324,13 +324,15 @@
     .hv-notif-sub { font-size: 10px; color: var(--text-muted); }
 
     /* SERVICE TABS */
-    .service-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px; animation: fadeUp .6s .35s ease both; }
+    .service-tabs { display: flex; gap: 6px; flex-wrap: nowrap; margin-top: 32px; animation: fadeUp .6s .35s ease both; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+    .service-tabs::-webkit-scrollbar { display: none; }
     .st-tab {
-      font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: .02em;
-      padding: 7px 14px; border-radius: 20px; border: 1.5px solid var(--border);
+      font-family: inherit; font-size: 11.5px; font-weight: 600; letter-spacing: .01em;
+      padding: 6px 12px; border-radius: 20px; border: 1.5px solid var(--border);
       background: transparent; color: var(--text-muted); cursor: pointer; transition: all .2s;
-      white-space: nowrap;
+      white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
     }
+    .st-tab svg { width: 13px; height: 13px; flex-shrink: 0; }
     .st-tab:hover { border-color: var(--accent); color: var(--accent); background: rgba(var(--accent-rgb),.05); }
     .st-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
     /* Tab progress bar */
@@ -348,26 +350,47 @@
     @keyframes panelFadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
     /* Web design panel */
-    .hv-page-mockup { background: var(--bg-surface); border-radius: 8px; padding: 0; overflow: hidden; }
-    .hv-page-nav { height: 32px; background: var(--card-bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 14px; gap: 12px; }
-    .hv-page-nav-logo { width: 50px; height: 6px; border-radius: 3px; background: var(--accent); opacity: .7; }
-    .hv-page-nav-links { display: flex; gap: 8px; margin-left: auto; }
-    .hv-page-nav-links span { width: 28px; height: 5px; border-radius: 3px; background: var(--border); }
-    .hv-page-hero { padding: 18px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--border); }
-    .hv-page-tag { width: 60px; height: 5px; border-radius: 3px; background: var(--accent); opacity: .5; }
-    .hv-page-h1 { width: 80%; height: 10px; border-radius: 4px; background: var(--text); opacity: .7; }
-    .hv-page-h1b { width: 60%; height: 10px; border-radius: 4px; background: var(--text); opacity: .5; margin-top: -2px; }
-    .hv-page-sub { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
-    .hv-page-sub span { height: 4px; border-radius: 2px; background: var(--text-muted); opacity: .4; }
-    .hv-page-cta { width: 80px; height: 22px; border-radius: 6px; background: var(--accent); margin-top: 4px; }
-    .hv-page-features { padding: 14px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; border-bottom: 1px solid var(--border); }
-    .hv-page-feat { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 5px; }
-    .hv-page-feat-icon { width: 20px; height: 20px; border-radius: 6px; background: var(--accent); opacity: .2; }
-    .hv-page-feat-t { width: 70%; height: 5px; border-radius: 2px; background: var(--text); opacity: .6; }
-    .hv-page-feat-s { width: 90%; height: 3px; border-radius: 2px; background: var(--text-muted); opacity: .3; }
-    .hv-page-feat-s2 { width: 65%; height: 3px; border-radius: 2px; background: var(--text-muted); opacity: .3; }
-    .hv-page-gallery { padding: 10px 14px; display: flex; gap: 8px; }
-    .hv-page-img { flex: 1; height: 50px; border-radius: 8px; background: linear-gradient(135deg, rgba(var(--accent-rgb),.15), rgba(var(--accent-rgb),.05)); border: 1px solid var(--border); }
+    .hv-page-mockup { background: var(--card-bg); border-radius: 8px; overflow: hidden; }
+    .hv-page-nav { height: 30px; background: var(--card-bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 14px; gap: 10px; }
+    .hv-page-nav-logo { width: 40px; height: 5px; border-radius: 3px; background: var(--accent); }
+    .hv-page-nav-links { display: flex; gap: 10px; margin-left: auto; }
+    .hv-page-nav-links span { width: 22px; height: 4px; border-radius: 2px; background: var(--border); }
+    .hv-page-nav-cta { width: 40px; height: 18px; border-radius: 5px; background: var(--accent); margin-left: 6px; }
+    /* 2-col hero */
+    .hv-page-hero { padding: 16px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; border-bottom: 1px solid var(--border); background: var(--bg-surface); }
+    .hv-page-hero-left { display: flex; flex-direction: column; gap: 7px; }
+    .hv-page-tag { width: 52px; height: 5px; border-radius: 3px; background: var(--accent); opacity: .6; }
+    .hv-page-h1 { width: 90%; height: 9px; border-radius: 4px; background: var(--text); opacity: .8; }
+    .hv-page-h1b { width: 70%; height: 9px; border-radius: 4px; background: var(--text); opacity: .55; }
+    .hv-page-sub { display: flex; flex-direction: column; gap: 4px; }
+    .hv-page-sub span { height: 3.5px; border-radius: 2px; background: var(--text-muted); opacity: .35; }
+    .hv-page-ctas { display: flex; gap: 6px; margin-top: 2px; }
+    .hv-page-cta { width: 62px; height: 18px; border-radius: 5px; background: var(--accent); }
+    .hv-page-cta-sec { width: 52px; height: 18px; border-radius: 5px; border: 1.5px solid var(--border); }
+    /* Right side: browser frame mockup */
+    .hv-page-hero-right { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+    .hv-page-inner-nav { height: 18px; background: var(--card-bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 8px; gap: 3px; }
+    .hv-page-inner-nav span { width: 5px; height: 5px; border-radius: 50%; }
+    .hv-page-inner-img { height: 80px; background: linear-gradient(135deg, rgba(var(--accent-rgb),.18) 0%, rgba(var(--accent-rgb),.06) 100%); position: relative; overflow: hidden; }
+    .hv-page-inner-img::before { content:''; position:absolute; bottom:0; left:0; right:0; height: 30px; background: linear-gradient(to top, var(--card-bg), transparent); }
+    .hv-page-inner-bar { height: 4px; margin: 0 8px; border-radius: 2px; background: var(--text); opacity: .5; position: absolute; top: 24px; left: 8px; right: 8px; }
+    /* Features row */
+    .hv-page-features { padding: 10px 14px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; border-bottom: 1px solid var(--border); }
+    .hv-page-feat { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 7px; padding: 9px 10px; display: flex; flex-direction: column; gap: 5px; }
+    .hv-page-feat-icon { width: 18px; height: 18px; border-radius: 5px; background: var(--accent); opacity: .18; }
+    .hv-page-feat-t { width: 70%; height: 4px; border-radius: 2px; background: var(--text); opacity: .55; }
+    .hv-page-feat-s { width: 90%; height: 3px; border-radius: 2px; background: var(--text-muted); opacity: .28; }
+    .hv-page-feat-s2 { width: 60%; height: 3px; border-radius: 2px; background: var(--text-muted); opacity: .28; }
+    /* Testimonials row */
+    .hv-page-testirow { padding: 10px 14px; display: flex; gap: 8px; background: var(--bg-surface); }
+    .hv-page-testi { flex: 1; background: var(--card-bg); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; display: flex; flex-direction: column; gap: 5px; }
+    .hv-page-stars { display: flex; gap: 2px; }
+    .hv-page-star { width: 7px; height: 7px; border-radius: 1px; background: #F59E0B; opacity: .85; }
+    .hv-page-testi-t { width: 85%; height: 3px; border-radius: 2px; background: var(--text-muted); opacity: .3; }
+    .hv-page-testi-t2 { width: 65%; height: 3px; border-radius: 2px; background: var(--text-muted); opacity: .3; }
+    .hv-page-testi-av { display: flex; align-items: center; gap: 5px; margin-top: 3px; }
+    .hv-page-testi-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--border); }
+    .hv-page-testi-name { width: 40px; height: 4px; border-radius: 2px; background: var(--text-muted); opacity: .4; }
     /* Automation panel */
     .hv-wa { background: #ECE5DD; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px; min-height: 200px; }
     [data-theme="dark"] .hv-wa { background: #1a2535; }
@@ -395,7 +418,7 @@
     .hv-store-kdelta { font-size: 10px; font-weight: 700; color: #22C55E; }
     .hv-store-products { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .hv-store-product { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    .hv-store-img { height: 52px; background: linear-gradient(135deg, rgba(var(--accent-rgb),.12), rgba(var(--accent-rgb),.04)); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .hv-store-img { height: 52px; background: linear-gradient(135deg, rgba(var(--accent-rgb),.12), rgba(var(--accent-rgb),.04)); }
     .hv-store-info { padding: 8px; }
     .hv-store-pname { font-size: 10px; font-weight: 700; color: var(--text); }
     .hv-store-pprice { font-size: 12px; font-weight: 800; color: var(--accent); margin-top: 2px; }
@@ -800,8 +823,10 @@
       section { padding: 72px 24px; }
       .hero { padding: 120px 24px 80px; grid-template-columns: 1fr; }
       .hero-h1 { letter-spacing: -2px; }
-      .hero-visual { display: none; }
-      .hero-chat { display: block; }
+      .hero-visual { display: block; margin-top: 32px; }
+      .hero-chat { display: none; }
+      .hv-notif { display: none; }
+      .hv-browser { box-shadow: 0 12px 40px rgba(0,0,0,.1); }
       .hero-scroll-hint { display: none; }
       .metrics-strip { padding: 40px 24px; }
       .metrics-inner { grid-template-columns: repeat(2,1fr); gap: 20px; }
@@ -889,10 +914,22 @@
       <a href="#proyectos" class="btn-secondary" data-i18n data-es="Ver proyectos" data-en="See projects">Ver proyectos</a>
     </div>
     <div class="service-tabs" id="service-tabs">
-      <button class="st-tab active" data-tab="ads" onclick="switchTab('ads',this)">📊 Meta Ads</button>
-      <button class="st-tab" data-tab="web" onclick="switchTab('web',this)">🌐 Diseño Web</button>
-      <button class="st-tab" data-tab="auto" onclick="switchTab('auto',this)">🤖 Automatización</button>
-      <button class="st-tab" data-tab="ecom" onclick="switchTab('ecom',this)">🛒 eCommerce</button>
+      <button class="st-tab active" data-tab="ads" onclick="switchTab('ads',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Meta Ads
+      </button>
+      <button class="st-tab" data-tab="web" onclick="switchTab('web',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Diseño Web
+      </button>
+      <button class="st-tab" data-tab="auto" onclick="switchTab('auto',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Automatización
+      </button>
+      <button class="st-tab" data-tab="ecom" onclick="switchTab('ecom',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        eCommerce
+      </button>
     </div>
 
     <div class="stats-row">
@@ -972,28 +1009,39 @@
               <div class="hv-page-nav">
                 <div class="hv-page-nav-logo"></div>
                 <div class="hv-page-nav-links"><span></span><span></span><span></span></div>
+                <div class="hv-page-nav-cta"></div>
               </div>
               <div class="hv-page-hero">
-                <div class="hv-page-tag"></div>
-                <div class="hv-page-h1"></div>
-                <div class="hv-page-h1b"></div>
-                <div class="hv-page-sub"><span style="width:92%"></span><span style="width:78%"></span><span style="width:60%"></span></div>
-                <div class="hv-page-cta"></div>
+                <div class="hv-page-hero-left">
+                  <div class="hv-page-tag"></div>
+                  <div class="hv-page-h1"></div>
+                  <div class="hv-page-h1b"></div>
+                  <div class="hv-page-sub"><span style="width:95%"></span><span style="width:80%"></span><span style="width:65%"></span></div>
+                  <div class="hv-page-ctas"><div class="hv-page-cta"></div><div class="hv-page-cta-sec"></div></div>
+                </div>
+                <div class="hv-page-hero-right">
+                  <div class="hv-page-inner-nav">
+                    <span style="background:#FF5F57"></span>
+                    <span style="background:#FEBC2E"></span>
+                    <span style="background:#28C840"></span>
+                  </div>
+                  <div class="hv-page-inner-img"></div>
+                </div>
               </div>
               <div class="hv-page-features">
                 <div class="hv-page-feat"><div class="hv-page-feat-icon"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
-                <div class="hv-page-feat"><div class="hv-page-feat-icon" style="opacity:.35"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
-                <div class="hv-page-feat"><div class="hv-page-feat-icon" style="opacity:.5"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
+                <div class="hv-page-feat"><div class="hv-page-feat-icon"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
+                <div class="hv-page-feat"><div class="hv-page-feat-icon"></div><div class="hv-page-feat-t"></div><div class="hv-page-feat-s"></div><div class="hv-page-feat-s2"></div></div>
               </div>
-              <div class="hv-page-gallery">
-                <div class="hv-page-img"></div>
-                <div class="hv-page-img" style="opacity:.7"></div>
-                <div class="hv-page-img" style="opacity:.5"></div>
+              <div class="hv-page-testirow">
+                <div class="hv-page-testi"><div class="hv-page-stars"><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div></div><div class="hv-page-testi-t"></div><div class="hv-page-testi-t2"></div><div class="hv-page-testi-av"><div class="hv-page-testi-dot"></div><div class="hv-page-testi-name"></div></div></div>
+                <div class="hv-page-testi"><div class="hv-page-stars"><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div></div><div class="hv-page-testi-t"></div><div class="hv-page-testi-t2"></div><div class="hv-page-testi-av"><div class="hv-page-testi-dot"></div><div class="hv-page-testi-name"></div></div></div>
+                <div class="hv-page-testi"><div class="hv-page-stars"><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div><div class="hv-page-star"></div></div><div class="hv-page-testi-t"></div><div class="hv-page-testi-t2"></div><div class="hv-page-testi-av"><div class="hv-page-testi-dot"></div><div class="hv-page-testi-name"></div></div></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="hv-notif" style="background:#6366F122;border-color:#6366F144"><div class="hv-notif-icon" style="background:#6366F1">⚡</div><div><div class="hv-notif-title">Web lista en 15 días</div><div class="hv-notif-sub">100 en PageSpeed · SEO incluido</div></div></div>
+        <div class="hv-notif"><div class="hv-notif-icon" style="background:#6366F1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="hv-notif-title">Web lista en 15 días</div><div class="hv-notif-sub">100 en PageSpeed · SEO incluido</div></div></div>
       </div>
     </div>
 
@@ -1015,14 +1063,14 @@
                 <div class="hv-wa-av">A</div>
                 <div><div class="hv-wa-name">APO Bot</div><div class="hv-wa-sub">● en línea</div></div>
               </div>
-              <div class="hv-wa-msg bot"><div class="hv-wa-bubble">¡Hola! 👋 ¿En qué te puedo ayudar hoy?</div></div>
+              <div class="hv-wa-msg bot"><div class="hv-wa-bubble">Hola, soy el asistente de APO Agency. ¿En qué te ayudo?</div></div>
               <div class="hv-wa-tags">
-                <span class="hv-wa-tag">📦 Precios</span>
-                <span class="hv-wa-tag">📅 Agendar</span>
-                <span class="hv-wa-tag">🛠 Soporte</span>
+                <span class="hv-wa-tag">Precios</span>
+                <span class="hv-wa-tag">Agendar cita</span>
+                <span class="hv-wa-tag">Soporte</span>
               </div>
               <div class="hv-wa-msg user"><div class="hv-wa-bubble">Quiero información de precios</div></div>
-              <div class="hv-wa-msg bot"><div class="hv-wa-bubble">Claro 😊 Nuestros planes van desde $297. ¿Te envío el detalle por aquí?</div></div>
+              <div class="hv-wa-msg bot"><div class="hv-wa-bubble">Claro. Nuestros planes van desde $297. ¿Te envío el detalle por aquí?</div></div>
             </div>
             <div class="hv-kpis" style="grid-template-columns:repeat(3,1fr);margin-top:10px">
               <div class="hv-kpi"><span class="hv-kpi-val">247</span><span class="hv-kpi-label">Chats/mes</span><span class="hv-kpi-delta up">▲ +80%</span></div>
@@ -1031,7 +1079,7 @@
             </div>
           </div>
         </div>
-        <div class="hv-notif"><div class="hv-notif-icon" style="background:#8B5CF6">🤖</div><div><div class="hv-notif-title">Lead calificado automático</div><div class="hv-notif-sub">Sin intervención humana</div></div></div>
+        <div class="hv-notif"><div class="hv-notif-icon" style="background:#8B5CF6"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="hv-notif-title">Lead calificado automático</div><div class="hv-notif-sub">Sin intervención humana</div></div></div>
       </div>
     </div>
 
@@ -1055,14 +1103,14 @@
               <div class="hv-store-kpi"><div class="hv-store-kval">3.2%</div><div class="hv-store-klbl">Conversión</div><div class="hv-store-kdelta">▲ +0.8%</div></div>
             </div>
             <div class="hv-store-products">
-              <div class="hv-store-product"><div class="hv-store-img">👟</div><div class="hv-store-info"><div class="hv-store-pname">Zapatilla Runner X</div><div class="hv-store-pprice">$89.99</div><div class="hv-store-psold">142 vendidos</div></div></div>
-              <div class="hv-store-product"><div class="hv-store-img">👗</div><div class="hv-store-info"><div class="hv-store-pname">Vestido Verano</div><div class="hv-store-pprice">$54.99</div><div class="hv-store-psold">89 vendidos</div></div></div>
-              <div class="hv-store-product"><div class="hv-store-img">💼</div><div class="hv-store-info"><div class="hv-store-pname">Maletín Ejecutivo</div><div class="hv-store-pprice">$129.00</div><div class="hv-store-psold">63 vendidos</div></div></div>
-              <div class="hv-store-product"><div class="hv-store-img">⌚</div><div class="hv-store-info"><div class="hv-store-pname">Reloj Smart Pro</div><div class="hv-store-pprice">$199.00</div><div class="hv-store-psold">51 vendidos</div></div></div>
+              <div class="hv-store-product"><div class="hv-store-img" style="background:linear-gradient(135deg,rgba(37,99,235,.15),rgba(37,99,235,.05))"></div><div class="hv-store-info"><div class="hv-store-pname">Zapatilla Runner X</div><div class="hv-store-pprice">$89.99</div><div class="hv-store-psold">142 vendidos</div></div></div>
+              <div class="hv-store-product"><div class="hv-store-img" style="background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(99,102,241,.05))"></div><div class="hv-store-info"><div class="hv-store-pname">Vestido Verano</div><div class="hv-store-pprice">$54.99</div><div class="hv-store-psold">89 vendidos</div></div></div>
+              <div class="hv-store-product"><div class="hv-store-img" style="background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05))"></div><div class="hv-store-info"><div class="hv-store-pname">Maletín Ejecutivo</div><div class="hv-store-pprice">$129.00</div><div class="hv-store-psold">63 vendidos</div></div></div>
+              <div class="hv-store-product"><div class="hv-store-img" style="background:linear-gradient(135deg,rgba(34,197,94,.15),rgba(34,197,94,.05))"></div><div class="hv-store-info"><div class="hv-store-pname">Reloj Smart Pro</div><div class="hv-store-pprice">$199.00</div><div class="hv-store-psold">51 vendidos</div></div></div>
             </div>
           </div>
         </div>
-        <div class="hv-notif"><div class="hv-notif-icon" style="background:#F59E0B">🛒</div><div><div class="hv-notif-title">Nuevo pedido #1847</div><div class="hv-notif-sub">Zapatilla Runner × 2 · $179.98</div></div></div>
+        <div class="hv-notif"><div class="hv-notif-icon" style="background:#F59E0B"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div><div><div class="hv-notif-title">Nuevo pedido #1847</div><div class="hv-notif-sub">Zapatilla Runner × 2 · $179.98</div></div></div>
       </div>
     </div>
 
