@@ -89,23 +89,39 @@
     /* PROJECTS GRID */
     .projects-section { border-top:1px solid var(--border);padding-top:80px; }
     .projects-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:0; }
-    .project-card { border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--card-bg);transition:transform .3s,box-shadow .3s;cursor:default; }
-    .project-card:hover { transform:translateY(-4px);box-shadow:0 24px 48px rgba(0,0,0,.1); }
+    .project-card { border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--card-bg);transition:transform .3s,box-shadow .3s;cursor:default;display:flex;flex-direction:column; }
+    .project-card:hover { transform:translateY(-4px);box-shadow:0 24px 48px rgba(0,0,0,.12); }
     .project-card[data-hidden="true"] { display:none; }
+
+    /* Canvas — generic visual area */
+    .proj-canvas { width:100%;aspect-ratio:16/9;position:relative;overflow:hidden; }
+
+    /* Browser frame */
     .browser-mockup { width:100%;aspect-ratio:16/9;position:relative;overflow:hidden; }
-    .browser-bar { position:absolute;top:0;left:0;right:0;height:36px;background:rgba(0,0,0,.25);display:flex;align-items:center;padding:0 14px;gap:6px;z-index:2; }
-    .browser-dot { width:10px;height:10px;border-radius:50%; }
+    .browser-bar { position:absolute;top:0;left:0;right:0;height:32px;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);display:flex;align-items:center;padding:0 14px;gap:6px;z-index:3; }
+    .browser-dot { width:9px;height:9px;border-radius:50%; }
     .browser-dot:nth-child(1){background:#FF5F57;} .browser-dot:nth-child(2){background:#FEBC2E;} .browser-dot:nth-child(3){background:#28C840;}
-    .browser-url { background:rgba(255,255,255,.12);border-radius:4px;padding:3px 12px;font-size:10px;color:rgba(255,255,255,.6);margin-left:10px;font-family:monospace; }
-    .browser-screen { position:absolute;inset:0; }
-    .project-overlay { position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 100%);padding:24px 20px 20px;transform:translateY(4px);transition:transform .3s; }
-    .project-card:hover .project-overlay { transform:translateY(0); }
-    .project-tag { display:inline-block;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:rgba(255,255,255,.15);color:#fff;padding:3px 8px;border-radius:4px;margin-bottom:8px; }
-    .project-name { font-size:20px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:4px; }
-    .project-client { font-size:12px;color:rgba(255,255,255,.6); }
-    .project-metric { font-size:28px;font-weight:800;color:#fff;letter-spacing:-1px;margin-top:8px; }
-    .project-metric-label { font-size:11px;color:rgba(255,255,255,.6); }
-    .screen-inner { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:36px 24px;top:36px; }
+    .browser-url { background:rgba(255,255,255,.1);border-radius:4px;padding:3px 12px;font-size:10px;color:rgba(255,255,255,.5);margin-left:10px;font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:160px; }
+    .browser-screen { position:absolute;inset:0;overflow:hidden; }
+    .browser-screen img { width:100%;height:100%;object-fit:cover;object-position:top;display:block; }
+    /* Dim screenshots so they read as preview, not main content */
+    .browser-screen.has-img::after { content:'';position:absolute;inset:0;background:rgba(0,0,0,.3); }
+    .screen-inner { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:40px 24px;top:32px; }
+
+    /* Info footer — always visible */
+    .proj-info { padding:16px 20px 18px;background:var(--card-bg);border-top:1px solid var(--border);display:flex;flex-direction:column;gap:4px; }
+    .proj-info-top { display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px; }
+    .project-tag { display:inline-block;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:20px; }
+    .project-tag.tag-web   { background:rgba(37,99,235,.12);color:#3B82F6;border:1px solid rgba(37,99,235,.22); }
+    .project-tag.tag-bot   { background:rgba(234,88,12,.12);color:#FB923C;border:1px solid rgba(234,88,12,.22); }
+    .project-tag.tag-ads   { background:rgba(59,130,246,.12);color:#60A5FA;border:1px solid rgba(59,130,246,.22); }
+    .project-tag.tag-auto  { background:rgba(16,185,129,.12);color:#34D399;border:1px solid rgba(16,185,129,.22); }
+    [data-theme="light"] .project-tag.tag-web  { background:rgba(37,99,235,.08);color:#1D4ED8;border-color:rgba(37,99,235,.18); }
+    [data-theme="light"] .project-tag.tag-bot  { background:rgba(234,88,12,.08);color:#C2410C;border-color:rgba(234,88,12,.18); }
+    [data-theme="light"] .project-tag.tag-ads  { background:rgba(37,99,235,.08);color:#1D4ED8;border-color:rgba(37,99,235,.18); }
+    .project-metric-badge { font-size:14px;font-weight:800;letter-spacing:-.3px;color:var(--text); }
+    .project-name { font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.3px; }
+    .project-client { font-size:12px;color:var(--text-muted);margin-top:1px; }
 
     /* CATEGORIES */
     .categories-section { border-top:1px solid var(--border);background:var(--bg-surface); }
@@ -219,83 +235,161 @@
 <section class="projects-section" style="border-top:1px solid var(--border);padding:80px 48px">
   <div class="projects-grid reveal" id="projects-grid">
 
+    <!-- BuscaCasa -->
     <div class="project-card" data-category="web">
       <div class="browser-mockup">
         <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">buscacasa.ec</span></div>
         <div class="browser-screen" style="background:linear-gradient(135deg,#0B1D35 0%,#1a3a6b 40%,#0d2d52 100%)">
           <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.1);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Busca tu hogar ideal</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">+2,000 propiedades</div></div></div>
         </div>
-        <div class="project-overlay"><span class="project-tag">Web</span><div class="project-name">BuscaCasa</div><div class="project-client">Portal inmobiliario · Ecuador</div><div class="project-metric">+180%</div><div class="project-metric-label">tráfico orgánico</div></div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top"><span class="project-tag tag-web">Diseño Web</span><span class="project-metric-badge">+180% tráfico</span></div>
+        <div class="project-name">BuscaCasa</div>
+        <div class="project-client">Portal inmobiliario · Ecuador</div>
       </div>
     </div>
 
+    <!-- Feria de Loja Chatbot -->
     <div class="project-card" data-category="chatbot">
-      <div class="browser-mockup">
-        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">ferialoja.com</span></div>
-        <div class="browser-screen" style="background:linear-gradient(135deg,#7C2D12 0%,#C2410C 50%,#EA580C 100%)">
-          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.15);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Asistente de Feria</div><div style="color:rgba(255,255,255,.6);font-size:11px;margin-top:4px">WhatsApp · IA</div></div></div>
+      <div class="proj-canvas" style="background:linear-gradient(160deg,#431407 0%,#7C2D12 50%,#9A3412 100%)">
+        <div style="position:absolute;top:0;left:0;right:0;padding:10px 14px;background:rgba(0,0,0,.35);display:flex;align-items:center;gap:8px;z-index:2">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10"/></svg></div>
+          <div><div style="font-size:10px;font-weight:700;color:#fff">Asistente Feria de Loja</div><div style="font-size:8px;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:3px"><span style="width:5px;height:5px;border-radius:50%;background:#22C55E;display:inline-block"></span>En línea</div></div>
         </div>
-        <div class="project-overlay"><span class="project-tag">Chatbot IA</span><div class="project-name">Feria de Loja</div><div class="project-client">Evento cultural · Ecuador</div><div class="project-metric">5,200+</div><div class="project-metric-label">consultas atendidas</div></div>
+        <div style="position:absolute;inset:0;top:46px;padding:12px 14px;display:flex;flex-direction:column;gap:7px;overflow:hidden">
+          <div style="max-width:80%;background:rgba(0,0,0,.4);border-radius:3px 12px 12px 12px;padding:7px 10px;font-size:10px;color:rgba(255,255,255,.9);line-height:1.5">¡Hola! Soy el asistente 🎡 ¿En qué te ayudo?</div>
+          <div style="max-width:70%;background:rgba(255,255,255,.18);border-radius:12px 3px 12px 12px;padding:7px 10px;font-size:10px;color:#fff;align-self:flex-end">¿A qué hora abre mañana?</div>
+          <div style="max-width:82%;background:rgba(0,0,0,.4);border-radius:3px 12px 12px 12px;padding:7px 10px;font-size:10px;color:rgba(255,255,255,.9);line-height:1.5">Mañana abre a las 9:00 AM 🎶</div>
+          <div style="max-width:60%;background:rgba(255,255,255,.18);border-radius:12px 3px 12px 12px;padding:7px 10px;font-size:10px;color:#fff;align-self:flex-end">Sí, por favor</div>
+        </div>
+        <div style="position:absolute;bottom:8px;right:10px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:3px 8px;font-size:7px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.6);text-transform:uppercase">IA · WhatsApp</div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top"><span class="project-tag tag-bot">Chatbot IA</span><span class="project-metric-badge">5,200+ consultas</span></div>
+        <div class="project-name">Feria de Loja</div>
+        <div class="project-client">Asistente de eventos · WhatsApp</div>
       </div>
     </div>
 
-    <div class="project-card" data-category="software">
-      <div class="browser-mockup">
-        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">flexman.app</span></div>
-        <div class="browser-screen" style="background:linear-gradient(135deg,#064E3B 0%,#065F46 50%,#047857 100%)">
-          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Panel de gestión</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">SaaS · Automatización</div></div></div>
-        </div>
-        <div class="project-overlay"><span class="project-tag">Software</span><div class="project-name">Flexman</div><div class="project-client">Software SaaS · Latam</div><div class="project-metric">-65%</div><div class="project-metric-label">tiempo operativo</div></div>
-      </div>
-    </div>
-
-    <div class="project-card" data-category="ads">
-      <div class="browser-mockup">
-        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">interhome.ec</span></div>
-        <div class="browser-screen" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 60%,#3B82F6 100%)">
-          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Campañas activas</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">Meta · Google Ads</div></div></div>
-        </div>
-        <div class="project-overlay"><span class="project-tag">Meta Ads</span><div class="project-name">Interhome</div><div class="project-client">Inmobiliaria · Ecuador</div><div class="project-metric">$1.20</div><div class="project-metric-label">CPL · 3× ROI</div></div>
-      </div>
-    </div>
-
-    <div class="project-card" data-category="chatbot">
-      <div class="browser-mockup">
-        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">ec-connect.io</span></div>
-        <div class="browser-screen" style="background:linear-gradient(135deg,#1e1b4b 0%,#3730a3 60%,#4f46e5 100%)">
-          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Asistente corporativo</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">IA · Integración CRM</div></div></div>
-        </div>
-        <div class="project-overlay"><span class="project-tag">Chatbot IA</span><div class="project-name">EC Connect</div><div class="project-client">Telecomunicaciones · Ecuador</div><div class="project-metric">-40%</div><div class="project-metric-label">carga en atención al cliente</div></div>
-      </div>
-    </div>
-
+    <!-- Flexman -->
     <div class="project-card" data-category="web">
       <div class="browser-mockup">
-        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">cancionfilms.com</span></div>
-        <div class="browser-screen" style="background:linear-gradient(135deg,#1c1917 0%,#44403c 50%,#57534e 100%)">
-          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.1);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Portafolio cinematográfico</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">Producción · Ecuador</div></div></div>
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">flexman.com.ec</span></div>
+        <div class="browser-screen has-img">
+          <img src="assets/screenshots/flexman.webp" alt="Flexman — Fabricante de válvulas Ecuador" loading="lazy" />
         </div>
-        <div class="project-overlay"><span class="project-tag">Web</span><div class="project-name">Canción Films</div><div class="project-client">Productora audiovisual · Ecuador</div><div class="project-metric">+240%</div><div class="project-metric-label">contactos entrantes</div></div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top"><span class="project-tag tag-web">Diseño Web</span><span class="project-metric-badge">+220% leads</span></div>
+        <div class="project-name">Flexman</div>
+        <div class="project-client">Manufactura industrial · Ecuador</div>
       </div>
     </div>
 
-    <div class="project-card" data-category="software">
+    <!-- Interhome ISP -->
+    <div class="project-card" data-category="web">
       <div class="browser-mockup">
-        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">intelnexo.com</span></div>
-        <div class="browser-screen" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#1d4ed8 100%)">
-          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.1);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Sistema de gestión</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">Software · Enterprise</div></div></div>
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">interhomenet.com.ec</span></div>
+        <div class="browser-screen has-img">
+          <img src="assets/screenshots/interhome.webp" alt="Interhome — Planes de internet Ecuador" loading="lazy" />
         </div>
-        <div class="project-overlay"><span class="project-tag">Software</span><div class="project-name">Intelnexo</div><div class="project-client">Tecnología · Ecuador</div><div class="project-metric">3×</div><div class="project-metric-label">eficiencia de procesos</div></div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top"><span class="project-tag tag-web">Diseño Web</span><span class="project-metric-badge">+310% conversiones</span></div>
+        <div class="project-name">Interhome</div>
+        <div class="project-client">ISP · Ecuador</div>
       </div>
     </div>
 
+    <!-- Tecglo -->
+    <div class="project-card" data-category="web">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">tecglo.com</span></div>
+        <div class="browser-screen has-img">
+          <img src="assets/screenshots/tecglo.webp" alt="Tecglo — ISP Ecuador" loading="lazy" />
+        </div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top"><span class="project-tag tag-web">Diseño Web</span><span class="project-metric-badge">+180% suscriptores</span></div>
+        <div class="project-name">Tecglo</div>
+        <div class="project-client">Telecomunicaciones · Ecuador</div>
+      </div>
+    </div>
+
+    <!-- Xtrim -->
+    <div class="project-card" data-category="web">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">xtrim.vclsolutionsgroup.com</span></div>
+        <div class="browser-screen has-img">
+          <img src="assets/screenshots/xtrim.webp" alt="Xtrim — Internet Ecuador" loading="lazy" />
+        </div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top"><span class="project-tag tag-web">Diseño Web</span><span class="project-metric-badge">+95% leads</span></div>
+        <div class="project-name">Xtrim</div>
+        <div class="project-client">ISP · Ecuador</div>
+      </div>
+    </div>
+
+    <!-- Data Privacy Sunset -->
+    <div class="project-card" data-category="web">
+      <div class="browser-mockup">
+        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">dataprivacysunset.com</span></div>
+        <div class="browser-screen has-img">
+          <img src="assets/screenshots/data-privacy-sunset.webp" alt="Data Privacy Sunset — Congreso Ecuador" loading="lazy" />
+        </div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top"><span class="project-tag tag-web">Diseño Web</span><span class="project-metric-badge">800+ inscritos</span></div>
+        <div class="project-name">Data Privacy Sunset</div>
+        <div class="project-client">Congreso · Guayaquil</div>
+      </div>
+    </div>
+
+    <!-- Interhome Ads -->
     <div class="project-card" data-category="ads">
-      <div class="browser-mockup">
-        <div class="browser-bar"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div><span class="browser-url">tecglo.ec</span></div>
-        <div class="browser-screen" style="background:linear-gradient(135deg,#134e4a 0%,#0f766e 50%,#14b8a6 100%)">
-          <div class="screen-inner"><div style="text-align:center"><div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div style="color:#fff;font-size:14px;font-weight:700">Analytics dashboard</div><div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">Meta · Google · TikTok</div></div></div>
+      <div class="proj-canvas" style="background:#0F172A;padding:20px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:rgba(255,255,255,.9)"><svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>Meta Ads</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:#22C55E;font-weight:600"><span style="width:5px;height:5px;border-radius:50%;background:#22C55E;display:inline-block;animation:blink 2s ease-in-out infinite"></span>Activa</div>
         </div>
-        <div class="project-overlay"><span class="project-tag">Ads</span><div class="project-name">Tecglo</div><div class="project-client">Tecnología · Ecuador</div><div class="project-metric">$0.95</div><div class="project-metric-label">CPL promedio</div></div>
+        <div style="font-size:10px;color:rgba(255,255,255,.4)">Interhome Ecuador — Captación</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+          <div style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:8px;"><div style="font-size:14px;font-weight:800;color:#60A5FA">$1.20</div><div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.07em;margin-top:2px">CPL</div></div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px;"><div style="font-size:14px;font-weight:800;color:#fff">320%</div><div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.07em;margin-top:2px">ROAS</div></div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px;"><div style="font-size:14px;font-weight:800;color:#fff">1.2M</div><div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.07em;margin-top:2px">Alcance</div></div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px;"><div style="font-size:14px;font-weight:800;color:#fff">4.8%</div><div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.07em;margin-top:2px">CTR</div></div>
+        </div>
+        <svg viewBox="0 0 200 40" fill="none" style="width:100%;height:40px"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3B82F6" stop-opacity=".35"/><stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/></linearGradient></defs><path d="M0 36 L20 32 L40 27 L60 29 L80 20 L100 16 L120 18 L140 10 L160 6 L180 3 L200 1" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/><path d="M0 36 L20 32 L40 27 L60 29 L80 20 L100 16 L120 18 L140 10 L160 6 L180 3 L200 1 L200 40 L0 40Z" fill="url(#g)"/></svg>
+        <div style="display:flex;justify-content:space-between"><span style="font-size:8px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.05em">Presupuesto usado</span><span style="font-size:9px;color:rgba(255,255,255,.5);font-weight:700">72%</span></div>
+        <div style="height:3px;background:rgba(255,255,255,.08);border-radius:2px"><div style="width:72%;height:100%;background:linear-gradient(90deg,#2563EB,#60A5FA);border-radius:2px"></div></div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top"><span class="project-tag tag-ads">Meta Ads</span><span class="project-metric-badge">$1.20 CPL · 3× ROI</span></div>
+        <div class="project-name">Interhome Ads</div>
+        <div class="project-client">Inmobiliaria · Ecuador</div>
+      </div>
+    </div>
+
+    <!-- EC Connect Chatbot -->
+    <div class="project-card" data-category="chatbot">
+      <div class="proj-canvas" style="background:linear-gradient(135deg,#1e1b4b 0%,#3730a3 60%,#4f46e5 100%)">
+        <div style="position:absolute;top:0;left:0;right:0;padding:10px 14px;background:rgba(0,0,0,.3);display:flex;align-items:center;gap:8px">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg></div>
+          <div><div style="font-size:10px;font-weight:700;color:#fff">EC Connect CRM</div><div style="font-size:8px;color:rgba(255,255,255,.5)">IA · Integración CRM</div></div>
+        </div>
+        <div style="position:absolute;inset:0;top:46px;padding:12px 14px;display:flex;flex-direction:column;gap:7px;overflow:hidden">
+          <div style="max-width:80%;background:rgba(0,0,0,.35);border-radius:3px 12px 12px 12px;padding:7px 10px;font-size:10px;color:rgba(255,255,255,.9);line-height:1.5">¡Hola! ¿En qué puedo ayudarte hoy?</div>
+          <div style="max-width:72%;background:rgba(255,255,255,.15);border-radius:12px 3px 12px 12px;padding:7px 10px;font-size:10px;color:#fff;align-self:flex-end">Quiero renovar mi plan</div>
+          <div style="max-width:82%;background:rgba(0,0,0,.35);border-radius:3px 12px 12px 12px;padding:7px 10px;font-size:10px;color:rgba(255,255,255,.9);line-height:1.5">Claro, revisando tu contrato... ✅ Tu plan vence el 15 de oct.</div>
+        </div>
+        <div style="position:absolute;bottom:8px;right:10px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:3px 8px;font-size:7px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.6);text-transform:uppercase">IA · CRM</div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top"><span class="project-tag tag-bot">Chatbot IA</span><span class="project-metric-badge">−40% carga soporte</span></div>
+        <div class="project-name">EC Connect</div>
+        <div class="project-client">Telecomunicaciones · Ecuador</div>
       </div>
     </div>
 
@@ -417,8 +511,10 @@
     });
   }
 
-  const observer = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);} }); }, {threshold:.1});
+  const observer = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);} }); }, {threshold:0,rootMargin:'0px 0px -20px 0px'});
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Force-reveal elements already in viewport on load
+  setTimeout(() => { document.querySelectorAll('.reveal:not(.visible)').forEach(el => { const r=el.getBoundingClientRect(); if(r.top < window.innerHeight) el.classList.add('visible'); }); }, 100);
 </script>
 </body>
 </html>

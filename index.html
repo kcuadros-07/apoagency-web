@@ -209,10 +209,27 @@
     /* HERO */
     .hero {
       min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-      padding: 140px 48px 80px;
-      background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(11,29,53,.04) 0%, transparent 70%);
-      position: relative;
+      padding: 140px 48px 100px;
+      position: relative; overflow: hidden;
     }
+    /* dot grid pattern */
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image: radial-gradient(circle, rgba(11,29,53,.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+    [data-theme="dark"] .hero::before {
+      background-image: radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
+    }
+    /* corner glow */
+    .hero::after {
+      content: ''; position: absolute; top: -10%; right: -5%; width: 60%; height: 80%;
+      background: radial-gradient(ellipse at center, rgba(37,99,235,.06) 0%, transparent 65%);
+      z-index: 0; pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 740px; }
     .hero-eyebrow {
       display: flex; align-items: center; gap: 12px;
       font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--text-muted);
@@ -221,24 +238,75 @@
     }
     .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--text-muted); }
     .hero-h1 {
-      font-size: clamp(56px, 9vw, 120px); font-weight: 800; letter-spacing: -3px; line-height: .92;
-      margin-bottom: 32px; max-width: 900px;
+      font-size: clamp(56px, 9vw, 112px); font-weight: 800; letter-spacing: -3px; line-height: .92;
+      margin-bottom: 28px;
       animation: fadeUp .6s .1s ease both;
     }
     .hero-h1 em { font-style: italic; font-weight: 300; }
     .hero-sub {
-      font-size: 16px; line-height: 1.75; color: var(--text-muted); max-width: 480px; margin-bottom: 40px;
+      font-size: 17px; line-height: 1.7; color: var(--text-muted); max-width: 460px; margin-bottom: 40px;
       animation: fadeUp .6s .2s ease both;
     }
-    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp .6s .3s ease both; margin-bottom: 80px; }
-    .btn-primary { background: var(--btn-bg); color: var(--btn-text); padding: 14px 28px; border-radius: 10px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-block; transition: opacity .2s, transform .15s; letter-spacing: .01em; }
-    .btn-primary:hover { opacity: .85; transform: translateY(-2px); }
-    .btn-secondary { background: transparent; color: var(--text); padding: 14px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; border: 1.5px solid var(--border); cursor: pointer; font-family: inherit; text-decoration: none; display: inline-block; transition: all .2s; }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp .6s .3s ease both; margin-bottom: 72px; }
+    .btn-primary { background: var(--btn-bg); color: var(--btn-text); padding: 15px 28px; border-radius: 10px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: opacity .2s, transform .15s, box-shadow .2s; letter-spacing: .01em; box-shadow: 0 4px 16px rgba(0,0,0,.18); }
+    .btn-primary:hover { opacity: .88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.22); }
+    .btn-secondary { background: transparent; color: var(--text); padding: 15px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; border: 1.5px solid var(--border); cursor: pointer; font-family: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: rgba(var(--accent-rgb),.04); }
     .stats-row { display: flex; gap: 48px; flex-wrap: wrap; animation: fadeUp .6s .4s ease both; }
-    .stat-item { display: flex; flex-direction: column; gap: 4px; }
-    .stat-num { font-size: 28px; font-weight: 800; letter-spacing: -1px; color: var(--text); }
-    .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+    .stat-item { display: flex; flex-direction: column; gap: 4px; position: relative; padding-left: 16px; }
+    .stat-item::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: var(--border); border-radius: 2px; }
+    .stat-item:first-child::before { display: none; }
+    .stat-item:first-child { padding-left: 0; }
+    .stat-num { font-size: 26px; font-weight: 800; letter-spacing: -1px; color: var(--text); }
+    .stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; letter-spacing: .01em; }
+
+    /* Hero floating card (desktop) */
+    .hero-float {
+      position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+      z-index: 2; display: flex; flex-direction: column; gap: 16px;
+      animation: fadeUp .7s .5s ease both;
+    }
+    .hf-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px 24px; box-shadow: 0 20px 60px rgba(0,0,0,.1);
+      min-width: 220px;
+    }
+    [data-theme="dark"] .hf-card { box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+    .hf-label { font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .hf-metric { font-size: 36px; font-weight: 800; letter-spacing: -2px; color: var(--text); line-height: 1; }
+    .hf-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .hf-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #22C55E; margin-right: 6px; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+    .hf-live { display: flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #22C55E; margin-bottom: 10px; }
+    .hf-notify { display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; }
+    .hf-notify-icon { width: 32px; height: 32px; border-radius: 8px; background: #0B1D35; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    [data-theme="dark"] .hf-notify-icon { background: rgba(255,255,255,.1); }
+    .hf-notify-text { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .hf-notify-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .hf-bars { display: flex; align-items: flex-end; gap: 4px; height: 40px; margin-top: 12px; }
+    .hf-bar { flex: 1; border-radius: 3px 3px 0 0; background: var(--accent); opacity: .15; }
+    .hf-bar.active { opacity: .9; }
+    .hf-bar:nth-child(1) { height: 40%; }
+    .hf-bar:nth-child(2) { height: 65%; }
+    .hf-bar:nth-child(3) { height: 50%; }
+    .hf-bar:nth-child(4) { height: 80%; }
+    .hf-bar:nth-child(5) { height: 60%; }
+    .hf-bar:nth-child(6) { height: 100%; }
+    .hf-bar:nth-child(7) { height: 75%; }
+
+    /* Scroll indicator */
+    .hero-scroll-hint {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted);
+      animation: fadeUp .6s .9s ease both; z-index: 2;
+    }
+    .scroll-arrow {
+      width: 32px; height: 32px; border: 1.5px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
 
     /* SECTION COMMONS */
     section { padding: 100px 48px; }
@@ -264,7 +332,7 @@
     .marquee-wrap::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
     .marquee-track { display: flex; gap: 60px; align-items: center; width: max-content; animation: marquee 28s linear infinite; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .marquee-track img { height: 28px; object-fit: contain; filter: grayscale(1); opacity: .5; transition: filter .3s, opacity .3s; }
+    .marquee-track img { height: 40px; object-fit: contain; filter: grayscale(1); opacity: .55; transition: filter .3s, opacity .3s; }
     .marquee-track img:hover { filter: grayscale(0); opacity: 1; }
     [data-theme="dark"] .marquee-track img { filter: brightness(0) invert(1); opacity: .4; }
     [data-theme="dark"] .marquee-track img:hover { filter: brightness(0) invert(1); opacity: .8; }
@@ -294,33 +362,81 @@
     .projects { border-top: 1px solid var(--border); }
     .projects-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .project-card { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--card-bg); transition: transform .3s, box-shadow .3s; cursor: default; }
-    .project-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px rgba(0,0,0,.1); }
-    .browser-mockup {
-      width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden;
-    }
+    .project-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--border); background: var(--card-bg); transition: transform .3s, box-shadow .3s; cursor: default; display: flex; flex-direction: column; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px rgba(0,0,0,.15); }
+
+    /* Generic canvas for any card visual */
+    .proj-canvas { width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden; }
+
+    /* Browser-style frame */
+    .browser-mockup { width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden; }
     .browser-bar {
-      position: absolute; top: 0; left: 0; right: 0; height: 36px;
-      background: rgba(0,0,0,.25); display: flex; align-items: center; padding: 0 14px; gap: 6px; z-index: 2;
+      position: absolute; top: 0; left: 0; right: 0; height: 32px;
+      background: rgba(0,0,0,.45); backdrop-filter: blur(4px);
+      display: flex; align-items: center; padding: 0 14px; gap: 6px; z-index: 3;
     }
-    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-dot { width: 9px; height: 9px; border-radius: 50%; }
     .browser-dot:nth-child(1) { background: #FF5F57; }
     .browser-dot:nth-child(2) { background: #FEBC2E; }
     .browser-dot:nth-child(3) { background: #28C840; }
-    .browser-url { background: rgba(255,255,255,.12); border-radius: 4px; padding: 3px 12px; font-size: 10px; color: rgba(255,255,255,.6); margin-left: 10px; font-family: monospace; }
-    .browser-screen { position: absolute; inset: 0; }
-    .project-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 100%);
-      padding: 24px 20px 20px;
-      transform: translateY(4px); transition: transform .3s;
+    .browser-url { background: rgba(255,255,255,.1); border-radius: 4px; padding: 3px 12px; font-size: 10px; color: rgba(255,255,255,.55); margin-left: 10px; font-family: monospace; }
+    .browser-screen { position: absolute; inset: 0; overflow: hidden; }
+    .browser-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+    /* Card info footer — always visible, NOT an overlay */
+    .proj-info {
+      padding: 18px 20px 20px;
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 4px;
     }
-    .project-card:hover .project-overlay { transform: translateY(0); }
-    .project-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; background: rgba(255,255,255,.15); color: #fff; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; }
-    .project-name { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -.5px; margin-bottom: 4px; }
-    .project-client { font-size: 12px; color: rgba(255,255,255,.6); }
-    .project-metric { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -1px; margin-top: 8px; }
+    .proj-info-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+    .project-tag {
+      display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: .14em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 20px;
+    }
+    .project-tag.tag-web    { background: rgba(37,99,235,.15); color: #60A5FA; border: 1px solid rgba(37,99,235,.25); }
+    .project-tag.tag-bot    { background: rgba(234,88,12,.15); color: #FB923C; border: 1px solid rgba(234,88,12,.25); }
+    .project-tag.tag-ads    { background: rgba(59,130,246,.15); color: #60A5FA; border: 1px solid rgba(59,130,246,.25); }
+    .project-tag.tag-auto   { background: rgba(16,185,129,.15); color: #34D399; border: 1px solid rgba(16,185,129,.25); }
+    [data-theme="light"] .project-tag.tag-web  { background: rgba(37,99,235,.1); color: #2563EB; border-color: rgba(37,99,235,.2); }
+    [data-theme="light"] .project-tag.tag-bot  { background: rgba(234,88,12,.1); color: #C2410C; border-color: rgba(234,88,12,.2); }
+    [data-theme="light"] .project-tag.tag-ads  { background: rgba(59,130,246,.1); color: #1D4ED8; border-color: rgba(59,130,246,.2); }
+    .project-metric-badge { font-size: 16px; font-weight: 800; letter-spacing: -.5px; color: var(--fg); }
+    .project-name { font-size: 16px; font-weight: 800; color: var(--fg); letter-spacing: -.3px; line-height: 1.2; }
+    .project-client { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+    /* legacy aliases kept for ads-card overlay */
+    .project-metric { font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -1px; margin-top: 6px; }
     .project-metric-label { font-size: 11px; color: rgba(255,255,255,.6); }
+
+    /* ADS MOCKUP */
+    .ads-card { position: relative; }
+    .ads-mockup {
+      width: 100%; aspect-ratio: 16/9; background: #0F172A;
+      padding: 20px; display: flex; flex-direction: column; gap: 12px;
+      box-sizing: border-box; position: relative; overflow: hidden;
+    }
+    .ads-mockup::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 20%, rgba(59,130,246,.12) 0%, transparent 60%);
+    }
+    .ads-header { display: flex; justify-content: space-between; align-items: center; }
+    .ads-platform { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .05em; color: rgba(255,255,255,.9); }
+    .ads-status { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #22C55E; font-weight: 600; }
+    .ads-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; animation: blink 2s ease-in-out infinite; }
+    .ads-campaign { font-size: 11px; color: rgba(255,255,255,.45); font-weight: 500; }
+    .ads-metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .ads-metric-item { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 8px; padding: 8px 10px; }
+    .ads-metric-main { background: rgba(59,130,246,.15); border-color: rgba(59,130,246,.3); }
+    .ads-metric-value { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -.5px; line-height: 1; }
+    .ads-metric-main .ads-metric-value { color: #60A5FA; }
+    .ads-metric-label { font-size: 9px; color: rgba(255,255,255,.4); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-top: 3px; }
+    .ads-chart { flex: 1; min-height: 48px; }
+    .ads-budget-row { display: flex; justify-content: space-between; align-items: center; }
+    .ads-budget-label { font-size: 9px; color: rgba(255,255,255,.35); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+    .ads-budget-pct { font-size: 10px; color: rgba(255,255,255,.6); font-weight: 700; }
+    .ads-progress { height: 3px; background: rgba(255,255,255,.1); border-radius: 2px; overflow: hidden; }
+    .ads-progress-fill { height: 100%; background: linear-gradient(90deg, #2563EB, #60A5FA); border-radius: 2px; }
 
     /* TESTIMONIALS */
     .testimonials { background: var(--bg-surface); border-top: 1px solid var(--border); }
@@ -332,10 +448,15 @@
     .testimonial-author { display: flex; flex-direction: column; gap: 2px; }
     .author-name { font-size: 14px; font-weight: 700; color: var(--text); }
     .author-meta { font-size: 12px; color: var(--text-muted); }
-    .social-logos { display: flex; gap: 32px; align-items: center; margin-top: 56px; flex-wrap: wrap; }
-    .social-logos img { height: 22px; filter: grayscale(1); opacity: .4; transition: all .2s; }
-    .social-logos img:hover { opacity: .8; filter: grayscale(0); }
-    [data-theme="dark"] .social-logos img { filter: brightness(0) invert(1); opacity: .3; }
+    /* social logos marquee (same system as clients-strip) */
+    .social-logos-wrap { margin-top: 56px; overflow: hidden; position: relative; }
+    .social-logos-wrap::before, .social-logos-wrap::after { content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; }
+    .social-logos-wrap::before { left:0; background:linear-gradient(90deg,var(--bg) 0%,transparent 100%); }
+    .social-logos-wrap::after { right:0; background:linear-gradient(270deg,var(--bg) 0%,transparent 100%); }
+    .social-logos-track { display:flex; gap:48px; align-items:center; width:max-content; animation:marquee 22s linear infinite; }
+    .social-logos-track img { height:28px; flex-shrink:0; filter:grayscale(1); opacity:.45; transition:all .3s; }
+    .social-logos-track img:hover { opacity:.9; filter:grayscale(0); }
+    [data-theme="dark"] .social-logos-track img { filter:brightness(0) invert(1); opacity:.35; }
 
     /* WHY APO — always dark */
     .why-apo {
@@ -352,14 +473,31 @@
     .why-label { font-size: 14px; color: rgba(248,250,252,.5); }
     .why-desc { font-size: 13px; line-height: 1.65; color: rgba(248,250,252,.4); }
 
-    /* PROCESS */
+    /* PROCESS — interactive roadmap */
     .process { border-top: 1px solid var(--border); }
     .process-top { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-bottom: 60px; }
-    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-    .step { display: flex; flex-direction: column; gap: 12px; padding-top: 20px; border-top: 2px solid var(--accent); }
-    .step-num { font-size: 10px; font-weight: 700; letter-spacing: .2em; color: var(--text-muted); }
-    .step-title { font-size: 18px; font-weight: 700; color: var(--text); }
-    .step-desc { font-size: 13px; line-height: 1.65; color: var(--text-muted); }
+    .roadmap { display: flex; flex-direction: column; gap: 0; }
+    .rm-step { display: grid; grid-template-columns: 56px 1fr; gap: 0; cursor: pointer; }
+    .rm-step:last-child .rm-line { display: none; }
+    .rm-left { display: flex; flex-direction: column; align-items: center; }
+    .rm-node {
+      width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: var(--text-muted);
+      background: var(--bg); transition: all .3s; flex-shrink: 0;
+    }
+    .rm-step.active .rm-node { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .rm-step.done .rm-node { background: #22C55E; border-color: #22C55E; color: #fff; }
+    .rm-line { width: 2px; flex: 1; background: var(--border); margin: 4px 0; min-height: 60px; transition: background .3s; }
+    .rm-step.active .rm-line, .rm-step.done .rm-line { background: var(--accent); }
+    .rm-right { padding: 8px 0 40px 20px; }
+    .rm-tag { font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .rm-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 0; transition: color .2s; }
+    .rm-step.active .rm-title { color: var(--accent); }
+    .rm-detail { font-size: 13px; line-height: 1.7; color: var(--text-muted); max-height: 0; overflow: hidden; transition: max-height .4s ease, opacity .3s; opacity: 0; }
+    .rm-step.active .rm-detail { max-height: 200px; opacity: 1; margin-top: 10px; }
+    .rm-deliverable { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 11px; font-weight: 600; color: var(--accent); }
+    .rm-deliverable svg { opacity: .7; }
 
     /* FAQ */
     .faq { border-top: 1px solid var(--border); }
@@ -385,12 +523,39 @@
     .contact-detail a:hover { color: var(--accent); }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group label { font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: .05em; }
-    .form-group input, .form-group select, .form-group textarea {
+    .form-group input, .form-group textarea {
       background: var(--bg-surface); border: 1.5px solid var(--border); border-radius: 10px;
       padding: 12px 16px; font-size: 14px; color: var(--text); font-family: inherit;
       transition: border-color .2s; outline: none; resize: vertical;
     }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+    /* Custom select */
+    .select-wrap { position: relative; }
+    .select-wrap::after { content:''; position:absolute; right:14px; top:50%; transform:translateY(-50%); width:8px; height:8px; border-right:2px solid var(--text-muted); border-bottom:2px solid var(--text-muted); transform:translateY(-65%) rotate(45deg); pointer-events:none; }
+    .select-wrap select {
+      width:100%; appearance:none; -webkit-appearance:none;
+      background: var(--bg-surface); border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 12px 40px 12px 16px; font-size: 14px; color: var(--text); font-family: inherit;
+      transition: border-color .2s; outline: none; cursor: pointer;
+    }
+    .select-wrap select:focus { border-color: var(--accent); }
+    /* Service chips (replace select for service) */
+    .svc-chips { display:flex; flex-wrap:wrap; gap:8px; }
+    .svc-chip { padding:8px 16px; border-radius:40px; border:1.5px solid var(--border); font-size:13px; font-weight:600; cursor:pointer; background:transparent; color:var(--text-muted); font-family:inherit; transition:all .2s; }
+    .svc-chip:hover { border-color:var(--accent); color:var(--accent); }
+    .svc-chip.selected { background:var(--accent); border-color:var(--accent); color:#fff; }
+    /* Dynamic fields */
+    .form-dynamic { display:flex; flex-direction:column; gap:16px; }
+    .form-fields-group { display:none; }
+    .form-fields-group.show { display:flex; flex-direction:column; gap:16px; animation:fadeUp .3s ease; }
+    .apo-rec { background:linear-gradient(135deg, rgba(37,99,235,.08) 0%, rgba(37,99,235,.04) 100%); border:1.5px solid rgba(37,99,235,.2); border-radius:12px; padding:16px; display:none; }
+    .apo-rec.show { display:block; animation:fadeUp .3s ease; }
+    .apo-rec-label { font-size:10px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+    .apo-rec p { font-size:13px; line-height:1.65; color:var(--text-muted); }
+    .range-group { display:flex; flex-direction:column; gap:6px; }
+    .range-options { display:flex; flex-wrap:wrap; gap:8px; }
+    .range-opt { padding:6px 14px; border-radius:6px; border:1.5px solid var(--border); font-size:12px; font-weight:600; cursor:pointer; background:transparent; color:var(--text-muted); font-family:inherit; transition:all .2s; }
+    .range-opt:hover, .range-opt.sel { background:var(--accent); border-color:var(--accent); color:#fff; }
     .contact-form { display: flex; flex-direction: column; gap: 20px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -437,15 +602,19 @@
       .nav-logo .wordmark { display: none; }
       .nav-logo .isologo { display: block !important; }
       section { padding: 72px 24px; }
-      .hero { padding: 120px 24px 64px; }
+      .hero { padding: 120px 24px 80px; }
       .hero-h1 { letter-spacing: -2px; }
+      .hero-float { display: none; }
+      .hero-scroll-hint { display: none; }
       .stats-row { gap: 28px; }
       .projects-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .why-grid { grid-template-columns: 1fr 1fr; }
-      .process-steps { grid-template-columns: 1fr; }
+      .process-top { grid-template-columns: 1fr; gap: 24px; }
       .faq-inner { grid-template-columns: 1fr; }
       .faq-left { position: static; }
+      .svc-chips { gap: 6px; }
+      .svc-chip { font-size:12px; padding:7px 13px; }
       .contact-inner { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
@@ -509,29 +678,69 @@
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow" data-i18n data-es="Agencia Digital · Ecuador" data-en="Digital Agency · Ecuador">Agencia Digital · Ecuador</p>
-  <h1 class="hero-h1">Tu negocio,<br><em>más inteligente.</em></h1>
-  <p class="hero-sub" data-i18n data-es="Construimos sitios, automatizamos procesos y generamos clientes para empresas que quieren crecer de verdad." data-en="We build websites, automate processes, and generate clients for companies that want to grow for real.">Construimos sitios, automatizamos procesos y generamos clientes para empresas que quieren crecer de verdad.</p>
-  <div class="hero-ctas">
-    <a href="#contacto" class="btn-primary" data-i18n data-es="Iniciar proyecto" data-en="Start project">Iniciar proyecto</a>
-    <a href="#servicios" class="btn-secondary" data-i18n data-es="Ver servicios ↓" data-en="See services ↓">Ver servicios ↓</a>
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-i18n data-es="Agencia Digital · Ecuador" data-en="Digital Agency · Ecuador">Agencia Digital · Ecuador</p>
+    <h1 class="hero-h1">Tu negocio,<br><em>más inteligente.</em></h1>
+    <p class="hero-sub" data-i18n data-es="Construimos sitios, automatizamos procesos y generamos clientes para empresas que quieren crecer de verdad." data-en="We build websites, automate processes, and generate clients for companies that want to grow for real.">Construimos sitios, automatizamos procesos y generamos clientes para empresas que quieren crecer de verdad.</p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn-primary" data-i18n data-es="Iniciar proyecto →" data-en="Start project →">Iniciar proyecto →</a>
+      <a href="#proyectos" class="btn-secondary" data-i18n data-es="Ver proyectos" data-en="See projects">Ver proyectos</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num" data-counter="50" data-suffix="+">50+</span>
+        <span class="stat-label" data-i18n data-es="proyectos" data-en="projects">proyectos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-counter="3" data-suffix="×">3×</span>
+        <span class="stat-label" data-i18n data-es="crecimiento promedio" data-en="average growth">crecimiento promedio</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label" data-i18n data-es="sistemas activos" data-en="active systems">sistemas activos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">$1.73</span>
+        <span class="stat-label" data-i18n data-es="CPL promedio" data-en="avg CPL">CPL promedio</span>
+      </div>
+    </div>
   </div>
-  <div class="stats-row">
-    <div class="stat-item">
-      <span class="stat-num" data-counter="50" data-suffix="+">50+</span>
-      <span class="stat-label" data-i18n data-es="proyectos" data-en="projects">proyectos</span>
+
+  <!-- Floating cards (desktop only) -->
+  <div class="hero-float" aria-hidden="true">
+    <!-- Live metric card -->
+    <div class="hf-card">
+      <div class="hf-live"><span class="hf-dot"></span>En vivo</div>
+      <div class="hf-label">Leads este mes</div>
+      <div class="hf-metric" id="hf-counter">0</div>
+      <div class="hf-sub">+34% vs mes anterior</div>
+      <div class="hf-bars">
+        <div class="hf-bar"></div>
+        <div class="hf-bar"></div>
+        <div class="hf-bar"></div>
+        <div class="hf-bar"></div>
+        <div class="hf-bar"></div>
+        <div class="hf-bar active"></div>
+        <div class="hf-bar" style="height:90%;opacity:.6"></div>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-num" data-counter="3" data-suffix="×">3×</span>
-      <span class="stat-label" data-i18n data-es="promedio de crecimiento" data-en="average growth">promedio de crecimiento</span>
+    <!-- Notification card -->
+    <div class="hf-card hf-notify">
+      <div class="hf-notify-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <div class="hf-notify-text">Nuevo cliente cerrado</div>
+        <div class="hf-notify-sub">BuscaCasa · hace 2 min</div>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-num">24/7</span>
-      <span class="stat-label" data-i18n data-es="sistemas activos" data-en="active systems">sistemas activos</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">$1.50</span>
-      <span class="stat-label" data-i18n data-es="CPL promedio" data-en="avg CPL">CPL promedio</span>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-arrow">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
   </div>
 </section>
@@ -643,111 +852,230 @@
   </div>
   <div class="projects-grid reveal">
 
+    <!-- ── BUSCACASA · Diseño Web ── -->
     <div class="project-card">
       <div class="browser-mockup">
         <div class="browser-bar">
           <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
           <span class="browser-url">buscacasa.ec</span>
         </div>
-        <div class="browser-screen" style="background: linear-gradient(135deg, #0B1D35 0%, #1a3a6b 40%, #0d2d52 100%);">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:36px 24px;top:36px">
-            <div style="text-align:center">
-              <div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.1);margin:0 auto 12px;display:flex;align-items:center;justify-content:center">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="browser-screen" style="background:linear-gradient(135deg,#0B1D35 0%,#1a3a6b 40%,#0d2d52 100%);">
+          <div style="position:absolute;inset:0;top:32px;padding:20px 24px;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+            <!-- fake nav -->
+            <div style="display:flex;gap:12px;align-items:center;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)">
+              <div style="width:80px;height:8px;background:rgba(255,255,255,.5);border-radius:4px"></div>
+              <div style="margin-left:auto;display:flex;gap:8px">
+                <div style="width:40px;height:6px;background:rgba(255,255,255,.15);border-radius:3px"></div>
+                <div style="width:40px;height:6px;background:rgba(255,255,255,.15);border-radius:3px"></div>
+                <div style="width:50px;height:22px;background:#2563EB;border-radius:6px"></div>
               </div>
-              <div style="color:#fff;font-size:14px;font-weight:700">Busca tu hogar ideal</div>
-              <div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">+2,000 propiedades</div>
+            </div>
+            <!-- search bar -->
+            <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:8px">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <div style="height:6px;width:60%;background:rgba(255,255,255,.12);border-radius:3px"></div>
+              <div style="margin-left:auto;width:36px;height:20px;background:#2563EB;border-radius:5px"></div>
+            </div>
+            <!-- property cards row -->
+            <div style="display:flex;gap:8px;flex:1">
+              <div style="flex:1;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+                <div style="height:40%;background:linear-gradient(135deg,#1e3a5f,#2563EB);position:relative">
+                  <div style="position:absolute;bottom:4px;right:6px;background:rgba(37,99,235,.8);color:#fff;font-size:7px;font-weight:700;padding:2px 5px;border-radius:3px">$125k</div>
+                </div>
+                <div style="padding:6px;display:flex;flex-direction:column;gap:3px">
+                  <div style="height:5px;width:70%;background:rgba(255,255,255,.3);border-radius:2px"></div>
+                  <div style="height:4px;width:50%;background:rgba(255,255,255,.12);border-radius:2px"></div>
+                </div>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+                <div style="height:40%;background:linear-gradient(135deg,#1a3050,#1e40af)">
+                  <div style="height:100%;display:flex;align-items:center;justify-content:center">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                  </div>
+                </div>
+                <div style="padding:6px;display:flex;flex-direction:column;gap:3px">
+                  <div style="height:5px;width:60%;background:rgba(255,255,255,.3);border-radius:2px"></div>
+                  <div style="height:4px;width:40%;background:rgba(255,255,255,.12);border-radius:2px"></div>
+                </div>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+                <div style="height:40%;background:linear-gradient(135deg,#0f2744,#1d4ed8)">
+                  <div style="height:100%;display:flex;align-items:center;justify-content:center">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                  </div>
+                </div>
+                <div style="padding:6px;display:flex;flex-direction:column;gap:3px">
+                  <div style="height:5px;width:80%;background:rgba(255,255,255,.3);border-radius:2px"></div>
+                  <div style="height:4px;width:45%;background:rgba(255,255,255,.12);border-radius:2px"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="project-overlay">
-          <span class="project-tag" data-i18n data-es="Diseño Web" data-en="Web Design">Diseño Web</span>
-          <div class="project-name">BuscaCasa</div>
-          <div class="project-client">Portal inmobiliario · Ecuador</div>
-          <div class="project-metric">+180%</div>
-          <div class="project-metric-label" data-i18n data-es="tráfico orgánico" data-en="organic traffic">tráfico orgánico</div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top">
+          <span class="project-tag tag-web" data-i18n data-es="Diseño Web" data-en="Web Design">Diseño Web</span>
+          <span class="project-metric-badge">+180% tráfico</span>
         </div>
+        <div class="project-name">BuscaCasa</div>
+        <div class="project-client">Portal inmobiliario · Ecuador</div>
       </div>
     </div>
 
+    <!-- ── FERIA DE LOJA · Chatbot IA ── -->
     <div class="project-card">
-      <div class="browser-mockup">
-        <div class="browser-bar">
-          <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
-          <span class="browser-url">ferialoja.com</span>
-        </div>
-        <div class="browser-screen" style="background: linear-gradient(135deg, #7C2D12 0%, #C2410C 50%, #EA580C 100%);">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:36px 24px;top:36px">
-            <div style="text-align:center">
-              <div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.15);margin:0 auto 12px;display:flex;align-items:center;justify-content:center">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              </div>
-              <div style="color:#fff;font-size:14px;font-weight:700">Asistente de Feria</div>
-              <div style="color:rgba(255,255,255,.6);font-size:11px;margin-top:4px">WhatsApp · IA</div>
-            </div>
+      <!-- Phone-frame chat mockup, no browser chrome -->
+      <div class="proj-canvas" style="background:linear-gradient(160deg,#431407 0%,#7C2D12 50%,#9A3412 100%)">
+        <!-- WhatsApp-style header -->
+        <div style="position:absolute;top:0;left:0;right:0;padding:12px 16px;background:rgba(0,0,0,.35);display:flex;align-items:center;gap:10px;z-index:2">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"/></svg>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#fff">Asistente Feria de Loja</div>
+            <div style="font-size:9px;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:4px"><span style="width:5px;height:5px;border-radius:50%;background:#22C55E;display:inline-block"></span>En línea</div>
+          </div>
+          <div style="margin-left:auto">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6A16 16 0 0 0 16 16.59l.54-.54a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
         </div>
-        <div class="project-overlay">
-          <span class="project-tag" data-i18n data-es="Chatbot IA" data-en="AI Chatbot">Chatbot IA</span>
-          <div class="project-name">Feria de Loja</div>
-          <div class="project-client">Evento cultural · Ecuador</div>
-          <div class="project-metric">5,200+</div>
-          <div class="project-metric-label" data-i18n data-es="consultas atendidas" data-en="queries handled">consultas atendidas</div>
+        <!-- Chat bubbles -->
+        <div style="position:absolute;inset:0;top:56px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+          <div style="max-width:78%;background:rgba(0,0,0,.4);border-radius:4px 14px 14px 14px;padding:8px 12px;font-size:11px;color:rgba(255,255,255,.9);line-height:1.5">
+            ¡Hola! Soy el asistente de la Feria 🎡 ¿En qué te ayudo?
+          </div>
+          <div style="max-width:72%;background:rgba(255,255,255,.18);border-radius:14px 4px 14px 14px;padding:8px 12px;font-size:11px;color:#fff;line-height:1.5;align-self:flex-end">
+            ¿A qué hora abre mañana?
+          </div>
+          <div style="max-width:82%;background:rgba(0,0,0,.4);border-radius:4px 14px 14px 14px;padding:8px 12px;font-size:11px;color:rgba(255,255,255,.9);line-height:1.5">
+            Mañana abre a las 9:00 AM 🎶 ¿Quieres ver la agenda de eventos?
+          </div>
+          <div style="max-width:60%;background:rgba(255,255,255,.18);border-radius:14px 4px 14px 14px;padding:8px 12px;font-size:11px;color:#fff;align-self:flex-end">
+            Sí, por favor
+          </div>
         </div>
+        <!-- IA badge -->
+        <div style="position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 10px;font-size:8px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.7);text-transform:uppercase">IA · WhatsApp</div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top">
+          <span class="project-tag tag-bot" data-i18n data-es="Chatbot IA" data-en="AI Chatbot">Chatbot IA</span>
+          <span class="project-metric-badge">5,200+ consultas</span>
+        </div>
+        <div class="project-name">Feria de Loja</div>
+        <div class="project-client">Asistente de eventos · WhatsApp</div>
       </div>
     </div>
 
+    <!-- ── FLEXMAN · Diseño Web ── -->
     <div class="project-card">
-      <div class="browser-mockup">
-        <div class="browser-bar">
-          <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
-          <span class="browser-url">flexman.app</span>
-        </div>
-        <div class="browser-screen" style="background: linear-gradient(135deg, #064E3B 0%, #065F46 50%, #047857 100%);">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:36px 24px;top:36px">
-            <div style="text-align:center">
-              <div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              </div>
-              <div style="color:#fff;font-size:14px;font-weight:700">Panel de gestión</div>
-              <div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">SaaS · Automatización</div>
+      <!-- Styled industrial card — NOT a screenshot -->
+      <div class="proj-canvas" style="background:linear-gradient(145deg,#0A1628 0%,#0F2347 55%,#112855 100%);overflow:hidden">
+        <!-- Background grid pattern -->
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.07" viewBox="0 0 400 225" preserveAspectRatio="none"><defs><pattern id="fg" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="white" stroke-width=".6"/></pattern></defs><rect width="400" height="225" fill="url(#fg)"/></svg>
+        <!-- Accent line top -->
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2563EB,#3B82F6,transparent)"></div>
+        <!-- Content -->
+        <div style="position:absolute;inset:0;padding:24px;display:flex;flex-direction:column;justify-content:space-between">
+          <!-- Top: brand area -->
+          <div style="display:flex;align-items:flex-start;justify-content:space-between">
+            <div>
+              <div style="font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px">flexman.com.ec</div>
+              <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-.5px;line-height:1">FLEXMAN</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px">Fabricante de válvulas · Ecuador</div>
+            </div>
+            <!-- Gear icon -->
+            <div style="width:48px;height:48px;border-radius:12px;background:rgba(37,99,235,.2);border:1px solid rgba(37,99,235,.35);display:flex;align-items:center;justify-content:center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+          </div>
+          <!-- Middle: fake web nav -->
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:12px">
+            <div style="height:5px;width:50px;background:rgba(255,255,255,.5);border-radius:3px"></div>
+            <div style="display:flex;gap:8px;margin-left:auto">
+              <div style="height:5px;width:30px;background:rgba(255,255,255,.15);border-radius:3px"></div>
+              <div style="height:5px;width:30px;background:rgba(255,255,255,.15);border-radius:3px"></div>
+              <div style="height:5px;width:30px;background:rgba(255,255,255,.15);border-radius:3px"></div>
+              <div style="height:22px;width:60px;background:#2563EB;border-radius:5px"></div>
+            </div>
+          </div>
+          <!-- Bottom: stats row -->
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:10px 12px;text-align:center">
+              <div style="font-size:18px;font-weight:900;color:#60A5FA;letter-spacing:-1px">+220%</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Leads</div>
+            </div>
+            <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:10px 12px;text-align:center">
+              <div style="font-size:18px;font-weight:900;color:#60A5FA;letter-spacing:-1px">ISO</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Certificado</div>
+            </div>
+            <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:10px 12px;text-align:center">
+              <div style="font-size:18px;font-weight:900;color:#60A5FA;letter-spacing:-1px">B2B</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Nicho</div>
             </div>
           </div>
         </div>
-        <div class="project-overlay">
-          <span class="project-tag" data-i18n data-es="Software" data-en="Software">Software</span>
-          <div class="project-name">Flexman</div>
-          <div class="project-client">Software SaaS · Latam</div>
-          <div class="project-metric">-65%</div>
-          <div class="project-metric-label" data-i18n data-es="tiempo operativo" data-en="operational time">tiempo operativo</div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top">
+          <span class="project-tag tag-web" data-i18n data-es="Diseño Web" data-en="Web Design">Diseño Web</span>
+          <span class="project-metric-badge">+220% leads</span>
         </div>
+        <div class="project-name">Flexman</div>
+        <div class="project-client">Manufactura industrial · Ecuador</div>
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="browser-mockup">
-        <div class="browser-bar">
-          <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
-          <span class="browser-url">interhome.ec</span>
+    <!-- ── INTERHOME · Meta Ads ── -->
+    <div class="project-card ads-card">
+      <div class="ads-mockup">
+        <div class="ads-header">
+          <div class="ads-platform">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
+            Meta Ads
+          </div>
+          <div class="ads-status"><span class="ads-dot"></span>Activa</div>
         </div>
-        <div class="browser-screen" style="background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 60%, #3B82F6 100%);">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:36px 24px;top:36px">
-            <div style="text-align:center">
-              <div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);margin:0 auto 12px;display:flex;align-items:center;justify-content:center">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
-              </div>
-              <div style="color:#fff;font-size:14px;font-weight:700">Campañas activas</div>
-              <div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px">Meta · Google Ads</div>
-            </div>
+        <div class="ads-campaign">Interhome Ecuador — Captación</div>
+        <div class="ads-metrics-grid">
+          <div class="ads-metric-item ads-metric-main">
+            <div class="ads-metric-value">$1.73</div>
+            <div class="ads-metric-label">CPL</div>
+          </div>
+          <div class="ads-metric-item">
+            <div class="ads-metric-value">320%</div>
+            <div class="ads-metric-label">ROAS</div>
+          </div>
+          <div class="ads-metric-item">
+            <div class="ads-metric-value">1.2M</div>
+            <div class="ads-metric-label">Alcance</div>
+          </div>
+          <div class="ads-metric-item">
+            <div class="ads-metric-value">4.8%</div>
+            <div class="ads-metric-label">CTR</div>
           </div>
         </div>
-        <div class="project-overlay">
-          <span class="project-tag" data-i18n data-es="Meta Ads" data-en="Meta Ads">Meta Ads</span>
-          <div class="project-name">Interhome</div>
-          <div class="project-client">Inmobiliaria · Ecuador</div>
-          <div class="project-metric">$1.20</div>
-          <div class="project-metric-label">CPL · 3× ROI</div>
+        <div class="ads-chart">
+          <svg viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:48px">
+            <defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3B82F6" stop-opacity="0.4"/><stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0 40 L20 35 L40 30 L60 32 L80 22 L100 18 L120 20 L140 12 L160 8 L180 5 L200 2" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M0 40 L20 35 L40 30 L60 32 L80 22 L100 18 L120 20 L140 12 L160 8 L180 5 L200 2 L200 48 L0 48 Z" fill="url(#chartGrad)"/>
+          </svg>
         </div>
+        <div class="ads-budget-row">
+          <span class="ads-budget-label">Presupuesto usado</span>
+          <span class="ads-budget-pct">72%</span>
+        </div>
+        <div class="ads-progress"><div class="ads-progress-fill" style="width:72%"></div></div>
+      </div>
+      <div class="proj-info">
+        <div class="proj-info-top">
+          <span class="project-tag tag-ads" data-i18n data-es="Meta Ads" data-en="Meta Ads">Meta Ads</span>
+          <span class="project-metric-badge">$1.73 CPL · 3× ROI</span>
+        </div>
+        <div class="project-name">Interhome</div>
+        <div class="project-client">Inmobiliaria · Ecuador</div>
       </div>
     </div>
 
@@ -789,13 +1117,26 @@
       </div>
     </div>
   </div>
-  <div class="social-logos reveal">
-    <img src="assets/logos/feria-de-loja.png" alt="Feria de Loja" />
-    <img src="assets/logos/interhome.png" alt="Interhome" />
-    <img src="assets/logos/buscacasa.png" alt="BuscaCasa" />
-    <img src="assets/logos/flexman.png" alt="Flexman" />
-    <img src="assets/logos/cancion-films.png" alt="Canción Films" />
-    <img src="assets/logos/avasant.png" alt="Avasant" />
+  <div class="social-logos-wrap reveal">
+    <div class="social-logos-track">
+      <img src="assets/logos/feria-de-loja.png" alt="Feria de Loja" />
+      <img src="assets/logos/interhome.png" alt="Interhome" />
+      <img src="assets/logos/buscacasa.png" alt="BuscaCasa" />
+      <img src="assets/logos/flexman.png" alt="Flexman" />
+      <img src="assets/logos/cancion-films.png" alt="Canción Films" />
+      <img src="assets/logos/avasant.png" alt="Avasant" />
+      <img src="assets/logos/tecglo.png" alt="Tecglo" />
+      <img src="assets/logos/ec-connect.png" alt="EC Connect" />
+      <!-- duplicate for seamless loop -->
+      <img src="assets/logos/feria-de-loja.png" alt="Feria de Loja" />
+      <img src="assets/logos/interhome.png" alt="Interhome" />
+      <img src="assets/logos/buscacasa.png" alt="BuscaCasa" />
+      <img src="assets/logos/flexman.png" alt="Flexman" />
+      <img src="assets/logos/cancion-films.png" alt="Canción Films" />
+      <img src="assets/logos/avasant.png" alt="Avasant" />
+      <img src="assets/logos/tecglo.png" alt="Tecglo" />
+      <img src="assets/logos/ec-connect.png" alt="EC Connect" />
+    </div>
   </div>
 </section>
 
@@ -836,88 +1177,82 @@
       <p class="section-eyebrow" data-i18n data-es="Proceso" data-en="Process">Proceso</p>
       <h2 class="section-h2">Cómo<br><em>trabajamos.</em></h2>
     </div>
-    <p style="font-size:15px;line-height:1.75;color:var(--text-muted);max-width:400px;align-self:flex-end" data-i18n data-es="Un proceso probado que garantiza resultados predecibles, sin sorpresas ni tiempos perdidos." data-en="A proven process that guarantees predictable results, without surprises or wasted time.">Un proceso probado que garantiza resultados predecibles, sin sorpresas ni tiempos perdidos.</p>
+    <p style="font-size:15px;line-height:1.75;color:var(--text-muted);max-width:400px;align-self:flex-end" data-i18n data-es="Un proceso probado, claro y sin sorpresas. Haz click en cada etapa para ver qué pasa exactamente." data-en="A proven process, clear and without surprises. Click each stage to see exactly what happens.">Un proceso probado, claro y sin sorpresas. Haz click en cada etapa para ver qué pasa exactamente.</p>
   </div>
-  <div class="process-steps reveal">
-    <div class="step">
-      <span class="step-num">01</span>
-      <h3 class="step-title" data-i18n data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</h3>
-      <p class="step-desc" data-i18n data-es="Entendemos tu negocio, tus objetivos y los obstáculos que impiden el crecimiento. Sin supuestos." data-en="We understand your business, goals, and the obstacles preventing growth. No assumptions.">Entendemos tu negocio, tus objetivos y los obstáculos que impiden el crecimiento. Sin supuestos.</p>
-    </div>
-    <div class="step">
-      <span class="step-num">02</span>
-      <h3 class="step-title" data-i18n data-es="Propuesta" data-en="Proposal">Propuesta</h3>
-      <p class="step-desc" data-i18n data-es="Diseñamos una estrategia personalizada con entregables claros, plazos reales y precio justo." data-en="We design a customized strategy with clear deliverables, real timelines, and fair pricing.">Diseñamos una estrategia personalizada con entregables claros, plazos reales y precio justo.</p>
-    </div>
-    <div class="step">
-      <span class="step-num">03</span>
-      <h3 class="step-title" data-i18n data-es="Ejecución" data-en="Execution">Ejecución</h3>
-      <p class="step-desc" data-i18n data-es="Construimos, iteramos y entregamos con comunicación constante. Tú siempre sabes en qué etapa estamos." data-en="We build, iterate, and deliver with constant communication. You always know where we stand.">Construimos, iteramos y entregamos con comunicación constante. Tú siempre sabes en qué etapa estamos.</p>
-    </div>
-    <div class="step">
-      <span class="step-num">04</span>
-      <h3 class="step-title" data-i18n data-es="Seguimiento" data-en="Follow-up">Seguimiento</h3>
-      <p class="step-desc" data-i18n data-es="Medimos resultados, ajustamos y optimizamos para asegurar que el crecimiento sea sostenido." data-en="We measure results, adjust, and optimize to ensure sustained growth.">Medimos resultados, ajustamos y optimizamos para asegurar que el crecimiento sea sostenido.</p>
-    </div>
-  </div>
-</section>
+  <div class="roadmap reveal" id="roadmap">
 
-<!-- FAQ -->
-<section class="faq" id="faq">
-  <div class="faq-inner">
-    <div class="faq-left reveal">
-      <p class="section-eyebrow">FAQ</p>
-      <h2 class="section-h2">Preguntas<br><em>frecuentes.</em></h2>
-      <p data-i18n data-es="¿Tienes alguna duda? Aquí respondemos las más comunes. Si no encuentras la tuya, escríbenos." data-en="Got a question? Here we answer the most common ones. If you don't find yours, write to us.">¿Tienes alguna duda? Aquí respondemos las más comunes. Si no encuentras la tuya, escríbenos.</p>
-      <a href="https://wa.me/593XXXXXXXXX?text=Hola%20APO%2C%20tengo%20una%20pregunta" class="btn-wa" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-        <span data-i18n data-es="Escríbenos por WA" data-en="Chat on WhatsApp">Escríbenos por WA</span>
-      </a>
-    </div>
-    <div class="faq-list reveal">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span data-i18n data-es="¿Cuánto cuesta un proyecto con APO Agency?" data-en="How much does a project with APO Agency cost?">¿Cuánto cuesta un proyecto con APO Agency?</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a" data-i18n data-es="Cada proyecto es diferente. Ofrecemos desde paquetes de entrada para startups hasta proyectos enterprise personalizados. Agenda una llamada y te damos una propuesta sin costo." data-en="Every project is different. We offer everything from starter packages for startups to custom enterprise projects. Book a call and we'll give you a free proposal.">Cada proyecto es diferente. Ofrecemos desde paquetes de entrada para startups hasta proyectos enterprise personalizados. Agenda una llamada y te damos una propuesta sin costo.</p>
+    <div class="rm-step active" onclick="rmActivate(this, 0)">
+      <div class="rm-left">
+        <div class="rm-node">01</div>
+        <div class="rm-line"></div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span data-i18n data-es="¿En cuánto tiempo entregan un sitio web?" data-en="How long does it take to deliver a website?">¿En cuánto tiempo entregan un sitio web?</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a" data-i18n data-es="Proyectos estándar entre 2-4 semanas. Proyectos de software o automatizaciones más complejos pueden tomar de 4-8 semanas según el alcance." data-en="Standard projects between 2-4 weeks. More complex software or automation projects can take 4-8 weeks depending on scope.">Proyectos estándar entre 2-4 semanas. Proyectos de software o automatizaciones más complejos pueden tomar de 4-8 semanas según el alcance.</p>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span data-i18n data-es="¿Trabajan con empresas fuera de Ecuador?" data-en="Do you work with companies outside Ecuador?">¿Trabajan con empresas fuera de Ecuador?</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a" data-i18n data-es="Sí. Tenemos clientes en toda Latinoamérica y Estados Unidos. Trabajamos 100% remoto con equipos distribuidos." data-en="Yes. We have clients throughout Latin America and the United States. We work 100% remote with distributed teams.">Sí. Tenemos clientes en toda Latinoamérica y Estados Unidos. Trabajamos 100% remoto con equipos distribuidos.</p>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span data-i18n data-es="¿Qué incluye el servicio de chatbots con IA?" data-en="What's included in the AI chatbot service?">¿Qué incluye el servicio de chatbots con IA?</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a" data-i18n data-es="Diseño del flujo conversacional, integración con WhatsApp Business API, conexión a tus sistemas existentes (CRM, catálogos, formularios) y soporte post-lanzamiento." data-en="Conversational flow design, WhatsApp Business API integration, connection to your existing systems (CRM, catalogs, forms), and post-launch support.">Diseño del flujo conversacional, integración con WhatsApp Business API, conexión a tus sistemas existentes (CRM, catálogos, formularios) y soporte post-lanzamiento.</p>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span data-i18n data-es="¿Tienen mantenimiento posterior al proyecto?" data-en="Do you offer post-project maintenance?">¿Tienen mantenimiento posterior al proyecto?</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a" data-i18n data-es="Sí. Ofrecemos planes de mantenimiento mensual que incluyen actualizaciones de seguridad, soporte técnico y reportes de rendimiento." data-en="Yes. We offer monthly maintenance plans including security updates, technical support, and performance reports.">Sí. Ofrecemos planes de mantenimiento mensual que incluyen actualizaciones de seguridad, soporte técnico y reportes de rendimiento.</p>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span data-i18n data-es="¿Cómo empiezo un proyecto con APO?" data-en="How do I start a project with APO?">¿Cómo empiezo un proyecto con APO?</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a" data-i18n data-es="Escríbenos por el formulario o WhatsApp. En menos de 24h agendamos una llamada de diagnóstico sin costo donde entendemos tu negocio y te presentamos una propuesta." data-en="Contact us via the form or WhatsApp. Within 24h we schedule a free diagnostic call where we understand your business and present a proposal.">Escríbenos por el formulario o WhatsApp. En menos de 24h agendamos una llamada de diagnóstico sin costo donde entendemos tu negocio y te presentamos una propuesta.</p>
+      <div class="rm-right">
+        <div class="rm-tag" data-i18n data-es="Semana 1" data-en="Week 1">Semana 1</div>
+        <h3 class="rm-title" data-i18n data-es="Diagnóstico gratuito" data-en="Free diagnosis">Diagnóstico gratuito</h3>
+        <div class="rm-detail">
+          <p data-i18n data-es="Llamada de 30-45 min donde entendemos tu negocio, objetivos y puntos de dolor. Analizamos tu presencia digital actual y te decimos con honestidad qué funciona y qué no." data-en="30-45 min call where we understand your business, goals, and pain points. We analyze your current digital presence and tell you honestly what works and what doesn't.">Llamada de 30-45 min donde entendemos tu negocio, objetivos y puntos de dolor. Analizamos tu presencia digital actual y te decimos con honestidad qué funciona y qué no.</p>
+          <div class="rm-deliverable">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n data-es="Entregable: Informe de diagnóstico sin costo" data-en="Deliverable: Free diagnosis report">Entregable: Informe de diagnóstico sin costo</span>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="rm-step" onclick="rmActivate(this, 1)">
+      <div class="rm-left">
+        <div class="rm-node">02</div>
+        <div class="rm-line"></div>
+      </div>
+      <div class="rm-right">
+        <div class="rm-tag" data-i18n data-es="Semana 1-2" data-en="Week 1-2">Semana 1-2</div>
+        <h3 class="rm-title" data-i18n data-es="Propuesta a medida" data-en="Custom proposal">Propuesta a medida</h3>
+        <div class="rm-detail">
+          <p data-i18n data-es="Diseñamos una estrategia personalizada con entregables claros, plazos reales y precio fijo. Sin letra pequeña, sin costos ocultos. La propuesta te pertenece, la quieras contratar o no." data-en="We design a customized strategy with clear deliverables, real timelines, and fixed price. No fine print, no hidden costs. The proposal is yours, whether you hire us or not.">Diseñamos una estrategia personalizada con entregables claros, plazos reales y precio fijo. Sin letra pequeña, sin costos ocultos. La propuesta te pertenece, la quieras contratar o no.</p>
+          <div class="rm-deliverable">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n data-es="Entregable: Propuesta + cronograma + precio fijo" data-en="Deliverable: Proposal + timeline + fixed price">Entregable: Propuesta + cronograma + precio fijo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rm-step" onclick="rmActivate(this, 2)">
+      <div class="rm-left">
+        <div class="rm-node">03</div>
+        <div class="rm-line"></div>
+      </div>
+      <div class="rm-right">
+        <div class="rm-tag" data-i18n data-es="Semana 2-6" data-en="Week 2-6">Semana 2-6</div>
+        <h3 class="rm-title" data-i18n data-es="Ejecución con updates" data-en="Execution with updates">Ejecución con updates</h3>
+        <div class="rm-detail">
+          <p data-i18n data-es="Construimos con comunicación constante. Cada viernes recibes un update del avance. Acceso a un tablero de proyecto en tiempo real. Tú siempre sabes exactamente en qué etapa estamos." data-en="We build with constant communication. Every Friday you get a progress update. Access to a real-time project board. You always know exactly where we stand.">Construimos con comunicación constante. Cada viernes recibes un update del avance. Acceso a un tablero de proyecto en tiempo real. Tú siempre sabes exactamente en qué etapa estamos.</p>
+          <div class="rm-deliverable">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n data-es="Entregable: Producto final + revisiones incluidas" data-en="Deliverable: Final product + revisions included">Entregable: Producto final + revisiones incluidas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rm-step" onclick="rmActivate(this, 3)">
+      <div class="rm-left">
+        <div class="rm-node">04</div>
+        <div class="rm-line" style="display:none"></div>
+      </div>
+      <div class="rm-right">
+        <div class="rm-tag" data-i18n data-es="Mes 2+" data-en="Month 2+">Mes 2+</div>
+        <h3 class="rm-title" data-i18n data-es="Seguimiento & optimización" data-en="Follow-up & optimization">Seguimiento & optimización</h3>
+        <div class="rm-detail">
+          <p data-i18n data-es="Medimos resultados con métricas reales, ajustamos lo que no funciona y optimizamos lo que sí. Para campañas de ads: reportes semanales. Para software y webs: soporte y mejoras continuas." data-en="We measure results with real metrics, adjust what doesn't work, and optimize what does. For ad campaigns: weekly reports. For software and websites: ongoing support and improvements.">Medimos resultados con métricas reales, ajustamos lo que no funciona y optimizamos lo que sí. Para campañas de ads: reportes semanales. Para software y webs: soporte y mejoras continuas.</p>
+          <div class="rm-deliverable">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n data-es="Entregable: Reporte mensual de resultados" data-en="Deliverable: Monthly results report">Entregable: Reporte mensual de resultados</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -943,9 +1278,11 @@
         </a>
       </div>
     </div>
-    <form class="contact-form reveal" action="https://formsubmit.co/hola@apoagency.io" method="POST">
+    <form class="contact-form reveal" action="https://formsubmit.co/hola@apoagency.io" method="POST" id="contact-form">
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value="https://apoagency.io/?gracias=1" />
+      <input type="hidden" name="servicio_elegido" id="servicio_elegido" value="" />
+
       <div class="form-row">
         <div class="form-group">
           <label for="nombre" data-i18n data-es="Nombre" data-en="Name">Nombre</label>
@@ -953,30 +1290,158 @@
         </div>
         <div class="form-group">
           <label for="empresa" data-i18n data-es="Empresa" data-en="Company">Empresa</label>
-          <input type="text" id="empresa" name="empresa" placeholder="Tu empresa" />
+          <input type="text" id="empresa" name="empresa" placeholder="Tu empresa o nicho" />
         </div>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="tu@email.com" required />
       </div>
+
+      <!-- Service chips -->
       <div class="form-group">
-        <label for="servicio" data-i18n data-es="Servicio de interés" data-en="Service of interest">Servicio de interés</label>
-        <select id="servicio" name="servicio">
-          <option value="" data-i18n data-es="Selecciona un servicio" data-en="Select a service">Selecciona un servicio</option>
-          <option value="web" data-i18n data-es="Diseño Web" data-en="Web Design">Diseño Web</option>
-          <option value="chatbot" data-i18n data-es="Chatbot IA" data-en="AI Chatbot">Chatbot IA</option>
-          <option value="ads" data-i18n data-es="Meta & Google Ads" data-en="Meta & Google Ads">Meta & Google Ads</option>
-          <option value="automatizacion" data-i18n data-es="Automatizaciones" data-en="Automations">Automatizaciones</option>
-          <option value="software" data-i18n data-es="Software a Medida" data-en="Custom Software">Software a Medida</option>
-          <option value="branding" data-i18n data-es="Branding" data-en="Branding">Branding</option>
-        </select>
+        <label data-i18n data-es="¿Qué necesitas?" data-en="What do you need?">¿Qué necesitas?</label>
+        <div class="svc-chips">
+          <button type="button" class="svc-chip" data-svc="web">🌐 Diseño Web</button>
+          <button type="button" class="svc-chip" data-svc="chatbot">🤖 Chatbot IA</button>
+          <button type="button" class="svc-chip" data-svc="ads">📢 Meta / Google Ads</button>
+          <button type="button" class="svc-chip" data-svc="automatizacion">⚡ Automatizaciones</button>
+          <button type="button" class="svc-chip" data-svc="software">💻 Software a Medida</button>
+          <button type="button" class="svc-chip" data-svc="branding">✦ Branding</button>
+        </div>
       </div>
+
+      <!-- APO Recommendation -->
+      <div class="apo-rec" id="apo-rec">
+        <div class="apo-rec-label">✦ APO recomienda</div>
+        <p id="apo-rec-text"></p>
+      </div>
+
+      <!-- Dynamic fields per service -->
+      <div class="form-dynamic">
+
+        <!-- WEB fields -->
+        <div class="form-fields-group" id="fields-web">
+          <div class="form-group range-group">
+            <label data-i18n data-es="¿Qué tipo de sitio necesitas?" data-en="What type of site do you need?">¿Qué tipo de sitio necesitas?</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="tipo_web" data-val="landing">Landing page</button>
+              <button type="button" class="range-opt" data-name="tipo_web" data-val="corporativo">Sitio corporativo</button>
+              <button type="button" class="range-opt" data-name="tipo_web" data-val="ecommerce">Tienda online</button>
+              <button type="button" class="range-opt" data-name="tipo_web" data-val="portal">Portal / App web</button>
+            </div>
+          </div>
+          <div class="form-group range-group">
+            <label data-i18n data-es="Presupuesto aproximado" data-en="Approximate budget">Presupuesto aproximado</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="presupuesto_web" data-val="<500">Menos de $500</button>
+              <button type="button" class="range-opt" data-name="presupuesto_web" data-val="500-1500">$500 – $1,500</button>
+              <button type="button" class="range-opt" data-name="presupuesto_web" data-val="1500-4000">$1,500 – $4,000</button>
+              <button type="button" class="range-opt" data-name="presupuesto_web" data-val=">4000">Más de $4,000</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADS fields -->
+        <div class="form-fields-group" id="fields-ads">
+          <div class="form-group range-group">
+            <label data-i18n data-es="Plataforma de pauta" data-en="Ad platform">Plataforma de pauta</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="plataforma" data-val="meta">Meta Ads</button>
+              <button type="button" class="range-opt" data-name="plataforma" data-val="google">Google Ads</button>
+              <button type="button" class="range-opt" data-name="plataforma" data-val="ambas">Ambas</button>
+            </div>
+          </div>
+          <div class="form-group range-group">
+            <label data-i18n data-es="Presupuesto mensual en pauta" data-en="Monthly ad spend">Presupuesto mensual en pauta</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="presupuesto_ads" data-val="<300">Menos de $300</button>
+              <button type="button" class="range-opt" data-name="presupuesto_ads" data-val="300-800">$300 – $800</button>
+              <button type="button" class="range-opt" data-name="presupuesto_ads" data-val="800-2000">$800 – $2,000</button>
+              <button type="button" class="range-opt" data-name="presupuesto_ads" data-val=">2000">Más de $2,000</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-i18n data-es="Nicho / sector" data-en="Niche / sector">Nicho / sector</label>
+            <input type="text" name="nicho" placeholder="Ej: inmobiliaria, clínica dental, moda..." />
+          </div>
+        </div>
+
+        <!-- CHATBOT fields -->
+        <div class="form-fields-group" id="fields-chatbot">
+          <div class="form-group range-group">
+            <label data-i18n data-es="¿Qué rol tendrá el asistente?" data-en="What role will the assistant have?">¿Qué rol tendrá el asistente?</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="rol_bot" data-val="atencion">Atención al cliente</button>
+              <button type="button" class="range-opt" data-name="rol_bot" data-val="agendamiento">Agendamiento de citas</button>
+              <button type="button" class="range-opt" data-name="rol_bot" data-val="ventas">Asistente de ventas</button>
+              <button type="button" class="range-opt" data-name="rol_bot" data-val="soporte">Soporte técnico</button>
+            </div>
+          </div>
+          <div class="form-group range-group">
+            <label data-i18n data-es="Canal principal" data-en="Main channel">Canal principal</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="canal_bot" data-val="whatsapp">WhatsApp</button>
+              <button type="button" class="range-opt" data-name="canal_bot" data-val="instagram">Instagram</button>
+              <button type="button" class="range-opt" data-name="canal_bot" data-val="web">Web / Chat</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTOMATIZACION fields -->
+        <div class="form-fields-group" id="fields-automatizacion">
+          <div class="form-group range-group">
+            <label data-i18n data-es="¿Qué proceso quieres automatizar?" data-en="What process do you want to automate?">¿Qué proceso quieres automatizar?</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="proceso" data-val="crm">CRM / leads</button>
+              <button type="button" class="range-opt" data-name="proceso" data-val="reportes">Reportes automáticos</button>
+              <button type="button" class="range-opt" data-name="proceso" data-val="notificaciones">Notificaciones</button>
+              <button type="button" class="range-opt" data-name="proceso" data-val="facturacion">Facturación</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOFTWARE fields -->
+        <div class="form-fields-group" id="fields-software">
+          <div class="form-group range-group">
+            <label data-i18n data-es="Tipo de software" data-en="Software type">Tipo de software</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="tipo_sw" data-val="panel">Panel de gestión</button>
+              <button type="button" class="range-opt" data-name="tipo_sw" data-val="saas">SaaS / plataforma</button>
+              <button type="button" class="range-opt" data-name="tipo_sw" data-val="integracion">Integración de sistemas</button>
+              <button type="button" class="range-opt" data-name="tipo_sw" data-val="otro">Otro</button>
+            </div>
+          </div>
+          <div class="form-group range-group">
+            <label data-i18n data-es="Presupuesto" data-en="Budget">Presupuesto</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="presupuesto_sw" data-val="1000-3000">$1,000 – $3,000</button>
+              <button type="button" class="range-opt" data-name="presupuesto_sw" data-val="3000-8000">$3,000 – $8,000</button>
+              <button type="button" class="range-opt" data-name="presupuesto_sw" data-val=">8000">Más de $8,000</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- BRANDING fields -->
+        <div class="form-fields-group" id="fields-branding">
+          <div class="form-group range-group">
+            <label data-i18n data-es="¿Qué necesitas?" data-en="What do you need?">¿Qué necesitas?</label>
+            <div class="range-options">
+              <button type="button" class="range-opt" data-name="tipo_brand" data-val="identidad">Identidad de marca</button>
+              <button type="button" class="range-opt" data-name="tipo_brand" data-val="logo">Logo</button>
+              <button type="button" class="range-opt" data-name="tipo_brand" data-val="manual">Manual de marca</button>
+              <button type="button" class="range-opt" data-name="tipo_brand" data-val="social">Kit redes sociales</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
       <div class="form-group">
-        <label for="mensaje" data-i18n data-es="Mensaje" data-en="Message">Mensaje</label>
-        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+        <label for="mensaje" data-i18n data-es="Cuéntanos más (opcional)" data-en="Tell us more (optional)">Cuéntanos más (opcional)</label>
+        <textarea id="mensaje" name="mensaje" rows="3" placeholder="Cualquier detalle adicional que nos ayude..."></textarea>
       </div>
-      <button type="submit" class="btn-primary" style="width:100%;padding:16px" data-i18n data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
+      <button type="submit" class="btn-primary" style="width:100%;padding:16px;justify-content:center" data-i18n data-es="Enviar y agendar diagnóstico →" data-en="Send and schedule diagnosis →">Enviar y agendar diagnóstico →</button>
     </form>
   </div>
 </section>
@@ -1122,6 +1587,89 @@
   window.addEventListener('load', () => {
     setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 600);
   });
+
+  // ── PROCESS ROADMAP ──
+  function rmActivate(clicked, idx) {
+    const steps = document.querySelectorAll('.rm-step');
+    steps.forEach((s, i) => {
+      s.classList.remove('active', 'done');
+      if (i < idx) s.classList.add('done');
+    });
+    clicked.classList.add('active');
+  }
+
+  // ── DYNAMIC CONTACT FORM ──
+  (function() {
+    const recs = {
+      web: 'Un sitio bien construido convierte visitas en clientes. Te recomendamos un diseño con SEO técnico, velocidad optimizada y llamadas a la acción claras.',
+      chatbot: 'Un asistente IA en WhatsApp puede atender el 80% de consultas repetitivas. Te ayudamos a entrenarlo con el tono y conocimiento de tu negocio.',
+      ads: 'Una pauta bien configurada en Meta o Google multiplica tu retorno de inversión. Primero auditamos tu embudo de ventas antes de invertir.',
+      automatizacion: 'Automatizar tareas manuales te ahorra horas cada semana. Identificamos los procesos de mayor impacto y los conectamos en flujos inteligentes.',
+      software: 'Un panel o SaaS propio te da control total sobre tu operación. Diseñamos arquitecturas escalables que crecen contigo.',
+      branding: 'Tu marca es la primera impresión. Creamos identidades visuales coherentes y memorables que conectan con tu audiencia ideal.'
+    };
+    const chips = document.querySelectorAll('.svc-chip');
+    const recBox = document.getElementById('apo-rec');
+    const recText = document.getElementById('apo-rec-text');
+    const svcInput = document.getElementById('servicio_elegido');
+    let activeChip = null;
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        if (activeChip) {
+          activeChip.classList.remove('selected');
+          const prev = document.getElementById('fields-' + activeChip.dataset.svc);
+          if (prev) prev.classList.remove('show');
+        }
+        if (activeChip === chip) {
+          activeChip = null;
+          recBox.classList.remove('show');
+          svcInput.value = '';
+          return;
+        }
+        chip.classList.add('selected');
+        activeChip = chip;
+        const svc = chip.dataset.svc;
+        svcInput.value = svc;
+        recText.textContent = recs[svc] || '';
+        recBox.classList.add('show');
+        const fields = document.getElementById('fields-' + svc);
+        if (fields) fields.classList.add('show');
+      });
+    });
+
+    document.querySelectorAll('.range-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.dataset.name;
+        document.querySelectorAll(`.range-opt[data-name="${name}"]`).forEach(b => b.classList.remove('sel'));
+        btn.classList.add('sel');
+        let input = document.querySelector(`input[name="${name}"]`);
+        if (!input) {
+          input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = name;
+          document.getElementById('contact-form').appendChild(input);
+        }
+        input.value = btn.dataset.val;
+      });
+    });
+  })();
+
+  // ── HERO FLOAT COUNTER ──
+  (function() {
+    const el = document.getElementById('hf-counter');
+    if (!el) return;
+    const target = 247;
+    let start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / 1800, 1);
+      el.textContent = Math.floor(p * target);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    }
+    setTimeout(() => requestAnimationFrame(step), 800);
+  })();
 </script>
 </body>
 </html>
