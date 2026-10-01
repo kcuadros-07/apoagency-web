@@ -208,7 +208,7 @@
 
     /* HERO */
     .hero {
-      min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px;
       padding: 140px 48px 100px;
       position: relative; overflow: hidden;
     }
@@ -260,39 +260,110 @@
     .stat-num { font-size: 26px; font-weight: 800; letter-spacing: -1px; color: var(--text); }
     .stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; letter-spacing: .01em; }
 
-    /* Hero floating card (desktop) */
-    .hero-float {
-      position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
-      z-index: 2; display: flex; flex-direction: column; gap: 16px;
-      animation: fadeUp .7s .5s ease both;
+    /* Hero visual dashboard (desktop) */
+    .hero-visual {
+      position: relative; z-index: 2; animation: fadeUp .7s .5s ease both;
+      display: flex; flex-direction: column; gap: 12px;
     }
-    .hf-card {
+    .hv-browser {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
-      padding: 20px 24px; box-shadow: 0 20px 60px rgba(0,0,0,.1);
-      min-width: 220px;
+      overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,.12);
     }
-    [data-theme="dark"] .hf-card { box-shadow: 0 20px 60px rgba(0,0,0,.4); }
-    .hf-label { font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
-    .hf-metric { font-size: 36px; font-weight: 800; letter-spacing: -2px; color: var(--text); line-height: 1; }
-    .hf-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-    .hf-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #22C55E; margin-right: 6px; animation: blink 2s ease-in-out infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
-    .hf-live { display: flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #22C55E; margin-bottom: 10px; }
-    .hf-notify { display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; }
-    .hf-notify-icon { width: 32px; height: 32px; border-radius: 8px; background: #0B1D35; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    [data-theme="dark"] .hf-notify-icon { background: rgba(255,255,255,.1); }
-    .hf-notify-text { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.4; }
-    .hf-notify-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-    .hf-bars { display: flex; align-items: flex-end; gap: 4px; height: 40px; margin-top: 12px; }
-    .hf-bar { flex: 1; border-radius: 3px 3px 0 0; background: var(--accent); opacity: .15; }
-    .hf-bar.active { opacity: .9; }
-    .hf-bar:nth-child(1) { height: 40%; }
-    .hf-bar:nth-child(2) { height: 65%; }
-    .hf-bar:nth-child(3) { height: 50%; }
-    .hf-bar:nth-child(4) { height: 80%; }
-    .hf-bar:nth-child(5) { height: 60%; }
-    .hf-bar:nth-child(6) { height: 100%; }
-    .hf-bar:nth-child(7) { height: 75%; }
+    [data-theme="dark"] .hv-browser { box-shadow: 0 32px 80px rgba(0,0,0,.5); }
+    .hv-bar {
+      background: rgba(0,0,0,.06); border-bottom: 1px solid var(--border);
+      padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+    }
+    [data-theme="dark"] .hv-bar { background: rgba(255,255,255,.04); }
+    .hv-dots { display: flex; gap: 5px; }
+    .hv-dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+    .hv-dots span:nth-child(1) { background: #FF5F57; }
+    .hv-dots span:nth-child(2) { background: #FEBC2E; }
+    .hv-dots span:nth-child(3) { background: #28C840; }
+    .hv-url { font-size: 11px; color: var(--text-muted); background: var(--bg-surface); border: 1px solid var(--border); border-radius: 6px; padding: 3px 12px; flex: 1; text-align: center; font-family: monospace; }
+    .hv-screen { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+    .hv-dash-header { display: flex; align-items: center; gap: 10px; }
+    .hv-client-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .hv-period { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+    .hv-live-badge { display: flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #22C55E; }
+    .hv-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .hv-kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+    .hv-kpi { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+    .hv-kpi-val { font-size: 18px; font-weight: 800; letter-spacing: -1px; color: var(--text); line-height: 1; }
+    .hv-kpi-label { font-size: 9px; color: var(--text-muted); font-weight: 500; letter-spacing: .05em; }
+    .hv-kpi-delta { font-size: 10px; font-weight: 700; margin-top: 2px; }
+    .hv-kpi-delta.up { color: #22C55E; }
+    .hv-chart { position: relative; }
+    .hv-line-chart { width: 100%; height: 80px; display: block; overflow: visible; }
+    .chart-pulse { animation: chartPulse 2s ease-in-out infinite; }
+    @keyframes chartPulse { 0%,100%{r:6;opacity:.3} 50%{r:10;opacity:.15} }
+    .hv-chart-labels { display: flex; justify-content: space-between; font-size: 9px; color: var(--text-muted); margin-top: 4px; padding: 0 2px; }
+    .hv-recent { display: flex; flex-direction: column; gap: 6px; }
+    .hv-recent-item { display: flex; align-items: center; gap: 8px; padding: 7px 10px; background: var(--bg-surface); border-radius: 8px; border: 1px solid var(--border); }
+    .hv-dot-green { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; flex-shrink: 0; }
+    .hv-dot-blue { width: 7px; height: 7px; border-radius: 50%; background: #3B82F6; flex-shrink: 0; }
+    .hv-ri-name { font-size: 11px; font-weight: 600; color: var(--text); flex: 1; }
+    .hv-ri-time { font-size: 10px; color: var(--text-muted); flex-shrink: 0; }
+    .hv-anim-1 { animation: slideInRight .5s .8s ease both; }
+    .hv-anim-2 { animation: slideInRight .5s 1s ease both; }
+    .hv-anim-3 { animation: slideInRight .5s 1.2s ease both; }
+    @keyframes slideInRight { from{opacity:0;transform:translateX(16px)} to{opacity:1;transform:translateX(0)} }
+    /* Floating notif on top of visual */
+    .hv-notif {
+      position: absolute; top: -14px; right: -14px;
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12); animation: fadeUp .6s 1.4s ease both;
+      min-width: 200px;
+    }
+    [data-theme="dark"] .hv-notif { box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+    .hv-notif-icon { width: 28px; height: 28px; border-radius: 8px; background: #22C55E; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 800; flex-shrink: 0; }
+    .hv-notif-title { font-size: 12px; font-weight: 700; color: var(--text); }
+    .hv-notif-sub { font-size: 10px; color: var(--text-muted); }
+
+    /* METRICS STRIP */
+    .metrics-strip { padding: 60px 48px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .metrics-inner { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
+    .metric-item { display: flex; flex-direction: column; gap: 4px; padding-left: 20px; border-left: 3px solid var(--accent); }
+    .metric-num { font-size: clamp(28px,4vw,48px); font-weight: 800; letter-spacing: -2px; color: var(--text); line-height: 1; }
+    .metric-label { font-size: 12px; color: var(--text-muted); font-weight: 500; line-height: 1.4; }
+
+    /* ABOUT MINI */
+    .about-mini { border-top: 1px solid var(--border); padding: 100px 48px; }
+    .about-mini-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-mini-visual { position: relative; }
+    .about-avatar-wrap { width: 100%; aspect-ratio: 1/1; max-width: 380px; border-radius: 24px; overflow: hidden; background: var(--bg-surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .about-avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .about-avatar-placeholder { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #2563EB, #3B82F6); display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 800; color: #fff; letter-spacing: -2px; }
+    .about-badge { position: absolute; bottom: -12px; right: -12px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px 18px; box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+    [data-theme="dark"] .about-badge { box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+    .about-badge-num { font-size: 28px; font-weight: 800; letter-spacing: -1px; color: var(--text); display: block; }
+    .about-badge-label { font-size: 11px; color: var(--text-muted); }
+    .about-mini-text { display: flex; flex-direction: column; gap: 20px; }
+    .about-name { font-size: 22px; font-weight: 800; letter-spacing: -.5px; color: var(--text); }
+    .about-role { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+    .about-bio { font-size: 15px; line-height: 1.8; color: var(--text-muted); }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .about-tag { font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-muted); }
+
+    /* TESTIMONIAL AVATAR */
+    .testimonial-author-row { display: flex; align-items: center; gap: 12px; }
+    .t-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .t-av-blue { background: linear-gradient(135deg, #2563EB, #60A5FA); }
+    .t-av-orange { background: linear-gradient(135deg, #EA580C, #FB923C); }
+    .t-av-indigo { background: linear-gradient(135deg, #4F46E5, #818CF8); }
+
+    /* WHATSAPP FAB */
+    .wa-fab {
+      position: fixed; bottom: 28px; right: 28px; z-index: 400;
+      width: 56px; height: 56px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,.45); text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-fab:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,.6); }
+    .wa-fab svg { width: 28px; height: 28px; fill: #fff; }
 
     /* Scroll indicator */
     .hero-scroll-hint {
@@ -504,7 +575,7 @@
     .faq-inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
     .faq-left { position: sticky; top: 120px; }
     .faq-left p { font-size: 15px; line-height: 1.75; color: var(--text-muted); margin-top: 20px; margin-bottom: 32px; }
-    .btn-wa { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; padding: 14px 24px; border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none; transition: opacity .2s; }
+    .btn-wa { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; padding: 14px 24px; border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none; transition: opacity .2s; white-space: nowrap; }
     .btn-wa:hover { opacity: .85; }
     .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q { width: 100%; background: none; border: none; color: var(--text); font-family: inherit; font-size: 15px; font-weight: 600; text-align: left; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: color .2s; }
@@ -602,10 +673,15 @@
       .nav-logo .wordmark { display: none; }
       .nav-logo .isologo { display: block !important; }
       section { padding: 72px 24px; }
-      .hero { padding: 120px 24px 80px; }
+      .hero { padding: 120px 24px 80px; grid-template-columns: 1fr; }
       .hero-h1 { letter-spacing: -2px; }
-      .hero-float { display: none; }
+      .hero-visual { display: none; }
       .hero-scroll-hint { display: none; }
+      .metrics-strip { padding: 40px 24px; }
+      .metrics-inner { grid-template-columns: repeat(2,1fr); gap: 20px; }
+      .about-mini-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-avatar-wrap { max-width: 100%; aspect-ratio: 4/3; }
+      .wa-fab { bottom: 20px; right: 20px; width: 52px; height: 52px; }
       .stats-row { gap: 28px; }
       .projects-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
@@ -706,32 +782,84 @@
     </div>
   </div>
 
-  <!-- Floating cards (desktop only) -->
-  <div class="hero-float" aria-hidden="true">
-    <!-- Live metric card -->
-    <div class="hf-card">
-      <div class="hf-live"><span class="hf-dot"></span>En vivo</div>
-      <div class="hf-label">Leads este mes</div>
-      <div class="hf-metric" id="hf-counter">0</div>
-      <div class="hf-sub">+34% vs mes anterior</div>
-      <div class="hf-bars">
-        <div class="hf-bar"></div>
-        <div class="hf-bar"></div>
-        <div class="hf-bar"></div>
-        <div class="hf-bar"></div>
-        <div class="hf-bar"></div>
-        <div class="hf-bar active"></div>
-        <div class="hf-bar" style="height:90%;opacity:.6"></div>
+  <!-- Dashboard visual (desktop only) -->
+  <div class="hero-visual" aria-hidden="true">
+    <div style="position:relative">
+      <div class="hv-browser">
+        <div class="hv-bar">
+          <div class="hv-dots"><span></span><span></span><span></span></div>
+          <div class="hv-url">analytics.apoagency.io</div>
+        </div>
+        <div class="hv-screen">
+          <div class="hv-dash-header">
+            <span class="hv-client-name">Interhome ISP — Campaña Hogar</span>
+            <span class="hv-period">Oct 2026</span>
+            <div class="hv-live-badge"><span class="hv-live-dot"></span>En vivo</div>
+          </div>
+          <div class="hv-kpis">
+            <div class="hv-kpi">
+              <span class="hv-kpi-val">284</span>
+              <span class="hv-kpi-label">Leads</span>
+              <span class="hv-kpi-delta up">▲ +34%</span>
+            </div>
+            <div class="hv-kpi">
+              <span class="hv-kpi-val">$1.73</span>
+              <span class="hv-kpi-label">CPL</span>
+              <span class="hv-kpi-delta up">▼ -41%</span>
+            </div>
+            <div class="hv-kpi">
+              <span class="hv-kpi-val">8.4×</span>
+              <span class="hv-kpi-label">ROAS</span>
+              <span class="hv-kpi-delta up">▲ +2.1×</span>
+            </div>
+            <div class="hv-kpi">
+              <span class="hv-kpi-val">$492</span>
+              <span class="hv-kpi-label">Invertido</span>
+              <span class="hv-kpi-delta" style="color:var(--text-muted)">este mes</span>
+            </div>
+          </div>
+          <div class="hv-chart">
+            <svg viewBox="0 0 280 80" preserveAspectRatio="none" class="hv-line-chart">
+              <defs>
+                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,72 C20,68 40,62 60,48 C80,32 100,36 120,26 C140,16 160,20 180,12 C200,5 220,9 240,7 C260,5 270,3 280,2" fill="none" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M0,72 C20,68 40,62 60,48 C80,32 100,36 120,26 C140,16 160,20 180,12 C200,5 220,9 240,7 C260,5 270,3 280,2 L280,80 L0,80 Z" fill="url(#chartGrad)"/>
+              <circle cx="280" cy="2" r="4" fill="#3B82F6"/>
+              <circle cx="280" cy="2" r="9" fill="#3B82F6" opacity="0.2" class="chart-pulse"/>
+            </svg>
+            <div class="hv-chart-labels">
+              <span>Sem 1</span><span>Sem 2</span><span>Sem 3</span><span>Sem 4</span>
+            </div>
+          </div>
+          <div class="hv-recent">
+            <div class="hv-recent-item hv-anim-1">
+              <div class="hv-dot-green"></div>
+              <span class="hv-ri-name">María G. — Plan Hogar Plus</span>
+              <span class="hv-ri-time">hace 2 min</span>
+            </div>
+            <div class="hv-recent-item hv-anim-2">
+              <div class="hv-dot-green"></div>
+              <span class="hv-ri-name">Carlos V. — Plan Empresarial</span>
+              <span class="hv-ri-time">hace 7 min</span>
+            </div>
+            <div class="hv-recent-item hv-anim-3">
+              <div class="hv-dot-blue"></div>
+              <span class="hv-ri-name">Lucía M. — Plan Básico</span>
+              <span class="hv-ri-time">hace 15 min</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- Notification card -->
-    <div class="hf-card hf-notify">
-      <div class="hf-notify-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div>
-        <div class="hf-notify-text">Nuevo cliente cerrado</div>
-        <div class="hf-notify-sub">BuscaCasa · hace 2 min</div>
+      <div class="hv-notif">
+        <div class="hv-notif-icon">✓</div>
+        <div>
+          <div class="hv-notif-title">Nuevo lead cerrado</div>
+          <div class="hv-notif-sub">BuscaCasa · hace 3 min</div>
+        </div>
       </div>
     </div>
   </div>
@@ -773,6 +901,28 @@
         <img src="assets/logos/intelnexo.png" alt="Intelnexo" />
         <img src="assets/logos/avasant.png" alt="Avasant" />
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- METRICS STRIP -->
+<div class="metrics-strip reveal">
+  <div class="metrics-inner">
+    <div class="metric-item">
+      <span class="metric-num">50+</span>
+      <span class="metric-label">proyectos entregados en Ecuador y Latam</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-num">3×</span>
+      <span class="metric-label">crecimiento promedio de clientes en 3 meses</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-num">$1.73</span>
+      <span class="metric-label">costo por lead promedio en campañas de ads</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-num">5,200+</span>
+      <span class="metric-label">consultas manejadas por chatbots IA en 2026</span>
     </div>
   </div>
 </div>
@@ -1093,27 +1243,36 @@
       <svg class="quote-icon" width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
       <div class="testimonial-metric">3×</div>
       <p class="testimonial-text">"APO transformó nuestra presencia digital. Triplicamos los leads calificados en menos de 60 días y el equipo de ventas no da abasto."</p>
-      <div class="testimonial-author">
-        <span class="author-name">Andrés Morales</span>
-        <span class="author-meta">CEO · Interhome Ecuador</span>
+      <div class="testimonial-author-row">
+        <div class="t-avatar t-av-blue">AM</div>
+        <div class="testimonial-author">
+          <span class="author-name">Andrés Morales</span>
+          <span class="author-meta">CEO · Interhome Ecuador</span>
+        </div>
       </div>
     </div>
     <div class="testimonial-card">
       <svg class="quote-icon" width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
       <div class="testimonial-metric">5,200+</div>
       <p class="testimonial-text">"El chatbot manejó toda la atención al visitante en la feria. Sin colapsar líneas, sin esperas. La gente quedó sorprendida de la fluidez."</p>
-      <div class="testimonial-author">
-        <span class="author-name">Patricia Vivanco</span>
-        <span class="author-meta">Directora · Feria Internacional de Loja</span>
+      <div class="testimonial-author-row">
+        <div class="t-avatar t-av-orange">PV</div>
+        <div class="testimonial-author">
+          <span class="author-name">Patricia Vivanco</span>
+          <span class="author-meta">Directora · Feria Internacional de Loja</span>
+        </div>
       </div>
     </div>
     <div class="testimonial-card">
       <svg class="quote-icon" width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
       <div class="testimonial-metric">-65%</div>
       <p class="testimonial-text">"Redujimos el tiempo operativo a más de la mitad. El software que nos entregaron es robusto, elegante y nuestro equipo lo adoptó de inmediato."</p>
-      <div class="testimonial-author">
-        <span class="author-name">Carlos Espinosa</span>
-        <span class="author-meta">CTO · Flexman</span>
+      <div class="testimonial-author-row">
+        <div class="t-avatar t-av-indigo">CE</div>
+        <div class="testimonial-author">
+          <span class="author-name">Carlos Espinosa</span>
+          <span class="author-meta">CTO · Flexman</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1256,6 +1415,36 @@
   </div>
 </section>
 
+<!-- ABOUT MINI -->
+<section class="about-mini reveal">
+  <div class="about-mini-inner">
+    <div class="about-mini-visual reveal">
+      <div class="about-avatar-wrap" id="about-avatar-wrap">
+        <img src="assets/photos/kevin-cuadros.webp" alt="Kevin Cuadros" onerror="this.style.display='none';document.getElementById('about-avatar-fb').style.display='flex'" />
+        <div class="about-avatar-placeholder" id="about-avatar-fb" style="display:none">KC</div>
+      </div>
+      <div class="about-badge">
+        <span class="about-badge-num">50+</span>
+        <span class="about-badge-label">proyectos entregados</span>
+      </div>
+    </div>
+    <div class="about-mini-text reveal">
+      <div>
+        <p class="section-eyebrow">Quién está detrás</p>
+        <h2 class="section-h2">Hola, soy<br><em>Kevin.</em></h2>
+      </div>
+      <p class="about-bio">Fundé APO Agency porque vi que las pequeñas y medianas empresas de Ecuador merecen tecnología real — no plantillas genéricas. Con más de 50 proyectos entregados, hoy ayudo a negocios a crecer con sitios web que convierten, chatbots que atienden 24/7 y campañas de ads que generan resultados medibles.</p>
+      <div class="about-tags">
+        <span class="about-tag">Diseño Web</span>
+        <span class="about-tag">IA & Automatización</span>
+        <span class="about-tag">Meta & Google Ads</span>
+        <span class="about-tag">Ecuador 🇪🇨</span>
+      </div>
+      <a href="about.html" class="btn-secondary" style="width:fit-content">Conocer más →</a>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact" id="contacto">
   <div class="contact-inner">
@@ -1268,7 +1457,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           hola@apoagency.io
         </a>
-        <a href="https://wa.me/593XXXXXXXXX" target="_blank" rel="noopener">
+        <a href="https://wa.me/593987252978" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
           WhatsApp
         </a>
@@ -1282,21 +1471,6 @@
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value="https://apoagency.io/?gracias=1" />
       <input type="hidden" name="servicio_elegido" id="servicio_elegido" value="" />
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="nombre" data-i18n data-es="Nombre" data-en="Name">Nombre</label>
-          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-        </div>
-        <div class="form-group">
-          <label for="empresa" data-i18n data-es="Empresa" data-en="Company">Empresa</label>
-          <input type="text" id="empresa" name="empresa" placeholder="Tu empresa o nicho" />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="tu@email.com" required />
-      </div>
 
       <!-- Service chips -->
       <div class="form-group">
@@ -1437,14 +1611,29 @@
 
       </div>
 
-      <div class="form-group">
-        <label for="mensaje" data-i18n data-es="Cuéntanos más (opcional)" data-en="Tell us more (optional)">Cuéntanos más (opcional)</label>
-        <textarea id="mensaje" name="mensaje" rows="3" placeholder="Cualquier detalle adicional que nos ayude..."></textarea>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="+593 98 000 0000" required />
+        </div>
       </div>
-      <button type="submit" class="btn-primary" style="width:100%;padding:16px;justify-content:center" data-i18n data-es="Enviar y agendar diagnóstico →" data-en="Send and schedule diagnosis →">Enviar y agendar diagnóstico →</button>
+      <div class="form-group">
+        <label for="mensaje">¿Algo más que quieras contarnos? <span style="color:var(--text-muted);font-weight:400">(opcional)</span></label>
+        <textarea id="mensaje" name="mensaje" rows="2" placeholder="Describe brevemente tu proyecto o situación actual..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:16px;justify-content:center">Enviar y agendar diagnóstico →</button>
     </form>
   </div>
 </section>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/593987252978?text=Hola%20APO%2C%20quiero%20agendar%20un%20diagnóstico%20gratuito" target="_blank" rel="noopener" class="wa-fab" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
 
 <!-- FOOTER -->
 <footer>
@@ -1655,20 +1844,40 @@
     });
   })();
 
-  // ── HERO FLOAT COUNTER ──
+  // ── HERO VISUAL 3D TILT ──
   (function() {
-    const el = document.getElementById('hf-counter');
-    if (!el) return;
-    const target = 247;
-    let start = null;
-    function step(ts) {
-      if (!start) start = ts;
-      const p = Math.min((ts - start) / 1800, 1);
-      el.textContent = Math.floor(p * target);
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = target;
+    const visual = document.querySelector('.hero-visual');
+    if (!visual) return;
+    const hero = document.querySelector('.hero');
+    let raf = null;
+    let currentX = 0, currentY = 0;
+    let targetX = 0, targetY = 0;
+
+    hero.addEventListener('mousemove', e => {
+      const rect = hero.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      targetX = (e.clientY - cy) / rect.height * -12;
+      targetY = (e.clientX - cx) / rect.width * 12;
+      if (!raf) raf = requestAnimationFrame(animate);
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      targetX = 0; targetY = 0;
+      if (!raf) raf = requestAnimationFrame(animate);
+    });
+
+    function animate() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      visual.style.transform = `perspective(900px) rotateX(${currentX}deg) rotateY(${currentY}deg)`;
+      if (Math.abs(targetX - currentX) > 0.02 || Math.abs(targetY - currentY) > 0.02) {
+        raf = requestAnimationFrame(animate);
+      } else {
+        visual.style.transform = `perspective(900px) rotateX(${targetX}deg) rotateY(${targetY}deg)`;
+        raf = null;
+      }
     }
-    setTimeout(() => requestAnimationFrame(step), 800);
   })();
 </script>
 </body>
