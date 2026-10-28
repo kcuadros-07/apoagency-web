@@ -42,6 +42,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [...grafoBase(lang,
     {!noindex && <link rel="canonical" href={canonical} />}
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#0B0B0F" />
+    <meta name="google-site-verification" content="a2YSOazoYe2IDFsHd9rMREJ3XRKydkXiPgGgE6brOSE" />
 
     {!noindex && LANGS.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={urlAbsoluta(l, pagina)} />)}
     {!noindex && <link rel="alternate" hreflang="x-default" href={urlAbsoluta('es', pagina)} />}
