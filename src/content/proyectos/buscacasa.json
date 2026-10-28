@@ -1,0 +1,16 @@
+{
+ "orden": 1,
+ "nombre": "BuscaCasa",
+ "cliente": "BuscaCasa",
+ "categoria": "webs",
+ "servicio": {
+  "es": "Diseño web",
+  "en": "Web design"
+ },
+ "url": "https://buscacasa.ec",
+ "mock": "portal",
+ "desc": {
+  "es": "Portal inmobiliario con búsqueda por zona y precio.",
+  "en": "Real estate portal with search by area and price."
+ }
+}

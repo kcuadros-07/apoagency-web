@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import Cinta from './Cinta.astro';
+import Sticker from './Sticker.astro';
+import foto from '../assets/img/kevin-cuadros.png';
+import { SITE } from '../config';
+import { t, type Lang } from '../i18n';
+
+const { lang } = Astro.props as { lang: Lang };
+const Q = t(lang).quien;
+---
+
+<section id="quien" class="seccion cv">
+  <div class="wrap grid items-center gap-space-8 md:grid-cols-[0.8fr_1.2fr]">
+    <div class="scope-dark relative mx-auto w-full max-w-[420px] rounded-lg bg-block-dark p-space-8" data-reveal="tarjeta">
+      <!-- Borde blanco irregular tipo papel recortado, sobre bloque negro para que se lea. -->
+      <Image src={foto} alt={Q.foto} width={480} height={578} widths={[320, 480, 720]} sizes="(min-width: 768px) 360px, 80vw" class="foto-papel" />
+      <div class="absolute -right-2 bottom-space-8"><Sticker giro={4}>{Q.sticker}</Sticker></div>
+    </div>
+    <div data-reveal="si">
+      <Cinta>{Q.cinta}</Cinta>
+      <h2 class="mt-space-4 text-[clamp(44px,6.4vw,92px)] font-extrabold leading-[0.95] tracking-[-0.055em]">{Q.titulo}</h2>
+      <p class="mt-space-4 max-w-[44ch] md:text-[18px]">{Q.texto}</p>
+      <a href={SITE.linkedin} class="btn btn-ghost mt-space-8" target="_blank" rel="noopener">{Q.linkedin}</a>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .foto-papel {
+    width: 100%; height: auto; transform: rotate(-2deg);
+    filter: drop-shadow(4px 0 0 #fff) drop-shadow(-4px 0 0 #fff) drop-shadow(0 4px 0 #fff) drop-shadow(0 -4px 0 #fff)
+      drop-shadow(3px 3px 0 #fff) drop-shadow(-3px -2px 0 #fff);
+  }
+</style>

@@ -1,0 +1,192 @@
+---
+import { Image } from 'astro:assets';
+import icono from '../assets/logos/apo-lobo-icono-app.svg';
+import Sticker from './Sticker.astro';
+import { m } from '../data/metricas';
+import { t, fmt, type Lang } from '../i18n';
+
+const { lang } = Astro.props as { lang: Lang };
+const P = t(lang).hero.pieza;
+const leads = m('ejemploLeads');
+const cpl = m('ejemploCostoPorLead');
+const gasto = m('ejemploGasto');
+---
+
+<!--
+  Pieza firma: panel tipo Ads Manager con una campaña activa + un Reel/carrusel en un teléfono.
+  TODO es ilustración de ejemplo (etiqueta "Ejemplo" y pie visible): no es un resultado de ningún cliente.
+  Las cifras salen de src/data/metricas.ts.
+-->
+<figure class="m-0">
+  <div class="pieza" data-pieza data-leads-final={leads} data-cpl={cpl.replace('$', '')} aria-hidden="true">
+    <div class="panel scope-light">
+      <div class="panel-cab">
+        <span class="panel-tit">{P.panel}</span>
+        <span class="etiqueta-ej">{P.ejemplo}</span>
+      </div>
+      <div class="panel-camp">
+        <span class="rombo"></span>
+        <span class="camp-nombre">{P.campana}</span>
+        <span class="camp-estado">{P.activa}</span>
+      </div>
+      <div class="tiles">
+        <div><small>{P.leads}</small><b data-leads>{leads}</b></div>
+        <div><small>{P.cpl}</small><b>{cpl}</b></div>
+        <div><small>{P.gasto}</small><b data-gasto>{gasto}</b></div>
+      </div>
+      <svg class="grafica" viewBox="0 0 240 90" preserveAspectRatio="none" fill="none">
+        <path data-area d="M0 80 L30 72 L60 74 L90 58 L120 52 L150 40 L180 34 L210 20 L240 10 L240 90 L0 90Z" fill="currentColor" opacity="0.1"></path>
+        <path data-linea pathLength="1" d="M0 80 L30 72 L60 74 L90 58 L120 52 L150 40 L180 34 L210 20 L240 10" stroke="currentColor" stroke-width="3" stroke-linejoin="miter" stroke-linecap="square" vector-effect="non-scaling-stroke"></path>
+      </svg>
+    </div>
+
+    <div class="pieza-sticker"><Sticker giro={-5}>{P.sticker}</Sticker></div>
+
+    <div class="reel">
+      <div class="reel-isla"></div>
+      <div class="reel-pantalla">
+        <div class="reel-prog"><i data-prog></i><i data-prog></i><i data-prog></i></div>
+        {P.slides.map((txt, i) => (
+          <div class:list={['reel-slide', { on: i === 0 }]} data-slide><span>{txt}</span></div>
+        ))}
+        <div class="reel-lado">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="square"><path d="M12 20S4 14.5 4 9a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 5.500-8 11-8 11Z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="square"><path d="M4 5h16v11H9l-5 4Z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="square"><path d="M21 3L3 11l7 3 3 7Z"/></svg>
+        </div>
+        <div class="reel-pie">
+          <Image src={icono} alt="" width={22} height={22} loading="eager" class="reel-av" />
+          <b>@apoagency</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-space-4 flex flex-wrap items-center justify-center gap-x-space-2 text-small text-ink-muted">
+    <span>{P.pie}</span>
+    <button type="button" data-pausa data-txt-pausar={P.pausar} data-txt-reproducir={P.reproducir} aria-pressed="false" class="flex min-h-[44px] items-center gap-space-2 rounded-md px-space-2 font-semibold text-ink hover:bg-surface-raised">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path class="ic-pausa" d="M6 4h4v16H6zM14 4h4v16h-4z"></path>
+        <path class="ic-play" d="M7 4l13 8-13 8Z" hidden></path>
+      </svg>
+      <span data-pausa-txt>{P.pausar}</span>
+    </button>
+  </div>
+  <figcaption class="sr-only">{fmt(P.alt, { leads, cpl })}</figcaption>
+</figure>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-pieza]')!;
+  const leads = root.querySelector<HTMLElement>('[data-leads]')!;
+  const gasto = root.querySelector<HTMLElement>('[data-gasto]')!;
+  const linea = root.querySelector<SVGPathElement>('[data-linea]')!;
+  const area = root.querySelector<SVGPathElement>('[data-area]')!;
+  const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+  const progs = [...root.querySelectorAll<HTMLElement>('[data-prog]')];
+  const pausaBtn = root.closest('figure')!.querySelector<HTMLButtonElement>('[data-pausa]')!;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const CICLO = 9000; // ms: 3 láminas de 3 s; la campaña "sube" durante la primera
+  const LEADS = Number(root.dataset.leadsFinal);
+  const CPL = Number(root.dataset.cpl);
+  const pintar = (t: number) => {
+    const p = Math.min(t / 3000, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    const n = Math.round(LEADS * e);
+    leads.textContent = String(n);
+    gasto.textContent = '$' + Math.round(n * CPL);
+    linea.style.strokeDasharray = '1';
+    linea.style.strokeDashoffset = String(1 - e);
+    area.style.opacity = String(0.1 * e);
+    const i = Math.min(Math.floor(t / 3000), 2);
+    slides.forEach((s, k) => s.classList.toggle('on', k === i));
+    progs.forEach((b, k) => (b.style.setProperty('--p', String(k < i ? 1 : k === i ? (t % 3000) / 3000 : 0))));
+  };
+
+  if (reduce) {
+    pausaBtn.hidden = true; // sin movimiento no hay nada que pausar
+    pintar(3000); // estado final de la campaña
+    slides.forEach((s, k) => s.classList.toggle('on', k === 0));
+    progs.forEach((b) => b.style.setProperty('--p', '0'));
+  } else {
+    let t = 0, ultimo = 0, raf = 0, corriendo = false;
+    let enPantalla = true, pausado = false;
+    const paso = (ahora: number) => {
+      t = (t + (ahora - ultimo)) % CICLO;
+      ultimo = ahora;
+      pintar(t);
+      raf = requestAnimationFrame(paso);
+    };
+    const evaluar = () => {
+      const debe = enPantalla && !document.hidden && !pausado;
+      if (debe && !corriendo) { corriendo = true; ultimo = performance.now(); raf = requestAnimationFrame(paso); }
+      else if (!debe && corriendo) { corriendo = false; cancelAnimationFrame(raf); }
+    };
+    new IntersectionObserver(([e]) => { enPantalla = e.isIntersecting; evaluar(); }).observe(root);
+    document.addEventListener('visibilitychange', evaluar);
+    // WCAG 2.2.2: el visitante puede detener la animación.
+    pausaBtn.addEventListener('click', () => {
+      pausado = !pausado;
+      pausaBtn.setAttribute('aria-pressed', String(pausado));
+      pausaBtn.querySelector('[data-pausa-txt]')!.textContent = (pausado ? pausaBtn.dataset.txtReproducir : pausaBtn.dataset.txtPausar) || '';
+      pausaBtn.querySelector('.ic-pausa')!.toggleAttribute('hidden', pausado);
+      pausaBtn.querySelector('.ic-play')!.toggleAttribute('hidden', !pausado);
+      evaluar();
+    });
+    // Arranque tras la carga, en reposo, para no competir con el render inicial.
+    const idle = (cb: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(cb, { timeout: 1500 }) : setTimeout(cb, 200));
+    const iniciar = () => { pintar(0); evaluar(); };
+    if (document.readyState === 'complete') idle(iniciar);
+    else window.addEventListener('load', () => idle(iniciar), { once: true });
+  }
+</script>
+
+<style is:global>
+  .pieza { position: relative; max-width: 480px; margin-inline: auto; padding-bottom: 200px; }
+  .pieza .panel {
+    background: var(--c-surface); color: var(--c-ink);
+    border-radius: var(--radius-lg); border: 1px solid var(--c-hairline);
+    padding: var(--spacing-space-4);
+  }
+  .pieza .panel-cab { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .pieza .panel-tit { font-weight: 800; font-size: 15px; letter-spacing: -0.01em; }
+  .pieza .etiqueta-ej {
+    background: var(--c-apo-black); color: #fff; font: 600 12px/1 var(--font-mono);
+    padding: 6px 8px; border-radius: var(--radius-sm);
+  }
+  .pieza .panel-camp { display: flex; align-items: center; gap: 8px; margin: 14px 0 12px; font-size: 14px; flex-wrap: wrap; }
+  .pieza .rombo { width: 8px; height: 8px; background: var(--c-indigo-text); transform: rotate(45deg); flex: none; }
+  .pieza .camp-nombre { font-weight: 600; }
+  .pieza .camp-estado { color: var(--c-ink-muted); }
+  .pieza .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .pieza .tiles div { background: var(--c-surface-raised); border-radius: var(--radius-sm); padding: 8px; }
+  .pieza .tiles small { display: block; font-size: 13px; line-height: 1.25; color: var(--c-ink-muted); min-height: 2.5em; }
+  .pieza .tiles b { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .pieza .tiles div:first-child b { color: var(--c-indigo-text); }
+  .pieza .grafica { display: block; width: calc(100% - 150px); height: 120px; margin-top: 14px; color: var(--c-indigo); overflow: visible; }
+
+  .pieza .reel {
+    position: absolute; right: -6px; bottom: 0; width: 138px; aspect-ratio: 9 / 18.5;
+    background: #0b0b0f; border: 2px solid #2a2a33; border-radius: 28px; padding: 6px;
+  }
+  .pieza .reel-isla { position: absolute; z-index: 3; top: 11px; left: 50%; translate: -50% 0; width: 44px; height: 12px; background: #000; border-radius: 8px; }
+  .pieza .reel-pantalla { position: relative; height: 100%; border-radius: 22px; overflow: hidden; background: var(--c-apo-black); color: #fff; }
+  .pieza .reel-prog { position: absolute; z-index: 2; top: 30px; left: 8px; right: 8px; display: flex; gap: 3px; }
+  .pieza .reel-prog i { flex: 1; height: 3px; background: rgba(255, 255, 255, 0.3); position: relative; }
+  .pieza .reel-prog i::after { content: ''; position: absolute; inset: 0; background: #fff; transform-origin: left; transform: scaleX(var(--p, 0)); }
+  .pieza .reel-slide { position: absolute; inset: 0; display: none; align-items: center; padding: 48px 12px 44px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; font-size: 17px; }
+  .pieza .reel-slide.on { display: flex; animation: aparece 0.4s ease-out both; }
+  .pieza .reel-slide:first-of-type span { border-left: 3px solid var(--c-indigo); padding-left: 8px; }
+  .pieza .reel-lado { position: absolute; right: 6px; bottom: 48px; display: grid; gap: 12px; }
+  .pieza .reel-lado svg { width: 18px; height: 18px; }
+  .pieza .reel-pie { position: absolute; left: 10px; bottom: 12px; display: flex; align-items: center; gap: 6px; font-size: 12px; }
+  .pieza .reel-av { border-radius: 50%; }
+  @keyframes aparece { from { transform: translateX(8px); } to { transform: none; } }
+  .pieza .pieza-sticker { position: absolute; left: 4px; bottom: 28px; z-index: 2; }
+  @media (min-width: 640px) {
+    .pieza { padding-bottom: 240px; }
+    .pieza .reel { width: 160px; right: -4px; }
+    .pieza .grafica { width: calc(100% - 172px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .pieza .reel-slide.on { animation: none; } }
+</style>

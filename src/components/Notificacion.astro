@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import icono from '../assets/logos/apo-lobo-icono-app.svg';
+import { t, type Lang } from '../i18n';
+const { lang } = Astro.props as { lang: Lang };
+const N = t(lang).hero.notif;
+---
+<!-- Notificación estilo iOS: entra deslizando una vez al cargar. Es una ilustración, no un lead real. -->
+<div class="notif scope-light" role="note" aria-label={N.aria}>
+  <Image src={icono} alt="" width={40} height={40} loading="eager" class="rounded-sm" />
+  <div class="min-w-0 flex-1">
+    <p class="font-bold leading-tight text-ink">{N.titulo}</p>
+    <p class="text-small leading-snug text-ink-muted">{N.cuerpo}</p>
+  </div>
+  <span class="self-start text-small text-ink-muted">{N.hace}</span>
+</div>
+
+<style>
+  .notif {
+    display: flex; gap: var(--spacing-space-2); align-items: center;
+    max-width: 380px; padding: 12px;
+    background: color-mix(in srgb, var(--c-surface) 92%, transparent);
+    color: var(--c-ink);
+    border-radius: var(--radius-lg);
+    animation: entra 0.7s cubic-bezier(0.2, 0.9, 0.25, 1.1) 0.5s both;
+  }
+  @keyframes entra {
+    from { transform: translateY(-32px) scale(0.96); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+</style>

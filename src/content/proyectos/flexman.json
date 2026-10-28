@@ -1,0 +1,16 @@
+{
+ "orden": 2,
+ "nombre": "Flexman",
+ "cliente": "Flexman",
+ "categoria": "webs",
+ "servicio": {
+  "es": "Diseño web",
+  "en": "Web design"
+ },
+ "url": "https://flexman.com.ec",
+ "captura": "flexman",
+ "desc": {
+  "es": "Sitio corporativo con catálogo por línea de producto.",
+  "en": "Corporate site with a catalog by product line."
+ }
+}

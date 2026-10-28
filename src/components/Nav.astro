@@ -1,0 +1,142 @@
+---
+import { Image } from 'astro:assets';
+import claro from '../assets/logos/apo-lobo-claro.svg';
+import oscuro from '../assets/logos/apo-lobo-oscuro.svg';
+import { t, ruta, otroIdioma, type Lang, type Pagina } from '../i18n';
+
+// Barra de sistema (ref. 04): 44px, blanco translúcido con blur, hairline abajo, texto de 14px en una sola línea.
+const { lang, pagina = 'home' } = Astro.props as { lang: Lang; pagina?: Pagina };
+const d = t(lang);
+const otro = otroIdioma(lang);
+const hrefInicio = pagina === 'home' ? '#inicio' : ruta(lang);
+// En páginas internas los enlaces del menú llevan a la portada.
+const NAV = d.nav.items.map((i) => ({ ...i, href: pagina === 'home' ? i.href : ruta(lang) + i.href }));
+const link = 'flex min-h-[44px] items-center whitespace-nowrap px-space-2 font-medium text-ink-muted no-underline transition-colors hover:text-ink';
+---
+
+<!-- Fondo de superficie: logo negro en tema claro y blanco en oscuro (nunca el negro sobre oscuro). -->
+<header class="fixed inset-x-0 top-0 z-50 border-b border-hairline bg-surface/80 backdrop-blur-md">
+  <div class="mx-auto flex h-11 w-full items-center gap-space-2 px-space-4 text-[14px] font-medium md:px-space-8">
+    <a href={hrefInicio} class="mr-space-2 flex min-h-[44px] shrink-0 items-center" aria-label={d.nav.home}>
+      <Image class="logo-claro" src={claro} alt="apo" width={100} height={43} loading="eager" />
+      <Image class="logo-oscuro" src={oscuro} alt="apo" width={100} height={43} loading="eager" />
+    </a>
+
+    <nav aria-label={d.nav.principal} class="hidden items-center md:flex">
+      {NAV.map((l) => <a href={l.href} class={link}>{l.label}</a>)}
+    </nav>
+
+    <div class="ml-auto flex items-center gap-space-2 md:gap-space-4">
+      <p class="hidden items-center gap-1 whitespace-nowrap text-ink-muted md:flex">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.500C19 14.800 12 21 12 21Z"></path><path d="M12 7.500v4"></path></svg>
+        {d.nav.pais}
+      </p>
+      <p class="flex min-h-[44px] items-center whitespace-nowrap text-[16px] text-ink md:text-[14px]">
+        <span class="sr-only">{d.nav.horaLabel}</span>
+        <time data-fecha data-lang={lang} class="tabular-nums" style="min-width:5ch">
+          <span data-fecha-larga class="hidden md:inline"></span><span data-fecha-hora class="md:hidden">--:--</span>
+        </time>
+      </p>
+      <a href={ruta(otro, pagina)} hreflang={otro} lang={otro} class="hidden min-h-[44px] min-w-[44px] items-center justify-center font-mono text-[14px] font-semibold text-ink-muted no-underline hover:text-ink md:flex" aria-label={`${lang.toUpperCase()}/${otro.toUpperCase()}, ${d.nav.idioma}: ${d.idiomaNombre[otro]}`}>
+        <span class="text-ink">{lang.toUpperCase()}</span><span class="mx-1">/</span><span>{otro.toUpperCase()}</span>
+      </a>
+      <button type="button" data-tema class="hidden size-11 place-items-center rounded-md text-ink hover:bg-surface-raised md:grid" aria-pressed="false" aria-label={d.nav.tema}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true">
+          <path class="luna" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"></path>
+          <path class="sol" d="M12 7v-4M12 21v-4M7 12H3M21 12h-4M8.5 8.5L5.5 5.5M18.5 18.5l-3-3M15.5 8.5l3-3M5.5 18.5l3-3M12 8l4 4-4 4-4-4Z" hidden></path>
+        </svg>
+      </button>
+      <button type="button" data-menu data-abrir={d.nav.abrirMenu} data-cerrar={d.nav.cerrarMenu} aria-expanded="false" aria-controls="menu-movil" class="grid size-11 place-items-center rounded-md text-ink hover:bg-surface-raised md:hidden" aria-label={d.nav.abrirMenu}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true">
+          <path class="abrir" d="M4 7h16M4 12h16M4 17h16"></path>
+          <path class="cerrar" d="M5 5l14 14M19 5L5 19" hidden></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="menu-movil" aria-label={d.nav.menuMovil} hidden class="border-t border-hairline bg-surface md:hidden">
+    <ul class="px-space-4 py-space-2 md:px-space-8">
+      {NAV.map((l) => (
+        <li><a href={l.href} class="flex min-h-[52px] items-center text-[18px] font-bold text-ink no-underline">{l.label}</a></li>
+      ))}
+      <li>
+        <a href={ruta(otro, pagina)} hreflang={otro} lang={otro} class="flex min-h-[52px] items-center text-[18px] font-bold text-ink no-underline">{d.idiomaNombre[otro]}</a>
+      </li>
+      <li class="border-t border-hairline">
+        <button type="button" data-tema class="flex min-h-[52px] w-full items-center text-[18px] font-bold text-ink" aria-pressed="false">{d.nav.temaMenu}</button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const menu = document.querySelector<HTMLElement>('#menu-movil')!;
+  const btn = document.querySelector<HTMLButtonElement>('[data-menu]')!;
+  const setMenu = (open: boolean) => {
+    menu.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', (open ? btn.dataset.cerrar : btn.dataset.abrir) || '');
+    btn.querySelector('.abrir')!.toggleAttribute('hidden', open);
+    btn.querySelector('.cerrar')!.toggleAttribute('hidden', !open);
+  };
+  btn.addEventListener('click', () => setMenu(menu.hidden));
+  menu.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) {
+      setMenu(false);
+      btn.focus();
+    }
+  });
+  window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => e.matches && setMenu(false));
+
+  // Tema
+  const root = document.documentElement;
+  const temaBtns = document.querySelectorAll<HTMLButtonElement>('[data-tema]');
+  const esOscuro = () =>
+    root.dataset.theme === 'dark' ||
+    (!root.dataset.theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const pintarTema = () => {
+    const o = esOscuro();
+    temaBtns.forEach((b) => {
+      b.setAttribute('aria-pressed', String(o));
+      b.querySelector('.luna')?.toggleAttribute('hidden', o);
+      b.querySelector('.sol')?.toggleAttribute('hidden', !o);
+    });
+  };
+  temaBtns.forEach((b) =>
+    b.addEventListener('click', () => {
+      const next = esOscuro() ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try { localStorage.setItem('apo-tema', next); } catch {}
+      pintarTema();
+    }),
+  );
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', pintarTema);
+  pintarTema();
+
+  // Fecha y hora reales de Guayaquil (UTC-5, sin horario de verano): "mié 28 oct 11:57 a. m." / "Wed Oct 28 11:57 AM".
+  const reloj = document.querySelector<HTMLElement>('[data-fecha]')!;
+  const larga = reloj.querySelector<HTMLElement>('[data-fecha-larga]')!;
+  const corta = reloj.querySelector<HTMLElement>('[data-fecha-hora]')!;
+  const loc = reloj.dataset.lang === 'en' ? 'en-US' : 'es-EC';
+  const fmt = new Intl.DateTimeFormat(loc, { timeZone: 'America/Guayaquil', weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', hour12: true });
+  const fmtHora = new Intl.DateTimeFormat(loc, { timeZone: 'America/Guayaquil', hour: 'numeric', minute: '2-digit', hour12: false });
+  const tic = () => {
+    const d = new Date();
+    const p = Object.fromEntries(fmt.formatToParts(d).map((x) => [x.type, x.value]));
+    const dia = (p.weekday || '').replace('.', '');
+    const mes = (p.month || '').replace('.', '');
+    const hora = `${p.hour}:${p.minute} ${(p.dayPeriod || '').replace(/ /g, ' ')}`;
+    const texto = loc === 'en-US' ? `${dia} ${mes} ${p.day} ${hora}` : `${dia} ${p.day} ${mes} ${hora}`;
+    if (larga.textContent !== texto) {
+      larga.textContent = texto;
+      corta.textContent = fmtHora.format(d);
+      reloj.dateTime = d.toISOString();
+    }
+  };
+  tic();
+  setInterval(tic, 1000); // solo toca el DOM cuando cambia el minuto
+</script>

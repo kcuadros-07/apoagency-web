@@ -1,0 +1,196 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import SeccionCabecera from './SeccionCabecera.astro';
+import { m, type MetricaId } from '../data/metricas';
+import { t, fmt, type Lang } from '../i18n';
+
+const { lang } = Astro.props as { lang: Lang };
+const d = t(lang);
+const casos = (await getCollection('casos')).sort((a, b) => a.data.orden - b.data.orden);
+const capturas = import.meta.glob<{ default: ImageMetadata }>('../assets/capturas/*.webp', { eager: true });
+const captura = (n?: string) => (n ? capturas[`../assets/capturas/${n}.webp`]?.default : undefined);
+---
+
+<section id="casos" class="seccion cv">
+  <div class="wrap">
+    <div data-carrusel data-reveal="si">
+      <SeccionCabecera cinta={d.casos.cinta} titulo={d.casos.titulo}>
+        <div slot="acciones" class="carrusel-flechas">
+          <button type="button" class="carrusel-flecha" data-ant aria-label={d.casos.ant}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+          </button>
+          <button type="button" class="carrusel-flecha" data-sig aria-label={d.casos.sig}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+          </button>
+        </div>
+      </SeccionCabecera>
+
+      <div class="carrusel-pista mt-space-8" role="region" aria-label={d.casos.region} tabindex="0" data-pista>
+        {casos.map((c, i) => {
+          const img = captura(c.data.captura);
+          const meta = [c.data.sector[lang], c.data.ciudad ? m(c.data.ciudad as MetricaId) : null, c.data.servicio[lang]].filter(Boolean).join(' · ');
+          return (
+            <article class="caso papel" data-caso aria-label={`${c.data.cliente}, ${i + 1} / ${casos.length}`}>
+              <div class="caso-mac" aria-hidden="true">
+                <div class="mac">
+                  <div class="mac-barra"><span class="puntos"><i></i><i></i><i></i></span><span class="mac-url">{c.data.url}</span></div>
+                  {img ? (
+                    <Image src={img} alt="" width={480} height={300} widths={[360, 480]} sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 80vw" loading="lazy" class="caso-img" />
+                  ) : (
+                    <div class="mock-portal">
+                      <p class="mock-portal-t">{d.casos.busca.titulo}</p>
+                      <div class="mock-busqueda"><span>{d.casos.busca.zona}</span><span>{d.casos.busca.tipo}</span><b>{d.casos.busca.buscar}</b></div>
+                      <div class="mock-props"><i></i><i></i><i></i></div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div class="caso-cuerpo">
+                <p class="caso-meta">{meta}</p>
+                <h3 class="caso-nombre">{c.data.cliente}</h3>
+                <p class="caso-m"><b>{m(c.data.metrica as MetricaId)}</b><span>{c.data.etiqueta[lang]}</span>{c.data.extra.length > 0 && <small class="caso-extra">{c.data.extra.map((x) => `${m(x.id as MetricaId)} ${x.etiqueta[lang]}`).join(' · ')}</small>}</p>
+                <dl class="caso-dl">
+                  <div><dt class="meta">{d.casos.problema}</dt><dd>{c.data.problema[lang]}</dd></div>
+                  <div><dt class="meta">{d.casos.queHizo}</dt><dd>{c.data.queHizo[lang]}</dd></div>
+                  {c.data.destacado ? (
+                    <div class="caso-logro"><dt class="meta">{d.casos.logramos}</dt><dd>{c.data.resultado[lang]}</dd></div>
+                  ) : (
+                    <div><dt class="meta">{d.casos.resultado}</dt><dd>{c.data.resultado[lang]}</dd></div>
+                  )}
+                </dl>
+                <div class="caso-cta">
+                  <a href="#cotizar" class="pildora pildora-chica">{d.casos.cta}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M7 17L17 7M8.500 7H17v8.500"></path></svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div class="carrusel-puntos" role="group" aria-label={d.casos.region}>
+        {casos.map((_, i) => (
+          <button type="button" data-ir={i} aria-label={fmt(d.casos.ir, { n: i + 1 })} aria-current={i === 0 ? 'true' : undefined}><span></span></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Carrusel: scroll-snap nativo + flechas + puntos + arrastre con mouse (en táctil se usa el scroll nativo).
+  document.querySelectorAll<HTMLElement>('[data-carrusel]').forEach((c) => {
+    const pista = c.querySelector<HTMLElement>('[data-pista]')!;
+    const tarjetas = [...pista.querySelectorAll<HTMLElement>('[data-caso]')];
+    const puntos = [...c.querySelectorAll<HTMLButtonElement>('[data-ir]')];
+    const ant = c.querySelector<HTMLButtonElement>('[data-ant]')!;
+    const sig = c.querySelector<HTMLButtonElement>('[data-sig]')!;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const behavior: ScrollBehavior = reduce ? 'auto' : 'smooth';
+
+    const actual = () => {
+      const x = pista.scrollLeft;
+      let mejor = 0, dist = Infinity;
+      tarjetas.forEach((t, i) => { const d = Math.abs(t.offsetLeft - pista.offsetLeft - x); if (d < dist) { dist = d; mejor = i; } });
+      return mejor;
+    };
+    const ir = (i: number) => {
+      const t = tarjetas[Math.max(0, Math.min(tarjetas.length - 1, i))];
+      pista.scrollTo({ left: t.offsetLeft - pista.offsetLeft, behavior });
+    };
+    const pintar = () => {
+      const i = actual();
+      puntos.forEach((p, k) => (k === i ? p.setAttribute('aria-current', 'true') : p.removeAttribute('aria-current')));
+      const alFinal = pista.scrollLeft + pista.clientWidth >= pista.scrollWidth - 2;
+      ant.disabled = pista.scrollLeft <= 2 || i === 0;
+      sig.disabled = alFinal;
+    };
+    ant.addEventListener('click', () => ir(actual() - 1));
+    sig.addEventListener('click', () => ir(actual() + 1));
+    puntos.forEach((p) => p.addEventListener('click', () => ir(Number(p.dataset.ir))));
+    pista.addEventListener('scroll', () => requestAnimationFrame(pintar), { passive: true });
+    pista.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); ir(actual() + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); ir(actual() - 1); }
+    });
+
+    // Arrastre con mouse/trackpad
+    let arrastrando = false, x0 = 0, s0 = 0;
+    pista.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      arrastrando = true; x0 = e.clientX; s0 = pista.scrollLeft;
+      pista.classList.add('arrastrando');
+      pista.setPointerCapture(e.pointerId);
+    });
+    pista.addEventListener('pointermove', (e) => { if (arrastrando) pista.scrollLeft = s0 - (e.clientX - x0); });
+    const soltar = () => {
+      if (!arrastrando) return;
+      arrastrando = false;
+      pista.classList.remove('arrastrando');
+      ir(actual());
+    };
+    pista.addEventListener('pointerup', soltar);
+    pista.addEventListener('pointercancel', soltar);
+    pintar();
+  });
+</script>
+
+<style is:global>
+  .carrusel-flechas { display: flex; gap: 8px; }
+  .carrusel-pista { display: flex; align-items: stretch; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 0 22px 0; scrollbar-width: none; overscroll-behavior-x: contain; cursor: grab; }
+  .carrusel-pista::-webkit-scrollbar { display: none; }
+  .carrusel-pista.arrastrando { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+  .carrusel-pista:focus-visible { outline: 3px solid var(--c-indigo-text); outline-offset: 2px; border-radius: 24px; }
+  /* 3 visibles en escritorio (~360px), 2 en tablet, 1 en móvil con un pedazo de la siguiente asomando. */
+  .caso { flex: 0 0 80vw; scroll-snap-align: start; display: flex; flex-direction: column; overflow: visible; }
+  @media (min-width: 640px) { .caso { flex-basis: calc((100% - 24px) / 2); } }
+  @media (min-width: 1024px) { .caso { flex-basis: calc((100% - 48px) / 3); } }
+  @media (max-width: 767px) { .carrusel-pista { margin-right: -16px; padding-right: 16px; } }
+  .caso-mac { padding: 10px 12px 0; }
+  .caso-mac .mac { border-radius: 10px 10px 0 0; }
+  .caso-mac .mac-barra { padding: 7px 12px; }
+  /* Ventana de 180px de alto en total (barra + imagen) en escritorio, 160px en móvil. */
+  .caso-img, .mock-portal { display: block; width: 100%; height: 132px; object-fit: cover; object-position: top; }
+  @media (min-width: 768px) { .caso-img, .mock-portal { height: 150px; } }
+  .caso-cuerpo { display: flex; flex-direction: column; flex: 1; padding: 10px 16px 12px; min-height: 0; }
+  .caso-meta { font-size: 13px; line-height: 1.3; color: var(--c-ink-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .caso-nombre { margin-top: 2px; font-size: 22px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+  .caso-m { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; margin-top: 6px; }
+  .caso-m b { font-size: 40px; font-weight: 800; line-height: 1; letter-spacing: -0.04em; color: var(--c-indigo-text); }
+  @media (min-width: 768px) { .caso-m b { font-size: 48px; } }
+  .caso-m span { font-weight: 700; font-size: 14px; }
+  .caso-extra { flex-basis: 100%; font-size: 13px; line-height: 1.3; font-weight: 500; color: var(--c-ink-muted); }
+  /* Etiqueta (mono, pequeña) en línea con el texto; cada fila máximo 2 líneas. */
+  .caso-dl { display: grid; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--c-hairline); }
+  .caso-dl > div { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 14px; line-height: 1.4; min-height: 2.8em; }
+  .caso-dl dt { display: inline; margin-right: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--c-ink); }
+  .caso-dl dd { display: inline; margin: 0; color: var(--c-ink-muted); }
+  /* En vez de testimonio: bloque destacado en voz de APO (sin comillas ni nombre). */
+  .caso-dl > .caso-logro { -webkit-line-clamp: 3; min-height: 4.2em; padding: 6px 10px; border-left: 3px solid var(--c-indigo); border-radius: 0 8px 8px 0; background: var(--c-surface-raised); }
+  .caso-logro dd { color: var(--c-ink); font-weight: 600; }
+  .caso-cta { margin-top: auto; padding-top: 8px; }
+  .pildora-chica { min-height: 40px; padding: 0 14px; font-size: 14px; }
+  /* En móvil ninguna letra baja de 16px (salvo las etiquetas mono, que ya suben solas). */
+  @media (max-width: 767px) {
+    .caso-meta, .caso-extra, .caso-m span, .caso-dl > div, .pildora-chica { font-size: 16px; }
+    .caso-dl dt { font-size: 16px; }
+    .caso-dl > div { -webkit-line-clamp: 3; min-height: 4.2em; }
+  }
+  .carrusel-flecha { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 999px; background: var(--c-ink); color: var(--c-surface); transition: transform 0.18s ease, opacity 0.18s ease; }
+  .carrusel-flecha:hover:not(:disabled) { transform: translateY(-2px); }
+  .carrusel-flecha:disabled { opacity: 0.3; cursor: default; }
+  .carrusel-puntos { display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+  .carrusel-puntos button { display: grid; place-items: center; width: 44px; height: 44px; }
+  .carrusel-puntos span { width: 10px; height: 10px; border-radius: 50%; background: color-mix(in srgb, var(--c-ink) 22%, var(--c-surface)); transition: background-color 0.18s ease, transform 0.18s ease; }
+  .carrusel-puntos [aria-current='true'] span { background: var(--c-ink); transform: scale(1.3); }
+  /* Mockup HTML del portal de BuscaCasa */
+  .mock-portal { padding: 14px 14px; background: var(--c-surface); overflow: hidden; }
+  .mock-portal-t { font-size: clamp(18px, 2.2vw, 22px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+  .mock-busqueda { display: flex; gap: 6px; margin-top: 10px; padding: 5px; border: 1px solid var(--c-hairline); border-radius: 999px; background: var(--c-surface-raised); font-size: 12px; }
+  .mock-busqueda span { flex: 1; padding: 5px 9px; color: var(--c-ink-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mock-busqueda b { padding: 5px 12px; border-radius: 999px; background: var(--c-indigo); color: var(--c-on-indigo); }
+  .mock-props { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  .mock-props i { display: block; height: 70px; border-radius: 8px; background: linear-gradient(180deg, color-mix(in srgb, var(--c-ink) 14%, var(--c-surface)) 0 60%, var(--c-surface-raised) 60%); border: 1px solid var(--c-hairline); }
+</style>

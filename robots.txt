@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /terminos.html
-Disallow: /lab/
-
-Sitemap: https://apoagency.io/sitemap.xml

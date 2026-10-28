@@ -1,0 +1,32 @@
+{
+ "orden": 4,
+ "cliente": "TECglo",
+ "url": "tecglo.com",
+ "sector": {
+  "es": "Telecomunicaciones",
+  "en": "Telecommunications"
+ },
+ "servicio": {
+  "es": "Web + Meta Ads",
+  "en": "Web + Meta Ads"
+ },
+ "metrica": "tecgloSuscriptores",
+ "etiqueta": {
+  "es": "de suscriptores",
+  "en": "more subscribers"
+ },
+ "extra": [],
+ "problema": {
+  "es": "Planes poco claros y sin una forma fácil de contratar.",
+  "en": "Unclear plans and no easy way to sign up."
+ },
+ "queHizo": {
+  "es": "Planes por zona y velocidad, contratación simple y Meta Ads.",
+  "en": "Plans by area and speed, simple sign-up and Meta Ads."
+ },
+ "resultado": {
+  "es": "Más suscriptores nuevos desde la web y los anuncios.",
+  "en": "More new subscribers from the site and the ads."
+ },
+ "captura": "tecglo"
+}

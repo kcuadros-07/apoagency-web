@@ -1,0 +1,25 @@
+---
+import SeccionCabecera from './SeccionCabecera.astro';
+import { t, type Lang } from '../i18n';
+const { lang } = Astro.props as { lang: Lang };
+const P = t(lang).proceso;
+---
+
+<!-- Es una secuencia real, por eso va numerada. -->
+<section id="proceso" class="seccion cv">
+  <div class="wrap">
+    <div class="rounded-lg bg-surface-raised p-space-4 md:p-space-16" data-reveal="tarjeta">
+      <SeccionCabecera cinta={P.cinta} titulo={P.titulo} sub={P.sub} />
+      <ol class="mt-space-8 grid gap-space-4 md:grid-cols-2" data-stagger="si">
+        {P.pasos.map((p, i) => (
+          <li class="papel tarjeta p-space-8">
+            <span class="grid size-11 place-items-center bg-ink font-mono text-[18px] font-bold text-surface" style="clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)">{i + 1}</span>
+            <p class="mt-space-4 text-small text-ink-muted">{p.cuando}</p>
+            <h3 class="mt-1 text-h2 [overflow-wrap:anywhere]">{p.t}</h3>
+            <p class="mt-space-2 text-ink-muted">{p.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

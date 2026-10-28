@@ -1,0 +1,31 @@
+---
+import { links } from '../config';
+import { t, type Lang } from '../i18n';
+const { lang } = Astro.props as { lang: Lang };
+const d = t(lang);
+const L = links(d);
+---
+
+<!-- Botón flotante: sube cuando aparece el aviso de cookies (variable --cookie-h) para no taparlo ni tapar sus botones. -->
+<aside aria-label="WhatsApp">
+<a href={L.flotante} target="_blank" rel="noopener" class="wa-flotante" aria-label={d.wa.flotanteAria}>
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="square" aria-hidden="true">
+    <path d="M4 20l1.3-4.2A8 8 0 1 1 8.4 18.8L4 20Z"></path>
+    <path d="M9.2 9c0 3 3 6 6 6l1-2-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2-1.4 1.6Z" fill="#fff" stroke="none"></path>
+  </svg>
+</a>
+</aside>
+
+<style>
+  .wa-flotante {
+    position: fixed; z-index: 40;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: calc(max(16px, env(safe-area-inset-bottom)) + var(--cookie-h, 0px));
+    width: 56px; height: 56px; display: grid; place-items: center;
+    background: #1fa855; /* verde WhatsApp, oscurecido lo justo para que el ícono blanco llegue a 3:1 */
+    border-radius: 50%;
+    transition: transform 0.18s ease, bottom 0.2s ease;
+  }
+  .wa-flotante:hover { transform: translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) { .wa-flotante { transition: none; } }
+</style>

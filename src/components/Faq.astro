@@ -1,0 +1,44 @@
+---
+import SeccionCabecera from './SeccionCabecera.astro';
+import { precios, m } from '../data/metricas';
+import { t, fmt, type Lang } from '../i18n';
+
+const { lang } = Astro.props as { lang: Lang };
+const F = t(lang).faq;
+const usd = (n: number) => `$${n}`;
+// Todas las cifras de las respuestas salen de src/data/metricas.ts.
+const v = {
+  landing: usd(precios.web.landing.desde), corp: usd(precios.web.corporativo.desde), corpMes: usd(precios.web.corporativo.mensual!),
+  tienda: usd(precios.web.tienda.desde), tiendaMes: usd(precios.web.tienda.mensual!),
+  meta: usd(precios.ads.meta.desde), google: usd(precios.ads.google.desde), ambas: usd(precios.ads.ambas.desde),
+  logo: usd(precios.branding.logo.desde), rediseno: usd(precios.branding.rediseno.desde), identidad: usd(precios.branding.identidad.desde),
+  carruseles: usd(precios.contenido.carruseles.desde), video: usd(precios.contenido.video.desde), plan: usd(precios.contenido.plan.desde),
+  pautaDia: m('pautaDiaria'), pautaMes: m('pautaMensual'), plazoWeb: m('plazoWeb'), plazoTienda: m('plazoTienda'),
+};
+---
+
+<section id="faq" class="seccion cv">
+  <div class="wrap">
+    <SeccionCabecera cinta={F.cinta} titulo={F.titulo} sub={F.sub} />
+    <div class="mt-space-8 grid max-w-[900px] gap-space-2" data-stagger="si">
+      {F.items.map((it) => (
+        <details class="faq-item">
+          <summary>
+            <span>{it.q}</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          </summary>
+          <p>{fmt(it.a, v)}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .faq-item { border: 1px solid color-mix(in srgb, var(--c-ink) 14%, var(--c-surface)); border-radius: 18px; background: var(--c-surface-raised); box-shadow: 0 6px 0 0 color-mix(in srgb, var(--c-ink) 10%, var(--c-surface)); margin-bottom: 6px; }
+  .faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 14px 20px; font-weight: 800; font-size: 18px; letter-spacing: -0.01em; cursor: pointer; list-style: none; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary svg { flex: none; transition: transform 0.18s ease; }
+  .faq-item[open] summary svg { transform: rotate(45deg); }
+  .faq-item p { padding: 0 20px 20px; color: var(--c-ink-muted); max-width: 70ch; }
+</style>

@@ -1,0 +1,14 @@
+{
+ "orden": 1,
+ "autor": "Andrés Morales",
+ "cargo": {
+  "es": "CEO",
+  "en": "CEO"
+ },
+ "empresa": "Interhome Ecuador",
+ "logo": "interhome",
+ "cita": {
+  "es": "APO transformó nuestra presencia digital. Triplicamos los leads calificados en menos de 60 días y el equipo de ventas no da abasto.",
+  "en": "APO transformed our digital presence. We tripled qualified leads in under 60 days and the sales team can barely keep up."
+ }
+}

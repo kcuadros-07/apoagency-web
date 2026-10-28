@@ -1,0 +1,47 @@
+{
+ "orden": 2,
+ "cliente": "Interhome",
+ "url": "interhomenet.com.ec",
+ "sector": {
+  "es": "ISP",
+  "en": "ISP"
+ },
+ "servicio": {
+  "es": "Web + Meta Ads",
+  "en": "Web + Meta Ads"
+ },
+ "metrica": "interhomeConversiones",
+ "etiqueta": {
+  "es": "de conversiones",
+  "en": "more conversions"
+ },
+ "extra": [
+  {
+   "id": "interhomeCpl",
+   "etiqueta": {
+    "es": "costo por lead",
+    "en": "cost per lead"
+   }
+  },
+  {
+   "id": "interhomeRoas",
+   "etiqueta": {
+    "es": "ROAS",
+    "en": "ROAS"
+   }
+  }
+ ],
+ "problema": {
+  "es": "Muchas consultas, pocos datos y leads caros.",
+  "en": "Many inquiries, few details left and costly leads."
+ },
+ "queHizo": {
+  "es": "Web con formulario corto y Meta Ads por zona de cobertura.",
+  "en": "Short-form website and Meta Ads by coverage area."
+ },
+ "resultado": {
+  "es": "Más solicitudes de contratación con un costo por lead bajo.",
+  "en": "More sign-up requests at a low cost per lead."
+ },
+ "captura": "interhome"
+}

@@ -1,0 +1,16 @@
+{
+ "orden": 4,
+ "nombre": "Data Privacy Sunset",
+ "cliente": "Data Privacy Sunset",
+ "categoria": "webs",
+ "servicio": {
+  "es": "Web del evento",
+  "en": "Event website"
+ },
+ "url": "https://dataprivacysunset.com",
+ "captura": "data-privacy-sunset",
+ "desc": {
+  "es": "Web de un congreso: agenda, ponentes e inscripción.",
+  "en": "Conference site: schedule, speakers and registration."
+ }
+}

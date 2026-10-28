@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import SeccionCabecera from './SeccionCabecera.astro';
+import { t, type Lang } from '../i18n';
+
+// "Lo que dicen.": un .json por testimonio en src/content/testimonios/. Si no hay ninguno, la sección no se pinta.
+const { lang } = Astro.props as { lang: Lang };
+const T = t(lang).testimonios;
+const items = (await getCollection('testimonios')).sort((a, b) => a.data.orden - b.data.orden);
+const logos = import.meta.glob<{ default: ImageMetadata }>('../assets/clientes/*.png', { eager: true });
+---
+
+{items.length > 0 && (
+  <section id="testimonios" class="seccion cv">
+    <div class="wrap">
+      <SeccionCabecera cinta={T.cinta} titulo={T.titulo} sub={T.sub} />
+      <div class={`mt-space-8 grid gap-x-space-4 gap-y-space-8 ${items.length > 1 ? 'md:grid-cols-2' : 'max-w-[920px]'}`} data-stagger="tarjeta">
+        {items.map((it) => {
+          const logo = it.data.logo ? logos[`../assets/clientes/${it.data.logo}.png`]?.default : undefined;
+          return (
+            <figure class="papel tarjeta testimonio">
+              <blockquote>“{it.data.cita[lang]}”</blockquote>
+              <figcaption>
+                <span class="testimonio-quien">
+                  <b>{it.data.autor}</b>
+                  <span>{it.data.cargo[lang]} · {it.data.empresa}</span>
+                </span>
+                {logo && <Image src={logo} alt={it.data.empresa} height={56} loading="lazy" class="logo testimonio-logo" />}
+              </figcaption>
+            </figure>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+)}
+
+<style is:global>
+  .testimonio { margin: 0; padding: 28px; display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 768px) { .testimonio { padding: 40px; } }
+  .testimonio blockquote { font-size: clamp(22px, 2.6vw, 34px); font-weight: 800; line-height: 1.2; letter-spacing: -0.03em; text-wrap: pretty; }
+  .testimonio figcaption { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid var(--c-hairline); }
+  .testimonio-quien { display: grid; gap: 2px; }
+  .testimonio-quien b { font-size: 18px; }
+  .testimonio-quien span { color: var(--c-ink-muted); }
+  .testimonio-logo { width: auto; height: 56px; max-width: 140px; object-fit: contain; filter: none !important; opacity: 1 !important; } /* el logo del cliente va en su color */
+</style>

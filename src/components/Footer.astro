@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import oscuro from '../assets/logos/apo-lobo-oscuro.svg';
+import { SITE } from '../config';
+import { t, ruta, fmt, type Lang, type Pagina } from '../i18n';
+
+const { lang, pagina = 'home' } = Astro.props as { lang: Lang; pagina?: Pagina };
+const d = t(lang);
+const F = d.footer;
+const base = pagina === 'home' ? '' : ruta(lang);
+const ancla = (a: string) => base + a;
+const enlace = 'flex min-h-[44px] items-center text-ink-muted no-underline hover:text-ink';
+
+const redes = [
+  { href: SITE.instagram, label: F.instagram },
+  SITE.tiktok && { href: SITE.tiktok, label: 'TikTok' },
+  SITE.linkedin && { href: SITE.linkedin, label: F.linkedin },
+].filter(Boolean) as { href: string; label: string }[];
+---
+
+<!-- Bloque oscuro: usa el logo blanco. Padding inferior extra para que el botón flotante no tape los enlaces. -->
+<footer class="scope-dark mt-space-8 bg-block-dark text-ink">
+  <div class="wrap grid gap-space-8 py-12 md:grid-cols-[1.2fr_1fr_1fr_1fr_1fr] md:py-space-16">
+    <div>
+      <Image src={oscuro} alt="apo" width={104} height={45} />
+      <p class="mt-space-4 max-w-[28ch] text-ink-muted">{F.tagline}</p>
+    </div>
+    <nav aria-label={F.proyectos}>
+      <p class="mb-space-2 font-bold">{F.proyectos}</p>
+      <ul>
+        <li><a class={enlace} href={ancla('#proyectos')}>{F.links.proyectos}</a></li>
+        <li><a class={enlace} href={ancla('#casos')}>{F.links.casos}</a></li>
+      </ul>
+    </nav>
+    <nav aria-label={F.servicios}>
+      <p class="mb-space-2 font-bold">{F.servicios}</p>
+      <ul>
+        <li><a class={enlace} href={ancla('#servicios')}>{F.links.servicios}</a></li>
+        <li><a class={enlace} href={ancla('#proceso')}>{F.links.proceso}</a></li>
+        <li><a class={enlace} href={ancla('#faq')}>{F.links.faq}</a></li>
+        <li><a class={enlace} href={ancla('#hablemos')}>{F.links.contacto}</a></li>
+      </ul>
+    </nav>
+    <nav aria-label={F.redes}>
+      <p class="mb-space-2 font-bold">{F.redes}</p>
+      <ul>
+        {redes.map((r) => (
+          <li><a class={enlace} href={r.href} target="_blank" rel="noopener">{r.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <nav aria-label={F.legal}>
+      <p class="mb-space-2 font-bold">{F.legal}</p>
+      <ul>
+        <li><a class={enlace} href={ruta(lang, 'terminos')}>{F.terminos}</a></li>
+        <li><a class={enlace} href={ruta(lang, 'privacidad')}>{F.privacidad}</a></li>
+        <li><a class={enlace} href={ruta(lang, 'cookies')}>{F.cookies}</a></li>
+        <li><button type="button" data-abrir-cookies class={`${enlace} text-left`}>{F.prefCookies}</button></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap border-t border-hairline py-space-4 pb-[88px] text-ink-muted">
+    {fmt(F.copy, { anio: new Date().getFullYear() })}
+  </div>
+</footer>
