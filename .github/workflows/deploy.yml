@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Build (npm run build: falla si hay métricas sin verificar en src/data/metricas.ts)
+      - name: "Build con npm run build (falla si hay métricas sin verificar en src/data/metricas.ts)"
         uses: withastro/action@v6
         with:
           node-version: 24 # los scripts importan .ts directamente (Node >= 22.18)
