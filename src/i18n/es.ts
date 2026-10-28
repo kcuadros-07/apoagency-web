@@ -59,7 +59,7 @@ const es = {
   finder: {
     ventana: 'Proyectos',
     favoritos: 'Favoritos',
-    todos: 'Todos los proyectos',
+    todos: 'Todos',
     carpetas: 'Carpetas',
     folders: { webs: 'Webs', campanas: 'Campañas', branding: 'Branding', contenido: 'Contenido' },
     elementos: '{n} elementos',
@@ -67,11 +67,9 @@ const es = {
     servicio: 'Servicio',
     anio: 'Año',
     verSitio: 'Ver sitio',
-    quieroAlgo: 'Quiero algo así',
     sidebarAria: 'Carpetas de proyectos',
     listaAria: 'Proyectos',
     previewAria: 'Previsualización del proyecto',
-    ejemplo: 'Proyecto de ejemplo',
   },
   faq: {
     cinta: 'dudas',

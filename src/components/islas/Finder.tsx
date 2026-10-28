@@ -19,7 +19,7 @@ export interface Proyecto {
 const FLECHA = 'M7 17L17 7M8.500 7H17v8.500';
 const CARPETAS: Exclude<Cat, 'todos'>[] = ['webs', 'campanas', 'branding', 'contenido'];
 
-// Mockups HTML de los proyectos sin captura (BuscaCasa y los de ejemplo).
+// Mockup HTML del proyecto sin captura (BuscaCasa).
 function Mock({ k, grande }: { k?: string; grande?: boolean }) {
   const c = grande ? 'fm fm-g' : 'fm';
   if (k === 'portal')
@@ -28,27 +28,6 @@ function Mock({ k, grande }: { k?: string; grande?: boolean }) {
         <b>Busca tu hogar ideal</b>
         <span className="fm-barra"><i /><i /><u /></span>
         <span className="fm-props"><i /><i /><i /></span>
-      </div>
-    );
-  if (k === 'branding-altura')
-    return (
-      <div className={`${c} fm-altura`} aria-hidden="true">
-        <b>altura</b><small>café de especialidad</small>
-        <span className="fm-muestras"><i /><i /><i /><i /></span>
-      </div>
-    );
-  if (k === 'branding-nova')
-    return (
-      <div className={`${c} fm-nova`} aria-hidden="true">
-        <b>nova<i>+</i></b><small>dental</small>
-      </div>
-    );
-  if (k === 'video-altura')
-    return (
-      <div className={`${c} fm-video`} aria-hidden="true">
-        <span className="fm-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8Z" /></svg></span>
-        <b>altura</b>
-        <span className="fm-prog"><i /></span>
       </div>
     );
   return <div className={c} aria-hidden="true" />;
@@ -71,6 +50,7 @@ export default function Finder({ d, proyectos }: { d: D; proyectos: Proyecto[] }
   const lista = useMemo(() => (cat === 'todos' ? proyectos : proyectos.filter((p) => p.categoria === cat)), [cat, proyectos]);
   const actual = lista.find((p) => p.id === sel) ?? lista[0];
   const n = (c: Cat) => (c === 'todos' ? proyectos.length : proyectos.filter((p) => p.categoria === c).length);
+  const carpetas = CARPETAS.filter((c) => n(c) > 0); // una carpeta sin proyectos no se muestra
   const nombreCarpeta = (c: Cat) => (c === 'todos' ? d.todos : d.folders[c]);
 
   const elegirCarpeta = (c: Cat) => {
@@ -95,7 +75,7 @@ export default function Finder({ d, proyectos }: { d: D; proyectos: Proyecto[] }
             <span>{d.todos}</span><em>{n('todos')}</em>
           </button>
           <p className="finder-sec">{d.carpetas}</p>
-          {CARPETAS.map((c) => (
+          {carpetas.map((c) => (
             <button key={c} type="button" aria-pressed={cat === c} onClick={() => elegirCarpeta(c)}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square" aria-hidden="true"><path d="M3 6h7l2 2h9v11H3z" /></svg>
               <span>{d.folders[c]}</span><em>{n(c)}</em>
@@ -128,17 +108,10 @@ export default function Finder({ d, proyectos }: { d: D; proyectos: Proyecto[] }
               <div><dt>{d.servicio}</dt><dd>{actual.servicio}</dd></div>
               {actual.anio && <div><dt>{d.anio}</dt><dd>{actual.anio}</dd></div>}
             </dl>
-            {actual.url ? (
+            {actual.url && (
               <a className="pildora finder-boton" href={actual.url} target="_blank" rel="noopener">{d.verSitio}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="square" aria-hidden="true"><path d={FLECHA} /></svg>
               </a>
-            ) : (
-              <>
-                <p className="finder-ej">{d.ejemplo}</p>
-                <a className="pildora finder-boton" href="#cotizar">{d.quieroAlgo}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="square" aria-hidden="true"><path d={FLECHA} /></svg>
-                </a>
-              </>
             )}
           </aside>
         )}

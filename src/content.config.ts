@@ -37,7 +37,7 @@ const proyectos = defineCollection({
     anio: z.string().optional(),
     url: z.string().optional(),
     captura: z.string().optional(),
-    mock: z.string().optional(),
+    mock: z.string().optional(), // solo "portal" (BuscaCasa, sin captura)
     desc: bi,
   }),
 });

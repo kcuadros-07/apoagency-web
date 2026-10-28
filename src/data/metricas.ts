@@ -28,7 +28,6 @@ export const metricas = {
   // --- Casos: textos y datos aprobados por Kevin ---
   redaccionCasos: { valor: 'Textos Problema / Qué hizo APO / Resultado de los 6 casos', fuente: 'Redactados a partir del portfolio; Kevin Cuadros los aprobó para publicar el 2026-10-28.', verificado: true },
   ciudadDataprivacy: { valor: 'Guayaquil', fuente: 'Portfolio del sitio anterior: "Congreso · Guayaquil".', verificado: true },
-  proyectosFinder: { valor: 'Tres proyectos de ejemplo del Finder (Altura Café, Nova Dental y su video)', fuente: 'Proyectos de ejemplo ficticios pedidos por Kevin; en la web se rotulan "(ejemplo)". No son clientes reales.', verificado: true },
 
   // --- Compromisos y testimonio publicados (dados por Kevin; los textos viven en src/i18n y src/content) ---
   respuesta24h: { valor: '24 h', fuente: 'Compromiso de respuesta indicado por Kevin Cuadros para el formulario y Hablemos.', verificado: true },

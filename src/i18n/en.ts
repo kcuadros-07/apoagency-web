@@ -61,7 +61,7 @@ const en: Dict = {
   finder: {
     ventana: 'Projects',
     favoritos: 'Favorites',
-    todos: 'All projects',
+    todos: 'All',
     carpetas: 'Folders',
     folders: { webs: 'Websites', campanas: 'Campaigns', branding: 'Branding', contenido: 'Content' },
     elementos: '{n} items',
@@ -69,11 +69,9 @@ const en: Dict = {
     servicio: 'Service',
     anio: 'Year',
     verSitio: 'Visit site',
-    quieroAlgo: 'I want something like this',
     sidebarAria: 'Project folders',
     listaAria: 'Projects',
     previewAria: 'Project preview',
-    ejemplo: 'Sample project',
   },
   faq: {
     cinta: 'faq',
