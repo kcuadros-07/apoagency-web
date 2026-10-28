@@ -1,0 +1,16 @@
+{
+ "orden": 6,
+ "nombre": "Xtrim",
+ "cliente": "Xtrim",
+ "categoria": "campanas",
+ "servicio": {
+  "es": "Landing + Meta Ads",
+  "en": "Landing + Meta Ads"
+ },
+ "url": "https://xtrim.vclsolutionsgroup.com",
+ "captura": "xtrim",
+ "desc": {
+  "es": "Landing de una sola acción para una promoción.",
+  "en": "Single-action landing page for a promotion."
+ }
+}

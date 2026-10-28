@@ -1,0 +1,104 @@
+/* GENERADO por scripts/tokens-a-css.mjs desde brand/tokens.json. No editar. */
+:root {
+  color-scheme: light;
+  --c-apo-black: #0B0B0F;
+  --c-block-dark: #0B0B0F;
+  --c-indigo: #4F46E5;
+  --c-indigo-text: #4F46E5;
+  --c-surface: #FFFFFF;
+  --c-surface-raised: #F4F4F6;
+  --c-ink: #0B0B0F;
+  --c-ink-muted: #4A4A55;
+  --c-on-indigo: #FFFFFF;
+  --c-hairline: #E4E4E8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+  --c-apo-black: #0B0B0F;
+  --c-block-dark: #24242E;
+  --c-indigo: #4F46E5;
+  --c-indigo-text: #A5B4FC;
+  --c-surface: #0B0B0F;
+  --c-surface-raised: #1A1A22;
+  --c-ink: #FFFFFF;
+  --c-ink-muted: #A1A1AD;
+  --c-on-indigo: #FFFFFF;
+  --c-hairline: #2A2A33;
+  }
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --c-apo-black: #0B0B0F;
+  --c-block-dark: #24242E;
+  --c-indigo: #4F46E5;
+  --c-indigo-text: #A5B4FC;
+  --c-surface: #0B0B0F;
+  --c-surface-raised: #1A1A22;
+  --c-ink: #FFFFFF;
+  --c-ink-muted: #A1A1AD;
+  --c-on-indigo: #FFFFFF;
+  --c-hairline: #2A2A33;
+}
+/* Bloques siempre oscuros (hero, cierres): texto con los valores del tema oscuro. */
+.scope-dark {
+  color-scheme: dark;
+  --c-indigo-text: #A5B4FC;
+  --c-surface: #0B0B0F;
+  --c-surface-raised: #1A1A22;
+  --c-ink: #FFFFFF;
+  --c-ink-muted: #A1A1AD;
+  --c-hairline: #2A2A33;
+}
+/* Tarjeta clara dentro de un bloque oscuro (p. ej. la notificación). */
+.scope-light {
+  color-scheme: light;
+  --c-indigo-text: #4F46E5;
+  --c-surface: #FFFFFF;
+  --c-surface-raised: #F4F4F6;
+  --c-ink: #0B0B0F;
+  --c-ink-muted: #4A4A55;
+  --c-hairline: #E4E4E8;
+}
+
+@theme inline {
+  --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-apo-black: var(--c-apo-black);
+  --color-block-dark: var(--c-block-dark);
+  --color-indigo: var(--c-indigo);
+  --color-indigo-text: var(--c-indigo-text);
+  --color-surface: var(--c-surface);
+  --color-surface-raised: var(--c-surface-raised);
+  --color-ink: var(--c-ink);
+  --color-ink-muted: var(--c-ink-muted);
+  --color-on-indigo: var(--c-on-indigo);
+  --color-hairline: var(--c-hairline);
+  --spacing-space-2: 8px;
+  --spacing-space-4: 16px;
+  --spacing-space-8: 32px;
+  --spacing-space-16: 64px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --text-display: clamp(40px, calc(40px + 24 * (100vw - 360px) / 920), 64px);
+  --text-display--line-height: 1;
+  --text-display--font-weight: 800;
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: clamp(32px, calc(32px + 8 * (100vw - 360px) / 920), 40px);
+  --text-h1--line-height: 1.1;
+  --text-h1--font-weight: 800;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h2: 28px;
+  --text-h2--line-height: 1.2;
+  --text-h2--font-weight: 700;
+  --text-body: 16px;
+  --text-body--line-height: 1.6;
+  --text-body--font-weight: 500;
+  --text-label: 13px;
+  --text-label--line-height: 1.4;
+  --text-label--font-weight: 700;
+  --text-label--letter-spacing: 0.08em;
+  --text-small: 14px;
+  --text-small--line-height: 1.5;
+  --text-small--font-weight: 500;
+}

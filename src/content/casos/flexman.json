@@ -1,0 +1,33 @@
+{
+ "orden": 3,
+ "cliente": "Flexman",
+ "url": "flexman.com.ec",
+ "sector": {
+  "es": "Manufactura industrial",
+  "en": "Industrial manufacturing"
+ },
+ "servicio": {
+  "es": "Diseño web",
+  "en": "Web design"
+ },
+ "metrica": "flexmanLeads",
+ "etiqueta": {
+  "es": "de leads",
+  "en": "more leads"
+ },
+ "extra": [],
+ "destacado": true,
+ "problema": {
+  "es": "Catálogo en PDFs: los compradores no sabían cómo cotizar.",
+  "en": "A PDF-only catalog: buyers could not tell how to request a quote."
+ },
+ "queHizo": {
+  "es": "Sitio corporativo con catálogo por línea de producto y botón de cotización.",
+  "en": "Corporate site with a catalog by product line and a quote button."
+ },
+ "resultado": {
+  "es": "un catálogo ordenado por línea de producto y cotizaciones que llegan directo a su equipo comercial.",
+  "en": "a catalog organized by product line and quotes that reach their sales team directly."
+ },
+ "captura": "flexman"
+}

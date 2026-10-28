@@ -1,4 +1,13 @@
+node_modules/
+dist/
+dist-pixel/
+.astro/
 .DS_Store
-**/.DS_Store
-.claude/
-*.mov
+.env
+revision/
+contenido/salida/
+# Material de referencia y herramientas locales: no van al repo público
+brand/referencia/
+.agents/
+.claude/skills/
+skills-lock.json

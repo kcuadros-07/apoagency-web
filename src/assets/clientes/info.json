@@ -1,0 +1,52 @@
+{
+ "buscacasa": {
+  "w": 856,
+  "h": 110,
+  "color": true
+ },
+ "flexman": {
+  "w": 972,
+  "h": 211,
+  "color": false
+ },
+ "interhome": {
+  "w": 411,
+  "h": 451,
+  "color": true
+ },
+ "tecglo": {
+  "w": 972,
+  "h": 205,
+  "color": false
+ },
+ "data-privacy-sunset": {
+  "w": 864,
+  "h": 431,
+  "color": false
+ },
+ "cancion-films": {
+  "w": 970,
+  "h": 315,
+  "color": false
+ },
+ "ec-connect": {
+  "w": 965,
+  "h": 162,
+  "color": false
+ },
+ "el-instituto": {
+  "w": 971,
+  "h": 335,
+  "color": false
+ },
+ "intelnexo": {
+  "w": 971,
+  "h": 384,
+  "color": false
+ },
+ "avasant": {
+  "w": 827,
+  "h": 414,
+  "color": false
+ }
+}

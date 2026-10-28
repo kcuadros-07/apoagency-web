@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import SeccionCabecera from './SeccionCabecera.astro';
+import { m, precioWebDesde } from '../data/metricas';
+import { t, type Lang } from '../i18n';
+import flexman from '../assets/capturas/flexman.webp';
+import manual from '../assets/capturas/manual-color.png';
+import manual2 from '../assets/capturas/manual-versiones.png';
+
+const { lang } = Astro.props as { lang: Lang };
+const S = t(lang).servicios;
+const flecha = 'M7 17L17 7M8.500 7H17v8.500';
+
+// Anchos 3/2 y 2/3 como en la referencia: la fila superior carga a la izquierda y la inferior a la derecha.
+const spans = ['lg:col-span-3', 'lg:col-span-2', 'lg:col-span-2', 'lg:col-span-3'];
+const boton = [`${S.desde} ${precioWebDesde}`, S.cotizar, S.cotizar, S.cotizar];
+
+const filas = [
+  { c: S.ads.c[0], l: m('ejemploLeads'), p: m('ejemploCostoPorLead'), g: m('ejemploGasto') },
+  { c: S.ads.c[1], l: m('ejemploLeads2'), p: m('ejemploCostoPorLead2'), g: m('ejemploGasto2') },
+  { c: S.ads.c[2], l: m('ejemploLeads3'), p: m('ejemploCostoPorLead3'), g: m('ejemploGasto3') },
+];
+---
+
+<section id="servicios" class="seccion cv">
+  <div class="wrap">
+    <SeccionCabecera cinta={S.cinta} titulo={S.titulo} sub={S.sub} />
+
+    <ul class="mt-space-8 grid grid-cols-[minmax(0,1fr)] gap-x-space-4 gap-y-space-8 lg:grid-cols-5" data-stagger="tarjeta">
+      {S.items.map((it, i) => (
+        <li id={i === 3 ? 'videos' : undefined} class={`papel tarjeta flex flex-col scroll-mt-20 ${spans[i]}`}>
+          <div class="p-space-4 pb-0 md:p-space-8 md:pb-0">
+            {i === 3 && <span class="prompt mb-space-4" aria-hidden="true">{S.prompt}</span>}
+            <div class="flex items-start justify-between gap-space-2 md:gap-space-4">
+              <h3 class="min-w-0 text-[clamp(34px,3.7vw,56px)] font-extrabold leading-none tracking-[-0.05em]">{it.t}</h3>
+              <a href="#cotizar" class="pildora">
+                {boton[i]}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d={flecha}></path></svg>
+              </a>
+            </div>
+            <p class="mt-space-2 max-w-[44ch] text-ink-muted">{it.d}</p>
+          </div>
+
+          <!-- El mockup se sale por el borde inferior de la tarjeta (overflow hidden). -->
+          <div class="mock-zona mt-space-8 px-space-4 md:px-space-8" aria-hidden="true">
+            {i === 0 && (
+              <div class="mac">
+                <div class="mac-barra"><span class="puntos"><i></i><i></i><i></i></span><span class="mac-url">flexman.com.ec</span></div>
+                <Image src={flexman} alt="" width={900} height={560} widths={[480, 900]} sizes="(min-width: 1024px) 640px, 90vw" loading="lazy" class="block w-full" />
+              </div>
+            )}
+            {i === 1 && (
+              <div class="mac">
+                <div class="mac-barra"><span class="puntos"><i></i><i></i><i></i></span><span class="mac-url">{S.ejemplo}</span></div>
+                <div class="ads">
+                  <div class="ads-fila ads-cab"><span>{S.ads.campana}</span><span>{S.ads.leads}</span><span>{S.ads.cpl}</span><span>{S.ads.gasto}</span></div>
+                  {filas.map((f) => (
+                    <div class="ads-fila"><span><b class="rombo"></b>{f.c}<small>{S.ads.activa}</small></span><span>{f.l}</span><span>{f.p}</span><span>{f.g}</span></div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {i === 2 && (
+              <div class="mac">
+                <div class="mac-barra"><span class="puntos"><i></i><i></i><i></i></span><span class="mac-url">{S.manual}</span></div>
+                <Image src={manual} alt="" width={900} height={563} widths={[480, 900]} sizes="(min-width: 1024px) 480px, 90vw" loading="lazy" class="block w-full" />
+                <Image src={manual2} alt="" width={900} height={563} widths={[480, 900]} sizes="(min-width: 1024px) 480px, 90vw" loading="lazy" class="block w-full border-t border-hairline" />
+              </div>
+            )}
+            {i === 3 && (
+              <div class="mac mac-oscura">
+                <div class="mac-barra"><span class="puntos"><i></i><i></i><i></i></span><span class="mac-url">{S.video}</span></div>
+                <div class="video">
+                  <div class="slides">
+                    <div class="slide slide-1"><span>{S.slides[0]}</span></div>
+                    <div class="slide"><span>{S.slides[1]}</span></div>
+                    <div class="slide"><span>{S.slides[2]}</span></div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          <p class="sr-only">{it.t}: {it.d}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style is:global>
+  #servicios .mock-zona { height: clamp(260px, 34vw, 400px); overflow: hidden; }
+  #servicios .ads { background: var(--c-surface); }
+  #servicios .ads-fila { display: grid; grid-template-columns: 1.6fr 0.7fr 1fr 0.8fr; gap: 8px; align-items: center; padding: 22px 16px; border-bottom: 1px solid var(--c-hairline); font-size: 14px; font-variant-numeric: tabular-nums; }
+  #servicios .ads-cab { color: var(--c-ink-muted); font-weight: 700; background: var(--c-surface-raised); }
+  #servicios .ads-fila span:first-child { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-weight: 700; }
+  #servicios .ads-fila small { color: var(--c-ink-muted); font-weight: 500; }
+  #servicios .ads .rombo { display: inline-block; width: 8px; height: 8px; background: var(--c-indigo); transform: rotate(45deg); }
+  #servicios .ads-fila:nth-child(2) span:nth-child(2) { color: var(--c-indigo-text); font-weight: 800; }
+  #servicios .video { padding: 20px; min-height: 360px; background: #14141b; }
+  #servicios .slides { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  #servicios .slide { aspect-ratio: 9 / 16; padding: 14px; display: flex; align-items: flex-end; background: var(--c-apo-black); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 12px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; font-size: clamp(14px, 1.7vw, 22px); color: #fff; }
+  #servicios .slide-1 { background: #fff; color: var(--c-apo-black); border-color: #fff; }
+  #servicios .slide-1 span { border-left: 4px solid var(--c-indigo); padding-left: 8px; }
+</style>

@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Clientes from './Clientes.astro';
+import Servicios from './Servicios.astro';
+import Casos from './Casos.astro';
+import Testimonios from './Testimonios.astro';
+import Finder from './Finder.astro';
+import Proceso from './Proceso.astro';
+import Faq from './Faq.astro';
+import Quien from './Quien.astro';
+import Hablemos from './Hablemos.astro';
+import Cotizador from './Cotizador.astro';
+import Footer from './Footer.astro';
+import type { Lang } from '../i18n';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<Base lang={lang} pagina="home">
+  <Nav lang={lang} />
+  <main id="contenido">
+    <Hero lang={lang} />
+    <!-- Orden: Hero → Clientes → Qué hago → Casos → Testimonios → Proyectos → Proceso → FAQ → Quién → Hablemos → Cotizar.
+         El ritmo lo dan los "planos" (directo sobre blanco / bloque claro / bloque negro), sin líneas ni figuras. -->
+    <Clientes lang={lang} />
+    <Servicios lang={lang} />
+    <Casos lang={lang} />
+    <Testimonios lang={lang} />
+    <Finder lang={lang} />
+    <Proceso lang={lang} />
+    <Faq lang={lang} />
+    <Quien lang={lang} />
+    <Hablemos lang={lang} />
+    <Cotizador lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Base>

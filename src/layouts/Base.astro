@@ -1,0 +1,110 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource-variable/plus-jakarta-sans/wght-italic.css';
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/caveat';
+import fontLatin from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
+import CookieBanner from '../components/CookieBanner.astro';
+import WhatsAppFlotante from '../components/WhatsAppFlotante.astro';
+import { SITE } from '../config';
+import { precioWebDesde } from '../data/metricas';
+import { LANGS, htmlLang, ogLocale, urlAbsoluta, fmt, t, type Lang, type Pagina } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  pagina?: Pagina;
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { lang, pagina = 'home', noindex = false } = Astro.props;
+const d = t(lang);
+const title = Astro.props.title ?? d.meta.title;
+const description = Astro.props.description ?? fmt(d.meta.description, { precio: precioWebDesde });
+const canonical = urlAbsoluta(lang, pagina);
+const ogImage = `${SITE.url}/og.png`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE.url}/#negocio`,
+  name: SITE.name,
+  url: SITE.url,
+  image: `${SITE.url}/icon-512.png`,
+  logo: `${SITE.url}/icon-512.png`,
+  description,
+  email: SITE.email,
+  telephone: SITE.phone,
+  address: { '@type': 'PostalAddress', addressCountry: 'EC' },
+  areaServed: { '@type': 'Country', name: 'Ecuador' },
+  founder: { '@type': 'Person', name: SITE.founder },
+  knowsAbout: lang === 'es'
+    ? ['Diseño web', 'Meta Ads', 'Google Ads', 'Branding', 'Contenido para redes sociales']
+    : ['Web design', 'Meta Ads', 'Google Ads', 'Branding', 'Social media content'],
+  inLanguage: htmlLang[lang],
+  sameAs: [SITE.instagram, SITE.tiktok, SITE.linkedin].filter(Boolean),
+};
+---
+
+<!doctype html>
+<html lang={htmlLang[lang]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#0B0B0F" />
+
+    {LANGS.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={urlAbsoluta(l, pagina)} />)}
+    <link rel="alternate" hreflang="x-default" href={urlAbsoluta('es', pagina)} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {LANGS.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={lang === 'es' ? 'APO Agency: marketing que se mide en clientes' : 'APO Agency: marketing measured in customers'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={lang === 'es' ? 'APO Agency: marketing que se mide en clientes' : 'APO Agency: marketing measured in customers'} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Tema sin parpadeo + clase js (los revelados solo se ocultan si hay JS; a los 4 s se muestran igual por seguridad). -->
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      setTimeout(function () { document.documentElement.classList.add('sin-reveal'); }, 4000);
+      try {
+        if (localStorage.getItem('apo-cookies')) document.documentElement.classList.add('cookies-ok');
+        var t = localStorage.getItem('apo-tema');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <noscript><style>[data-reveal] { opacity: 1 !important; } #cookie-banner { display: none; }</style></noscript>
+  </head>
+  <body>
+    <a href="#contenido" class="skip-link">{d.meta.skip}</a>
+    <slot />
+    <WhatsAppFlotante lang={lang} />
+    <CookieBanner lang={lang} />
+    <script>
+      import '../scripts/motion.ts';
+    </script>
+  </body>
+</html>

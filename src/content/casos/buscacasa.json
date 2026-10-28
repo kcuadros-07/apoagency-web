@@ -1,0 +1,40 @@
+{
+ "orden": 1,
+ "cliente": "BuscaCasa",
+ "url": "buscacasa.ec",
+ "sector": {
+  "es": "Portal inmobiliario",
+  "en": "Real estate portal"
+ },
+ "servicio": {
+  "es": "Diseño web",
+  "en": "Web design"
+ },
+ "metrica": "buscacasaTrafico",
+ "etiqueta": {
+  "es": "de tráfico",
+  "en": "more traffic"
+ },
+ "extra": [
+  {
+   "id": "buscacasaPropiedades",
+   "etiqueta": {
+    "es": "propiedades publicadas",
+    "en": "properties listed"
+   }
+  }
+ ],
+ "problema": {
+  "es": "Portal lento en celular y casi invisible en Google.",
+  "en": "Slow on phones and almost invisible on Google."
+ },
+ "queHizo": {
+  "es": "Búsqueda por zona y precio, fichas claras y SEO desde el diseño.",
+  "en": "Search by area and price, clear listings and SEO built in."
+ },
+ "resultado": {
+  "es": "Más visitas desde Google y más propiedades publicadas.",
+  "en": "More Google visits and more properties listed."
+ },
+ "captura": "mock-buscacasa"
+}

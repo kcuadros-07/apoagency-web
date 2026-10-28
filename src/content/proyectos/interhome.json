@@ -1,0 +1,16 @@
+{
+ "orden": 5,
+ "nombre": "Interhome",
+ "cliente": "Interhome",
+ "categoria": "campanas",
+ "servicio": {
+  "es": "Web + Meta Ads",
+  "en": "Web + Meta Ads"
+ },
+ "url": "https://interhomenet.com.ec",
+ "captura": "interhome",
+ "desc": {
+  "es": "Campañas de captación segmentadas por zona de cobertura.",
+  "en": "Lead campaigns segmented by coverage area."
+ }
+}

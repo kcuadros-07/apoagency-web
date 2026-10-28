@@ -1,0 +1,32 @@
+{
+ "orden": 5,
+ "cliente": "Xtrim",
+ "url": "xtrim.vclsolutionsgroup.com",
+ "sector": {
+  "es": "ISP",
+  "en": "ISP"
+ },
+ "servicio": {
+  "es": "Landing + Meta Ads",
+  "en": "Landing + Meta Ads"
+ },
+ "metrica": "xtrimLeads",
+ "etiqueta": {
+  "es": "de leads",
+  "en": "more leads"
+ },
+ "extra": [],
+ "problema": {
+  "es": "Captar interesados para una promoción puntual, con poco tiempo.",
+  "en": "Capture interest for a one-off promotion, on a tight schedule."
+ },
+ "queHizo": {
+  "es": "Landing de una sola acción y Meta Ads con públicos por ciudad.",
+  "en": "A single-action landing page and Meta Ads by city."
+ },
+ "resultado": {
+  "es": "Más leads calificados durante la promoción.",
+  "en": "More qualified leads during the promotion."
+ },
+ "captura": "xtrim"
+}

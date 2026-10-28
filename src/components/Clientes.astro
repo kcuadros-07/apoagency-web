@@ -1,0 +1,100 @@
+---
+import { Image } from 'astro:assets';
+import { t, type Lang } from '../i18n';
+import info from '../assets/clientes/info.json';
+
+// Marquee infinito solo con CSS (transform). Con reduced-motion: grilla estática.
+const { lang } = Astro.props as { lang: Lang };
+const C = t(lang).clientes;
+const logos = import.meta.glob<{ default: ImageMetadata }>('../assets/clientes/*.png', { eager: true });
+const nombres: [string, string][] = [
+  ['buscacasa', 'BuscaCasa'], ['flexman', 'Flexman'], ['interhome', 'Interhome'], ['tecglo', 'TECglo'],
+  ['data-privacy-sunset', 'Data Privacy Sunset'], ['cancion-films', 'Canción Films'], ['ec-connect', 'EC Connect'],
+  ['el-instituto', 'El Instituto'], ['intelnexo', 'Intelnexo'], ['avasant', 'Avasant'],
+];
+
+// Misma "altura óptica": todos ocupan un área parecida (~5200 px²), con tope de alto y de ancho.
+const AREA = 5200;
+// Ajuste óptico: los símbolos compactos se ven más chicos que los logotipos anchos.
+const escala: Record<string, number> = { interhome: 2.4, 'ec-connect': 1.5, buscacasa: 1.2, intelnexo: 1.1 };
+const tam = (n: string) => {
+  const { w, h } = (info as Record<string, { w: number; h: number }>)[n];
+  const ar = w / h;
+  let ancho = Math.sqrt(AREA * (escala[n] ?? 1) * ar);
+  let alto = ancho / ar;
+  if (alto > 52) { alto = 52; ancho = alto * ar; }
+  if (ancho > 150) { ancho = 150; alto = ancho / ar; }
+  return { ancho: Math.round(ancho), alto: Math.round(alto) };
+};
+const color = (n: string) => (info as Record<string, { color: boolean }>)[n].color;
+---
+
+<section aria-label={C.aria} class="cv py-space-8 md:py-12">
+  <div class="wrap flex flex-wrap items-center justify-between gap-space-2">
+    <p class="meta">{C.titulo}</p>
+    <button type="button" class="marquee-pausa" data-marquee-pausa data-txt-pausar={C.pausar} data-txt-reproducir={C.reproducir} aria-pressed="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="ic-pausa" d="M6 4h4v16H6zM14 4h4v16h-4z"></path><path class="ic-play" d="M7 4l13 8-13 8Z" hidden></path></svg>
+      <span data-pausa-txt>{C.pausar}</span>
+    </button>
+  </div>
+  <div class="marquee mt-space-4" data-marquee>
+    <div class="marquee-pista">
+      {[0, 1].map((copia) => (
+        <ul class="marquee-lista" aria-hidden={copia === 1 ? 'true' : undefined}>
+          {nombres.map(([n, nombre]) => {
+            const { ancho, alto } = tam(n);
+            return (
+              <li>
+                <Image src={logos[`../assets/clientes/${n}.png`].default} alt={copia === 1 ? '' : nombre} width={ancho} height={alto} widths={[ancho, ancho * 2]} sizes={`${ancho}px`} loading="lazy"
+                  class:list={['logo', { 'logo-color': color(n) }]} style={`width:${ancho}px;height:${alto}px`} />
+              </li>
+            );
+          })}
+        </ul>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-marquee-pausa]').forEach((b) => {
+    const m = document.querySelector<HTMLElement>('[data-marquee]')!;
+    b.addEventListener('click', () => {
+      const p = m.classList.toggle('en-pausa');
+      b.setAttribute('aria-pressed', String(p));
+      b.querySelector('[data-pausa-txt]')!.textContent = (p ? b.dataset.txtReproducir : b.dataset.txtPausar) || '';
+      b.querySelector('.ic-pausa')!.toggleAttribute('hidden', p);
+      b.querySelector('.ic-play')!.toggleAttribute('hidden', !p);
+    });
+  });
+</script>
+
+<style is:global>
+  .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+  .marquee-pista { display: flex; width: max-content; animation: marquee 40s linear infinite; will-change: transform; }
+  .marquee:hover .marquee-pista, .marquee:focus-within .marquee-pista, .marquee.en-pausa .marquee-pista { animation-play-state: paused; }
+  .marquee-lista { display: flex; flex: none; align-items: center; gap: 64px; padding-right: 64px; margin: 0; list-style: none; }
+  .marquee-lista li { display: grid; place-items: center; height: 64px; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .marquee-pausa { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 8px; font: 500 14px/1 var(--font-mono); letter-spacing: 0.06em; color: var(--c-ink-muted); }
+  .marquee-pausa:hover { color: var(--c-ink); }
+  @media (max-width: 767px) { .marquee-pausa { font-size: 16px; } }
+  /* Gris que pasa a su color al pasar el mouse. En tema oscuro, siluetas blancas. */
+  .logo { filter: grayscale(1); opacity: 0.75; transition: filter 0.18s ease, opacity 0.18s ease; }
+  .logo:hover { filter: none; opacity: 1; }
+  :root[data-theme='dark'] .logo { filter: brightness(0) invert(1); opacity: 0.7; }
+  :root[data-theme='dark'] .logo:hover { opacity: 1; }
+  :root[data-theme='dark'] .logo-color:hover { filter: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .logo { filter: brightness(0) invert(1); opacity: 0.7; }
+    :root:not([data-theme='light']) .logo:hover { opacity: 1; }
+    :root:not([data-theme='light']) .logo-color:hover { filter: none; }
+  }
+  /* Con reduced-motion: grilla estática, sin copia y sin botón. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { mask-image: none; -webkit-mask-image: none; }
+    .marquee-pista { animation: none; width: auto; flex-wrap: wrap; justify-content: center; padding-inline: 16px; }
+    .marquee-lista { flex-wrap: wrap; justify-content: center; gap: 32px 48px; padding-right: 0; }
+    .marquee-lista[aria-hidden='true'], .marquee-pausa { display: none; }
+  }
+</style>

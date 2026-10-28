@@ -1,0 +1,47 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import Cinta from './Cinta.astro';
+import { t, type Lang, type Pagina } from '../i18n';
+
+// NOTA PARA KEVIN: los textos legales (src/content/legal/**) son un borrador base conforme a la LOPDP.
+// Deben ser revisados por un abogado ecuatoriano antes de publicarse.
+const { lang, pagina, archivo } = Astro.props as { lang: Lang; pagina: Pagina; archivo: string };
+const entry = (await getEntry('legal', `${lang}/${archivo}`))!;
+const { Content } = await render(entry);
+const d = t(lang);
+const fecha = new Intl.DateTimeFormat(lang === 'es' ? 'es-EC' : 'en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(entry.data.fecha));
+---
+
+<Base lang={lang} pagina={pagina} title={`${entry.data.titulo} | APO Agency`} description={entry.data.descripcion}>
+  <Nav lang={lang} pagina={pagina} />
+  <main id="contenido" class="pt-[calc(44px+var(--spacing-space-8))]">
+    <div class="wrap pb-space-16">
+      <article class="mx-auto max-w-[72ch]">
+        <Cinta>{d.legalPagina.legal}</Cinta>
+        <h1 class="mt-space-4 text-h1">{entry.data.titulo}</h1>
+        <div class="prosa mt-space-8" data-tabla={d.legalPagina.tabla}><Content /></div>
+        <p class="mt-space-8 border-t border-hairline pt-space-4 text-ink-muted">{d.legalPagina.actualizado}: {fecha}</p>
+        <a href={lang === 'es' ? '/' : '/en/'} class="btn btn-ghost mt-space-4">{d.legalPagina.volver}</a>
+      </article>
+    </div>
+  </main>
+  <Footer lang={lang} pagina={pagina} />
+</Base>
+
+<script>
+  // Las tablas anchas se envuelven en una región con scroll que el teclado puede enfocar.
+  document.querySelectorAll<HTMLElement>('.prosa').forEach((p) => {
+    p.querySelectorAll('table').forEach((t) => {
+      const w = document.createElement('div');
+      w.className = 'tabla-scroll';
+      w.tabIndex = 0;
+      w.setAttribute('role', 'region');
+      w.setAttribute('aria-label', p.dataset.tabla || '');
+      t.replaceWith(w);
+      w.appendChild(t);
+    });
+  });
+</script>

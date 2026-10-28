@@ -1,0 +1,16 @@
+{
+ "orden": 7,
+ "nombre": "Altura Café",
+ "cliente": "Altura Café (ejemplo)",
+ "categoria": "branding",
+ "servicio": {
+  "es": "Identidad completa",
+  "en": "Full identity"
+ },
+ "anio": "2025",
+ "mock": "branding-altura",
+ "desc": {
+  "es": "Identidad visual y manual de marca para una cafetería.",
+  "en": "Visual identity and brand guidelines for a coffee shop."
+ }
+}

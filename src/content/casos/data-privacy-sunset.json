@@ -1,0 +1,33 @@
+{
+ "orden": 6,
+ "cliente": "Data Privacy Sunset",
+ "url": "dataprivacysunset.com",
+ "sector": {
+  "es": "Congreso",
+  "en": "Conference"
+ },
+ "ciudad": "ciudadDataprivacy",
+ "servicio": {
+  "es": "Web del evento",
+  "en": "Event website"
+ },
+ "metrica": "dataprivacyInscritos",
+ "etiqueta": {
+  "es": "inscritos",
+  "en": "registrations"
+ },
+ "extra": [],
+ "problema": {
+  "es": "Inscripciones en mensajes sueltos y cupos sin control.",
+  "en": "Registrations in scattered messages and no control of seats."
+ },
+ "queHizo": {
+  "es": "Web del evento con agenda, ponentes e inscripción clara.",
+  "en": "Event site with schedule, speakers and clear registration."
+ },
+ "resultado": {
+  "es": "Inscripciones ordenadas hasta el día del congreso.",
+  "en": "Organized registrations all the way to the conference."
+ },
+ "captura": "data-privacy-sunset"
+}

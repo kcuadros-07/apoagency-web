@@ -1,0 +1,16 @@
+{
+ "orden": 3,
+ "nombre": "TECglo",
+ "cliente": "TECglo",
+ "categoria": "webs",
+ "servicio": {
+  "es": "Web + Meta Ads",
+  "en": "Web + Meta Ads"
+ },
+ "url": "https://tecglo.com",
+ "captura": "tecglo",
+ "desc": {
+  "es": "Planes por zona y velocidad, con contratación simple.",
+  "en": "Plans by area and speed, with simple sign-up."
+ }
+}

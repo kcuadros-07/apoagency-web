@@ -1,0 +1,152 @@
+---
+import { SITE } from '../config';
+import { t, ruta, type Lang } from '../i18n';
+
+const { lang } = Astro.props as { lang: Lang };
+const C = t(lang).cookies;
+const politica = ruta(lang, 'cookies');
+---
+
+<!--
+  Consentimiento: el Meta Pixel SOLO se carga si la persona acepta las cookies de marketing.
+  La elección se guarda en localStorage ("apo-cookies") y se puede cambiar desde el pie ("Preferencias de cookies").
+-->
+<div id="cookie-banner" role="dialog" aria-label={C.aria} aria-describedby="cookie-texto" data-pixel={SITE.pixelId ?? ''}>
+  <p id="cookie-texto"><strong>{C.titulo}.</strong> {C.texto} <a href={politica}>{C.masLink}</a>.</p>
+  <div class="cookie-botones">
+    <button type="button" class="btn btn-primary" data-cookie="aceptar">{C.aceptar}</button>
+    <button type="button" class="btn btn-ghost" data-cookie="rechazar">{C.rechazar}</button>
+    <button type="button" class="btn btn-ghost" data-cookie="configurar">{C.configurar}</button>
+  </div>
+</div>
+
+<div id="cookie-panel" role="dialog" aria-modal="true" aria-labelledby="cookie-panel-t" hidden>
+  <div class="cookie-panel-caja">
+    <h2 id="cookie-panel-t" class="text-h2">{C.panelTitulo}</h2>
+    <div class="cookie-fila">
+      <div><p class="font-bold">{C.necesarias}</p><p class="text-ink-muted">{C.necesariasDesc}</p></div>
+      <input type="checkbox" checked disabled aria-label={C.necesarias} />
+    </div>
+    <div class="cookie-fila">
+      <div><label for="cookie-mkt" class="font-bold">{C.marketing}</label><p class="text-ink-muted">{C.marketingDesc}</p></div>
+      <input type="checkbox" id="cookie-mkt" />
+    </div>
+    <p class="mt-space-4 text-ink-muted">{C.mas} <a href={politica}>{C.masLink}</a>.</p>
+    <div class="cookie-botones mt-space-4">
+      <button type="button" class="btn btn-primary" data-cookie="guardar">{C.guardar}</button>
+      <button type="button" class="btn btn-ghost" data-cookie="cerrar">{C.cerrar}</button>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  #cookie-banner {
+    position: fixed; z-index: 60; left: 16px; right: 16px; bottom: 16px;
+    max-width: 640px; padding: var(--spacing-space-4);
+    background: var(--c-surface); color: var(--c-ink);
+    border: 1px solid var(--c-ink-muted); border-radius: var(--radius-lg);
+  }
+  #cookie-banner[hidden], #cookie-panel[hidden] { display: none; }
+  /* Con elección guardada el banner no se pinta (la clase la pone un script en <head>, antes del primer pintado). */
+  html.cookies-ok #cookie-banner { display: none; }
+  #cookie-banner a, #cookie-panel a { color: var(--c-indigo-text); text-decoration: underline; display: inline-flex; align-items: center; min-height: 44px; }
+  .cookie-botones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--spacing-space-4); }
+  .cookie-botones .btn { flex: 1 1 auto; min-width: 104px; }
+  #cookie-panel { position: fixed; z-index: 70; inset: 0; display: grid; place-items: center; padding: 16px; background: rgba(11, 11, 15, 0.6); }
+  .cookie-panel-caja { width: 100%; max-width: 520px; max-height: 100%; overflow: auto; padding: var(--spacing-space-8); background: var(--c-surface); color: var(--c-ink); border-radius: var(--radius-lg); }
+  .cookie-fila { display: flex; gap: 16px; justify-content: space-between; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--c-hairline); }
+  .cookie-fila input { width: 28px; height: 28px; accent-color: var(--c-indigo); flex: none; }
+</style>
+
+<script>
+  const KEY = 'apo-cookies';
+  const banner = document.querySelector<HTMLElement>('#cookie-banner')!;
+  const panel = document.querySelector<HTMLElement>('#cookie-panel')!;
+  const mkt = document.querySelector<HTMLInputElement>('#cookie-mkt')!;
+  const pixelId = banner.dataset.pixel || '';
+  let abiertoDesde: HTMLElement | null = null;
+
+  const leer = (): { marketing: boolean } | null => {
+    try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; }
+  };
+  const guardar = (marketing: boolean) => {
+    try { localStorage.setItem(KEY, JSON.stringify({ v: 1, marketing, t: Date.now() })); } catch {}
+  };
+
+  // El botón flotante de WhatsApp sube lo que mide el aviso, para no tapar sus botones.
+  const medir = () => document.documentElement.style.setProperty('--cookie-h', banner.hidden ? '0px' : banner.offsetHeight + 16 + 'px');
+  new ResizeObserver(medir).observe(banner);
+
+  let pixelCargado = false;
+  const cargarPixel = () => {
+    if (!pixelId || pixelCargado) return;
+    pixelCargado = true;
+    /* eslint-disable */
+    (function (f: any, b: Document, e: string, v: string) {
+      if (f.fbq) return;
+      const n: any = (f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); });
+      if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+      const s = b.createElement(e) as HTMLScriptElement; s.async = true; s.src = v;
+      b.head.appendChild(s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    (window as any).fbq('init', pixelId);
+    (window as any).fbq('track', 'PageView');
+  };
+
+  const borrarCookiesMeta = () => {
+    const dominio = location.hostname.split('.').slice(-2).join('.');
+    for (const n of ['_fbp', '_fbc']) {
+      document.cookie = `${n}=; Max-Age=0; path=/`;
+      document.cookie = `${n}=; Max-Age=0; path=/; domain=.${dominio}`;
+    }
+  };
+
+  const decidir = (marketing: boolean) => {
+    const antes = leer()?.marketing === true;
+    guardar(marketing);
+    banner.hidden = true;
+    panel.hidden = true;
+    medir();
+    if (marketing) cargarPixel();
+    else if (antes) { borrarCookiesMeta(); location.reload(); } // revocar: la página se recarga sin el Pixel
+    abiertoDesde?.focus();
+  };
+
+  const abrirPanel = (desde?: HTMLElement) => {
+    abiertoDesde = desde ?? null;
+    mkt.checked = leer()?.marketing === true;
+    panel.hidden = false;
+    panel.querySelector<HTMLElement>('input:not([disabled]), button')!.focus();
+  };
+
+  document.addEventListener('click', (e) => {
+    const el = e.target as HTMLElement;
+    const accion = el.closest<HTMLElement>('[data-cookie]')?.dataset.cookie;
+    if (el.closest('[data-abrir-cookies]')) return abrirPanel(el.closest<HTMLElement>('[data-abrir-cookies]')!);
+    if (accion === 'aceptar') decidir(true);
+    else if (accion === 'rechazar') decidir(false);
+    else if (accion === 'configurar') abrirPanel(el.closest<HTMLElement>('[data-cookie]')!);
+    else if (accion === 'guardar') decidir(mkt.checked);
+    else if (accion === 'cerrar') { panel.hidden = true; abiertoDesde?.focus(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (panel.hidden) return;
+    if (e.key === 'Escape') { panel.hidden = true; abiertoDesde?.focus(); return; }
+    // Trampa de foco: el panel es modal (aria-modal), Tab no sale de él.
+    if (e.key === 'Tab') {
+      const f = [...panel.querySelectorAll<HTMLElement>('input:not([disabled]), button, a[href]')];
+      const i = f.indexOf(document.activeElement as HTMLElement);
+      if (e.shiftKey && (i <= 0)) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && (i === f.length - 1 || i === -1)) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+
+  const guardado = leer();
+  if (!guardado) { banner.hidden = false; medir(); }
+  else if (guardado.marketing) {
+    // Visita recurrente con permiso: el Pixel se carga tras `load` y en reposo.
+    const tarde = () => ('requestIdleCallback' in window ? requestIdleCallback(cargarPixel) : setTimeout(cargarPixel, 500));
+    if (document.readyState === 'complete') tarde(); else window.addEventListener('load', tarde, { once: true });
+  }
+</script>
