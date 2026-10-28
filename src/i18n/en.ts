@@ -259,6 +259,14 @@ const en: Dict = {
     mas: 'More information in the',
     masLink: 'Cookie policy',
   },
+  noEncontrada: {
+    cinta: '404',
+    titulo: "This page doesn't exist.",
+    texto: 'We could not find what you are looking for. The link may be old or the address may have a typo.',
+    inicio: 'Go to the homepage',
+    wa: 'Message us on WhatsApp',
+    meta: 'Error 404 · page not found',
+  },
   legalPagina: { tabla: 'Cookies table', actualizado: 'Last updated', volver: 'Back to home', legal: 'legal' },
   idiomaNombre: { es: 'Español', en: 'English' },
 };

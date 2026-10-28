@@ -257,6 +257,14 @@ const es = {
     mas: 'Más información en la',
     masLink: 'Política de cookies',
   },
+  noEncontrada: {
+    cinta: '404',
+    titulo: 'Esta página no existe.',
+    texto: 'No encontramos lo que buscas. Puede que el enlace sea antiguo o que la dirección tenga un error.',
+    inicio: 'Ir al inicio',
+    wa: 'Escríbenos por WhatsApp',
+    meta: 'Error 404 · página no encontrada',
+  },
   legalPagina: { tabla: 'Tabla de cookies', actualizado: 'Última actualización', volver: 'Volver al inicio', legal: 'legal' },
   idiomaNombre: { es: 'Español', en: 'English' },
 };

@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import Cinta from '../components/Cinta.astro';
+import claro from '../assets/logos/apo-lobo-claro.svg';
+import oscuro from '../assets/logos/apo-lobo-oscuro.svg';
+import { links } from '../config';
+import { LANGS, t, ruta, type Lang } from '../i18n';
+
+// GitHub Pages sirve ESTE archivo para cualquier ruta inexistente (y conserva la URL pedida),
+// así que se renderizan los dos idiomas y un script muestra el de la ruta: /en/... → inglés.
+const flecha = 'M7 17L17 7M8.500 7H17v8.500';
+const L = (l: Lang) => ({ d: t(l), wa: links(t(l)).flotante, inicio: ruta(l) });
+---
+
+<Base lang="es" title="404 | APO Agency" noindex>
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-hairline bg-surface/80 backdrop-blur-md">
+    <div class="mx-auto flex h-11 w-full items-center px-space-4 md:px-space-8">
+      <a href="/" class="flex min-h-[44px] items-center" aria-label="apo">
+        <Image class="logo-claro" src={claro} alt="apo" width={100} height={43} loading="eager" />
+        <Image class="logo-oscuro" src={oscuro} alt="apo" width={100} height={43} loading="eager" />
+      </a>
+    </div>
+  </header>
+
+  <main id="contenido" class="flex min-h-[100svh] items-center pb-space-16 pt-[calc(44px+var(--spacing-space-8))]">
+    <div class="wrap">
+      {LANGS.map((l) => {
+        const v = L(l);
+        return (
+          <section data-l={l} aria-labelledby={`t404-${l}`} class="papel mx-auto max-w-[920px] p-space-8 md:p-space-16">
+            <Cinta>{v.d.noEncontrada.cinta}</Cinta>
+            <p class="meta mt-space-4">{v.d.noEncontrada.meta}</p>
+            <h1 id={`t404-${l}`} class="titular mt-space-2">{v.d.noEncontrada.titulo}</h1>
+            <p class="mt-space-4 max-w-[48ch] text-ink-muted md:text-[18px]">{v.d.noEncontrada.texto}</p>
+            <div class="mt-space-8 flex flex-col gap-space-2 sm:flex-row sm:flex-wrap">
+              <a href={v.inicio} class="pildora !min-h-[52px] !px-space-8 justify-center">{v.d.noEncontrada.inicio}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d={flecha}></path></svg>
+              </a>
+              <a href={v.wa} target="_blank" rel="noopener" class="btn btn-primary btn-pill">{v.d.noEncontrada.wa}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d={flecha}></path></svg>
+              </a>
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </main>
+
+  {LANGS.map((l) => (
+    <div data-l={l}><Footer lang={l} pagina="terminos" /></div>
+  ))}
+</Base>
+
+<style is:global>
+  /* Un solo idioma a la vez: el de la URL pedida (el español por defecto). */
+  html:not([lang='en-US']) [data-l='en'], html[lang='en-US'] [data-l='es'] { display: none; }
+</style>
+
+<script is:inline>
+  (function () {
+    var p = location.pathname;
+    // Lo que hubiera dentro de /lab/ en el sitio anterior ya no existe: se manda a la portada.
+    if (/^\/lab(\/|$)/i.test(p)) { location.replace('/'); return; }
+    if (p === '/en' || p.indexOf('/en/') === 0) {
+      document.documentElement.lang = 'en-US';
+      document.title = '404 | APO Agency';
+    }
+  })();
+</script>

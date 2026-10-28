@@ -55,12 +55,12 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {!noindex && <link rel="canonical" href={canonical} />}
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#0B0B0F" />
 
-    {LANGS.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={urlAbsoluta(l, pagina)} />)}
-    <link rel="alternate" hreflang="x-default" href={urlAbsoluta('es', pagina)} />
+    {!noindex && LANGS.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={urlAbsoluta(l, pagina)} />)}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={urlAbsoluta('es', pagina)} />}
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />

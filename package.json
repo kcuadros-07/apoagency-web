@@ -12,9 +12,10 @@
     "test:enlaces": "node scripts/test-enlaces.mjs",
     "test:contenido": "node scripts/test-posicionamiento.mjs",
     "build:borrador": "npm run tokens && astro build",
-    "prepush": "npm run build && node scripts/test-posicionamiento.mjs --estricto && npm run test:enlaces && npm run test:formulario && npm run test:finder",
+    "prepush": "npm run build && node scripts/test-posicionamiento.mjs --estricto && npm run test:enlaces && npm run test:formulario && npm run test:finder && npm run test:redirecciones",
     "test:formulario": "node scripts/test-formulario.mjs",
-    "test:finder": "node scripts/test-finder.mjs"
+    "test:finder": "node scripts/test-finder.mjs",
+    "test:redirecciones": "node scripts/test-redirecciones.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.2",
