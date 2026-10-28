@@ -36,5 +36,12 @@
   "es": "Más visitas desde Google y más propiedades publicadas.",
   "en": "More Google visits and more properties listed."
  },
- "captura": "mock-buscacasa"
+ "captura": "mock-buscacasa",
+ "servicios": [
+  "web"
+ ],
+ "altCaptura": {
+  "es": "Maqueta del portal inmobiliario BuscaCasa, con el buscador por zona y tipo de propiedad y tarjetas de propiedades",
+  "en": "Mockup of the BuscaCasa real estate portal, with search by area and property type and property cards"
+ }
 }

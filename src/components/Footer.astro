@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import oscuro from '../assets/logos/apo-lobo-oscuro.svg';
 import { SITE } from '../config';
-import { t, ruta, fmt, type Lang, type Pagina } from '../i18n';
+import { SERVICIOS } from '../data/rutas.mjs';
+import { t, ruta, fmt, type Lang, type Pagina, type ServicioId } from '../i18n';
 
 const { lang, pagina = 'home' } = Astro.props as { lang: Lang; pagina?: Pagina };
 const d = t(lang);
@@ -10,6 +12,7 @@ const F = d.footer;
 const base = pagina === 'home' ? '' : ruta(lang);
 const ancla = (a: string) => base + a;
 const enlace = 'flex min-h-[44px] items-center text-ink-muted no-underline hover:text-ink';
+const casos = (await getCollection('casos')).sort((a, b) => a.data.orden - b.data.orden);
 
 const redes = [
   { href: SITE.instagram, label: F.instagram },
@@ -20,23 +23,33 @@ const redes = [
 
 <!-- Bloque oscuro: usa el logo blanco. Padding inferior extra para que el botón flotante no tape los enlaces. -->
 <footer class="scope-dark mt-space-8 bg-block-dark text-ink">
-  <div class="wrap grid gap-space-8 py-12 md:grid-cols-[1.2fr_1fr_1fr_1fr_1fr] md:py-space-16">
-    <div>
+  <div class="wrap grid gap-space-8 py-12 sm:grid-cols-2 md:py-space-16 lg:grid-cols-4 xl:grid-cols-6">
+    <div class="sm:col-span-2 lg:col-span-4 xl:col-span-1">
       <Image src={oscuro} alt="apo" width={104} height={45} />
       <p class="mt-space-4 max-w-[28ch] text-ink-muted">{F.tagline}</p>
     </div>
+    <nav aria-label={F.serviciosTit}>
+      <p class="mb-space-2 font-bold">{F.serviciosTit}</p>
+      <ul>
+        {(Object.keys(SERVICIOS) as ServicioId[]).map((s) => (
+          <li><a class={enlace} href={ruta(lang, `servicio:${s}` as Pagina)}>{d.form.servicios[s]}</a></li>
+        ))}
+        <li><a class={enlace} href={ancla('#proceso')}>{F.links.proceso}</a></li>
+      </ul>
+    </nav>
+    <nav aria-label={F.casosTit}>
+      <p class="mb-space-2 font-bold">{F.casosTit}</p>
+      <ul>
+        {casos.map((c) => (
+          <li><a class={enlace} href={ruta(lang, `caso:${c.id}` as Pagina)}>{c.data.cliente}</a></li>
+        ))}
+      </ul>
+    </nav>
     <nav aria-label={F.proyectos}>
       <p class="mb-space-2 font-bold">{F.proyectos}</p>
       <ul>
         <li><a class={enlace} href={ancla('#proyectos')}>{F.links.proyectos}</a></li>
         <li><a class={enlace} href={ancla('#casos')}>{F.links.casos}</a></li>
-      </ul>
-    </nav>
-    <nav aria-label={F.servicios}>
-      <p class="mb-space-2 font-bold">{F.servicios}</p>
-      <ul>
-        <li><a class={enlace} href={ancla('#servicios')}>{F.links.servicios}</a></li>
-        <li><a class={enlace} href={ancla('#proceso')}>{F.links.proceso}</a></li>
         <li><a class={enlace} href={ancla('#faq')}>{F.links.faq}</a></li>
         <li><a class={enlace} href={ancla('#hablemos')}>{F.links.contacto}</a></li>
       </ul>

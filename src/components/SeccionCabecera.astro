@@ -2,7 +2,7 @@
 import Cinta from './Cinta.astro';
 // Cabecera de sección (refs. 01, 03 y 05): cinta negra + titular enorme que termina en punto
 // + subtítulo pequeño a la derecha, en la misma línea base. `nota`: variante de papel a mano junto al titular.
-const { cinta, titulo, sub, nota = false, chico = false } = Astro.props as { cinta: string; titulo: string; sub?: string; nota?: boolean; chico?: boolean };
+const { cinta, titulo, sub, nota = false, chico = false, intro } = Astro.props as { cinta: string; titulo: string; sub?: string; nota?: boolean; chico?: boolean; intro?: string };
 ---
 <header data-reveal="si">
   <Cinta>{cinta}</Cinta>
@@ -17,4 +17,5 @@ const { cinta, titulo, sub, nota = false, chico = false } = Astro.props as { cin
       {Astro.slots.has('acciones') ? <slot name="acciones" /> : sub && (nota ? <span class="nota-papel">{sub}</span> : <p class="max-w-[34ch] text-right text-ink-muted max-md:text-left">{sub}</p>)}
     </div>
   )}
+  {intro && <p class="mt-space-4 max-w-[68ch] text-ink-muted md:text-[18px]">{intro}</p>}
 </header>

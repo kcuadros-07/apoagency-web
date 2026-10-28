@@ -43,5 +43,13 @@
   "es": "Más solicitudes de contratación con un costo por lead bajo.",
   "en": "More sign-up requests at a low cost per lead."
  },
- "captura": "interhome"
+ "captura": "caso-interhome-isp-planes-de-internet",
+ "servicios": [
+  "web",
+  "ads"
+ ],
+ "altCaptura": {
+  "es": "Captura del sitio web de Interhome, proveedor de internet en Ecuador, con sus planes de internet por velocidad",
+  "en": "Screenshot of the Interhome website, an internet provider in Ecuador, showing its internet plans by speed"
+ }
 }

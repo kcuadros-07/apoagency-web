@@ -1,7 +1,7 @@
 // Logos de clientes: recorta solo el margen transparente (no redibuja nada) y copia las capturas.
 // Uso: node scripts/preparar-clientes.mjs
 import sharp from 'sharp';
-import { copyFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 
 const logos = ['buscacasa', 'flexman', 'interhome', 'tecglo', 'data-privacy-sunset', 'cancion-films', 'ec-connect', 'el-instituto', 'intelnexo', 'avasant'];
 mkdirSync('src/assets/clientes', { recursive: true });
@@ -17,9 +17,9 @@ for (const n of logos) {
     }
   }
   const w = x1 - x0 + 1, h = y1 - y0 + 1;
-  await sharp(`brand/clientes/${n}.png`).extract({ left: x0, top: y0, width: w, height: h }).png({ compressionLevel: 9 }).toFile(`src/assets/clientes/${n}.png`);
+  await sharp(`brand/clientes/${n}.png`).extract({ left: x0, top: y0, width: w, height: h }).png({ compressionLevel: 9 }).toFile(`src/assets/clientes/logo-cliente-${n}.png`);
   info[n] = { w, h, color: spread / op > 18 };
 }
 writeFileSync('src/assets/clientes/info.json', JSON.stringify(info, null, 1));
-for (const n of ['flexman', 'interhome', 'tecglo', 'xtrim', 'data-privacy-sunset']) copyFileSync(`brand/capturas/${n}.webp`, `src/assets/capturas/${n}.webp`);
+// Las capturas ya viven en src/assets/capturas con nombres descriptivos (caso-*.webp): no se copian de nuevo.
 console.log(info);

@@ -28,5 +28,13 @@
   "es": "Más leads calificados durante la promoción.",
   "en": "More qualified leads during the promotion."
  },
- "captura": "xtrim"
+ "captura": "caso-xtrim-isp-landing-promocion",
+ "servicios": [
+  "web",
+  "ads"
+ ],
+ "altCaptura": {
+  "es": "Captura de la landing page de Xtrim, proveedor de internet en Ecuador, para una promoción",
+  "en": "Screenshot of the Xtrim landing page, an internet provider in Ecuador, for a promotion"
+ }
 }

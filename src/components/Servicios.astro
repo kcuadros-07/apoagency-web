@@ -1,15 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 import SeccionCabecera from './SeccionCabecera.astro';
+import { getEntry } from 'astro:content';
 import { m, precioWebDesde } from '../data/metricas';
-import { t, type Lang } from '../i18n';
-import flexman from '../assets/capturas/flexman.webp';
-import manual from '../assets/capturas/manual-color.png';
-import manual2 from '../assets/capturas/manual-versiones.png';
+import { t, ruta, type Lang } from '../i18n';
+import flexman from '../assets/capturas/caso-flexman-fabricante-valvulas-industriales.webp';
+import manual from '../assets/capturas/apo-manual-de-marca-color-y-tipografia.png';
+import manual2 from '../assets/capturas/apo-manual-de-marca-versiones-del-logo.png';
 
 const { lang } = Astro.props as { lang: Lang };
 const S = t(lang).servicios;
+const flexmanAlt = (await getEntry('casos', 'flexman'))!.data.altCaptura[lang];
 const flecha = 'M7 17L17 7M8.500 7H17v8.500';
+const ids = ['web', 'ads', 'branding', 'contenido'] as const;
 
 // Anchos 3/2 y 2/3 como en la referencia: la fila superior carga a la izquierda y la inferior a la derecha.
 const spans = ['lg:col-span-3', 'lg:col-span-2', 'lg:col-span-2', 'lg:col-span-3'];
@@ -24,7 +27,7 @@ const filas = [
 
 <section id="servicios" class="seccion cv">
   <div class="wrap">
-    <SeccionCabecera cinta={S.cinta} titulo={S.titulo} sub={S.sub} />
+    <SeccionCabecera cinta={S.cinta} titulo={S.titulo} sub={S.sub} intro={S.intro} />
 
     <ul class="mt-space-8 grid grid-cols-[minmax(0,1fr)] gap-x-space-4 gap-y-space-8 lg:grid-cols-5" data-stagger="tarjeta">
       {S.items.map((it, i) => (
@@ -39,6 +42,7 @@ const filas = [
               </a>
             </div>
             <p class="mt-space-2 max-w-[44ch] text-ink-muted">{it.d}</p>
+            <a href={ruta(lang, `servicio:${ids[i]}` as never)} class="ver-mas">{S.verMas} ↗</a>
           </div>
 
           <!-- El mockup se sale por el borde inferior de la tarjeta (overflow hidden). -->
@@ -46,7 +50,7 @@ const filas = [
             {i === 0 && (
               <div class="mac">
                 <div class="mac-barra"><span class="puntos"><i></i><i></i><i></i></span><span class="mac-url">flexman.com.ec</span></div>
-                <Image src={flexman} alt="" width={900} height={560} widths={[480, 900]} sizes="(min-width: 1024px) 640px, 90vw" loading="lazy" class="block w-full" />
+                <Image src={flexman} alt={flexmanAlt} width={900} height={560} widths={[480, 900]} sizes="(min-width: 1024px) 640px, 90vw" loading="lazy" class="block w-full" />
               </div>
             )}
             {i === 1 && (
@@ -63,8 +67,8 @@ const filas = [
             {i === 2 && (
               <div class="mac">
                 <div class="mac-barra"><span class="puntos"><i></i><i></i><i></i></span><span class="mac-url">{S.manual}</span></div>
-                <Image src={manual} alt="" width={900} height={563} widths={[480, 900]} sizes="(min-width: 1024px) 480px, 90vw" loading="lazy" class="block w-full" />
-                <Image src={manual2} alt="" width={900} height={563} widths={[480, 900]} sizes="(min-width: 1024px) 480px, 90vw" loading="lazy" class="block w-full border-t border-hairline" />
+                <Image src={manual} alt={S.manualAlt} width={900} height={563} widths={[480, 900]} sizes="(min-width: 1024px) 480px, 90vw" loading="lazy" class="block w-full" />
+                <Image src={manual2} alt={S.manualAlt2} width={900} height={563} widths={[480, 900]} sizes="(min-width: 1024px) 480px, 90vw" loading="lazy" class="block w-full border-t border-hairline" />
               </div>
             )}
             {i === 3 && (
@@ -88,6 +92,7 @@ const filas = [
 </section>
 
 <style is:global>
+  #servicios .ver-mas { display: inline-flex; align-items: center; min-height: 44px; margin-top: 4px; font-weight: 700; color: var(--c-ink); text-decoration: underline; text-underline-offset: 3px; }
   #servicios .mock-zona { height: clamp(260px, 34vw, 400px); overflow: hidden; }
   #servicios .ads { background: var(--c-surface); }
   #servicios .ads-fila { display: grid; grid-template-columns: 1.6fr 0.7fr 1fr 0.8fr; gap: 8px; align-items: center; padding: 22px 16px; border-bottom: 1px solid var(--c-hairline); font-size: 14px; font-variant-numeric: tabular-nums; }

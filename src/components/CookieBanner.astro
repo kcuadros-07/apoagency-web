@@ -22,7 +22,7 @@ const politica = ruta(lang, 'cookies');
 
 <div id="cookie-panel" role="dialog" aria-modal="true" aria-labelledby="cookie-panel-t" hidden>
   <div class="cookie-panel-caja">
-    <h2 id="cookie-panel-t" class="text-h2">{C.panelTitulo}</h2>
+    <div id="cookie-panel-t" class="text-h2 font-bold">{C.panelTitulo}</div>
     <div class="cookie-fila">
       <div><p class="font-bold">{C.necesarias}</p><p class="text-ink-muted">{C.necesariasDesc}</p></div>
       <input type="checkbox" checked disabled aria-label={C.necesarias} />

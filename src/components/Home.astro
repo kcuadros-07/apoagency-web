@@ -13,12 +13,16 @@ import Quien from './Quien.astro';
 import Hablemos from './Hablemos.astro';
 import Cotizador from './Cotizador.astro';
 import Footer from './Footer.astro';
-import type { Lang } from '../i18n';
+import { faqLd } from '../data/jsonld';
+import { texto } from '../data/textos';
+import { t, type Lang } from '../i18n';
 
 const { lang } = Astro.props as { lang: Lang };
+// FAQPage con las mismas preguntas y respuestas del acordeón (precios desde src/data/metricas.ts).
+const ld = [faqLd(t(lang).faq.items.map((i) => ({ q: texto(i.q), a: texto(i.a) })))];
 ---
 
-<Base lang={lang} pagina="home">
+<Base lang={lang} pagina="home" ld={ld}>
   <Nav lang={lang} />
   <main id="contenido">
     <Hero lang={lang} />

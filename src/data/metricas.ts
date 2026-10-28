@@ -35,6 +35,12 @@ export const metricas = {
   anticipos: { valor: '50/50 web, 70/30 tienda', fuente: 'Forma de pago indicada por Kevin en el brief; está en los Términos y en las FAQ.', verificado: true },
   testimonioInterhome: { valor: 'Andrés Morales, CEO de Interhome Ecuador', fuente: 'Cita copiada palabra por palabra de apoagency.io; Kevin pidió publicarla (src/content/testimonios/interhome.json).', verificado: true },
 
+  // --- Datos del negocio para SEO y Google Business (dados por Kevin el 2026-10-28) ---
+  ciudad: { valor: 'Guayaquil', fuente: 'Kevin Cuadros confirmó que APO opera desde Guayaquil.', verificado: true },
+  provincia: { valor: 'Guayas', fuente: 'Provincia de Guayaquil.', verificado: true },
+  geo: { valor: '-2.1894,-79.8891', fuente: 'Coordenadas APROXIMADAS del centro de Guayaquil (no es una dirección exacta).', verificado: true },
+  horario: { valor: 'Lun–Vie 9:00–18:00', fuente: 'Horario indicado por Kevin Cuadros para el SEO y Google Business.', verificado: true },
+
   // --- Datos propios de APO dados por Kevin ---
   plazoWeb: { valor: '15–20', fuente: 'Brief del proyecto (días hábiles, web).', verificado: true },
   plazoTienda: { valor: '10–15', fuente: 'Brief del proyecto (días hábiles, tienda).', verificado: true },

@@ -1,0 +1,168 @@
+---
+// Página de servicio (SEO): contenido desde src/content/servicios/<lang>-<id>.json. Los precios y plazos se
+// reemplazan con src/data/metricas.ts, así que nunca se desincronizan del formulario.
+import { getEntry, getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import Cinta from './Cinta.astro';
+import Migas from './Migas.astro';
+import { Image } from 'astro:assets';
+import { SITE, wa } from '../config';
+import { precios, m, type MetricaId } from '../data/metricas';
+import { texto } from '../data/textos';
+import { servicioLd, faqLd, migas as migasLd } from '../data/jsonld';
+import { SERVICIOS } from '../data/rutas.mjs';
+import { t, ruta, urlAbsoluta, type Lang, type ServicioId } from '../i18n';
+
+const { lang, id } = Astro.props as { lang: Lang; id: ServicioId };
+const d = t(lang);
+const P = d.paginaServicio;
+const pagina = `servicio:${id}` as const;
+const e = (await getEntry('servicios', `${lang}-${id}`))!.data;
+const url = urlAbsoluta(lang, pagina);
+const title = texto(e.title);
+const description = texto(e.description);
+const faq = e.faq.map((f) => ({ q: texto(f.q), a: texto(f.a) }));
+const todosCasos = (await getCollection('casos')).sort((a, b) => a.data.orden - b.data.orden);
+const relacionados = e.casos.map((c) => todosCasos.find((x) => x.id === c)).filter(Boolean) as typeof todosCasos;
+const capturas = import.meta.glob<{ default: ImageMetadata }>('../assets/capturas/*.webp', { eager: true });
+const captura = (n?: string) => (n ? capturas[`../assets/capturas/${n}.webp`]?.default : undefined);
+const opciones = d.form.opciones[id] as Record<string, string>;
+const usd = (n: number) => `$${n}`;
+const fila = Object.entries(precios[id]).map(([k, p]) => ({ k, nombre: opciones[k], precio: `${usd(p.desde)}${p.porMes ? d.form.rango.mes : ''}`, extra: p.mensual ? d.form.rango.mantenimiento.replace('{n}', usd(p.mensual)) : '' }));
+const items = [
+  { nombre: P.inicio, href: ruta(lang) },
+  { nombre: P.servicios, href: ruta(lang) + '#servicios' },
+  { nombre: d.form.servicios[id] },
+];
+const ld = [
+  migasLd([{ nombre: P.inicio, url: urlAbsoluta(lang) }, { nombre: P.servicios, url: urlAbsoluta(lang) + '#servicios' }, { nombre: d.form.servicios[id], url }]),
+  servicioLd({ lang, id, url, nombre: e.nombre, descripcion: description, opciones }),
+  faqLd(faq),
+];
+const wsp = wa(P.msgWa.replace('{servicio}', d.form.servicios[id]));
+const otros = (Object.keys(SERVICIOS) as ServicioId[]).filter((s) => s !== id);
+const flecha = 'M7 17L17 7M8.500 7H17v8.500';
+---
+
+<Base lang={lang} pagina={pagina} title={title} description={description} ogImage={`/og/servicio-${id}-${lang}.png`} ld={ld}>
+  <Nav lang={lang} pagina={pagina} />
+  <main id="contenido" class="pt-[calc(44px+var(--spacing-space-4))] md:pt-[calc(44px+var(--spacing-space-8))]">
+    <article class="wrap pb-space-16">
+      <Migas items={items} etiqueta={P.migas} />
+
+      <header class="mt-space-4">
+        <Cinta>{d.form.servicios[id]}</Cinta>
+        <h1 class="mt-space-4 max-w-[18ch] text-[clamp(40px,6.4vw,88px)] font-extrabold leading-[0.95] tracking-[-0.055em]">{e.h1}</h1>
+        <p class="mt-space-4 max-w-[68ch] text-ink-muted md:text-[18px]">{texto(e.intro)}</p>
+        <div class="mt-space-8 flex flex-col gap-space-2 sm:flex-row sm:flex-wrap">
+          <a href={wsp} target="_blank" rel="noopener" class="btn btn-primary btn-pill">{P.cotizarWa}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d={flecha}></path></svg>
+          </a>
+          <a href={ruta(lang) + '#cotizar'} class="btn btn-ghost btn-pill">{P.cotizarForm}</a>
+        </div>
+      </header>
+
+      <div class="mt-space-16 grid gap-space-16 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-space-8">
+        <div class="prosa servicio-texto">
+          {e.secciones.map((s) => (
+            <section>
+              <h2>{texto(s.h2)}</h2>
+              {s.p.map((p) => <p>{texto(p)}</p>)}
+              {s.ul && <ul>{s.ul.map((li) => <li>{texto(li)}</li>)}</ul>}
+              {s.h2 === e.secciones[e.secciones.length - 1].h2 && relacionados.length > 0 && (
+                <ul class="casos-rel">
+                  {relacionados.map((c) => (
+                    <li class="papel tarjeta">
+                      <a href={ruta(lang, `caso:${c.id}` as never)}>
+                        {captura(c.data.captura) && <Image src={captura(c.data.captura)!} alt={c.data.altCaptura[lang]} width={420} height={260} widths={[320, 420]} sizes="(min-width: 640px) 320px, 90vw" loading="lazy" class="casos-rel-img" />}
+                        <span class="casos-rel-cuerpo">
+                          <b>{c.data.cliente}</b>
+                          <span class="casos-rel-m">{m(c.data.metrica as MetricaId)} {c.data.etiqueta[lang]}</span>
+                          <span class="casos-rel-v">{d.casos.verCaso} ↗</span>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+          {relacionados.length === 0 && (
+            <p><a href={ruta(lang) + '#casos'}>{P.verCasos} ↗</a></p>
+          )}
+
+          <section>
+            <h2>{P.faq}</h2>
+            <div class="faq-lista">
+              {faq.map((f) => (
+                <details class="faq-item">
+                  <summary><span>{f.q}</span>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                  </summary>
+                  <p>{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <aside class="lado-servicio" aria-label={P.precios}>
+          <div class="papel precios-caja">
+            <h2 class="text-h2">{P.precios}</h2>
+            <ul>
+              {fila.map((f) => (
+                <li><span>{f.nombre}</span><b>{f.precio}</b>{f.extra && <small>{f.extra}</small>}</li>
+              ))}
+            </ul>
+            <a href={wsp} target="_blank" rel="noopener" class="btn btn-primary btn-pill mt-space-4 w-full">{P.cotizarWa}</a>
+          </div>
+          <nav class="otros-servicios" aria-label={P.otros}>
+            <h2 class="text-h2">{P.otros}</h2>
+            <ul>
+              {otros.map((s) => (
+                <li><a href={ruta(lang, `servicio:${s}` as never)}>{d.form.servicios[s]} ↗</a></li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+      </div>
+
+      <section class="cta-final papel mt-space-16">
+        <h2 class="text-h1">{e.ctaTitulo}</h2>
+        <p class="mt-space-2 max-w-[52ch] text-ink-muted md:text-[18px]">{e.ctaTexto}</p>
+        <div class="mt-space-4 flex flex-col gap-space-2 sm:flex-row">
+          <a href={wsp} target="_blank" rel="noopener" class="btn btn-primary btn-pill">{P.cotizarWa}</a>
+          <a href={ruta(lang) + '#cotizar'} class="btn btn-ghost btn-pill">{P.cotizarForm}</a>
+        </div>
+      </section>
+    </article>
+  </main>
+  <Footer lang={lang} pagina={pagina} />
+</Base>
+
+<style is:global>
+  .servicio-texto section { margin-bottom: var(--spacing-space-8); }
+  .servicio-texto h2 { font-size: clamp(24px, 2.6vw, 32px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin: 0 0 var(--spacing-space-2); }
+  .servicio-texto p, .servicio-texto ul { max-width: 68ch; }
+  .servicio-texto .faq-lista { display: grid; gap: 12px; margin-top: var(--spacing-space-4); }
+  .lado-servicio { display: grid; gap: 24px; align-content: start; }
+  @media (min-width: 1024px) { .lado-servicio { position: sticky; top: 72px; } }
+  .precios-caja { padding: 24px; }
+  .precios-caja ul { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+  .precios-caja li { display: grid; gap: 2px; padding-bottom: 14px; border-bottom: 1px solid var(--c-hairline); }
+  .precios-caja li b { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--c-indigo-text); }
+  .precios-caja small { color: var(--c-ink-muted); font-size: 16px; }
+  .otros-servicios ul { margin: 12px 0 0; padding: 0; list-style: none; }
+  .otros-servicios a { display: flex; align-items: center; min-height: 44px; font-weight: 700; color: var(--c-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .cta-final { padding: 32px; }
+  @media (min-width: 768px) { .cta-final { padding: 56px; } }
+  .casos-rel { list-style: none; padding: 0; display: grid; gap: 16px; margin-top: 20px; }
+  @media (min-width: 640px) { .casos-rel { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .casos-rel a { display: block; text-decoration: none; color: inherit; }
+  .casos-rel-img { display: block; width: 100%; height: 150px; object-fit: cover; object-position: top; }
+  .casos-rel-cuerpo { display: grid; gap: 2px; padding: 14px 16px 16px; }
+  .casos-rel-m { font-weight: 800; color: var(--c-indigo-text); }
+  .casos-rel-v { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+</style>

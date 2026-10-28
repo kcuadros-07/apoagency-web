@@ -160,7 +160,7 @@
 .prosa p, .prosa ul, .prosa table { margin-top: var(--spacing-space-2); }
 .prosa ul { padding-left: 1.25rem; list-style: disc; }
 .prosa li { margin-top: 6px; }
-.prosa a { color: var(--c-indigo-text); text-decoration: underline; }
+.prosa a:not(.btn):not(.pildora) { color: var(--c-indigo-text); text-decoration: underline; }
 .prosa code { font-family: var(--font-mono); font-size: 0.95em; }
 .prosa table { display: block; overflow-x: auto; border-collapse: collapse; }
 .prosa th, .prosa td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--c-hairline); vertical-align: top; }

@@ -1,0 +1,117 @@
+---
+// Página de caso de éxito (SEO): usa SOLO los textos y cifras aprobados de src/content/casos y src/data/metricas.ts.
+import { getEntry, getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import Cinta from './Cinta.astro';
+import Migas from './Migas.astro';
+import { wa } from '../config';
+import { m, type MetricaId } from '../data/metricas';
+import { casoLd, migas as migasLd } from '../data/jsonld';
+import { fmt, t, ruta, urlAbsoluta, type Lang, type ServicioId } from '../i18n';
+
+const { lang, id } = Astro.props as { lang: Lang; id: string };
+const d = t(lang);
+const P = d.paginaCaso;
+const pagina = `caso:${id}` as const;
+const c = (await getEntry('casos', id))!.data;
+const url = urlAbsoluta(lang, pagina);
+const metrica = m(c.metrica as MetricaId);
+const vars = { cliente: c.cliente, metrica, etiqueta: c.etiqueta[lang], sector: c.sector[lang], servicio: c.servicio[lang] };
+const title = fmt(P.titulo, vars);
+const description = fmt(P.descripcion, vars);
+const capturas = import.meta.glob<{ default: ImageMetadata }>('../assets/capturas/*.webp', { eager: true });
+const img = c.captura ? capturas[`../assets/capturas/${c.captura}.webp`]?.default : undefined;
+const otros = (await getCollection('casos')).filter((x) => x.id !== id).sort((a, b) => a.data.orden - b.data.orden);
+const items = [{ nombre: P.inicio, href: ruta(lang) }, { nombre: P.casos, href: ruta(lang) + '#casos' }, { nombre: c.cliente }];
+const ld = [
+  migasLd([{ nombre: P.inicio, url: urlAbsoluta(lang) }, { nombre: P.casos, url: urlAbsoluta(lang) + '#casos' }, { nombre: c.cliente, url }]),
+  casoLd({ lang, url, nombre: c.cliente, titulo: title, descripcion: description, imagen: `${urlAbsoluta('es').slice(0, -1)}/og/caso-${id}-${lang}.png`, cliente: c.cliente }),
+];
+const wsp = wa(fmt(P.msgWa, { cliente: c.cliente }));
+const flecha = 'M7 17L17 7M8.500 7H17v8.500';
+const extras = c.extra.map((x) => `${m(x.id as MetricaId)} ${x.etiqueta[lang]}`);
+---
+
+<Base lang={lang} pagina={pagina} title={title} description={description} ogImage={`/og/caso-${id}-${lang}.png`} ld={ld}>
+  <Nav lang={lang} pagina={pagina} />
+  <main id="contenido" class="pt-[calc(44px+var(--spacing-space-4))] md:pt-[calc(44px+var(--spacing-space-8))]">
+    <article class="wrap pb-space-16">
+      <Migas items={items} etiqueta={d.paginaServicio.migas} />
+
+      <header class="mt-space-4">
+        <Cinta>{P.casos}</Cinta>
+        <p class="meta meta-bajo mt-space-4">{c.sector[lang]} · {c.servicio[lang]}</p>
+        <h1 class="caso-h1 mt-space-2">{c.cliente}: <span class="caso-h1-m">{metrica}</span> {c.etiqueta[lang]}</h1>
+        {extras.length > 0 && <p class="mt-space-2 text-ink-muted md:text-[18px]">{extras.join(' · ')}</p>}
+      </header>
+
+      <div class="mt-space-8 grid items-start gap-space-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+        <div class="papel overflow-hidden">
+          <div class="mac"><div class="mac-barra"><span class="puntos"><i></i><i></i><i></i></span><span class="mac-url">{c.url}</span></div>
+            {img ? (
+              <Image src={img} alt={c.altCaptura[lang]} width={960} height={600} widths={[480, 720, 960]} sizes="(min-width: 1024px) 560px, 92vw" loading="eager" class="block w-full" />
+            ) : (
+              <div class="mock-portal caso-mock-grande" role="img" aria-label={c.altCaptura[lang]}>
+                <p class="mock-portal-t">{d.casos.busca.titulo}</p>
+                <div class="mock-busqueda"><span>{d.casos.busca.zona}</span><span>{d.casos.busca.tipo}</span><b>{d.casos.busca.buscar}</b></div>
+                <div class="mock-props"><i></i><i></i><i></i></div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div class="prosa caso-texto">
+          <section><h2>{P.reto}</h2><p>{c.problema[lang]}</p></section>
+          <section><h2>{P.queHizo}</h2><p>{c.queHizo[lang]}</p></section>
+          <section class={c.destacado ? 'caso-pag-logro' : ''}><h2>{c.destacado ? P.logro : P.resultado}</h2><p>{c.resultado[lang]}</p>
+            <p class="caso-pag-metrica"><b>{metrica}</b> {c.etiqueta[lang]}</p></section>
+          <section>
+            <h2>{P.servicios}</h2>
+            <ul class="servicios-usados">
+              {c.servicios.map((s) => (
+                <li><a href={ruta(lang, `servicio:${s}` as never)}>{d.form.servicios[s as ServicioId]} ↗</a></li>
+              ))}
+            </ul>
+          </section>
+          <div class="mt-space-4 flex flex-col gap-space-2 sm:flex-row">
+            <a href={wsp} target="_blank" rel="noopener" class="btn btn-primary btn-pill">{P.cta}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d={flecha}></path></svg>
+            </a>
+            <a href={ruta(lang) + '#cotizar'} class="btn btn-ghost btn-pill">{d.paginaServicio.cotizarForm}</a>
+          </div>
+        </div>
+      </div>
+
+      <section class="mt-space-16">
+        <h2 class="text-h1">{P.otros}</h2>
+        <ul class="otros-casos mt-space-4">
+          {otros.map((o) => (
+            <li><a href={ruta(lang, `caso:${o.id}` as never)} class="papel tarjeta"><b>{o.data.cliente}</b><span>{m(o.data.metrica as MetricaId)} {o.data.etiqueta[lang]}</span></a></li>
+          ))}
+        </ul>
+      </section>
+    </article>
+  </main>
+  <Footer lang={lang} pagina={pagina} />
+</Base>
+
+<style is:global>
+    .caso-h1 { font-size: clamp(36px, 5.6vw, 76px); font-weight: 800; line-height: 1; letter-spacing: -0.05em; text-wrap: balance; }
+  .caso-h1-m { color: var(--c-indigo-text); }
+  .caso-texto section { margin-bottom: var(--spacing-space-4); }
+  .caso-texto h2 { font-size: clamp(22px, 2.4vw, 28px); font-weight: 800; letter-spacing: -0.03em; margin: 0 0 6px; }
+  .caso-pag-logro { padding: 16px 20px; border-left: 4px solid var(--c-indigo); border-radius: 0 12px 12px 0; background: var(--c-surface-raised); }
+  .caso-pag-metrica { margin-top: 8px; font-size: 18px; }
+  .caso-pag-metrica b { font-weight: 800; color: var(--c-indigo-text); }
+  .servicios-usados { display: flex; flex-wrap: wrap; gap: 8px 20px; list-style: none; padding: 0; margin: 0; }
+  .servicios-usados a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; color: var(--c-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .caso-mock-grande { min-height: 340px; }
+  .caso-mock-grande .mock-props i { height: 120px; }
+  .otros-casos { display: grid; gap: 16px; list-style: none; padding: 0; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .otros-casos a { display: grid; gap: 4px; padding: 20px; text-decoration: none; color: inherit; }
+  .otros-casos b { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+  .otros-casos span { color: var(--c-indigo-text); font-weight: 700; }
+</style>

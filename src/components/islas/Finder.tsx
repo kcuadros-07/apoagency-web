@@ -34,7 +34,8 @@ function Mock({ k, grande }: { k?: string; grande?: boolean }) {
 }
 
 function Miniatura({ p, grande }: { p: Proyecto; grande?: boolean }) {
-  if (p.img) return <img src={grande ? p.img.big : p.img.thumb} width={p.img.w} height={p.img.h} alt="" loading="lazy" className={grande ? 'fm-img fm-g' : 'fm-img'} />;
+  // La miniatura es decorativa (el botón ya tiene el nombre); la imagen grande del panel describe el sitio.
+  if (p.img) return <img src={grande ? p.img.big : p.img.thumb} width={p.img.w} height={p.img.h} alt={grande ? `Captura del sitio de ${p.nombre}: ${p.desc}` : ''} loading="lazy" className={grande ? 'fm-img fm-g' : 'fm-img'} />;
   return <Mock k={p.mock} grande={grande} />;
 }
 
@@ -101,7 +102,7 @@ export default function Finder({ d, proyectos }: { d: D; proyectos: Proyecto[] }
         {actual && (
           <aside ref={prevRef} className="finder-prev" aria-label={d.previewAria} aria-live="polite">
             <div className="finder-prev-img"><Miniatura p={actual} grande /></div>
-            <h3>{actual.nombre}</h3>
+            <p className="finder-titulo-p">{actual.nombre}</p>
             <p className="finder-desc">{actual.desc}</p>
             <dl>
               <div><dt>{d.cliente}</dt><dd>{actual.cliente}</dd></div>

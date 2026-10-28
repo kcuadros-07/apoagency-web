@@ -1,4 +1,6 @@
 // Datos del negocio y enlaces. Lo pendiente llega por variables de entorno (.env / Variables de GitHub).
+import { m } from './data/metricas';
+
 export const SITE = {
   name: 'APO Agency',
   url: 'https://apoagency.io',
@@ -11,6 +13,10 @@ export const SITE = {
   formspreeId: import.meta.env.PUBLIC_FORMSPREE_ID as string | undefined,
   tiktok: import.meta.env.PUBLIC_TIKTOK_URL as string | undefined,
   linkedin: 'https://www.linkedin.com/in/kevincuadros',
+  ciudad: m('ciudad'),
+  provincia: m('provincia'),
+  geo: m('geo').split(',').map(Number) as [number, number], // aproximadas
+  horario: m('horario'),
   pixelId: import.meta.env.PUBLIC_META_PIXEL_ID as string | undefined,
 };
 

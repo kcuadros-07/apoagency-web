@@ -1,0 +1,22 @@
+---
+// Breadcrumb visible (Inicio › Servicios › Diseño web). El BreadcrumbList en JSON-LD se arma con los mismos items.
+const { items, etiqueta } = Astro.props as { items: { nombre: string; href?: string }[]; etiqueta: string };
+---
+<nav aria-label={etiqueta} class="migas">
+  <ol>
+    {items.map((it, i) => (
+      <li>
+        {it.href && i < items.length - 1 ? <a href={it.href}>{it.nombre}</a> : <span aria-current="page">{it.nombre}</span>}
+        {i < items.length - 1 && <span class="sep" aria-hidden="true">›</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style is:global>
+  .migas ol { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 0; padding: 0; list-style: none; font-size: 16px; color: var(--c-ink-muted); }
+  .migas li { display: inline-flex; align-items: center; gap: 6px; }
+  .migas a { display: inline-flex; align-items: center; min-height: 44px; color: var(--c-ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .migas [aria-current='page'] { font-weight: 700; color: var(--c-ink); }
+  .migas .sep { color: var(--c-ink-muted); }
+</style>

@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import SeccionCabecera from './SeccionCabecera.astro';
 import { m, type MetricaId } from '../data/metricas';
-import { t, fmt, type Lang } from '../i18n';
+import { t, fmt, ruta, type Lang } from '../i18n';
 
 const { lang } = Astro.props as { lang: Lang };
 const d = t(lang);
@@ -15,7 +15,7 @@ const captura = (n?: string) => (n ? capturas[`../assets/capturas/${n}.webp`]?.d
 <section id="casos" class="seccion cv">
   <div class="wrap">
     <div data-carrusel data-reveal="si">
-      <SeccionCabecera cinta={d.casos.cinta} titulo={d.casos.titulo}>
+      <SeccionCabecera cinta={d.casos.cinta} titulo={d.casos.titulo} intro={d.casos.intro}>
         <div slot="acciones" class="carrusel-flechas">
           <button type="button" class="carrusel-flecha" data-ant aria-label={d.casos.ant}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
@@ -32,13 +32,13 @@ const captura = (n?: string) => (n ? capturas[`../assets/capturas/${n}.webp`]?.d
           const meta = [c.data.sector[lang], c.data.ciudad ? m(c.data.ciudad as MetricaId) : null, c.data.servicio[lang]].filter(Boolean).join(' · ');
           return (
             <article class="caso papel" data-caso aria-label={`${c.data.cliente}, ${i + 1} / ${casos.length}`}>
-              <div class="caso-mac" aria-hidden="true">
+              <div class="caso-mac">
                 <div class="mac">
                   <div class="mac-barra"><span class="puntos"><i></i><i></i><i></i></span><span class="mac-url">{c.data.url}</span></div>
                   {img ? (
-                    <Image src={img} alt="" width={480} height={300} widths={[360, 480]} sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 80vw" loading="lazy" class="caso-img" />
+                    <Image src={img} alt={c.data.altCaptura[lang]} width={480} height={300} widths={[360, 480]} sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 80vw" loading="lazy" class="caso-img" />
                   ) : (
-                    <div class="mock-portal">
+                    <div class="mock-portal" role="img" aria-label={c.data.altCaptura[lang]}>
                       <p class="mock-portal-t">{d.casos.busca.titulo}</p>
                       <div class="mock-busqueda"><span>{d.casos.busca.zona}</span><span>{d.casos.busca.tipo}</span><b>{d.casos.busca.buscar}</b></div>
                       <div class="mock-props"><i></i><i></i><i></i></div>
@@ -60,6 +60,7 @@ const captura = (n?: string) => (n ? capturas[`../assets/capturas/${n}.webp`]?.d
                   )}
                 </dl>
                 <div class="caso-cta">
+                  <a href={ruta(lang, `caso:${c.id}` as never)} class="ver-caso">{d.casos.verCaso} ↗</a>
                   <a href="#cotizar" class="pildora pildora-chica">{d.casos.cta}
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M7 17L17 7M8.500 7H17v8.500"></path></svg>
                   </a>
@@ -170,7 +171,9 @@ const captura = (n?: string) => (n ? capturas[`../assets/capturas/${n}.webp`]?.d
   /* En vez de testimonio: bloque destacado en voz de APO (sin comillas ni nombre). */
   .caso-dl > .caso-logro { -webkit-line-clamp: 3; min-height: 4.2em; padding: 6px 10px; border-left: 3px solid var(--c-indigo); border-radius: 0 8px 8px 0; background: var(--c-surface-raised); }
   .caso-logro dd { color: var(--c-ink); font-weight: 600; }
-  .caso-cta { margin-top: auto; padding-top: 8px; }
+  .caso-cta { margin-top: auto; padding-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
+  .ver-caso { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; font-size: 14px; color: var(--c-ink); text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 767px) { .ver-caso { font-size: 16px; } }
   .pildora-chica { min-height: 40px; padding: 0 14px; font-size: 14px; }
   /* En móvil ninguna letra baja de 16px (salvo las etiquetas mono, que ya suben solas). */
   @media (max-width: 767px) {

@@ -28,5 +28,13 @@
   "es": "Más suscriptores nuevos desde la web y los anuncios.",
   "en": "More new subscribers from the site and the ads."
  },
- "captura": "tecglo"
+ "captura": "caso-tecglo-telecomunicaciones-sitio-web",
+ "servicios": [
+  "web",
+  "ads"
+ ],
+ "altCaptura": {
+  "es": "Captura del sitio web de TECglo, empresa de telecomunicaciones en Ecuador, con sus planes de internet",
+  "en": "Screenshot of the TECglo website, a telecommunications company in Ecuador, showing its internet plans"
+ }
 }

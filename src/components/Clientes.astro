@@ -45,7 +45,7 @@ const color = (n: string) => (info as Record<string, { color: boolean }>)[n].col
             const { ancho, alto } = tam(n);
             return (
               <li>
-                <Image src={logos[`../assets/clientes/${n}.png`].default} alt={copia === 1 ? '' : nombre} width={ancho} height={alto} widths={[ancho, ancho * 2]} sizes={`${ancho}px`} loading="lazy"
+                <Image src={logos[`../assets/clientes/logo-cliente-${n}.png`].default} alt={copia === 1 ? '' : nombre} width={ancho} height={alto} widths={[ancho, ancho * 2]} sizes={`${ancho}px`} loading="lazy"
                   class:list={['logo', { 'logo-color': color(n) }]} style={`width:${ancho}px;height:${alto}px`} />
               </li>
             );

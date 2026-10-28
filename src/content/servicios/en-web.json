@@ -1,0 +1,120 @@
+{
+ "id": "web",
+ "lang": "en",
+ "title": "Web design in Ecuador · From {landing} | APO Agency",
+ "description": "Web design in Ecuador: custom landing pages, corporate sites and online stores. Prices from {landing}. Get your quote on WhatsApp.",
+ "h1": "Web design in Ecuador: websites that bring customers",
+ "nombre": "Web design and landing pages",
+ "intro": "I do web design in Ecuador for businesses that want their site to bring inquiries, not just to exist. I work from {ciudad}: I build custom websites that are fast on phones and have a clear button so people can message you on WhatsApp. If you need a landing page in Ecuador, a corporate website or an online store, here is what each option includes, what it costs and how long it takes.",
+ "secciones": [
+  {
+   "h2": "What a website with APO includes",
+   "p": [
+    "Every project is designed from scratch around your brand. I do not use templates: I start from what your business sells and from the questions your customers ask before they buy."
+   ],
+   "ul": [
+    "Custom design that adapts to phones, tablets and computers.",
+    "Clear copy and a structure built to turn visits into inquiries.",
+    "A WhatsApp button and a contact form connected to your number.",
+    "Speed taken care of: lightweight images and clean code, so it loads fast even on mobile data.",
+    "An SEO foundation: titles, descriptions, heading hierarchy and structured data, so Google understands what you do and where.",
+    "Measurement ready: Meta Pixel and analytics when you need them, always with cookie consent.",
+    "Domain and hosting set up in your name, so the site is yours."
+   ]
+  },
+  {
+   "h2": "Who it is for",
+   "p": [
+    "For businesses in {ciudad} and across Ecuador that rely only on social media today, or have an old site that does not look good on a phone."
+   ],
+   "ul": [
+    "Startups launching an offer or promotion that need a landing page in Ecuador.",
+    "Companies that need a corporate website with services, case studies and contact details.",
+    "Businesses that want to sell through their own online store, with a catalog and cart.",
+    "Companies with an old website that does not convert and want to renew it."
+   ]
+  },
+  {
+   "h2": "How the process works",
+   "p": [
+    "The work follows four steps and you always know where we are. First, a free diagnostic: a 30 to 45 minute call to understand your business, your goals and where it hurts. Second, a tailored proposal with deliverables, timelines and a fixed price; the proposal is yours even if you do not hire me. Third, execution, with updates every Friday and a board to follow progress. Fourth, follow-up: we measure with real metrics and adjust what is needed.",
+    "A professional website takes {plazoWeb} business days and an online store {plazoTienda}. The clock starts when I receive the upfront payment and your material (copy, logo, photos and access)."
+   ]
+  },
+  {
+   "h2": "How much a website costs in Ecuador",
+   "p": [
+    "These are my reference prices in US dollars, so you have a clear idea before writing to me. The price of a website in Ecuador changes with pages, features and content, which is why the final proposal depends on the scope."
+   ],
+   "ul": [
+    "Landing page: from {landing}.",
+    "Corporate site of 5 to 7 pages: from {corp}, plus {corpMes}/month for maintenance.",
+    "Online store: from {tienda}, plus {tiendaMes}/month for maintenance."
+   ]
+  },
+  {
+   "h2": "Payment and ownership",
+   "p": [
+    "For a website, payment is 50% upfront and 50% on delivery, before it goes live. For an online store, 70% and 30%. The domain and hosting are in your name and on your account: I help you set them up, but you pay the provider directly. Once you pay in full, the final deliverables are yours."
+   ]
+  },
+  {
+   "h2": "What I need from you to start",
+   "p": [
+    "To move without delays I need four things: the copy or ideas of what you want to communicate, your logo and colors if you already have them, photos of your business or product, and access to your domain and social accounts. If something is missing, I help you sort it out in the free diagnostic. I also need one person who can approve progress, because a timely decision saves days of work."
+   ]
+  },
+  {
+   "h2": "What is not included",
+   "p": [
+    "So there are no surprises: the cost of the domain and hosting is paid by you to the provider, and paid advertising (for example Meta Ads or Google Ads) is a separate service. Changes that alter the agreed scope are not included either; if they come up, I quote them before doing them."
+   ]
+  },
+  {
+   "h2": "Why work with APO",
+   "p": [
+    "You talk directly to me, with no middlemen. You get a fixed price and a clear proposal, weekly updates and real metrics after launch. Every website is custom designed and handed over so that it is yours: your domain, your hosting and your final files."
+   ]
+  },
+  {
+   "h2": "Results from other web projects",
+   "p": [
+    "These are real web design projects in Ecuador you can review, each with its problem, what was done and the result."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "How much does a website cost in Ecuador?",
+   "a": "A landing page, from {landing}. A corporate site, from {corp} plus {corpMes}/month for maintenance. An online store, from {tienda} plus {tiendaMes}/month. These are reference prices: the final proposal depends on the scope."
+  },
+  {
+   "q": "How long does it take to build a website?",
+   "a": "A professional website takes {plazoWeb} business days and an online store {plazoTienda}. The clock starts when I receive the upfront payment and your complete material."
+  },
+  {
+   "q": "Do you use templates?",
+   "a": "No. I design every website custom, with your brand, your content and your goal."
+  },
+  {
+   "q": "Do you work with businesses outside {ciudad}?",
+   "a": "Yes. I work from {ciudad} with businesses all over Ecuador, by video call and WhatsApp."
+  },
+  {
+   "q": "Who pays for the domain and hosting?",
+   "a": "You do. They are in your name and on your account. I help you set them up, but you pay the provider directly."
+  },
+  {
+   "q": "Will my website show up on Google?",
+   "a": "I get the technical SEO foundation right: structure, speed, titles and structured data. Ranking also depends on your competition and on time, and nobody can guarantee a position on Google."
+  }
+ ],
+ "casos": [
+  "buscacasa",
+  "flexman",
+  "data-privacy-sunset",
+  "tecglo"
+ ],
+ "ctaTitulo": "Get your website quote today",
+ "ctaTexto": "Tell me what you need and I will reply within 24 hours with a no-strings proposal."
+}

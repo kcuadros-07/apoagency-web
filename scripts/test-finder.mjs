@@ -33,14 +33,14 @@ for (const [nombre, vp, movil] of [['escritorio', { width: 1440, height: 900 }, 
     const esperados = k === 'todos' ? proy : proy.filter((p) => p.categoria === k);
     ok(await page.locator('.finder-item').count() === esperados.length, `[${nombre}] carpeta ${k}: esperaba ${esperados.length} proyectos`);
     ok(await lado.getByRole('button', { name: new RegExp(etiqueta) }).getAttribute('aria-pressed') === 'true', `[${nombre}] carpeta ${k}: no queda marcada`);
-    ok(await page.locator('.finder-prev h3').innerText() === esperados[0].nombre, `[${nombre}] carpeta ${k}: el panel no muestra el primer proyecto`);
+    ok(await page.locator('.finder-titulo-p').innerText() === esperados[0].nombre, `[${nombre}] carpeta ${k}: el panel no muestra el primer proyecto`);
   }
 
   await lado.getByRole('button', { name: new RegExp(F.todos) }).click();
   for (const p of proy) {
     await page.locator('.finder-item', { hasText: p.nombre }).first().click();
     const prev = page.locator('.finder-prev');
-    ok(await prev.locator('h3').innerText() === p.nombre, `[${nombre}] ${p.nombre}: el panel no cambia`);
+    ok(await prev.locator('.finder-titulo-p').innerText() === p.nombre, `[${nombre}] ${p.nombre}: el panel no cambia`);
     ok((await prev.innerText()).includes(p.cliente) && (!p.anio || (await prev.innerText()).includes(p.anio)) && (await prev.innerText()).includes(p.servicio.es), `[${nombre}] ${p.nombre}: faltan cliente, año o servicio`);
     ok(await prev.locator('.finder-prev-img > *').count() === 1, `[${nombre}] ${p.nombre}: sin imagen ni mockup`);
     const boton = prev.getByRole('link', { name: new RegExp(F.verSitio) });

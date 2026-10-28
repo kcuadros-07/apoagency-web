@@ -1,6 +1,6 @@
 ---
 titulo: Terms and conditions
-descripcion: Terms for using the site and hiring APO Agency's marketing services.
+descripcion: Terms for using the website and for hiring APO Agency's digital marketing services in Ecuador.
 fecha: '2026-10-28'
 ---
 <!-- INTERNAL NOTE: this is a base draft. It must be reviewed by an Ecuadorian lawyer before publishing (deadlines, payment percentages, number of revisions and limitation of liability). The Spanish version is the reference text. -->

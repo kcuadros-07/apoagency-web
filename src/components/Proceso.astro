@@ -9,7 +9,7 @@ const P = t(lang).proceso;
 <section id="proceso" class="seccion cv">
   <div class="wrap">
     <div class="rounded-lg bg-surface-raised p-space-4 md:p-space-16" data-reveal="tarjeta">
-      <SeccionCabecera cinta={P.cinta} titulo={P.titulo} sub={P.sub} />
+      <SeccionCabecera cinta={P.cinta} titulo={P.titulo} sub={P.sub} intro={P.intro} />
       <ol class="mt-space-8 grid gap-space-4 md:grid-cols-2" data-stagger="si">
         {P.pasos.map((p, i) => (
           <li class="papel tarjeta p-space-8">

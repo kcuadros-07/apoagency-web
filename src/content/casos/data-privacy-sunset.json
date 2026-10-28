@@ -29,5 +29,12 @@
   "es": "Inscripciones ordenadas hasta el día del congreso.",
   "en": "Organized registrations all the way to the conference."
  },
- "captura": "data-privacy-sunset"
+ "captura": "caso-data-privacy-sunset-congreso-guayaquil",
+ "servicios": [
+  "web"
+ ],
+ "altCaptura": {
+  "es": "Captura de la web del congreso Data Privacy Sunset en Guayaquil, con la agenda y la inscripción",
+  "en": "Screenshot of the Data Privacy Sunset conference website in Guayaquil, with the schedule and registration"
+ }
 }

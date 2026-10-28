@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import Caso from '../../../components/Caso.astro';
+export async function getStaticPaths() {
+  return (await getCollection('casos')).map((c) => ({ params: { id: c.id } }));
+}
+const { id } = Astro.params;
+---
+<Caso lang="en" id={id!} />

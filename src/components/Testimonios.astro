@@ -17,7 +17,7 @@ const logos = import.meta.glob<{ default: ImageMetadata }>('../assets/clientes/*
       <SeccionCabecera cinta={T.cinta} titulo={T.titulo} sub={T.sub} />
       <div class={`mt-space-8 grid gap-x-space-4 gap-y-space-8 ${items.length > 1 ? 'md:grid-cols-2' : 'max-w-[920px]'}`} data-stagger="tarjeta">
         {items.map((it) => {
-          const logo = it.data.logo ? logos[`../assets/clientes/${it.data.logo}.png`]?.default : undefined;
+          const logo = it.data.logo ? logos[`../assets/clientes/logo-cliente-${it.data.logo}.png`]?.default : undefined;
           return (
             <figure class="papel tarjeta testimonio">
               <blockquote>“{it.data.cita[lang]}”</blockquote>

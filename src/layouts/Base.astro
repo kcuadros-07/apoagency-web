@@ -8,6 +8,7 @@ import fontLatin from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta
 import CookieBanner from '../components/CookieBanner.astro';
 import WhatsAppFlotante from '../components/WhatsAppFlotante.astro';
 import { SITE } from '../config';
+import { grafoBase } from '../data/jsonld';
 import { precioWebDesde } from '../data/metricas';
 import { LANGS, htmlLang, ogLocale, urlAbsoluta, fmt, t, type Lang, type Pagina } from '../i18n';
 
@@ -17,35 +18,18 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  ogImage?: string; // ruta de una imagen 1200x630 propia de la página (p. ej. /og/servicio-web-es.png)
+  ld?: object[]; // nodos extra del @graph (breadcrumb, Service, FAQPage…)
 }
 
-const { lang, pagina = 'home', noindex = false } = Astro.props;
+const { lang, pagina = 'home', noindex = false, ogImage = '/og.png', ld = [] } = Astro.props;
 const d = t(lang);
 const title = Astro.props.title ?? d.meta.title;
 const description = Astro.props.description ?? fmt(d.meta.description, { precio: precioWebDesde });
 const canonical = urlAbsoluta(lang, pagina);
-const ogImage = `${SITE.url}/og.png`;
+const ogUrl = new URL(ogImage, SITE.url).href;
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  '@id': `${SITE.url}/#negocio`,
-  name: SITE.name,
-  url: SITE.url,
-  image: `${SITE.url}/icon-512.png`,
-  logo: `${SITE.url}/icon-512.png`,
-  description,
-  email: SITE.email,
-  telephone: SITE.phone,
-  address: { '@type': 'PostalAddress', addressCountry: 'EC' },
-  areaServed: { '@type': 'Country', name: 'Ecuador' },
-  founder: { '@type': 'Person', name: SITE.founder },
-  knowsAbout: lang === 'es'
-    ? ['Diseño web', 'Meta Ads', 'Google Ads', 'Branding', 'Contenido para redes sociales']
-    : ['Web design', 'Meta Ads', 'Google Ads', 'Branding', 'Social media content'],
-  inLanguage: htmlLang[lang],
-  sameAs: [SITE.instagram, SITE.tiktok, SITE.linkedin].filter(Boolean),
-};
+const jsonLd = { '@context': 'https://schema.org', '@graph': [...grafoBase(lang, description), ...ld] };
 ---
 
 <!doctype html>
@@ -74,14 +58,14 @@ const jsonLd = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={lang === 'es' ? 'APO Agency: marketing que se mide en clientes' : 'APO Agency: marketing measured in customers'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogUrl} />
     <meta name="twitter:image:alt" content={lang === 'es' ? 'APO Agency: marketing que se mide en clientes' : 'APO Agency: marketing measured in customers'} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

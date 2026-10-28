@@ -22,7 +22,7 @@ let revisados = 0;
 const fallo = (vp, que, detalle) => fallos.push(`[${vp}] ${que}: ${detalle}`);
 
 const browser = await chromium.launch();
-const paginas = ['/', '/en/', '/terminos/', '/en/terms/'];
+const paginas = ['/', '/en/', '/terminos/', '/en/terms/', '/diseno-web/', '/casos/flexman/', '/en/web-design/', '/en/cases/flexman/'];
 const viewports = [
   ['escritorio 1440', { width: 1440, height: 900 }, false],
   ['celular 390', { width: 390, height: 844 }, true],

@@ -21,6 +21,8 @@ const casos = defineCollection({
     queHizo: bi,
     resultado: bi,
     captura: z.string().optional(), // nombre en src/assets/capturas/ o "mock-buscacasa"
+    altCaptura: bi, // texto alternativo descriptivo de la captura
+    servicios: z.array(z.enum(['web', 'ads', 'branding', 'contenido'])), // servicios usados (enlazan a su página)
     destacado: z.boolean().default(false), // en vez de testimonio: bloque "Lo que logramos" en voz de APO
   }),
 });
@@ -61,4 +63,24 @@ const testimonios = defineCollection({
   }),
 });
 
-export const collections = { casos, proyectos, testimonios, legal };
+// Páginas de servicio (SEO): un .json por idioma y servicio. Los precios y plazos van como {marcadores} que se
+// reemplazan con src/data/metricas.ts al compilar (nunca se escriben a mano en el texto).
+const servicios = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/servicios' }),
+  schema: z.object({
+    id: z.enum(['web', 'ads', 'branding', 'contenido']),
+    lang: z.enum(['es', 'en']),
+    title: z.string(),
+    description: z.string(),
+    h1: z.string(),
+    nombre: z.string(),
+    intro: z.string(),
+    secciones: z.array(z.object({ h2: z.string(), p: z.array(z.string()), ul: z.array(z.string()).optional() })),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })),
+    casos: z.array(z.string()),
+    ctaTitulo: z.string(),
+    ctaTexto: z.string(),
+  }),
+});
+
+export const collections = { casos, proyectos, testimonios, servicios, legal };

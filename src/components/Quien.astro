@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Cinta from './Cinta.astro';
 import Sticker from './Sticker.astro';
-import foto from '../assets/img/kevin-cuadros.png';
+import foto from '../assets/img/kevin-cuadros-fundador-de-apo-guayaquil.png';
 import { SITE } from '../config';
 import { t, type Lang } from '../i18n';
 
@@ -21,6 +21,7 @@ const Q = t(lang).quien;
       <Cinta>{Q.cinta}</Cinta>
       <h2 class="mt-space-4 text-[clamp(44px,6.4vw,92px)] font-extrabold leading-[0.95] tracking-[-0.055em]">{Q.titulo}</h2>
       <p class="mt-space-4 max-w-[44ch] md:text-[18px]">{Q.texto}</p>
+      <p class="mt-space-2 max-w-[44ch] text-ink-muted">{Q.ciudad}</p>
       <a href={SITE.linkedin} class="btn btn-ghost mt-space-8" target="_blank" rel="noopener">{Q.linkedin}</a>
     </div>
   </div>

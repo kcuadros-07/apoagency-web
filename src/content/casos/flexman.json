@@ -29,5 +29,12 @@
   "es": "un catálogo ordenado por línea de producto y cotizaciones que llegan directo a su equipo comercial.",
   "en": "a catalog organized by product line and quotes that reach their sales team directly."
  },
- "captura": "flexman"
+ "captura": "caso-flexman-fabricante-valvulas-industriales",
+ "servicios": [
+  "web"
+ ],
+ "altCaptura": {
+  "es": "Captura del sitio web de Flexman, fabricante de válvulas industriales en Ecuador, con su catálogo de productos",
+  "en": "Screenshot of the Flexman website, an industrial valve manufacturer in Ecuador, showing its product catalog"
+ }
 }
